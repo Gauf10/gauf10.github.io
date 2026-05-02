@@ -3,109 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gauf Mentor & Speaker</title>
+<title>GAUF Mentor & Speaker</title>
 <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 <link rel="shortcut icon" href="images/favicon.ico">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #f5f2ec; --ink: #1a1a1a; --muted: #6b6b6b; --accent: #88ED65;
-    --accent2: #7b61ff; --border: rgba(26,26,26,0.12); --card-bg: #ffffff;
+    --bg: #f5f2ec; --ink: #1a1a1a; --muted: #6b6b6b;
+    --accent: #88ED65; --accent2: #7b61ff;
+    --border: rgba(26,26,26,0.12); --card-bg: #ffffff;
     --serif: 'Archivo Black', sans-serif; --body: 'Archivo', sans-serif;
+    --nav-h: 54px;
   }
   html { scroll-behavior: smooth; }
   body { font-family: var(--body); background: var(--bg); color: var(--ink); overflow-x: hidden; cursor: none; }
 
   /* CURSOR */
-  .cursor {
-    width: 12px; height: 12px; background: var(--ink); border-radius: 50%;
-    position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
-    transition: transform 0.15s ease, background 0.2s;
-    transform: translate(-50%, -50%);
-  }
+  .cursor { width: 12px; height: 12px; background: var(--ink); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transition: transform 0.15s ease, background 0.2s; transform: translate(-50%, -50%); }
   .cursor.hover { transform: translate(-50%, -50%) scale(3); background: var(--accent); mix-blend-mode: multiply; }
   .cursor.dark { background: var(--accent); }
   .cursor.dark.hover { background: #fff; }
+  @media (max-width: 900px) { .cursor { display: none; } body { cursor: auto; } }
 
   /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: var(--accent);
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 0.7rem 2.5rem;
-    border-bottom: 1px solid rgba(26,26,26,0.1);
-  }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--accent); display: flex; justify-content: space-between; align-items: center; padding: 0 2.5rem; height: var(--nav-h); border-bottom: 1px solid rgba(26,26,26,0.1); }
   .nav-logo img { height: 28px; display: block; }
   .nav-links { display: flex; gap: 1.75rem; align-items: center; }
-  .nav-links a { font-size: 13px; font-weight: 500; color: var(--ink); text-decoration: none; letter-spacing: 0.03em; opacity: 0.7; transition: opacity 0.2s; }
+  .nav-links a { font-size: 13px; font-weight: 500; color: var(--ink); text-decoration: none; letter-spacing: 0.03em; opacity: 0.7; transition: opacity 0.2s; white-space: nowrap; }
   .nav-links a:hover { opacity: 1; }
   .nav-cta { background: var(--ink) !important; color: var(--accent) !important; padding: 7px 18px; border-radius: 100px; opacity: 1 !important; }
 
-  /* HERO */
-  #hero {
-    min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 0 3rem 4rem; position: relative; overflow: hidden;
-    padding-top: 90px;
-  }
-  .hero-bg-word {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -52%);
-    font-family: var(--serif);
-    font-size: clamp(120px, 20vw, 260px);
-    color: transparent;
-    -webkit-text-stroke: 1.5px rgba(26,26,26,0.07);
-    pointer-events: none; white-space: nowrap; user-select: none;
-    width: 100%; text-align: center; letter-spacing: -0.02em;
-  }
-  .hero-content {
-    display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: center;
-    position: relative; z-index: 1;
-  }
-  .hero-left {}
-  .hero-photo {
-    width: clamp(200px, 22vw, 320px);
-    aspect-ratio: 3/4;
-    border-radius: 160px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    flex-shrink: 0;
-  }
-  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+  /* HAMBURGER */
+  .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+  .nav-burger span { display: block; width: 22px; height: 2px; background: var(--ink); border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
+  .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-burger.open span:nth-child(2) { opacity: 0; }
+  .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .nav-mobile { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: var(--accent); border-bottom: 1px solid rgba(26,26,26,0.15); z-index: 99; flex-direction: column; padding: 1rem 2rem 1.5rem; gap: 1rem; }
+  .nav-mobile.open { display: flex; }
+  .nav-mobile a { font-size: 16px; font-weight: 500; color: var(--ink); text-decoration: none; opacity: 0.75; padding: 0.4rem 0; border-bottom: 1px solid rgba(26,26,26,0.08); }
+  .nav-mobile a:last-child { border-bottom: none; opacity: 1; }
+  .nav-mobile .nav-cta { background: var(--ink) !important; color: var(--accent) !important; padding: 10px 20px; border-radius: 100px; text-align: center; border: none !important; margin-top: 0.25rem; }
+  @media (max-width: 900px) { .nav-links { display: none; } .nav-burger { display: flex; } }
 
-  .hero-accent-pill {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--accent); color: var(--ink);
-    font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
-    padding: 6px 16px; border-radius: 100px; margin-bottom: 1.5rem; width: fit-content;
-  }
+  /* HERO */
+  #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 3rem 4rem; position: relative; overflow: hidden; padding-top: calc(var(--nav-h) + 2rem); }
+  .hero-bg-words { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; user-select: none; width: 100%; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; line-height: 0.88; }
+  .hero-bg-words span { font-family: var(--serif); font-size: clamp(80px, 16vw, 200px); color: transparent; -webkit-text-stroke: 2.5px rgba(26,26,26,0.09); letter-spacing: -0.02em; white-space: nowrap; display: block; width: 100%; }
+  .hero-content { display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: center; position: relative; z-index: 1; }
+  .hero-photo { width: clamp(180px, 22vw, 300px); aspect-ratio: 3/4; border-radius: 150px; overflow: hidden; border: 1px solid var(--border); flex-shrink: 0; }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+  .hero-accent-pill { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: var(--ink); font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 16px; border-radius: 100px; margin-bottom: 1.5rem; width: fit-content; }
   .hero-accent-pill::before { content: ''; width: 6px; height: 6px; background: var(--ink); border-radius: 50%; display: inline-block; }
-  .hero-title {
-    font-family: var(--serif); font-size: clamp(38px, 6vw, 78px);
-    line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 2rem;
-  }
-  .hero-title em { font-style: normal; -webkit-text-stroke: 1.5px var(--ink); color: transparent; }
+  .hero-title { font-family: var(--serif); font-size: clamp(34px, 5.5vw, 72px); line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 2rem; }
+  .hero-title em { font-style: normal; color: var(--accent); }
   .hero-sub { font-size: 16px; line-height: 1.6; color: var(--muted); max-width: 380px; margin-bottom: 1.5rem; }
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: var(--ink); color: var(--bg);
-    font-family: var(--body); font-size: 14px; font-weight: 500;
-    letter-spacing: 0.04em; padding: 14px 28px; border-radius: 100px;
-    text-decoration: none; transition: background 0.2s, transform 0.2s;
-  }
+  .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: var(--bg); font-family: var(--body); font-size: 14px; font-weight: 500; letter-spacing: 0.04em; padding: 14px 28px; border-radius: 100px; text-decoration: none; transition: background 0.2s, transform 0.2s; }
   .btn-primary:hover { background: var(--accent2); transform: scale(1.03); }
 
   /* MARQUEE */
-  .marquee-wrap {
-    overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-    padding: 0.9rem 0; background: var(--ink);
-  }
-  .marquee-wrap.light { background: var(--bg); border-color: var(--border); }
+  .marquee-wrap { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 0.9rem 0; background: var(--ink); }
+  .marquee-wrap.light { background: var(--bg); }
+  .marquee-track { display: flex; animation: marquee 22s linear infinite; width: max-content; }
+  .marquee-item { font-family: var(--serif); font-size: 12px; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; display: flex; align-items: center; }
   .marquee-wrap.light .marquee-item { color: var(--muted); }
-  .marquee-wrap.light .marquee-dot { background: var(--muted); }
-  .marquee-track { display: flex; gap: 3rem; animation: marquee 22s linear infinite; width: max-content; }
-  .marquee-item { font-family: var(--serif); font-size: 12px; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; display: flex; align-items: center; gap: 1.5rem; }
-  .marquee-dot { width: 5px; height: 5px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+  /* Equal spacing: dot and text each get same padding */
+  .marquee-item .mdot { width: 5px; height: 5px; background: var(--accent); border-radius: 50%; flex-shrink: 0; margin: 0 1.5rem; }
+  .marquee-wrap.light .marquee-item .mdot { background: var(--muted); }
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
   /* SECTIONS */
@@ -131,11 +96,13 @@
   #quien .section-label::before { background: rgba(245,242,236,0.4); }
   .quien-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .quien-photo-main { grid-column: 1 / -1; aspect-ratio: 16/9; border-radius: 4px; overflow: hidden; }
-  .quien-photo-sec { aspect-ratio: 1; border-radius: 4px; overflow: hidden; background: #2a2a2a; }
+  .quien-photo-sec { aspect-ratio: 2/3; border-radius: 4px; overflow: hidden; background: #2a2a2a; }
   .quien-photos img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .quien-photo-logo { display: flex; align-items: center; justify-content: center; }
+  .quien-photo-logo img { width: 55%; opacity: 0.12; filter: brightness(0) invert(1); }
   .quien-title { font-family: var(--serif); font-size: clamp(30px, 3.5vw, 46px); line-height: 1.05; margin-bottom: 1.5rem; color: var(--bg); }
   .quien-body { font-size: 15px; line-height: 1.75; color: rgba(245,242,236,0.65); margin-bottom: 1rem; }
-  .quien-body a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(200,240,101,0.3); transition: border-color 0.2s; }
+  .quien-body a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(136,237,101,0.3); transition: border-color 0.2s; }
   .quien-body a:hover { border-color: var(--accent); }
   .quien-tagline { font-size: 17px; font-weight: 500; color: var(--accent); line-height: 1.5; margin-top: 1.5rem; }
 
@@ -149,7 +116,7 @@
   .servicio-num { font-family: var(--serif); font-size: 48px; color: rgba(26,26,26,0.06); line-height: 1; margin-bottom: 1rem; }
   .servicio-title { font-family: var(--serif); font-size: 22px; margin-bottom: 1rem; line-height: 1.2; }
   .servicio-body { font-size: 14px; line-height: 1.7; color: var(--muted); margin-bottom: 1.5rem; }
-  .servicio-sub { font-size: 13px; color: var(--muted); line-height: 1.6; padding-top: 1rem; border-top: 1px solid var(--border); margin-bottom: 1.5rem; }
+  .servicio-sub { font-size: 13px; color: var(--muted); line-height: 1.8; padding-top: 1rem; border-top: 1px solid var(--border); margin-bottom: 1.5rem; }
   .servicio-sub a { color: var(--ink); }
   .servicio-cta { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); text-decoration: none; transition: gap 0.2s; }
   .servicio-cta:hover { gap: 14px; }
@@ -159,29 +126,31 @@
   #proyectos .section-label { color: rgba(26,26,26,0.5); }
   #proyectos .section-label::before { background: rgba(26,26,26,0.5); }
   .proyectos-title { font-family: var(--serif); font-size: clamp(26px, 3vw, 40px); margin-bottom: 3rem; line-height: 1.1; max-width: 500px; }
-  .proyectos-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+  .proyectos-grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
   .proyecto-pill { background: rgba(26,26,26,0.08); border: 1px solid rgba(26,26,26,0.15); border-radius: 100px; padding: 8px 20px; font-size: 14px; font-weight: 500; transition: background 0.2s, color 0.2s; cursor: default; position: relative; }
   .proyecto-pill:hover { background: var(--ink); color: var(--accent); }
   .proyecto-tooltip { display: none; position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--bg); font-size: 12px; line-height: 1.5; padding: 8px 14px; border-radius: 6px; white-space: nowrap; pointer-events: none; z-index: 10; }
   .proyecto-pill:hover .proyecto-tooltip { display: block; }
 
+  /* EQUIPO CAROUSEL */
+  #equipo { background: var(--bg); padding: 1.5rem 0; overflow: hidden; }
+  .equipo-track-wrap { overflow: hidden; cursor: grab; }
+  .equipo-track-wrap:active { cursor: grabbing; }
+  .equipo-track { display: flex; gap: 12px; padding: 0 1.5rem; animation: marquee-eq 40s linear infinite; width: max-content; user-select: none; }
+  .equipo-track.dragging { animation-play-state: paused; }
+  .equipo-photo { width: 180px; height: 144px; border-radius: 8px; overflow: hidden; flex-shrink: 0; opacity: 0.7; transition: opacity 0.3s; filter: grayscale(20%); pointer-events: none; }
+  .equipo-track-wrap:hover .equipo-photo { opacity: 0.85; }
+  .equipo-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  @keyframes marquee-eq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
   /* TESTIMONIOS */
   #testimonios { background: var(--bg); overflow: visible; padding-bottom: 4rem; }
   .testimonios-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
   .testimonios-title { font-family: var(--serif); font-size: clamp(26px, 3.5vw, 42px); line-height: 1.1; max-width: 360px; }
-
-  #card-stage {
-    position: relative; width: 100%; height: 500px; overflow: visible;
-  }
-  .t-card {
-    position: absolute; width: 240px; border-radius: 12px; padding: 1.5rem; cursor: grab;
-    display: flex; flex-direction: column; gap: 10px;
-    border: 1px solid rgba(26,26,26,0.08); will-change: transform;
-    transition: box-shadow 0.15s; user-select: none;
-  }
+  #card-stage { position: relative; width: 100%; height: 560px; overflow: visible; }
+  .t-card { position: absolute; width: 260px; border-radius: 12px; padding: 1.5rem; cursor: grab; display: flex; flex-direction: column; gap: 10px; border: 1px solid rgba(26,26,26,0.08); will-change: transform; transition: box-shadow 0.15s; user-select: none; }
   .t-card:active { cursor: grabbing; }
   .t-card.lifted { box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
-  /* Subtle color tones per card */
   .t-card:nth-child(1) { background: #fff; }
   .t-card:nth-child(2) { background: #f0ffd4; }
   .t-card:nth-child(3) { background: #fff8ee; }
@@ -193,6 +162,11 @@
   .t-quote { font-size: 13px; line-height: 1.65; color: #444; flex: 1; }
   .t-name { font-size: 13px; font-weight: 500; color: var(--ink); border-top: 1px solid rgba(26,26,26,0.08); padding-top: 10px; }
   .t-role { font-size: 11px; color: var(--muted); }
+
+  /* MOBILE TESTIMONIOS: horizontal scroll */
+  .testimonios-mobile { display: none; overflow-x: auto; gap: 12px; padding-bottom: 1rem; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .testimonios-mobile::-webkit-scrollbar { display: none; }
+  .testimonios-mobile .t-card { position: static; width: 260px; min-width: 260px; transform: none !important; scroll-snap-align: start; flex-shrink: 0; }
 
   /* VALORES */
   #valores { background: var(--ink); color: var(--bg); }
@@ -222,7 +196,7 @@
   .footer-links a:hover { color: var(--accent); }
 
   /* BACK TO TOP */
-  #back-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; background: var(--ink); color: var(--bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 18px; z-index: 50; opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.2s; box-shadow: 0 2px 12px rgba(0,0,0,0.15); }
+  #back-top { position: fixed; bottom: 1.5rem; right: 1.5rem; width: 40px; height: 40px; background: var(--ink); color: var(--bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 16px; z-index: 50; opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.2s; box-shadow: 0 2px 12px rgba(0,0,0,0.2); }
   #back-top.visible { opacity: 1; pointer-events: all; }
   #back-top:hover { transform: translateY(-3px); }
 
@@ -230,19 +204,51 @@
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
+  /* MOBILE */
   @media (max-width: 900px) {
-    nav { padding: 0.7rem 1.25rem; }
-    .nav-links { display: none; }
-    #hero { padding: 80px 1.5rem 3rem; }
-    .hero-content { grid-template-columns: 1fr; }
-    .hero-photo { width: 160px; margin: 0 auto 2rem; }
-    section { padding: 4rem 1.5rem; }
-    .dolores-grid, .servicios-grid, #quien { grid-template-columns: 1fr; }
+    section { padding: 4rem 1.25rem; }
+    #equipo { padding: 2.5rem 1.25rem; }
+    #contacto { padding: 5rem 1.25rem; }
+    footer { padding: 2rem 1.25rem; }
+
+    #hero { padding: calc(var(--nav-h) + 1.5rem) 1.25rem 3rem; }
+    .hero-bg-words span { font-size: clamp(52px, 18vw, 120px); -webkit-text-stroke: 2px rgba(26,26,26,0.09); }
+    .hero-content { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-photo { width: 140px; border-radius: 100px; margin: 0 auto 1rem; }
+    .hero-left { order: 1; }
+    .hero-photo { order: 2; margin: 0 auto; }
+    .hero-title { font-size: clamp(32px, 9vw, 52px); }
+
+    .dolores-grid { grid-template-columns: 1fr; }
+    .dolor-item { border-right: none !important; }
+    .dolor-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--border); }
+    .dolor-item:last-child { border-bottom: none; }
+
+    #quien { grid-template-columns: 1fr; gap: 2rem; }
+    .quien-photos { grid-template-columns: 1fr 1fr; }
+
+    .servicios-grid { grid-template-columns: 1fr; }
+
+    /* Desktop testimonios hidden on mobile, show mobile version */
+    #card-stage { display: none; }
+    .testimonios-mobile { display: flex; }
+    .testimonios-header { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+
+    /* Valores: 2 cols on mobile */
     .valores-grid { grid-template-columns: 1fr 1fr; }
-    #quien { gap: 2.5rem; }
-    .testimonios-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
-    footer { padding: 2rem 1.5rem; }
-    .hero-bg-word { font-size: 80px; }
+    .valor-item { padding: 1.25rem; }
+    .valor-item:nth-child(3n) { border-right: 1px solid rgba(245,242,236,0.1); }
+    .valor-item:nth-child(even) { border-right: none !important; }
+    .valor-item:nth-last-child(-n+3) { border-bottom: 1px solid rgba(245,242,236,0.1); }
+    .valor-item:nth-last-child(-n+2) { border-bottom: none; }
+    .valor-title { font-size: 13px; }
+    .valor-body { font-size: 12px; }
+
+    /* Fix overflow */
+    body { overflow-x: hidden; }
+    html { overflow-x: hidden; }
+
+    #back-top { bottom: 1rem; right: 1rem; width: 36px; height: 36px; font-size: 14px; }
   }
 </style>
 </head>
@@ -253,9 +259,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#hero" class="nav-logo">
-    <img src="images/logo_negro.svg" alt="Gauf logo">
-  </a>
+  <a href="#hero" class="nav-logo"><img src="images/logo_negro.svg" alt="Gauf logo"></a>
   <div class="nav-links">
     <a href="#dolores">¿Te suena?</a>
     <a href="#quien">Sobre mí</a>
@@ -265,22 +269,37 @@
     <a href="#valores">Valores</a>
     <a href="#contacto" class="nav-cta">Hablemos</a>
   </div>
+  <button class="nav-burger" id="burger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="nav-mobile" id="nav-mobile">
+  <a href="#dolores" onclick="closeMobile()">¿Te suena?</a>
+  <a href="#quien" onclick="closeMobile()">Sobre mí</a>
+  <a href="#servicios" onclick="closeMobile()">Servicios</a>
+  <a href="#proyectos" onclick="closeMobile()">Proyectos</a>
+  <a href="#testimonios" onclick="closeMobile()">Opiniones</a>
+  <a href="#valores" onclick="closeMobile()">Valores</a>
+  <a href="#contacto" class="nav-cta" onclick="closeMobile()">Hablemos</a>
+</div>
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-bg-word">MENTOR</div>
+  <div class="hero-bg-words">
+    <span>MENTOR</span>
+    <span>& SPEAKER</span>
+  </div>
   <div class="hero-content">
+    <div class="hero-photo reveal">
+      <img src="images/speaker1.jpg" alt="Gabo Aufgang speaker">
+    </div>
     <div class="hero-left">
       <div class="hero-accent-pill">Disponible para nuevos proyectos</div>
       <h1 class="hero-title reveal">
-        Te acompaño con tu<br>emprendimiento<br>para llevarlo al<br><em>siguiente nivel.</em>
+        Te acompaño con tu<br>emprendimiento<br>para llevarlo al<br><em>siguiente nivel</em>
       </h1>
       <p class="hero-sub reveal">Hagamos que tus proyectos tengan propósito y resultados concretos.</p>
-      <a href="#contacto" class="btn-primary reveal">Hablemos ↗</a>
-    </div>
-    <div class="hero-photo reveal">
-      <img src="images/speaker1.jpg" alt="Gabo Aufgang speaker">
+      <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3_013vUPPjxyMIcnISoE_AgfQD7vct2cEyuw-O9NaiZTHRDcXznUsITZT9YtZAJ5MAcvhwh9m_" class="btn-primary reveal" target="_blank">Hablemos ↗</a>
     </div>
   </div>
 </section>
@@ -288,20 +307,20 @@
 <!-- MARQUEE SERVICIOS -->
 <div class="marquee-wrap">
   <div class="marquee-track">
-    <span class="marquee-item"><span class="marquee-dot"></span>Mentoría 1:1</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Charlas & Conferencias</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Liderazgo</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Comunicación</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Improvisación aplicada</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Marca personal</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Emprendimiento creativo</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Mentoría 1:1</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Charlas & Conferencias</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Liderazgo</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Comunicación</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Improvisación aplicada</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Marca personal</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Emprendimiento creativo</span>
+    <span class="marquee-item">Mentoría 1:1<span class="mdot"></span></span>
+    <span class="marquee-item">Charlas & Conferencias<span class="mdot"></span></span>
+    <span class="marquee-item">Liderazgo<span class="mdot"></span></span>
+    <span class="marquee-item">Comunicación<span class="mdot"></span></span>
+    <span class="marquee-item">Improvisación aplicada<span class="mdot"></span></span>
+    <span class="marquee-item">Marca personal<span class="mdot"></span></span>
+    <span class="marquee-item">Emprendimiento creativo<span class="mdot"></span></span>
+    <span class="marquee-item">Mentoría 1:1<span class="mdot"></span></span>
+    <span class="marquee-item">Charlas & Conferencias<span class="mdot"></span></span>
+    <span class="marquee-item">Liderazgo<span class="mdot"></span></span>
+    <span class="marquee-item">Comunicación<span class="mdot"></span></span>
+    <span class="marquee-item">Improvisación aplicada<span class="mdot"></span></span>
+    <span class="marquee-item">Marca personal<span class="mdot"></span></span>
+    <span class="marquee-item">Emprendimiento creativo<span class="mdot"></span></span>
   </div>
 </div>
 
@@ -321,15 +340,9 @@
 <!-- SOBRE MI -->
 <section id="quien">
   <div class="quien-photos reveal">
-    <div class="quien-photo-main">
-      <img src="images/hero.jpg" alt="Gabo Aufgang en hackathon">
-    </div>
-    <div class="quien-photo-sec">
-      <img src="images/speaker3.jpg" alt="Gabo Aufgang dando charla">
-    </div>
-    <div class="quien-photo-sec">
-      <img src="images/speaker2.jpg" alt="Gabo Aufgang hablando de impro">
-    </div>
+    <div class="quien-photo-main"><img src="images/speaker0.jpg" alt="Gabo Aufgang mentor"></div>
+    <div class="quien-photo-sec"><img src="images/speaker3.jpg" alt="Gabo Aufgang charla"></div>
+    <div class="quien-photo-sec"><img src="images/speaker2.jpg" alt="Gabo Aufgang speaker"></div>
   </div>
   <div>
     <div class="section-label reveal">Sobre mí</div>
@@ -349,9 +362,9 @@
       <h3 class="servicio-title">Mentoría 1:1</h3>
       <p class="servicio-body">Acompañamiento continuo para proyectos que quieren crecer. Trabajamos comunicación, posicionamiento, equipo y prioridades.</p>
       <div class="servicio-sub">
-       <strong>Plan anual</strong> · Encuentros periódicos.<br><br>
-       <strong>Plan trimestral</strong> · 2 encuentros por mes.<br><br>
-       <strong>Plan estratégico</strong> · Coaching esporádico.<br><br>
+        Plan anual · Encuentros periódicos<br>
+        Plan trimestral · 2 encuentros por mes<br>
+        Plan estratégico · Coaching esporádico
       </div>
       <a href="#contacto" class="servicio-cta">Consultar valores →</a>
     </div>
@@ -360,8 +373,8 @@
       <h3 class="servicio-title">Charlas &<br>conferencias</h3>
       <p class="servicio-body">Dos formatos pensados para equipos, universidades y programas de emprendedores.</p>
       <div class="servicio-sub">
-        <strong>Liderazgo y emprendimiento</strong> · Casos reales de error y aprendizaje en proyectos creativos.<br><br>
-        <strong>Impro aplicada al trabajo</strong> · Herramientas de improvisación para comunicación y toma de decisiones. Con <a href="https://docs.google.com/presentation/d/1JK7U9H6azAvt2NnKXozJtR1rJLz7ZCk0dZasKsct0xY/present" target="_blank">La Chispa Escuela de Impro</a>.
+        <strong>Liderazgo y emprendimiento</strong> — Casos reales de error y aprendizaje en proyectos creativos.<br><br>
+        <strong>Impro aplicada al trabajo</strong> — Herramientas de improvisación para comunicación y toma de decisiones. Con <a href="https://docs.google.com/presentation/d/1JK7U9H6azAvt2NnKXozJtR1rJLz7ZCk0dZasKsct0xY/present" target="_blank">La Chispa Escuela de Impro</a>.
       </div>
       <a href="#contacto" class="servicio-cta">Consultar disponibilidad →</a>
     </div>
@@ -389,18 +402,53 @@
   </div>
 </section>
 
+<!-- EQUIPO -->
+<div id="equipo">
+  <div class="equipo-track-wrap" id="equipo-wrap">
+    <div class="equipo-track">
+      <div class="equipo-photo"><img src="images/equipo/eq1.jpg" alt="Equipo"></div>
+      <div class="equipo-photo"><img src="images/equipo/eq2.jpg" alt="Equipo"></div>
+      <div class="equipo-photo"><img src="images/equipo/eq3.jpg" alt="Equipo"></div>
+      <div class="equipo-photo"><img src="images/equipo/eq4.jpg" alt="Equipo"></div>
+      <div class="equipo-photo"><img src="images/equipo/eq5.jpg" alt="Equipo"></div>
+      <div class="equipo-photo"><img src="images/equipo/eq6.jpg" alt="Equipo"></div>
+      <div class="equipo-photo"><img src="images/equipo/eq7.jpg" alt="Equipo"></div>
+      <div class="equipo-photo"><img src="images/equipo/eq8.jpg" alt="Equipo"></div>
+      <div class="equipo-photo"><img src="images/equipo/eq9.jpg" alt="Equipo"></div>
+      <div class="equipo-photo"><img src="images/equipo/eq3b.jpg" alt="Equipo"></div>
+      <div class="equipo-photo"><img src="images/equipo/eq1b.jpg" alt="Equipo"></div>
+      <div class="equipo-photo"><img src="images/equipo/eq2b.jpg" alt="Equipo"></div>
+      <!-- repeat for seamless loop -->
+      <div class="equipo-photo"><img src="images/equipo/eq1.jpg" alt="Equipo"></div>
+      <div class="equipo-photo"><img src="images/equipo/eq2.jpg" alt="Equipo"></div>
+      <div class="equipo-photo"><img src="images/equipo/eq3.jpg" alt="Equipo"></div>
+      <div class="equipo-photo"><img src="images/equipo/eq4.jpg" alt="Equipo"></div>
+      <div class="equipo-photo"><img src="images/equipo/eq5.jpg" alt="Equipo"></div>
+      <div class="equipo-photo"><img src="images/equipo/eq6.jpg" alt="Equipo"></div>
+      <div class="equipo-photo"><img src="images/equipo/eq7.jpg" alt="Equipo"></div>
+      <div class="equipo-photo"><img src="images/equipo/eq8.jpg" alt="Equipo"></div>
+      <div class="equipo-photo"><img src="images/equipo/eq9.jpg" alt="Equipo"></div>
+      <div class="equipo-photo"><img src="images/equipo/eq3b.jpg" alt="Equipo"></div>
+      <div class="equipo-photo"><img src="images/equipo/eq1b.jpg" alt="Equipo"></div>
+      <div class="equipo-photo"><img src="images/equipo/eq2b.jpg" alt="Equipo"></div>
+    </div>
+  </div>
+</div>
+
 <!-- TESTIMONIOS -->
 <section id="testimonios">
   <div class="testimonios-header">
     <h2 class="testimonios-title reveal">Opiniones valiosas</h2>
   </div>
+
+  <!-- Desktop: draggable cards -->
   <div id="card-stage">
-    <div class="t-card" style="left:2%; top:10%; transform:rotate(-7deg)">
+    <div class="t-card" style="left:2%; top:8%; transform:rotate(-7deg)">
       <div class="t-tag">opinión</div>
       <p class="t-quote">"Su acompañamiento nos permitió mejorar la propuesta visual y entender mejor cómo transmitir el concepto de la marca. Destaco su escucha activa y paciencia durante todo el proceso."</p>
       <div><p class="t-name">Damián Akerman</p><p class="t-role">Co-founder · Easy Lunch</p></div>
     </div>
-    <div class="t-card" style="left:57%; top:5%; transform:rotate(6deg)">
+    <div class="t-card" style="left:57%; top:4%; transform:rotate(6deg)">
       <div class="t-tag">opinión</div>
       <p class="t-quote">"En cada reunión surgieron ideas muy interesantes. Su mirada y sus preguntas nos ayudaron a llegar a un excelente resultado. Gran predisposición para cada detalle."</p>
       <div><p class="t-name">Pablo Bronstein</p><p class="t-role">Co-founder · Easy Lunch</p></div>
@@ -410,7 +458,7 @@
       <p class="t-quote">"Logró traducir la esencia de la marca en una experiencia coherente, moderna y cercana. Su enfoque estratégico y empático ayudó a alinear la marca con nuestra cultura y visión."</p>
       <div><p class="t-name">Dario Rayitas</p><p class="t-role">Co-founder · Maldo</p></div>
     </div>
-    <div class="t-card" style="left:70%; top:45%; transform:rotate(8deg)">
+    <div class="t-card" style="left:70%; top:44%; transform:rotate(8deg)">
       <div class="t-tag">opinión</div>
       <p class="t-quote">"Tiene una forma muy prolija y ordenada de encarar los proyectos. Nos ayudó a entender mejor las necesidades de los usuarios y a bajar todo en soluciones concretas."</p>
       <div><p class="t-name">Andres Novoa</p><p class="t-role">Co-founder · Maldo</p></div>
@@ -420,7 +468,7 @@
       <p class="t-quote">"Destaco profundamente la voluntad de Gabi de ayudar para que mi proyecto crezca, tome forma y llegue a las personas. Siempre con muy buena energía y creatividad."</p>
       <div><p class="t-name">Jesi Romero</p><p class="t-role">Tantra · Yoga y bienestar</p></div>
     </div>
-    <div class="t-card" style="left:38%; top:48%; transform:rotate(4deg)">
+    <div class="t-card" style="left:38%; top:47%; transform:rotate(4deg)">
       <div class="t-tag">opinión</div>
       <p class="t-quote">"Con tus preguntas me ayudaste a ordenar y aclarar varias ideas. Algo clave fue lo del rebranding, que ya inicié. Me dejó muy motivado y con más claridad sobre el camino."</p>
       <div><p class="t-name">Santi Soriano</p><p class="t-role">Escultor · Toys maker</p></div>
@@ -430,6 +478,17 @@
       <p class="t-quote">"La mentoría de Gauf ha sido fundamental para mi crecimiento. Es un comunicador excepcional que combina empatía con una visión sumamente aguda."</p>
       <div><p class="t-name">Tomás Mika</p><p class="t-role">Músico · Web3</p></div>
     </div>
+  </div>
+
+  <!-- Mobile: horizontal scroll -->
+  <div class="testimonios-mobile">
+    <div class="t-card"><div class="t-tag">opinión</div><p class="t-quote">"Su acompañamiento nos permitió mejorar la propuesta visual y entender cómo transmitir el concepto de la marca. Destaco su escucha activa y paciencia."</p><div><p class="t-name">Damián Akerman</p><p class="t-role">Co-founder · Easy Lunch</p></div></div>
+    <div class="t-card"><div class="t-tag">opinión</div><p class="t-quote">"Su mirada y sus preguntas nos ayudaron a llegar a un excelente resultado. Gran predisposición para cada detalle."</p><div><p class="t-name">Pablo Bronstein</p><p class="t-role">Co-founder · Easy Lunch</p></div></div>
+    <div class="t-card"><div class="t-tag">opinión</div><p class="t-quote">"Logró traducir la esencia de la marca en una experiencia coherente, moderna y cercana. Su enfoque ayudó a alinear la marca con nuestra cultura."</p><div><p class="t-name">Dario Rayitas</p><p class="t-role">Co-founder · Maldo</p></div></div>
+    <div class="t-card"><div class="t-tag">opinión</div><p class="t-quote">"Tiene una forma muy prolija de encarar los proyectos. Nos ayudó a entender las necesidades de los usuarios y bajar todo en soluciones concretas."</p><div><p class="t-name">Andres Novoa</p><p class="t-role">Co-founder · Maldo</p></div></div>
+    <div class="t-card"><div class="t-tag">opinión</div><p class="t-quote">"Destaco la voluntad de Gabi de ayudar para que mi proyecto crezca y llegue a las personas. Siempre con muy buena energía y creatividad."</p><div><p class="t-name">Jesi Romero</p><p class="t-role">Tantra · Yoga y bienestar</p></div></div>
+    <div class="t-card"><div class="t-tag">opinión</div><p class="t-quote">"Con tus preguntas me ayudaste a ordenar ideas. Algo clave fue lo del rebranding, que ya inicié. Me dejó muy motivado."</p><div><p class="t-name">Santi Soriano</p><p class="t-role">Escultor · Toys maker</p></div></div>
+    <div class="t-card"><div class="t-tag">opinión</div><p class="t-quote">"La mentoría de Gauf fue fundamental para mi crecimiento. Es un comunicador excepcional que combina empatía con una visión sumamente aguda."</p><div><p class="t-name">Tomás Mika</p><p class="t-role">Músico · Web3</p></div></div>
   </div>
 </section>
 
@@ -449,38 +508,38 @@
 <!-- MARQUEE HOBBIES -->
 <div class="marquee-wrap light">
   <div class="marquee-track" style="animation-direction: reverse;">
-    <span class="marquee-item"><span class="marquee-dot"></span>Basket</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Guitarra</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Cine</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Teatro</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Impro</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Clown</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Yoga</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Jardinería</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Compostaje</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Cocina</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Bici</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Viajes</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Lectura</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Reciclaje</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Hongos</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Tantra</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Basket</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Guitarra</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Cine</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Teatro</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Impro</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Clown</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Yoga</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Jardinería</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Compostaje</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Cocina</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Bici</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Viajes</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Lectura</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Reciclaje</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Hongos</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Tantra</span>
+    <span class="marquee-item">Basket<span class="mdot"></span></span>
+    <span class="marquee-item">Guitarra<span class="mdot"></span></span>
+    <span class="marquee-item">Cine<span class="mdot"></span></span>
+    <span class="marquee-item">Teatro<span class="mdot"></span></span>
+    <span class="marquee-item">Impro<span class="mdot"></span></span>
+    <span class="marquee-item">Clown<span class="mdot"></span></span>
+    <span class="marquee-item">Yoga<span class="mdot"></span></span>
+    <span class="marquee-item">Jardinería<span class="mdot"></span></span>
+    <span class="marquee-item">Compostaje<span class="mdot"></span></span>
+    <span class="marquee-item">Cocina<span class="mdot"></span></span>
+    <span class="marquee-item">Bici<span class="mdot"></span></span>
+    <span class="marquee-item">Viajes<span class="mdot"></span></span>
+    <span class="marquee-item">Lectura<span class="mdot"></span></span>
+    <span class="marquee-item">Reciclaje<span class="mdot"></span></span>
+    <span class="marquee-item">Hongos<span class="mdot"></span></span>
+    <span class="marquee-item">Tantra<span class="mdot"></span></span>
+    <span class="marquee-item">Basket<span class="mdot"></span></span>
+    <span class="marquee-item">Guitarra<span class="mdot"></span></span>
+    <span class="marquee-item">Cine<span class="mdot"></span></span>
+    <span class="marquee-item">Teatro<span class="mdot"></span></span>
+    <span class="marquee-item">Impro<span class="mdot"></span></span>
+    <span class="marquee-item">Clown<span class="mdot"></span></span>
+    <span class="marquee-item">Yoga<span class="mdot"></span></span>
+    <span class="marquee-item">Jardinería<span class="mdot"></span></span>
+    <span class="marquee-item">Compostaje<span class="mdot"></span></span>
+    <span class="marquee-item">Cocina<span class="mdot"></span></span>
+    <span class="marquee-item">Bici<span class="mdot"></span></span>
+    <span class="marquee-item">Viajes<span class="mdot"></span></span>
+    <span class="marquee-item">Lectura<span class="mdot"></span></span>
+    <span class="marquee-item">Reciclaje<span class="mdot"></span></span>
+    <span class="marquee-item">Hongos<span class="mdot"></span></span>
+    <span class="marquee-item">Tantra<span class="mdot"></span></span>
   </div>
 </div>
 
@@ -493,9 +552,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">
-    <img src="images/logo_negro.svg" alt="Gauf">
-  </div>
+  <div class="footer-logo"><img src="images/logo_negro.svg" alt="Gauf"></div>
   <p class="footer-name">Gabo Aufgang · <span id="footer-year"></span></p>
   <div class="footer-links">
     <a href="https://www.linkedin.com/in/gaufgang/" target="_blank">LinkedIn</a>
@@ -505,89 +562,113 @@
 </footer>
 
 <script>
-// YEAR
 document.getElementById('footer-year').textContent = new Date().getFullYear();
 
-// CURSOR - dark section detection
-const cursor = document.getElementById('cursor');
-const darkSections = ['quien', 'valores'];
+// HAMBURGER
+function closeMobile() {
+  document.getElementById('nav-mobile').classList.remove('open');
+  document.getElementById('burger').classList.remove('open');
+}
+document.getElementById('burger').addEventListener('click', function() {
+  this.classList.toggle('open');
+  document.getElementById('nav-mobile').classList.toggle('open');
+});
 
+// CURSOR
+const cursor = document.getElementById('cursor');
 document.addEventListener('mousemove', e => {
   cursor.style.left = e.clientX + 'px';
   cursor.style.top = e.clientY + 'px';
-
-  // Check if over dark section
   const el = document.elementFromPoint(e.clientX, e.clientY);
   const inDark = el && el.closest('#quien, #valores, footer, .marquee-wrap:not(.light)');
   cursor.classList.toggle('dark', !!inDark);
 });
-
-document.querySelectorAll('a, button, .dolor-item, .servicio-card, .t-card, .proyecto-pill, .nav-links a, .valor-item').forEach(el => {
+document.querySelectorAll('a, button, .dolor-item, .servicio-card, .t-card, .proyecto-pill, .valor-item, .equipo-photo').forEach(el => {
   el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
   el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
 });
 
 // REVEAL
-const reveals = document.querySelectorAll('.reveal');
 const revealObserver = new IntersectionObserver(entries => {
   entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 60);
-      revealObserver.unobserve(e.target);
-    }
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 60); revealObserver.unobserve(e.target); }
   });
 }, { threshold: 0.1 });
-reveals.forEach(el => revealObserver.observe(el));
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 // BACK TO TOP
 const backTop = document.getElementById('back-top');
-const heroEl = document.getElementById('hero');
 const heroObs = new IntersectionObserver(entries => {
   backTop.classList.toggle('visible', !entries[0].isIntersecting);
 }, { threshold: 0.1 });
-heroObs.observe(heroEl);
+heroObs.observe(document.getElementById('hero'));
 
-// DRAGGABLE CARDS - full page
+// DRAGGABLE CARDS (desktop)
 const stage = document.getElementById('card-stage');
-const cards = stage.querySelectorAll('.t-card');
-let zTop = 10;
-
-cards.forEach(card => {
-  const match = card.style.transform.match(/rotate\(([^)]+)deg\)/);
-  const rot = match ? parseFloat(match[1]) : 0;
-  let dragging = false, startX, startY, origX, origY;
-  card.style.zIndex = ++zTop;
-
-  function startDrag(cx, cy) {
-    dragging = true;
-    card.classList.add('lifted');
+if (stage) {
+  let zTop = 10;
+  stage.querySelectorAll('.t-card').forEach(card => {
+    const match = card.style.transform.match(/rotate\(([^)]+)deg\)/);
+    const rot = match ? parseFloat(match[1]) : 0;
+    let dragging = false, startX, startY, origX, origY;
     card.style.zIndex = ++zTop;
-    const rect = card.getBoundingClientRect();
-    const stageRect = stage.getBoundingClientRect();
-    origX = rect.left - stageRect.left;
-    origY = rect.top - stageRect.top;
-    startX = cx; startY = cy;
-    card.style.left = origX + 'px';
-    card.style.top = origY + 'px';
-    card.style.transform = `rotate(${rot}deg)`;
-    card.style.transition = 'none';
-  }
+    function startDrag(cx, cy) {
+      dragging = true; card.classList.add('lifted'); card.style.zIndex = ++zTop;
+      const rect = card.getBoundingClientRect(), sr = stage.getBoundingClientRect();
+      origX = rect.left - sr.left; origY = rect.top - sr.top;
+      startX = cx; startY = cy;
+      card.style.left = origX + 'px'; card.style.top = origY + 'px';
+      card.style.transform = `rotate(${rot}deg)`; card.style.transition = 'none';
+    }
+    function moveDrag(cx, cy) {
+      if (!dragging) return;
+      card.style.left = (origX + cx - startX) + 'px';
+      card.style.top = (origY + cy - startY) + 'px';
+    }
+    function endDrag() { dragging = false; card.classList.remove('lifted'); }
+    card.addEventListener('mousedown', e => { e.preventDefault(); startDrag(e.clientX, e.clientY); });
+    card.addEventListener('touchstart', e => startDrag(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
+    window.addEventListener('mousemove', e => moveDrag(e.clientX, e.clientY));
+    window.addEventListener('touchmove', e => { if (dragging) moveDrag(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
+    window.addEventListener('mouseup', endDrag);
+    window.addEventListener('touchend', endDrag);
+  });
+}
 
-  function moveDrag(cx, cy) {
-    if (!dragging) return;
-    card.style.left = (origX + cx - startX) + 'px';
-    card.style.top = (origY + cy - startY) + 'px';
-  }
+// EQUIPO DRAG
+const equipoWrap = document.getElementById('equipo-wrap');
+if (equipoWrap) {
+  const equipoTrack = equipoWrap.querySelector('.equipo-track');
+  let eq_dragging = false, eq_startX = 0, eq_scrollX = 0;
+  let eq_offset = 0;
 
-  function endDrag() { dragging = false; card.classList.remove('lifted'); }
-
-  card.addEventListener('mousedown', e => { e.preventDefault(); startDrag(e.clientX, e.clientY); });
-  card.addEventListener('touchstart', e => startDrag(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
-  window.addEventListener('mousemove', e => moveDrag(e.clientX, e.clientY));
-  window.addEventListener('touchmove', e => { if (dragging) moveDrag(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
-  window.addEventListener('mouseup', endDrag);
-  window.addEventListener('touchend', endDrag);
-});
+  equipoWrap.addEventListener('mousedown', e => {
+    eq_dragging = true;
+    equipoTrack.classList.add('dragging');
+    eq_startX = e.clientX;
+    eq_scrollX = eq_offset;
+  });
+  equipoWrap.addEventListener('touchstart', e => {
+    eq_dragging = true;
+    equipoTrack.classList.add('dragging');
+    eq_startX = e.touches[0].clientX;
+    eq_scrollX = eq_offset;
+  }, { passive: true });
+  window.addEventListener('mousemove', e => {
+    if (!eq_dragging) return;
+    const dx = e.clientX - eq_startX;
+    eq_offset = eq_scrollX - dx;
+    equipoTrack.style.transform = `translateX(-${Math.max(0, eq_offset)}px)`;
+  });
+  window.addEventListener('touchmove', e => {
+    if (!eq_dragging) return;
+    const dx = e.touches[0].clientX - eq_startX;
+    eq_offset = eq_scrollX - dx;
+    equipoTrack.style.transform = `translateX(-${Math.max(0, eq_offset)}px)`;
+  }, { passive: true });
+  window.addEventListener('mouseup', () => { eq_dragging = false; equipoTrack.classList.remove('dragging'); });
+  window.addEventListener('touchend', () => { eq_dragging = false; equipoTrack.classList.remove('dragging'); });
+}
 </script>
 </body>
 </html>
