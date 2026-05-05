@@ -12,7 +12,7 @@
   :root {
     --bg: #f5f2ec; --ink: #1a1a1a; --muted: #6b6b6b;
     --accent: #88ED65; --accent2: #7b61ff;
-    --border: rgba(26,26,26,0.12); --card-bg: #ffffff;
+    --border: rgba(26,26,26,0.12); --card-bg: #f5f2ec;
     --serif: 'Archivo Black', sans-serif; --body: 'Archivo', sans-serif;
     --nav-h: 54px;
   }
@@ -20,19 +20,22 @@
   body { font-family: var(--body); background: var(--bg); color: var(--ink); overflow-x: hidden; cursor: none; }
 
   /* CURSOR */
-  .cursor { width: 12px; height: 12px; background: var(--ink); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transition: transform 0.15s ease, background 0.2s; transform: translate(-50%, -50%); }
-  .cursor.hover { transform: translate(-50%, -50%) scale(3); background: var(--accent); mix-blend-mode: multiply; }
+  .cursor { width: 16px; height: 16px; background: var(--ink); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transition: transform 0.15s ease, background 0.2s; transform: translate(-50%, -50%); }
+  .cursor.hover { transform: translate(-50%, -50%) scale(2); background: var(--accent); mix-blend-mode: normal; }
   .cursor.dark { background: var(--accent); }
   .cursor.dark.hover { background: #fff; }
   @media (max-width: 900px) { .cursor { display: none; } body { cursor: auto; } }
 
   /* NAV */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--accent); display: flex; justify-content: space-between; align-items: center; padding: 0 2.5rem; height: var(--nav-h); border-bottom: 1px solid rgba(26,26,26,0.1); }
-  .nav-logo img { height: 28px; display: block; }
+  .nav-logo-wrap { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo-wrap img { height: 28px; display: block; }
+  .nav-tagline { font-size: 12px; font-weight: 700; color: var(--ink); letter-spacing: 0.01em; line-height: 1.2; opacity: 0.8; border-left: 1.5px solid rgba(26,26,26,0.25); padding-left: 12px; }
+  @media (max-width: 1100px) { .nav-tagline { display: none; } }
   .nav-links { display: flex; gap: 1.75rem; align-items: center; }
   .nav-links a { font-size: 13px; font-weight: 500; color: var(--ink); text-decoration: none; letter-spacing: 0.03em; opacity: 0.7; transition: opacity 0.2s; white-space: nowrap; }
   .nav-links a:hover { opacity: 1; }
-  .nav-cta { background: var(--ink) !important; color: var(--accent) !important; padding: 7px 18px; border-radius: 100px; opacity: 1 !important; }
+  .nav-cta { background: var(--ink) !important; color: #f5f2ec !important; padding: 7px 18px; border-radius: 100px; opacity: 1 !important; }
 
   /* HAMBURGER */
   .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
@@ -44,28 +47,60 @@
   .nav-mobile.open { display: flex; }
   .nav-mobile a { font-size: 16px; font-weight: 500; color: var(--ink); text-decoration: none; opacity: 0.75; padding: 0.4rem 0; border-bottom: 1px solid rgba(26,26,26,0.08); }
   .nav-mobile a:last-child { border-bottom: none; opacity: 1; }
-  .nav-mobile .nav-cta { background: var(--ink) !important; color: var(--accent) !important; padding: 10px 20px; border-radius: 100px; text-align: center; border: none !important; margin-top: 0.25rem; }
+  .nav-mobile .nav-cta { background: var(--ink) !important; color: #f5f2ec !important; padding: 10px 20px; border-radius: 100px; text-align: center; border: none !important; margin-top: 0.25rem; }
   @media (max-width: 900px) { .nav-links { display: none; } .nav-burger { display: flex; } }
 
   /* HERO */
-  #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 3rem 4rem; position: relative; overflow: hidden; padding-top: calc(var(--nav-h) + 2rem); }
-  .hero-bg-words { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; user-select: none; width: 100%; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; line-height: 0.88; }
-  .hero-bg-words span { font-family: var(--serif); font-size: clamp(80px, 16vw, 200px); color: transparent; -webkit-text-stroke: 2.5px rgba(26,26,26,0.09); letter-spacing: -0.02em; white-space: nowrap; display: block; width: 100%; }
-  .hero-content { display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: center; position: relative; z-index: 1; }
-  .hero-photo { width: clamp(180px, 22vw, 300px); aspect-ratio: 3/4; border-radius: 150px; overflow: hidden; border: 1px solid var(--border); flex-shrink: 0; }
-  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+  #hero {
+    min-height: 90vh;
+    background: var(--bg);
+    padding-top: calc(var(--nav-h) + 0rem);
+    padding-bottom: 0;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 36%;
+    gap: 0;
+    align-items: flex-end;
+    position: relative;
+    z-index: 1;
+    padding: 0 3rem;
+  }
+  .hero-left { order: 1; padding-bottom: 3rem; padding-right: 2rem; }
+  .hero-photo {
+    order: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    position: relative;
+    z-index: 2;
+    margin-bottom: -4px;
+  }
+  .hero-photo img {
+    width: 100%;
+    max-width: 432px;
+    height: auto;
+    display: block;
+    filter: saturate(0.88) contrast(0.96);
+  }
   .hero-accent-pill { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: var(--ink); font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 16px; border-radius: 100px; margin-bottom: 1.5rem; width: fit-content; }
   .hero-accent-pill::before { content: ''; width: 6px; height: 6px; background: var(--ink); border-radius: 50%; display: inline-block; }
   .hero-title { font-family: var(--serif); font-size: clamp(34px, 5.5vw, 72px); line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 2rem; }
-  .hero-title em { font-style: normal; color: var(--accent); }
+  .hero-title em { font-style: normal; color: var(--accent); -webkit-text-stroke: 0; }
   .hero-sub { font-size: 16px; line-height: 1.6; color: var(--muted); max-width: 380px; margin-bottom: 1.5rem; }
-  .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: var(--bg); font-family: var(--body); font-size: 14px; font-weight: 500; letter-spacing: 0.04em; padding: 14px 28px; border-radius: 100px; text-decoration: none; transition: background 0.2s, transform 0.2s; }
-  .btn-primary:hover { background: var(--accent2); transform: scale(1.03); }
+  .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: #f5f2ec; font-family: var(--body); font-size: 14px; font-weight: 500; letter-spacing: 0.04em; padding: 14px 28px; border-radius: 100px; text-decoration: none; transition: background 0.2s, transform 0.2s; }
+  .btn-primary:hover { background: var(--accent2); color: #fff !important; transform: none; box-shadow: none; }
 
   /* MARQUEE */
   .marquee-wrap { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 0.9rem 0; background: var(--ink); }
-  .marquee-wrap.light { background: var(--bg); }
-  .marquee-track { display: flex; animation: marquee 22s linear infinite; width: max-content; }
+  .marquee-wrap.light { background: var(--bg); display: flex; }
+  .marquee-track { display: inline-flex; animation: marquee 22s linear infinite; width: max-content; flex-shrink: 0; }
   .marquee-item { font-family: var(--serif); font-size: 12px; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; display: flex; align-items: center; }
   .marquee-wrap.light .marquee-item { color: var(--muted); }
   /* Equal spacing: dot and text each get same padding */
@@ -119,7 +154,7 @@
   .servicio-sub { font-size: 13px; color: var(--muted); line-height: 1.8; padding-top: 1rem; border-top: 1px solid var(--border); margin-bottom: 1.5rem; }
   .servicio-sub a { color: var(--ink); }
   .servicio-cta { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); text-decoration: none; transition: gap 0.2s; }
-  .servicio-cta:hover { gap: 14px; }
+  .servicio-cta:hover { gap: 14px; color: var(--accent); }
 
   /* PROYECTOS */
   #proyectos { background: var(--accent); color: var(--ink); }
@@ -136,18 +171,19 @@
   #equipo { background: var(--bg); padding: 1.5rem 0; overflow: hidden; }
   .equipo-track-wrap { overflow: hidden; cursor: grab; }
   .equipo-track-wrap:active { cursor: grabbing; }
-  .equipo-track { display: flex; gap: 12px; padding: 0 1.5rem; animation: marquee-eq 40s linear infinite; width: max-content; user-select: none; }
+  .equipo-track { display: inline-flex; gap: 12px; padding: 0 1.5rem; animation: marquee-eq 40s linear infinite; width: max-content; user-select: none; flex-shrink: 0; }
   .equipo-track.dragging { animation-play-state: paused; }
   .equipo-photo { width: 180px; height: 144px; border-radius: 8px; overflow: hidden; flex-shrink: 0; opacity: 0.7; transition: opacity 0.3s; filter: grayscale(20%); pointer-events: none; }
   .equipo-track-wrap:hover .equipo-photo { opacity: 0.85; }
   .equipo-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
   @keyframes marquee-eq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .equipo-track-wrap { display: flex; overflow: hidden; }
 
   /* TESTIMONIOS */
   #testimonios { background: var(--bg); overflow: visible; padding-bottom: 4rem; }
   .testimonios-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
   .testimonios-title { font-family: var(--serif); font-size: clamp(26px, 3.5vw, 42px); line-height: 1.1; max-width: 360px; }
-  #card-stage { position: relative; width: 100%; height: 560px; overflow: visible; }
+  #card-stage { position: relative; width: 100%; height: 600px; overflow: visible; }
   .t-card { position: absolute; width: 260px; border-radius: 12px; padding: 1.5rem; cursor: grab; display: flex; flex-direction: column; gap: 10px; border: 1px solid rgba(26,26,26,0.08); will-change: transform; transition: box-shadow 0.15s; user-select: none; }
   .t-card:active { cursor: grabbing; }
   .t-card.lifted { box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
@@ -184,8 +220,8 @@
   #contacto { background: var(--accent); text-align: center; padding: 8rem 3rem; }
   .contacto-title { font-family: var(--serif); font-size: clamp(36px, 6vw, 72px); line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 1.25rem; max-width: 700px; margin-left: auto; margin-right: auto; }
   .contacto-sub { font-size: 16px; color: rgba(26,26,26,0.6); margin-bottom: 3rem; }
-  .btn-dark { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: var(--accent); font-family: var(--body); font-size: 15px; font-weight: 500; padding: 16px 36px; border-radius: 100px; text-decoration: none; transition: transform 0.2s; }
-  .btn-dark:hover { transform: scale(1.04); }
+  .btn-dark { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: #f5f2ec; font-family: var(--body); font-size: 15px; font-weight: 500; padding: 16px 36px; border-radius: 100px; text-decoration: none; transition: transform 0.2s; }
+  .btn-dark:hover { background: var(--accent2); color: #fff !important; transform: none; box-shadow: none; }
 
   /* FOOTER */
   footer { background: var(--ink); color: rgba(245,242,236,0.4); padding: 2.5rem 3rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; font-size: 12px; }
@@ -211,13 +247,24 @@
     #contacto { padding: 5rem 1.25rem; }
     footer { padding: 2rem 1.25rem; }
 
-    #hero { padding: calc(var(--nav-h) + 1.5rem) 1.25rem 3rem; }
-    .hero-bg-words span { font-size: clamp(52px, 18vw, 120px); -webkit-text-stroke: 2px rgba(26,26,26,0.09); }
-    .hero-content { grid-template-columns: 1fr; gap: 2rem; }
-    .hero-photo { width: 140px; border-radius: 100px; margin: 0 auto 1rem; }
-    .hero-left { order: 1; }
-    .hero-photo { order: 2; margin: 0 auto; }
-    .hero-title { font-size: clamp(32px, 9vw, 52px); }
+    #hero { padding-top: calc(var(--nav-h)); padding-bottom: 0; overflow: hidden; padding-left: 0; padding-right: 0; min-height: auto; }
+    .hero-content { display: flex; flex-direction: column; grid-template-columns: unset; gap: 0; padding: 0; position: relative; }
+    /* TEXT: top, order 1 */
+    .hero-left { order: 1; padding: 1.25rem 1.25rem 0.75rem 1.25rem; position: relative; z-index: 3; }
+    /* IMAGE: bottom-right, order 2 */
+    .hero-photo { order: 2; width: 65%; margin: 2px -3% 0 auto; position: relative; z-index: 2; border-radius: 0; overflow: visible; border: none; aspect-ratio: auto; display: flex; align-items: flex-end; justify-content: flex-end; margin-bottom: -4px; }
+    .hero-photo img { width: 100%; height: auto; display: block; filter: saturate(0.88) contrast(0.96); }
+    /* CIRCLE: halo behind head - anchored near top of image area */
+    .hero-circle { width: clamp(180px, 55vw, 280px); aspect-ratio: 1; background: #88ED65 !important; border-radius: 50%; position: absolute; right: 0%; bottom: 14%; transform: translateX(15%); opacity: 1 !important; z-index: 1; animation: pulse-circle 5s ease-in-out infinite; }
+    /* Title */
+    .hero-title { font-size: clamp(32px, 8.5vw, 38px); line-height: 1.1; margin-bottom: 0.9rem; letter-spacing: -0.02em; }
+    .hero-sub-block { margin-bottom: 0.6rem; }
+    .hero-sub-block p { font-size: 15px; max-width: 100%; }
+    .hero-sub-bar { margin: 0.6rem 0 1rem; }
+    .hero-sub-bar p { font-size: 14px; }
+    .hero-btn-group { width: 100%; }
+    .btn-primary { width: 100%; justify-content: center; font-size: 15px; padding: 14px; }
+    .hero-btn-note { text-align: center; }
 
     .dolores-grid { grid-template-columns: 1fr; }
     .dolor-item { border-right: none !important; }
@@ -250,6 +297,47 @@
 
     #back-top { bottom: 1rem; right: 1rem; width: 36px; height: 36px; font-size: 14px; }
   }
+
+  /* HERO CIRCLE */
+  .hero-circle {
+    position: absolute;
+    right: -6vw;
+    bottom: -8%;
+    width: clamp(380px, 50vw, 680px);
+    aspect-ratio: 1;
+    background: var(--accent);
+    border-radius: 50%;
+    z-index: 0;
+    opacity: 0.8;
+    animation: pulse-circle 5s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes pulse-circle {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+  .hero-sub-block { margin-bottom: 1.5rem; }
+  .hero-sub-block p { font-size: 17px; line-height: 1.6; color: var(--ink); max-width: 400px; margin-bottom: 0.25rem; }
+  .hero-sub-block strong { font-weight: 700; }
+  .hero-sub-bar { border-left: 3px solid var(--accent); padding-left: 14px; margin: 1.25rem 0 1.75rem; max-width: 320px; }
+  .hero-sub-bar p { font-size: 15px; line-height: 1.6; color: rgba(26,26,26,0.65); max-width: 320px; }
+  .hero-btn-group { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+  .hero-btn-note { font-size: 12px; color: rgba(26,26,26,0.45); margin-top: 2px; }
+
+  /* Links/buttons use custom cursor, not pointer */
+  a, button, [role="button"], .proyecto-pill, .dolor-item, .valor-item, .servicio-card, .t-card, .equipo-photo {
+    cursor: none;
+  }
+  /* Larger FILLED circle on link hover */
+  .cursor.link-hover {
+    transform: translate(-50%, -50%) scale(2.5);
+    background: var(--accent);
+    mix-blend-mode: normal;
+    border: none;
+  }
+  .cursor.dark.link-hover {
+    background: var(--accent);
+  }
 </style>
 </head>
 <body>
@@ -259,7 +347,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#hero" class="nav-logo"><img src="images/logo_negro.svg" alt="Gauf logo"></a>
+  <a href="#hero" class="nav-logo-wrap"><img src="images/logo_negro.svg" alt="Gauf logo"><span class="nav-tagline">mentor y speaker con liderazgo humano</span></a>
   <div class="nav-links">
     <a href="#dolores">¿Te suena?</a>
     <a href="#quien">Sobre mí</a>
@@ -285,21 +373,25 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-bg-words">
-    <span>MENTOR</span>
-    <span>& SPEAKER</span>
-  </div>
   <div class="hero-content">
+    <div class="hero-circle"></div>
     <div class="hero-photo reveal">
-      <img src="images/speaker1.jpg" alt="Gabo Aufgang speaker">
+      <img src="images/speaker_hero.png" alt="Gabo Aufgang">
     </div>
     <div class="hero-left">
-      <div class="hero-accent-pill">Disponible para nuevos proyectos</div>
       <h1 class="hero-title reveal">
-        Te acompaño con tu<br>emprendimiento<br>para llevarlo al<br><em>siguiente nivel</em>
+        Te acompaño a liderar<br>con más <em>claridad</em>,<br><em>humanidad</em> y confianza
       </h1>
-      <p class="hero-sub reveal">Hagamos que tus proyectos tengan propósito y resultados concretos.</p>
-      <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3_013vUPPjxyMIcnISoE_AgfQD7vct2cEyuw-O9NaiZTHRDcXznUsITZT9YtZAJ5MAcvhwh9m_" class="btn-primary reveal" target="_blank">Hablemos ↗</a>
+      <div class="hero-sub-block reveal">
+        <p>Mentorías y charlas para equipos que buscan<br><strong>decidir mejor, construir</strong> y avanzar con propósito.</p>
+      </div>
+      <div class="hero-sub-bar reveal">
+        <p>Trabajo con equipos, empresas y<br>programas de formación en LATAM.</p>
+      </div>
+      <div class="hero-btn-group reveal">
+        <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3_013vUPPjxyMIcnISoE_AgfQD7vct2cEyuw-O9NaiZTHRDcXznUsITZT9YtZAJ5MAcvhwh9m_" class="btn-primary" target="_blank">Agenda conmigo →</a>
+        <span class="hero-btn-note">Primera conversación sin costo</span>
+      </div>
     </div>
   </div>
 </section>
@@ -328,11 +420,11 @@
 <section id="dolores">
   <div class="section-label reveal">¿Te suena algo de esto?</div>
   <div class="dolores-grid reveal">
-    <div class="dolor-item"><div class="dolor-num">01</div><p class="dolor-text">Todos metidos en el proyecto como yo, no tengo con quién pensar a largo plazo.</p></div>
-    <div class="dolor-item"><div class="dolor-num">02</div><p class="dolor-text">Sé lo que hago, pero no sé cómo comunicarlo para que llegue a quien tiene que llegar.</p></div>
-    <div class="dolor-item"><div class="dolor-num">03</div><p class="dolor-text">El equipo no está alineado y no sé por dónde empezar a ordenarlo.</p></div>
-    <div class="dolor-item"><div class="dolor-num">04</div><p class="dolor-text">Estoy metido en el día a día y no encuentro el momento para parar y pensar para dónde va esto.</p></div>
-    <div class="dolor-item"><div class="dolor-num">05</div><p class="dolor-text">Siento que el proyecto da para mucho más, algo lo está trabando.</p></div>
+    <div class="dolor-item"><div class="dolor-num">01</div><p class="dolor-text">Sé lo que hago, pero me cuesta comunicarlo para que llegue a quien tiene que llegar.</p></div>
+    <div class="dolor-item"><div class="dolor-num">02</div><p class="dolor-text">Todos están apagando incendios, no tengo con quién pensar a largo plazo.</p></div>
+    <div class="dolor-item"><div class="dolor-num">03</div><p class="dolor-text">Todos están apagando incendios, no tengo con quién pensar a largo plazo.</p></div>
+    <div class="dolor-item"><div class="dolor-num">04</div><p class="dolor-text">Todos están apagando incendios, no tengo con quién pensar a largo plazo.</p></div>
+    <div class="dolor-item"><div class="dolor-num">05</div><p class="dolor-text">Todos están apagando incendios, no tengo con quién pensar a largo plazo.</p></div>
     <div class="dolor-item"><div class="dolor-num">06</div><p class="dolor-text">Necesito a alguien que me haga las preguntas que nadie desde adentro puede hacerme.</p></div>
   </div>
 </section>
@@ -347,9 +439,9 @@
   <div>
     <div class="section-label reveal">Sobre mí</div>
     <h2 class="quien-title reveal">Gabriel<br>Aufgang</h2>
-    <p class="quien-body reveal">Dirijo la agencia creativa <a href="https://5seis.com" target="_blank">5SEIS</a> y hace años que acompaño proyectos propios y ajenos hasta que toman vuelo.</p>
-    <p class="quien-body reveal">Doy charlas sobre liderazgo, emprendimiento e improvisación aplicada al trabajo en equipo. Participo como mentor y speaker en hackathones, universidades y programas formativos.</p>
-    <p class="quien-tagline reveal">Traigo preguntas incisivas, mirada fresca y perspectiva de largo alcance.</p>
+    <p class="quien-body reveal">Dirijo la agencia creativa <a href="https://5seis.com" target="_blank">5SEIS</a> y hace años que acompaño proyectos propios y ajenos para que tomen alto vuelo.</p>
+    <p class="quien-body reveal">Doy charlas sobre liderazgo, emprendimiento e improvisación aplicada al trabajo en equipo. Participo como mentor y speaker en eventos de industria, universidades, hackathones y programas formativos.</p>
+    <p class="quien-tagline reveal">Aporto buenas preguntas, mirada fresca y perspectivas a largo plazo.</p>
   </div>
 </section>
 
@@ -359,8 +451,8 @@
   <div class="servicios-grid">
     <div class="servicio-card reveal">
       <div class="servicio-num">01</div>
-      <h3 class="servicio-title">Mentoría 1:1</h3>
-      <p class="servicio-body">Acompañamiento continuo para proyectos que quieren crecer. Trabajamos comunicación, posicionamiento, equipo y prioridades.</p>
+      <h3 class="servicio-title">Mentoría para líderes y personas en momentos de decisión</h3>
+      <p class="servicio-body">Espacio para ordenar ideas, tomar decisiones con más claridad y mejorar cómo lideras, trabajas y acompañas a otros.</p>
       <div class="servicio-sub">
         Plan anual · Encuentros periódicos<br>
         Plan trimestral · 2 encuentros por mes<br>
@@ -389,7 +481,7 @@
     <div class="proyecto-pill">Easy Lunch<div class="proyecto-tooltip">Mentoría · Animación de venta</div></div>
     <div class="proyecto-pill">Maldo UY<div class="proyecto-tooltip">Mentoría · UX research · Rebranding</div></div>
     <div class="proyecto-pill">La Chispa · Escuela de Impro<div class="proyecto-tooltip">Mentoría · Reestructuración · Charlas</div></div>
-    <div class="proyecto-pill">Juan Altamirano Fotografía<div class="proyecto-tooltip">Mentoría · Website</div></div>
+    <div class="proyecto-pill">Juan Altamirano - Fotógrafo<div class="proyecto-tooltip">Mentoría · Website</div></div>
     <div class="proyecto-pill">Tomás Mika · Músico<div class="proyecto-tooltip">Mentoría · Website</div></div>
     <div class="proyecto-pill">Santi Soriano · Escultor<div class="proyecto-tooltip">Mentoría · Website</div></div>
     <div class="proyecto-pill">Jesi Romero · Tantra Yoga<div class="proyecto-tooltip">Mentoría · Branding · Website</div></div>
@@ -443,40 +535,50 @@
 
   <!-- Desktop: draggable cards -->
   <div id="card-stage">
-    <div class="t-card" style="left:2%; top:8%; transform:rotate(-7deg)">
+    <div class="t-card" style="left:76%; top:10%; transform:rotate(8deg)">
       <div class="t-tag">opinión</div>
       <p class="t-quote">"Su acompañamiento nos permitió mejorar la propuesta visual y entender mejor cómo transmitir el concepto de la marca. Destaco su escucha activa y paciencia durante todo el proceso."</p>
       <div><p class="t-name">Damián Akerman</p><p class="t-role">Co-founder · Easy Lunch</p></div>
     </div>
-    <div class="t-card" style="left:57%; top:4%; transform:rotate(6deg)">
+    <div class="t-card" style="left:1%; top:8%; transform:rotate(-6deg)">
       <div class="t-tag">opinión</div>
       <p class="t-quote">"En cada reunión surgieron ideas muy interesantes. Su mirada y sus preguntas nos ayudaron a llegar a un excelente resultado. Gran predisposición para cada detalle."</p>
       <div><p class="t-name">Pablo Bronstein</p><p class="t-role">Co-founder · Easy Lunch</p></div>
     </div>
-    <div class="t-card" style="left:30%; top:2%; transform:rotate(-3deg)">
+    <div class="t-card" style="left:52%; top:3%; transform:rotate(5deg)">
       <div class="t-tag">opinión</div>
       <p class="t-quote">"Logró traducir la esencia de la marca en una experiencia coherente, moderna y cercana. Su enfoque estratégico y empático ayudó a alinear la marca con nuestra cultura y visión."</p>
       <div><p class="t-name">Dario Rayitas</p><p class="t-role">Co-founder · Maldo</p></div>
     </div>
-    <div class="t-card" style="left:70%; top:44%; transform:rotate(8deg)">
+    <div class="t-card" style="left:25%; top:2%; transform:rotate(-2deg)">
       <div class="t-tag">opinión</div>
       <p class="t-quote">"Tiene una forma muy prolija y ordenada de encarar los proyectos. Nos ayudó a entender mejor las necesidades de los usuarios y a bajar todo en soluciones concretas."</p>
       <div><p class="t-name">Andres Novoa</p><p class="t-role">Co-founder · Maldo</p></div>
     </div>
-    <div class="t-card" style="left:7%; top:52%; transform:rotate(-9deg)">
+    <div class="t-card" style="left:71%; top:38%; transform:rotate(7deg)">
       <div class="t-tag">opinión</div>
       <p class="t-quote">"Destaco profundamente la voluntad de Gabi de ayudar para que mi proyecto crezca, tome forma y llegue a las personas. Siempre con muy buena energía y creatividad."</p>
       <div><p class="t-name">Jesi Romero</p><p class="t-role">Tantra · Yoga y bienestar</p></div>
     </div>
-    <div class="t-card" style="left:38%; top:47%; transform:rotate(4deg)">
+    <div class="t-card" style="left:5%; top:50%; transform:rotate(-8deg)">
       <div class="t-tag">opinión</div>
       <p class="t-quote">"Con tus preguntas me ayudaste a ordenar y aclarar varias ideas. Algo clave fue lo del rebranding, que ya inicié. Me dejó muy motivado y con más claridad sobre el camino."</p>
       <div><p class="t-name">Santi Soriano</p><p class="t-role">Escultor · Toys maker</p></div>
     </div>
-    <div class="t-card" style="left:20%; top:27%; transform:rotate(-5deg)">
+    <div class="t-card" style="left:36%; top:46%; transform:rotate(3deg)">
       <div class="t-tag">opinión</div>
       <p class="t-quote">"La mentoría de Gauf ha sido fundamental para mi crecimiento. Es un comunicador excepcional que combina empatía con una visión sumamente aguda."</p>
       <div><p class="t-name">Tomás Mika</p><p class="t-role">Músico · Web3</p></div>
+    </div>
+    <div class="t-card" style="left:48%; top:30%; transform:rotate(-4deg); background:#fdfce8;">
+      <div class="t-tag">opinión</div>
+      <p class="t-quote">"Se destaca por su mirada constructiva y su compromiso con el crecimiento de la escuela, impulsando iniciativas que fortalecen tanto las actividades como el trabajo del equipo docente. Su aporte está atravesado por una actitud positiva y una clara intención de hacer crecer el espacio desde lo creativo y lo humano."</p>
+      <div><p class="t-name">Lucho Barreda</p><p class="t-role">La Chispa · Escuela de Impro</p></div>
+    </div>
+    <div class="t-card" style="left:14%; top:45%; transform:rotate(6deg); background:#e8f8ff;">
+      <div class="t-tag">opinión</div>
+      <p class="t-quote">"Gabi fue un gran impulsor de mi trabajo, siendo que fue quien me motivó para darle un marco más profesional. Fue muy gratificante y de gran ayuda para mi carrera el poder contar con su apoyo."</p>
+      <div><p class="t-name">Juan Altamirano</p><p class="t-role">Fotógrafo</p></div>
     </div>
   </div>
 
@@ -489,6 +591,8 @@
     <div class="t-card"><div class="t-tag">opinión</div><p class="t-quote">"Destaco la voluntad de Gabi de ayudar para que mi proyecto crezca y llegue a las personas. Siempre con muy buena energía y creatividad."</p><div><p class="t-name">Jesi Romero</p><p class="t-role">Tantra · Yoga y bienestar</p></div></div>
     <div class="t-card"><div class="t-tag">opinión</div><p class="t-quote">"Con tus preguntas me ayudaste a ordenar ideas. Algo clave fue lo del rebranding, que ya inicié. Me dejó muy motivado."</p><div><p class="t-name">Santi Soriano</p><p class="t-role">Escultor · Toys maker</p></div></div>
     <div class="t-card"><div class="t-tag">opinión</div><p class="t-quote">"La mentoría de Gauf fue fundamental para mi crecimiento. Es un comunicador excepcional que combina empatía con una visión sumamente aguda."</p><div><p class="t-name">Tomás Mika</p><p class="t-role">Músico · Web3</p></div></div>
+      <div class="t-card" style="background:#fdfce8;"><div class="t-tag">opinión</div><p class="t-quote">"Se destaca por su mirada constructiva y su compromiso con el crecimiento de la escuela. Su aporte está atravesado por una actitud positiva y una intención clara de hacer crecer el espacio desde lo creativo y lo humano."</p><div><p class="t-name">Lucho Barreda</p><p class="t-role">La Chispa · Escuela de Impro</p></div></div>
+    <div class="t-card" style="background:#e8f8ff;"><div class="t-tag">opinión</div><p class="t-quote">"Gabi fue un gran impulsor de mi trabajo, motivándome a darle un marco más profesional. Fue muy gratificante contar con su apoyo para mi carrera."</p><div><p class="t-name">Juan Altamirano</p><p class="t-role">Fotógrafo</p></div></div>
   </div>
 </section>
 
@@ -524,6 +628,7 @@
     <span class="marquee-item">Reciclaje<span class="mdot"></span></span>
     <span class="marquee-item">Hongos<span class="mdot"></span></span>
     <span class="marquee-item">Tantra<span class="mdot"></span></span>
+    <span class="marquee-item">Familia<span class="mdot"></span></span>
     <span class="marquee-item">Basket<span class="mdot"></span></span>
     <span class="marquee-item">Guitarra<span class="mdot"></span></span>
     <span class="marquee-item">Cine<span class="mdot"></span></span>
@@ -545,6 +650,10 @@
 
 <!-- CONTACTO -->
 <section id="contacto">
+    <div class="misc-el misc-dot2"></div>
+    <div class="misc-el misc-star"></div>
+    <div class="misc-el misc-star2"></div>
+  </div>
   <h2 class="contacto-title reveal">¿Te acompaño?</h2>
   <p class="contacto-sub reveal">Charlemos unos minutos sin compromiso.</p>
   <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3_013vUPPjxyMIcnISoE_AgfQD7vct2cEyuw-O9NaiZTHRDcXznUsITZT9YtZAJ5MAcvhwh9m_" class="btn-dark reveal" target="_blank">Agendá una llamada ↗</a>
@@ -584,8 +693,15 @@ document.addEventListener('mousemove', e => {
   cursor.classList.toggle('dark', !!inDark);
 });
 document.querySelectorAll('a, button, .dolor-item, .servicio-card, .t-card, .proyecto-pill, .valor-item, .equipo-photo').forEach(el => {
-  el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-  el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+  const isLink = el.tagName === 'A' || el.tagName === 'BUTTON' || el.classList.contains('nav-cta');
+  el.addEventListener('mouseenter', () => {
+    cursor.classList.add('hover');
+    if (isLink) cursor.classList.add('link-hover');
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.classList.remove('hover');
+    cursor.classList.remove('link-hover');
+  });
 });
 
 // REVEAL
