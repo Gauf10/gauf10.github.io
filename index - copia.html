@@ -24,7 +24,7 @@
   .cursor.hover { transform: translate(-50%, -50%) scale(2); background: var(--accent); mix-blend-mode: normal; }
   .cursor.dark { background: var(--accent); }
   .cursor.dark.hover { background: #fff; }
-  @media (max-width: 600px) { .cursor { display: none; } body { cursor: auto; } }
+  @media (max-width: 900px) { .cursor { display: none; } body { cursor: auto; } }
 
   /* NAV */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--accent); display: flex; justify-content: space-between; align-items: center; padding: 0 2.5rem; height: var(--nav-h); border-bottom: 1px solid rgba(26,26,26,0.1); }
@@ -48,7 +48,7 @@
   .nav-mobile a { font-size: 16px; font-weight: 500; color: var(--ink); text-decoration: none; opacity: 0.75; padding: 0.4rem 0; border-bottom: 1px solid rgba(26,26,26,0.08); }
   .nav-mobile a:last-child { border-bottom: none; opacity: 1; }
   .nav-mobile .nav-cta { background: var(--ink) !important; color: #f5f2ec !important; padding: 10px 20px; border-radius: 100px; text-align: center; border: none !important; margin-top: 0.25rem; }
-  @media (max-width: 600px) { .nav-links { display: none; } .nav-burger { display: flex; } }
+  @media (max-width: 900px) { .nav-links { display: none; } .nav-burger { display: flex; } }
 
   /* HERO */
   #hero {
@@ -240,8 +240,8 @@
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  /* MOBILE PORTRAIT */
-  @media (max-width: 600px) {
+  /* MOBILE */
+  @media (max-width: 900px) {
     section { padding: 4rem 1.25rem; }
     #equipo { padding: 2.5rem 1.25rem; }
     #contacto { padding: 5rem 1.25rem; }
@@ -296,57 +296,6 @@
     html { overflow-x: hidden; }
 
     #back-top { bottom: 1rem; right: 1rem; width: 36px; height: 36px; font-size: 14px; }
-  }
-
-  /* TABLET & LANDSCAPE MOBILE - Keep desktop layout but reduce sizes */
-  @media (min-width: 601px) and (max-width: 1100px) {
-    section { padding: 5rem 2rem; }
-    
-    /* Hero adjustments */
-    .hero-content { padding: 0 2rem; gap: 0; }
-    .hero-left { padding-bottom: 2rem; padding-right: 1.5rem; }
-    .hero-title { font-size: clamp(36px, 4.5vw, 56px); }
-    .hero-sub-block p { font-size: 15px; max-width: 340px; }
-    .hero-sub-bar p { font-size: 14px; max-width: 300px; }
-    .btn-primary { font-size: 13px; padding: 12px 24px; }
-    .hero-photo img { max-width: 380px; }
-    
-    /* Dolor items */
-    .dolor-item { padding: 1.75rem 2rem; }
-    .dolor-text { font-size: 14px; }
-    
-    /* Quien section */
-    #quien { gap: 3rem; }
-    .quien-title { font-size: clamp(28px, 3.2vw, 42px); }
-    .quien-body { font-size: 14px; }
-    .quien-tagline { font-size: 16px; }
-    
-    /* Servicios */
-    .servicio-card { padding: 2rem; }
-    .servicio-title { font-size: 20px; }
-    .servicio-body { font-size: 13px; }
-    .servicio-sub { font-size: 12px; }
-    
-    /* Proyectos */
-    .proyectos-title { font-size: clamp(24px, 2.8vw, 36px); }
-    .proyecto-pill { font-size: 13px; padding: 7px 18px; }
-    
-    /* Testimonios */
-    .testimonios-title { font-size: clamp(24px, 3.2vw, 38px); }
-    .t-card { width: 240px; padding: 1.25rem; }
-    .t-quote { font-size: 12px; }
-    .t-name { font-size: 12px; }
-    
-    /* Valores */
-    .valor-item { padding: 1.75rem; }
-    .valor-title { font-size: 14px; }
-    .valor-body { font-size: 12px; line-height: 1.5; }
-    
-    /* Contacto */
-    #contacto { padding: 6rem 2rem; }
-    .contacto-title { font-size: clamp(40px, 5vw, 60px); }
-    .contacto-sub { font-size: 15px; }
-    .btn-dark { font-size: 14px; padding: 14px 30px; }
   }
 
   /* HERO CIRCLE */
@@ -471,11 +420,11 @@
 <section id="dolores">
   <div class="section-label reveal">¿Te suena algo de esto?</div>
   <div class="dolores-grid reveal">
-    <div class="dolor-item"><div class="dolor-num">01</div><p class="dolor-text">Todos metidos en el proyecto como yo, no tengo con quién pensar a largo plazo..</p></div>
-    <div class="dolor-item"><div class="dolor-num">02</div><p class="dolor-text">Sé lo que hago, pero no sé cómo comunicarlo para que llegue a quien tiene que llegar..</p></div>
-    <div class="dolor-item"><div class="dolor-num">03</div><p class="dolor-text">El equipo no está alineado y no sé por dónde empezar a ordenarlo.</p></div>
-    <div class="dolor-item"><div class="dolor-num">04</div><p class="dolor-text">Estoy metido en el día a día y no encuentro el momento para parar y pensar para dónde va esto.</p></div>
-    <div class="dolor-item"><div class="dolor-num">05</div><p class="dolor-text">Siento que el proyecto da para mucho más, algo lo está trabando.</p></div>
+    <div class="dolor-item"><div class="dolor-num">01</div><p class="dolor-text">Sé lo que hago, pero me cuesta comunicarlo para que llegue a quien tiene que llegar.</p></div>
+    <div class="dolor-item"><div class="dolor-num">02</div><p class="dolor-text">Todos están apagando incendios, no tengo con quién pensar a largo plazo.</p></div>
+    <div class="dolor-item"><div class="dolor-num">03</div><p class="dolor-text">Todos están apagando incendios, no tengo con quién pensar a largo plazo.</p></div>
+    <div class="dolor-item"><div class="dolor-num">04</div><p class="dolor-text">Todos están apagando incendios, no tengo con quién pensar a largo plazo.</p></div>
+    <div class="dolor-item"><div class="dolor-num">05</div><p class="dolor-text">Todos están apagando incendios, no tengo con quién pensar a largo plazo.</p></div>
     <div class="dolor-item"><div class="dolor-num">06</div><p class="dolor-text">Necesito a alguien que me haga las preguntas que nadie desde adentro puede hacerme.</p></div>
   </div>
 </section>
@@ -492,7 +441,6 @@
     <h2 class="quien-title reveal">Gabriel<br>Aufgang</h2>
     <p class="quien-body reveal">Dirijo la agencia creativa <a href="https://5seis.com" target="_blank">5SEIS</a> y hace años que acompaño proyectos propios y ajenos para que tomen alto vuelo.</p>
     <p class="quien-body reveal">Doy charlas sobre liderazgo, emprendimiento e improvisación aplicada al trabajo en equipo. Participo como mentor y speaker en eventos de industria, universidades, hackathones y programas formativos.</p>
-    <p class="quien-body reveal">Creo en los proyectos que nacen desde una búsqueda genuina y en las conversaciones que abren nuevas posibilidades. Mi trabajo consiste en escuchar, detectar patrones y ayudar a transformar intuiciones en decisiones concretas y sostenibles.</p>
     <p class="quien-tagline reveal">Aporto buenas preguntas, mirada fresca y perspectivas a largo plazo.</p>
   </div>
 </section>
@@ -652,12 +600,12 @@
 <section id="valores">
   <div class="section-label reveal">Cómo trabajo y qué me mueve</div>
   <div class="valores-grid reveal">
-    <div class="valor-item"><p class="valor-title">Claridad para decidir</p><p class="valor-body">Ayudo a tomar mejores decisiones con preguntas que buscan expandir el conocimiento, ordenar las ideas, detectar oportunidades y generar mayor claridad al momento de decidir.</p></div>
-    <div class="valor-item"><p class="valor-title">Visión en acción</p><p class="valor-body">Trabajo junto a founders, líderes y equipos creativos para transformar visión en acción concreta, fortaleciendo proyectos, vínculos y formas de comunicar.</p></div>
-    <div class="valor-item"><p class="valor-title">Acompañamiento estratégico</p><p class="valor-body">Busco acompañar procesos de crecimiento profesional y humano desde una mirada estratégica, práctica y cercana, integrando liderazgo, comunicación, validación de ideas y autoconocimiento.</p></div>
-    <div class="valor-item"><p class="valor-title">Preguntas antes que respuestas</p><p class="valor-body">Las preguntas correctas abren más caminos que cualquier fórmula. Busco hacer las consultas que desde adentro nadie está realizando.</p></div>
-    <div class="valor-item"><p class="valor-title">Alegría y compromiso</p><p class="valor-body">Disfruto haciendo, el proceso es tan o más importante que el resultado. Trabajo con transparencia, hablando desde el corazón.</p></div>
-    <div class="valor-item"><p class="valor-title">Adaptabilidad</p><p class="valor-body">Cada proyecto es distinto, me adapto a las necesidades de cada uno y cada momento, con creatividad y propósito.</p></div>
+    <div class="valor-item"><p class="valor-title">Preguntas antes que respuestas</p><p class="valor-body">Las preguntas correctas abren más caminos que cualquier fórmula.</p></div>
+    <div class="valor-item"><p class="valor-title">Creatividad con propósito</p><p class="valor-body">La audacia y creatividad en la búsqueda de profundidad.</p></div>
+    <div class="valor-item"><p class="valor-title">Colaboración genuina</p><p class="valor-body">Me motiva el aprendizaje constante y trabajar con otros para llegar más lejos.</p></div>
+    <div class="valor-item"><p class="valor-title">Alegría y compromiso</p><p class="valor-body">Disfruto haciendo, el proceso es tan o más importante que el resultado.</p></div>
+    <div class="valor-item"><p class="valor-title">Transparencia</p><p class="valor-body">Hablo desde el corazón, sin filtros.</p></div>
+    <div class="valor-item"><p class="valor-title">Adaptabilidad</p><p class="valor-body">Cada proyecto es distinto. Me adapto a lo que cada momento necesita.</p></div>
   </div>
 </section>
 
