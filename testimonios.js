@@ -1,7 +1,7 @@
 // Load and randomize testimonios
 (async function() {
   try {
-    const response = await fetch('testimonios.json');
+    const response = await fetch('/testimonios.json');
     const allTestimonios = await response.json();
     
     // Shuffle array
