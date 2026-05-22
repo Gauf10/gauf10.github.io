@@ -3,7 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GAUF Mentor & Speaker</title>
+<title>GAUF · Mentor y Speaker</title>
+
+  <!-- ================================================
+    Google Analytics 4
+    Reemplazá G-XXXXXXXXXX con tu Measurement ID
+    (también en analytics.js)
+    ================================================ -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NF0X4QWTN6', {
+      send_page_view: true   // registra la visita al cargar la página
+    });
+  </script>
 <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 <link rel="shortcut icon" href="images/favicon.ico">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@300;400;500&display=swap" rel="stylesheet">
@@ -37,6 +52,13 @@
   .nav-links a:hover { opacity: 1; }
   .nav-cta { background: var(--ink) !important; color: #f5f2ec !important; padding: 7px 18px; border-radius: 100px; opacity: 1 !important; }
 
+  /* LANG SWITCH — integrado en nav-links, misma tipografía que los links */
+  .lang-switch { display: flex; align-items: center; gap: 4px; }
+  .lang-sep { font-size: 11px; color: rgba(26,26,26,0.3); pointer-events: none; font-weight: 400; line-height: 1; }
+  .lang-btn { background: none; border: none; font-size: 13px; font-weight: 500; letter-spacing: 0.03em; color: var(--ink); opacity: 0.7; cursor: none; padding: 0; transition: opacity 0.2s; font-family: var(--body); white-space: nowrap; line-height: 1; }
+  .lang-btn:hover { opacity: 1; }
+  .lang-btn.active { opacity: 1; font-weight: 700; }
+
   /* HAMBURGER */
   .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
   .nav-burger span { display: block; width: 22px; height: 2px; background: var(--ink); border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
@@ -46,9 +68,16 @@
   .nav-mobile { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: var(--accent); border-bottom: 1px solid rgba(26,26,26,0.15); z-index: 99; flex-direction: column; padding: 1rem 2rem 1.5rem; gap: 1rem; }
   .nav-mobile.open { display: flex; }
   .nav-mobile a { font-size: 16px; font-weight: 500; color: var(--ink); text-decoration: none; opacity: 0.75; padding: 0.4rem 0; border-bottom: 1px solid rgba(26,26,26,0.08); }
-  .nav-mobile a:last-child { border-bottom: none; opacity: 1; }
+  .nav-mobile a:last-of-type { border-bottom: none; opacity: 1; }
   .nav-mobile .nav-cta { background: var(--ink) !important; color: #f5f2ec !important; padding: 10px 20px; border-radius: 100px; text-align: center; border: none !important; margin-top: 0.25rem; }
   @media (max-width: 600px) { .nav-links { display: none; } .nav-burger { display: flex; } }
+
+  /* LANG SWITCH — mobile (dentro del menú hamburger) */
+  .lang-switch-mobile { display: flex; align-items: center; gap: 5px; padding: 0.5rem 0 0.1rem; margin-top: 0.1rem; }
+  .lang-switch-mobile .lang-btn { font-size: 14px; letter-spacing: 0.03em; opacity: 0.6; cursor: pointer; }
+  .lang-switch-mobile .lang-btn:hover { opacity: 0.9; }
+  .lang-switch-mobile .lang-btn.active { opacity: 0.9; font-weight: 700; }
+  .lang-switch-mobile .lang-sep { font-size: 12px; color: rgba(26,26,26,0.28); }
 
   /* HERO */
   #hero {
@@ -103,7 +132,6 @@
   .marquee-track { display: inline-flex; animation: marquee 22s linear infinite; width: max-content; flex-shrink: 0; }
   .marquee-item { font-family: var(--serif); font-size: 12px; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; display: flex; align-items: center; }
   .marquee-wrap.light .marquee-item { color: var(--muted); }
-  /* Equal spacing: dot and text each get same padding */
   .marquee-item .mdot { width: 5px; height: 5px; background: var(--accent); border-radius: 50%; flex-shrink: 0; margin: 0 1.5rem; }
   .marquee-wrap.light .marquee-item .mdot { background: var(--muted); }
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -187,13 +215,6 @@
   .t-card { position: absolute; width: 260px; border-radius: 12px; padding: 1.5rem; cursor: grab; display: flex; flex-direction: column; gap: 10px; border: 1px solid rgba(26,26,26,0.08); will-change: transform; transition: box-shadow 0.15s; user-select: none; }
   .t-card:active { cursor: grabbing; }
   .t-card.lifted { box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
-  
-  
-  
-  
-  
-  
-  
   .t-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); border: 1px solid rgba(26,26,26,0.1); border-radius: 100px; padding: 3px 10px; width: fit-content; }
   .t-quote { font-size: 13px; line-height: 1.65; color: #444; flex: 1; }
   .t-name { font-size: 13px; font-weight: 500; color: var(--ink); border-top: 1px solid rgba(26,26,26,0.08); padding-top: 10px; }
@@ -249,14 +270,10 @@
 
     #hero { padding-top: calc(var(--nav-h)); padding-bottom: 0; overflow: hidden; padding-left: 0; padding-right: 0; min-height: auto; }
     .hero-content { display: flex; flex-direction: column; grid-template-columns: unset; gap: 0; padding: 0; position: relative; }
-    /* TEXT: top, order 1 */
     .hero-left { order: 1; padding: 1.75rem 1.75rem 0.75rem 1.75rem; position: relative; z-index: 3; }
-    /* IMAGE: bottom-right, order 2 */
     .hero-photo { order: 2; width: 65%; margin: 2px -3% 0 auto; position: relative; z-index: 2; border-radius: 0; overflow: visible; border: none; aspect-ratio: auto; display: flex; align-items: flex-end; justify-content: flex-end; margin-bottom: -4px; }
     .hero-photo img { width: 100%; height: auto; display: block; filter: saturate(0.88) contrast(0.96); }
-    /* CIRCLE: halo behind head - anchored near top of image area */
     .hero-circle { width: clamp(180px, 55vw, 280px); aspect-ratio: 1; border-radius: 50%; position: absolute; right: 0%; bottom: 14%; transform: translateX(15%); opacity: 1 !important; z-index: 1; animation: pulse-circle 5s ease-in-out infinite; }
-    /* Title */
     .hero-title { font-size: clamp(32px, 8.5vw, 38px); line-height: 1.1; margin-bottom: 0.9rem; letter-spacing: -0.02em; }
     .hero-sub-block { margin-bottom: 0.6rem; }
     .hero-sub-block p { font-size: 15px; max-width: 100%; }
@@ -276,12 +293,10 @@
 
     .servicios-grid { grid-template-columns: 1fr; }
 
-    /* Desktop testimonios hidden on mobile, show mobile version */
     #card-stage { display: none; }
     .testimonios-mobile { display: flex; }
     .testimonios-header { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
 
-    /* Valores: 2 cols on mobile */
     .valores-grid { grid-template-columns: 1fr 1fr; }
     .valor-item { padding: 1.25rem; }
     .valor-item:nth-child(3n) { border-right: 1px solid rgba(245,242,236,0.1); }
@@ -291,18 +306,15 @@
     .valor-title { font-size: 13px; }
     .valor-body { font-size: 12px; }
 
-    /* Fix overflow */
     body { overflow-x: hidden; }
     html { overflow-x: hidden; }
 
     #back-top { bottom: 1rem; right: 1rem; width: 36px; height: 36px; font-size: 14px; }
   }
 
-  /* TABLET & LANDSCAPE MOBILE - Keep desktop layout but reduce sizes */
+  /* TABLET & LANDSCAPE MOBILE */
   @media (min-width: 601px) and (max-width: 1100px) {
     section { padding: 6rem 2.5rem; }
-    
-    /* Hero adjustments */
     .hero-content { padding: 0 2.5rem; gap: 0; }
     .hero-left { padding-bottom: 1.5rem; padding-right: 1.5rem; }
     .hero-title { font-size: clamp(36px, 4.5vw, 56px); }
@@ -310,39 +322,25 @@
     .hero-sub-bar p { font-size: 14px; max-width: 300px; }
     .btn-primary { font-size: 13px; padding: 12px 24px; }
     .hero-photo img { max-width: 380px; }
-    
-    /* Dolor items */
     .dolor-item { padding: 1.75rem 2rem; }
     .dolor-text { font-size: 14px; }
-    
-    /* Quien section */
     #quien { gap: 3rem; }
     .quien-title { font-size: clamp(28px, 3.2vw, 42px); }
     .quien-body { font-size: 14px; }
     .quien-tagline { font-size: 16px; }
-    
-    /* Servicios */
     .servicio-card { padding: 2rem; }
     .servicio-title { font-size: 20px; }
     .servicio-body { font-size: 13px; }
     .servicio-sub { font-size: 12px; }
-    
-    /* Proyectos */
     .proyectos-title { font-size: clamp(24px, 2.8vw, 36px); }
     .proyecto-pill { font-size: 13px; padding: 7px 18px; }
-    
-    /* Testimonios */
     .testimonios-title { font-size: clamp(24px, 3.2vw, 38px); }
     .t-card { width: 240px; padding: 1.25rem; }
     .t-quote { font-size: 12px; }
     .t-name { font-size: 12px; }
-    
-    /* Valores */
     .valor-item { padding: 1.75rem; }
     .valor-title { font-size: 14px; }
     .valor-body { font-size: 12px; line-height: 1.5; }
-    
-    /* Contacto */
     #contacto { padding: 6rem 2.5rem; }
     .contacto-title { font-size: clamp(40px, 5vw, 60px); }
     .contacto-sub { font-size: 15px; }
@@ -375,11 +373,9 @@
   .hero-btn-group { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
   .hero-btn-note { font-size: 12px; color: rgba(26,26,26,0.45); margin-top: 2px; }
 
-  /* Links/buttons use custom cursor, not pointer */
-  a, button, [role="button"], .proyecto-pill, .dolor-item, .valor-item, .servicio-card, .t-card, .equipo-photo {
+  a, button, [role="button"], .proyecto-pill, .dolor-item, .valor-item, .servicio-card, .t-card, .equipo-photo, .lang-btn {
     cursor: none;
   }
-  /* Larger FILLED circle on link hover */
   .cursor.link-hover {
     transform: translate(-50%, -50%) scale(2.5);
     background: var(--accent);
@@ -394,32 +390,49 @@
 <body>
 
 <div class="cursor" id="cursor"></div>
-<a href="#hero" id="back-top" aria-label="Volver arriba">↑</a>
+<a href="#hero" id="back-top" data-i18n-aria="nav.back-top" aria-label="Volver arriba">↑</a>
 
 <!-- NAV -->
 <nav>
-  <a href="#hero" class="nav-logo-wrap"><img src="images/logo_negro.svg" alt="Gauf logo"><span class="nav-tagline">mentor y speaker con liderazgo humano</span></a>
+  <a href="#hero" class="nav-logo-wrap">
+    <img src="images/logo_negro.svg" alt="Gauf logo">
+    <span class="nav-tagline" data-i18n="nav.tagline">mentor y speaker con liderazgo humano</span>
+  </a>
   <div class="nav-links">
-    <a href="#dolores">¿Te suena?</a>
-    <a href="#quien">Sobre mí</a>
-    <a href="#servicios">Servicios</a>
-    <a href="#proyectos">Proyectos</a>
-    <a href="#testimonios">Opiniones</a>
-    <a href="#valores">Valores</a>
-    <a href="#contacto" class="nav-cta">Hablemos</a>
+    <a href="#dolores" data-i18n="nav.dolores">¿Te suena?</a>
+    <a href="#quien" data-i18n="nav.quien">Sobre mí</a>
+    <a href="#servicios" data-i18n="nav.servicios">Servicios</a>
+    <a href="#proyectos" data-i18n="nav.proyectos">Proyectos</a>
+    <a href="#testimonios" data-i18n="nav.testimonios">Opiniones</a>
+    <a href="#valores" data-i18n="nav.valores">Valores</a>
+    <!-- Selector de idioma — integrado al menú -->
+    <div class="lang-switch">
+      <button class="lang-btn active" data-lang="es" onclick="setLang('es')">ESP</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')">ENG</button>
+    </div>
+    <a href="#contacto" class="nav-cta" data-i18n="nav.cta">Hablemos</a>
   </div>
   <button class="nav-burger" id="burger" aria-label="Menú">
     <span></span><span></span><span></span>
   </button>
 </nav>
+
+<!-- Menú mobile -->
 <div class="nav-mobile" id="nav-mobile">
-  <a href="#dolores" onclick="closeMobile()">¿Te suena?</a>
-  <a href="#quien" onclick="closeMobile()">Sobre mí</a>
-  <a href="#servicios" onclick="closeMobile()">Servicios</a>
-  <a href="#proyectos" onclick="closeMobile()">Proyectos</a>
-  <a href="#testimonios" onclick="closeMobile()">Opiniones</a>
-  <a href="#valores" onclick="closeMobile()">Valores</a>
-  <a href="#contacto" class="nav-cta" onclick="closeMobile()">Hablemos</a>
+  <a href="#dolores" data-i18n="nav.dolores" onclick="closeMobile()">¿Te suena?</a>
+  <a href="#quien" data-i18n="nav.quien" onclick="closeMobile()">Sobre mí</a>
+  <a href="#servicios" data-i18n="nav.servicios" onclick="closeMobile()">Servicios</a>
+  <a href="#proyectos" data-i18n="nav.proyectos" onclick="closeMobile()">Proyectos</a>
+  <a href="#testimonios" data-i18n="nav.testimonios" onclick="closeMobile()">Opiniones</a>
+  <a href="#valores" data-i18n="nav.valores" onclick="closeMobile()">Valores</a>
+  <a href="#contacto" class="nav-cta" data-i18n="nav.cta" onclick="closeMobile()">Hablemos</a>
+  <!-- Selector de idioma — mobile (dentro del menú hamburger) -->
+  <div class="lang-switch-mobile">
+    <button class="lang-btn active" data-lang="es" onclick="setLang('es')">ESP</button>
+    <span class="lang-sep">/</span>
+    <button class="lang-btn" data-lang="en" onclick="setLang('en')">ENG</button>
+  </div>
 </div>
 
 <!-- HERO -->
@@ -430,18 +443,18 @@
       <img src="images/speaker_hero.png" alt="Gabo Aufgang">
     </div>
     <div class="hero-left">
-      <h1 class="hero-title reveal">
+      <h1 class="hero-title reveal" data-i18n-html="hero.title">
         Te acompaño a liderar<br>con más <em>claridad</em> y<br><em>humanidad</em>
       </h1>
       <div class="hero-sub-block reveal">
-        <p>Mentorías y charlas para equipos que buscan<br><strong>decidir mejor, construir</strong> y avanzar con propósito.</p>
+        <p data-i18n-html="hero.sub1">Mentorías y charlas para equipos que buscan<br><strong>decidir mejor, construir</strong> y avanzar con propósito.</p>
       </div>
       <div class="hero-sub-bar reveal">
-        <p>Trabajo con equipos, empresas y<br>programas de formación en LATAM.</p>
+        <p data-i18n-html="hero.sub2">Trabajo con equipos, empresas y<br>programas de formación en LATAM.</p>
       </div>
       <div class="hero-btn-group reveal">
-        <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3_013vUPPjxyMIcnISoE_AgfQD7vct2cEyuw-O9NaiZTHRDcXznUsITZT9YtZAJ5MAcvhwh9m_" class="btn-primary" target="_blank">Agenda conmigo →</a>
-        <span class="hero-btn-note">Primera conversación sin costo</span>
+        <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3_013vUPPjxyMIcnISoE_AgfQD7vct2cEyuw-O9NaiZTHRDcXznUsITZT9YtZAJ5MAcvhwh9m_" class="btn-primary" target="_blank" data-i18n="hero.cta">Agenda conmigo →</a>
+        <span class="hero-btn-note" data-i18n="hero.note">Primera conversación sin costo</span>
       </div>
     </div>
   </div>
@@ -450,33 +463,34 @@
 <!-- MARQUEE SERVICIOS -->
 <div class="marquee-wrap">
   <div class="marquee-track">
-    <span class="marquee-item">Mentoría 1:1<span class="mdot"></span></span>
-    <span class="marquee-item">Charlas & Conferencias<span class="mdot"></span></span>
-    <span class="marquee-item">Liderazgo<span class="mdot"></span></span>
-    <span class="marquee-item">Comunicación<span class="mdot"></span></span>
-    <span class="marquee-item">Improvisación aplicada<span class="mdot"></span></span>
-    <span class="marquee-item">Marca personal<span class="mdot"></span></span>
-    <span class="marquee-item">Emprendimiento creativo<span class="mdot"></span></span>
-    <span class="marquee-item">Mentoría 1:1<span class="mdot"></span></span>
-    <span class="marquee-item">Charlas & Conferencias<span class="mdot"></span></span>
-    <span class="marquee-item">Liderazgo<span class="mdot"></span></span>
-    <span class="marquee-item">Comunicación<span class="mdot"></span></span>
-    <span class="marquee-item">Improvisación aplicada<span class="mdot"></span></span>
-    <span class="marquee-item">Marca personal<span class="mdot"></span></span>
-    <span class="marquee-item">Emprendimiento creativo<span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="marquee.mentoria">Mentoría 1:1</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="marquee.charlas">Charlas & Conferencias</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="marquee.liderazgo">Liderazgo</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="marquee.comunicacion">Comunicación</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="marquee.impro">Improvisación aplicada</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="marquee.marca">Marca personal</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="marquee.emprendimiento">Emprendimiento creativo</span><span class="mdot"></span></span>
+    <!-- Repetición para loop infinito -->
+    <span class="marquee-item"><span data-i18n="marquee.mentoria">Mentoría 1:1</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="marquee.charlas">Charlas & Conferencias</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="marquee.liderazgo">Liderazgo</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="marquee.comunicacion">Comunicación</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="marquee.impro">Improvisación aplicada</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="marquee.marca">Marca personal</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="marquee.emprendimiento">Emprendimiento creativo</span><span class="mdot"></span></span>
   </div>
 </div>
 
 <!-- DOLORES -->
 <section id="dolores">
-  <div class="section-label reveal">¿Te suena algo de esto?</div>
+  <div class="section-label reveal" data-i18n="dolores.label">¿Te suena algo de esto?</div>
   <div class="dolores-grid reveal">
-    <div class="dolor-item"><div class="dolor-num">01</div><p class="dolor-text">Todos metidos en el proyecto como yo, no tengo con quién pensar a largo plazo.</p></div>
-    <div class="dolor-item"><div class="dolor-num">02</div><p class="dolor-text">Sé lo que hago, pero no sé cómo comunicarlo para que llegue a quien tiene que llegar.</p></div>
-    <div class="dolor-item"><div class="dolor-num">03</div><p class="dolor-text">El equipo no está alineado y no sé por dónde empezar a ordenarlo.</p></div>
-    <div class="dolor-item"><div class="dolor-num">04</div><p class="dolor-text">Estoy metido en el día a día y no encuentro el momento para parar y pensar para dónde va esto.</p></div>
-    <div class="dolor-item"><div class="dolor-num">05</div><p class="dolor-text">Siento que el proyecto da para mucho más, algo lo está trabando.</p></div>
-    <div class="dolor-item"><div class="dolor-num">06</div><p class="dolor-text">Necesito a alguien que me haga las preguntas que nadie desde adentro puede hacerme.</p></div>
+    <div class="dolor-item"><div class="dolor-num">01</div><p class="dolor-text" data-i18n="dolores.01">Todos metidos en el proyecto como yo, no tengo con quién pensar a largo plazo.</p></div>
+    <div class="dolor-item"><div class="dolor-num">02</div><p class="dolor-text" data-i18n="dolores.02">Sé lo que hago, pero no sé cómo comunicarlo para que llegue a quien tiene que llegar.</p></div>
+    <div class="dolor-item"><div class="dolor-num">03</div><p class="dolor-text" data-i18n="dolores.03">El equipo no está alineado y no sé por dónde empezar a ordenarlo.</p></div>
+    <div class="dolor-item"><div class="dolor-num">04</div><p class="dolor-text" data-i18n="dolores.04">Estoy metido en el día a día y no encuentro el momento para parar y pensar para dónde va esto.</p></div>
+    <div class="dolor-item"><div class="dolor-num">05</div><p class="dolor-text" data-i18n="dolores.05">Siento que el proyecto da para mucho más, algo lo está trabando.</p></div>
+    <div class="dolor-item"><div class="dolor-num">06</div><p class="dolor-text" data-i18n="dolores.06">Necesito a alguien que me haga las preguntas que nadie desde adentro puede hacerme.</p></div>
   </div>
 </section>
 
@@ -488,63 +502,65 @@
     <div class="quien-photo-sec"><img src="images/speaker2.jpg" alt="Gabo Aufgang speaker"></div>
   </div>
   <div>
-    <div class="section-label reveal">Sobre mí</div>
+    <div class="section-label reveal" data-i18n="quien.label">Sobre mí</div>
     <h2 class="quien-title reveal">Gabriel<br>Aufgang</h2>
-    <p class="quien-body reveal">Dirijo la agencia creativa <a href="https://5seis.com" target="_blank">5SEIS</a> y hace años que acompaño proyectos propios y ajenos para que tomen alto vuelo.</p>
-    <p class="quien-body reveal">Doy charlas sobre liderazgo, emprendimiento e improvisación aplicada al trabajo en equipo. Participo como mentor y speaker en eventos de industria, universidades, hackathones y programas formativos.</p>
-    <p class="quien-body reveal">Creo en los proyectos que nacen desde una búsqueda genuina y en las conversaciones que abren nuevas posibilidades. Mi trabajo consiste en escuchar, detectar patrones y ayudar a transformar intuiciones en decisiones concretas y sostenibles.</p>
-    <p class="quien-tagline reveal">Aporto una mirada estratégica, preguntas valiosas y foco a largo plazo.</p>
+    <p class="quien-body reveal" data-i18n-html="quien.body1">Dirijo la agencia creativa <a href="https://5seis.com" target="_blank">5SEIS</a> y hace años que acompaño proyectos propios y ajenos para que tomen alto vuelo.</p>
+    <p class="quien-body reveal" data-i18n="quien.body2">Doy charlas sobre liderazgo, emprendimiento e improvisación aplicada al trabajo en equipo. Participo como mentor y speaker en eventos de industria, universidades, hackathones y programas formativos.</p>
+    <p class="quien-body reveal" data-i18n="quien.body3">Creo en los proyectos que nacen desde una búsqueda genuina y en las conversaciones que abren nuevas posibilidades. Mi trabajo consiste en escuchar, detectar patrones y ayudar a transformar intuiciones en decisiones concretas y sostenibles.</p>
+    <p class="quien-tagline reveal" data-i18n="quien.tagline">Aporto una mirada estratégica, preguntas valiosas y foco a largo plazo.</p>
   </div>
 </section>
 
 <!-- SERVICIOS -->
 <section id="servicios">
-  <div class="section-label reveal">Servicios</div>
+  <div class="section-label reveal" data-i18n="servicios.label">Servicios</div>
   <div class="servicios-grid">
     <div class="servicio-card reveal">
       <div class="servicio-num">01</div>
-      <h3 class="servicio-title">Mentoría para líderes y personas en momentos de decisión</h3>
-      <p class="servicio-body">Espacio para ordenar ideas, tomar decisiones con más claridad y mejorar cómo lideras, trabajas y acompañas a otros.</p>
-      <div class="servicio-sub">
+      <h3 class="servicio-title" data-i18n="servicios.card1.title">Mentoría para líderes y personas en momentos de decisión</h3>
+      <p class="servicio-body" data-i18n="servicios.card1.body">Espacio para ordenar ideas, tomar decisiones con más claridad y mejorar cómo lideras, trabajas y acompañas a otros.</p>
+      <div class="servicio-sub" data-i18n-html="servicios.card1.sub">
         · Plan anual · Encuentros periódicos<br>
         · Plan trimestral · 2 encuentros por mes<br>
-        · Plan estratégico · Coaching esporádico<br>
+        · Plan estratégico · Coaching esporádico
       </div>
-      <a href="#contacto" class="servicio-cta">Conversemos tu próximo paso →</a>
+      <a href="#contacto" class="servicio-cta" data-i18n="servicios.card1.cta">Conversemos tu próximo paso →</a>
     </div>
     <div class="servicio-card reveal">
       <div class="servicio-num">02</div>
-      <h3 class="servicio-title">Charlas & conferencias</h3>
-      <p class="servicio-body">Dos formatos pensados para equipos, universidades y programas de emprendedores.</p>
-      <div class="servicio-sub">
+      <h3 class="servicio-title" data-i18n="servicios.card2.title">Charlas & conferencias</h3>
+      <p class="servicio-body" data-i18n="servicios.card2.body">Dos formatos pensados para equipos, universidades y programas de emprendedores.</p>
+      <div class="servicio-sub" data-i18n-html="servicios.card2.sub">
         · <strong>Liderazgo y emprendimiento</strong> — Casos reales de error y aprendizaje en proyectos creativos.<br><br>
         · <strong>Impro aplicada al trabajo</strong> — Herramientas de improvisación para comunicación y toma de decisiones.
-       <strong>Con <a href="https://docs.google.com/presentation/d/1JK7U9H6azAvt2NnKXozJtR1rJLz7ZCk0dZasKsct0xY/present" target="_blank">La Chispa Escuela de Impro</a>.<br>
+        <strong>Con <a href="https://docs.google.com/presentation/d/1JK7U9H6azAvt2NnKXozJtR1rJLz7ZCk0dZasKsct0xY/present" target="_blank">La Chispa Escuela de Impro</a>.</strong>
       </div>
-      <a href="#contacto" class="servicio-cta">Diseñemos la experiencia →</a>
+      <a href="#contacto" class="servicio-cta" data-i18n="servicios.card2.cta">Diseñemos la experiencia →</a>
     </div>
   </div>
 </section>
 
 <!-- PROYECTOS -->
 <section id="proyectos">
-  <div class="section-label reveal">Proyectos</div>
-  <h2 class="proyectos-title reveal">Algunos proyectos que acompaño</h2>
+  <div class="section-label reveal" data-i18n="proyectos.label">Proyectos</div>
+  <h2 class="proyectos-title reveal" data-i18n="proyectos.title">Algunos proyectos que acompaño</h2>
   <div class="proyectos-grid reveal">
-    <div class="proyecto-pill">Easy Lunch<div class="proyecto-tooltip">Mentoría · Animación de venta</div></div>
-    <div class="proyecto-pill">Maldo UY<div class="proyecto-tooltip">Mentoría · UX research · Rebranding</div></div>
-    <div class="proyecto-pill">La Chispa · Escuela de Impro<div class="proyecto-tooltip">Mentoría · Reestructuración · Charlas</div></div>
-    <div class="proyecto-pill">Juan Altamirano - Fotógrafo<div class="proyecto-tooltip">Mentoría · Website</div></div>
-    <div class="proyecto-pill">Tomás Mika · Músico<div class="proyecto-tooltip">Mentoría · Website</div></div>
-    <div class="proyecto-pill">Santi Soriano · Escultor<div class="proyecto-tooltip">Mentoría · Website</div></div>
-    <div class="proyecto-pill">Jesi Romero · Tantra Yoga<div class="proyecto-tooltip">Mentoría · Branding · Website</div></div>
-    <div class="proyecto-pill">Founder School<div class="proyecto-tooltip">Mentoría · Charlas por cohort</div></div>
-    <div class="proyecto-pill">Marini & Cia<div class="proyecto-tooltip">Mentoría · Diseño · Website</div></div>
-    <div class="proyecto-pill">ETH Uruguay<div class="proyecto-tooltip">Mentoría · Workshop</div></div>
-    <div class="proyecto-pill">ETH Argentina<div class="proyecto-tooltip">Mentoría · Workshop</div></div>
-    <div class="proyecto-pill">Fork Forest<div class="proyecto-tooltip">Mentoría · Diseño · Website</div></div>
-    <div class="proyecto-pill">DeFi Argentina<div class="proyecto-tooltip">Colaboración · Diseño</div></div>
-    <div class="proyecto-pill">Solow.io<div class="proyecto-tooltip">Mentoría · Diseño · Charlas</div></div>
+    <div class="proyecto-pill">Easy Lunch<div class="proyecto-tooltip" data-i18n="proyectos.easy-lunch.tooltip">Mentoría · Animación de venta</div></div>
+    <div class="proyecto-pill">Maldo UY<div class="proyecto-tooltip" data-i18n="proyectos.maldo.tooltip">Mentoría · UX research · Rebranding</div></div>
+    <div class="proyecto-pill">La Chispa · Escuela de Impro<div class="proyecto-tooltip" data-i18n="proyectos.chispa.tooltip">Mentoría · Reestructuración · Charlas</div></div>
+    <div class="proyecto-pill">Juan Altamirano - Fotógrafo<div class="proyecto-tooltip" data-i18n="proyectos.altamirano.tooltip">Mentoría · Website</div></div>
+    <div class="proyecto-pill">Tomás Mika · Músico<div class="proyecto-tooltip" data-i18n="proyectos.mika.tooltip">Mentoría · Website</div></div>
+    <div class="proyecto-pill">Santi Soriano · Escultor<div class="proyecto-tooltip" data-i18n="proyectos.soriano.tooltip">Mentoría · Website</div></div>
+    <div class="proyecto-pill">Jesi Romero · Tantra Yoga<div class="proyecto-tooltip" data-i18n="proyectos.jesi.tooltip">Mentoría · Branding · Website</div></div>
+    <div class="proyecto-pill">Founder School<div class="proyecto-tooltip" data-i18n="proyectos.founder-school.tooltip">Mentoría · Charlas por cohort</div></div>
+    <div class="proyecto-pill">Marini & Cia<div class="proyecto-tooltip" data-i18n="proyectos.marini.tooltip">Mentoría · Diseño · Website</div></div>
+    <div class="proyecto-pill">ETH Uruguay<div class="proyecto-tooltip" data-i18n="proyectos.eth-uy.tooltip">Mentoría · Workshop</div></div>
+    <div class="proyecto-pill">ETH Argentina<div class="proyecto-tooltip" data-i18n="proyectos.eth-ar.tooltip">Mentoría · Workshop</div></div>
+    <div class="proyecto-pill">Fork Forest<div class="proyecto-tooltip" data-i18n="proyectos.fork.tooltip">Mentoría · Diseño · Website</div></div>
+    <div class="proyecto-pill">DeFi Argentina<div class="proyecto-tooltip" data-i18n="proyectos.defi.tooltip">Colaboración · Diseño</div></div>
+    <div class="proyecto-pill">Solow.io<div class="proyecto-tooltip" data-i18n="proyectos.solow.tooltip">Mentoría · Diseño · Charlas</div></div>
+    <div class="proyecto-pill">Universidad de Palermo<div class="proyecto-tooltip" data-i18n="proyectos.palermo.tooltip">Charlas</div></div>
+    <div class="proyecto-pill">UADE<div class="proyecto-tooltip" data-i18n="proyectos.uade.tooltip">Jurado de tesis</div></div>
   </div>
 </section>
 
@@ -564,7 +580,7 @@
       <div class="equipo-photo"><img src="images/equipo/eq3b.jpg" alt="Equipo"></div>
       <div class="equipo-photo"><img src="images/equipo/eq1b.jpg" alt="Equipo"></div>
       <div class="equipo-photo"><img src="images/equipo/eq2b.jpg" alt="Equipo"></div>
-      <!-- repeat for seamless loop -->
+      <!-- Repetición para loop infinito -->
       <div class="equipo-photo"><img src="images/equipo/eq1.jpg" alt="Equipo"></div>
       <div class="equipo-photo"><img src="images/equipo/eq2.jpg" alt="Equipo"></div>
       <div class="equipo-photo"><img src="images/equipo/eq3.jpg" alt="Equipo"></div>
@@ -584,65 +600,65 @@
 <!-- TESTIMONIOS -->
 <section id="testimonios">
   <div class="testimonios-header">
-    <h2 class="testimonios-title reveal">Opiniones valiosas</h2>
+    <h2 class="testimonios-title reveal" data-i18n="testimonios.title">Opiniones valiosas</h2>
   </div>
-
-  <!-- Desktop: draggable cards (will be populated by JS) -->
+  <!-- Desktop: cards arrastrables (populadas por testimonios.js) -->
   <div id="card-stage"></div>
-
-  <!-- Mobile: horizontal scroll (will be populated by JS) -->
+  <!-- Mobile: scroll horizontal (populado por testimonios.js) -->
   <div class="testimonios-mobile"></div>
 </section>
 
 <!-- VALORES -->
 <section id="valores">
-  <div class="section-label reveal">Cómo trabajo y qué me mueve</div>
+  <div class="section-label reveal" data-i18n="valores.label">Cómo trabajo y qué me mueve</div>
   <div class="valores-grid reveal">
-    <div class="valor-item"><p class="valor-title">Claridad para decidir</p><p class="valor-body">Ayudo a tomar mejores decisiones con preguntas que buscan expandir el conocimiento, ordenar las ideas, detectar oportunidades y generar mayor claridad al momento de decidir.</p></div>
-    <div class="valor-item"><p class="valor-title">Visión en acción</p><p class="valor-body">Trabajo junto a founders, líderes y equipos creativos para transformar visión en acción concreta, fortaleciendo proyectos, vínculos y formas de comunicar.</p></div>
-    <div class="valor-item"><p class="valor-title">Acompañamiento estratégico</p><p class="valor-body">Busco acompañar procesos de crecimiento profesional y humano desde una mirada estratégica, práctica y cercana, integrando liderazgo, comunicación, validación de ideas y autoconocimiento.</p></div>
-    <div class="valor-item"><p class="valor-title">Preguntas antes que respuestas</p><p class="valor-body">Las preguntas correctas abren más caminos que cualquier fórmula. Busco hacer las consultas que desde adentro nadie está realizando.</p></div>
-    <div class="valor-item"><p class="valor-title">Alegría y compromiso</p><p class="valor-body">Disfruto haciendo, el proceso es tan o más importante que el resultado. Trabajo con transparencia, hablando desde el corazón.</p></div>
-    <div class="valor-item"><p class="valor-title">Adaptabilidad</p><p class="valor-body">Cada proyecto es distinto, me adapto a las necesidades de cada uno y cada momento, con creatividad y propósito.</p></div>
+    <div class="valor-item"><p class="valor-title" data-i18n="valores.1.title">Claridad para decidir</p><p class="valor-body" data-i18n="valores.1.body">Ayudo a tomar mejores decisiones con preguntas que buscan expandir el conocimiento, ordenar las ideas, detectar oportunidades y generar mayor claridad al momento de decidir.</p></div>
+    <div class="valor-item"><p class="valor-title" data-i18n="valores.2.title">Visión en acción</p><p class="valor-body" data-i18n="valores.2.body">Trabajo junto a founders, líderes y equipos creativos para transformar visión en acción concreta, fortaleciendo proyectos, vínculos y formas de comunicar.</p></div>
+    <div class="valor-item"><p class="valor-title" data-i18n="valores.3.title">Acompañamiento estratégico</p><p class="valor-body" data-i18n="valores.3.body">Busco acompañar procesos de crecimiento profesional y humano desde una mirada estratégica, práctica y cercana, integrando liderazgo, comunicación, validación de ideas y autoconocimiento.</p></div>
+    <div class="valor-item"><p class="valor-title" data-i18n="valores.4.title">Preguntas antes que respuestas</p><p class="valor-body" data-i18n="valores.4.body">Las preguntas correctas abren más caminos que cualquier fórmula. Busco hacer las consultas que desde adentro nadie está realizando.</p></div>
+    <div class="valor-item"><p class="valor-title" data-i18n="valores.5.title">Alegría y compromiso</p><p class="valor-body" data-i18n="valores.5.body">Disfruto haciendo, el proceso es tan o más importante que el resultado. Trabajo con transparencia, hablando desde el corazón.</p></div>
+    <div class="valor-item"><p class="valor-title" data-i18n="valores.6.title">Adaptabilidad</p><p class="valor-body" data-i18n="valores.6.body">Cada proyecto es distinto, me adapto a las necesidades de cada uno y cada momento, con creatividad y propósito.</p></div>
   </div>
 </section>
 
 <!-- MARQUEE HOBBIES -->
 <div class="marquee-wrap light">
   <div class="marquee-track" style="animation-direction: reverse;">
-    <span class="marquee-item">Basket<span class="mdot"></span></span>
-    <span class="marquee-item">Guitarra<span class="mdot"></span></span>
-    <span class="marquee-item">Cine<span class="mdot"></span></span>
-    <span class="marquee-item">Teatro<span class="mdot"></span></span>
-    <span class="marquee-item">Impro<span class="mdot"></span></span>
-    <span class="marquee-item">Clown<span class="mdot"></span></span>
-    <span class="marquee-item">Yoga<span class="mdot"></span></span>
-    <span class="marquee-item">Jardinería<span class="mdot"></span></span>
-    <span class="marquee-item">Compostaje<span class="mdot"></span></span>
-    <span class="marquee-item">Cocina<span class="mdot"></span></span>
-    <span class="marquee-item">Bici<span class="mdot"></span></span>
-    <span class="marquee-item">Viajes<span class="mdot"></span></span>
-    <span class="marquee-item">Lectura<span class="mdot"></span></span>
-    <span class="marquee-item">Reciclaje<span class="mdot"></span></span>
-    <span class="marquee-item">Hongos<span class="mdot"></span></span>
-    <span class="marquee-item">Tantra<span class="mdot"></span></span>
-    <span class="marquee-item">Familia<span class="mdot"></span></span>
-    <span class="marquee-item">Basket<span class="mdot"></span></span>
-    <span class="marquee-item">Guitarra<span class="mdot"></span></span>
-    <span class="marquee-item">Cine<span class="mdot"></span></span>
-    <span class="marquee-item">Teatro<span class="mdot"></span></span>
-    <span class="marquee-item">Impro<span class="mdot"></span></span>
-    <span class="marquee-item">Clown<span class="mdot"></span></span>
-    <span class="marquee-item">Yoga<span class="mdot"></span></span>
-    <span class="marquee-item">Jardinería<span class="mdot"></span></span>
-    <span class="marquee-item">Compostaje<span class="mdot"></span></span>
-    <span class="marquee-item">Cocina<span class="mdot"></span></span>
-    <span class="marquee-item">Bici<span class="mdot"></span></span>
-    <span class="marquee-item">Viajes<span class="mdot"></span></span>
-    <span class="marquee-item">Lectura<span class="mdot"></span></span>
-    <span class="marquee-item">Reciclaje<span class="mdot"></span></span>
-    <span class="marquee-item">Hongos<span class="mdot"></span></span>
-    <span class="marquee-item">Tantra<span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.basket">Basket</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.guitarra">Guitarra</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.cine">Cine</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.teatro">Teatro</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.impro">Impro</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.clown">Clown</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.yoga">Yoga</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.jardineria">Jardinería</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.compostaje">Compostaje</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.cocina">Cocina</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.bici">Bici</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.viajes">Viajes</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.lectura">Lectura</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.reciclaje">Reciclaje</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.hongos">Hongos</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.tantra">Tantra</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.familia">Familia</span><span class="mdot"></span></span>
+    <!-- Repetición para loop infinito -->
+    <span class="marquee-item"><span data-i18n="hobby.basket">Basket</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.guitarra">Guitarra</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.cine">Cine</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.teatro">Teatro</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.impro">Impro</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.clown">Clown</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.yoga">Yoga</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.jardineria">Jardinería</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.compostaje">Compostaje</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.cocina">Cocina</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.bici">Bici</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.viajes">Viajes</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.lectura">Lectura</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.reciclaje">Reciclaje</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.hongos">Hongos</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.tantra">Tantra</span><span class="mdot"></span></span>
+    <span class="marquee-item"><span data-i18n="hobby.familia">Familia</span><span class="mdot"></span></span>
   </div>
 </div>
 
@@ -651,9 +667,9 @@
     <div class="misc-el misc-dot2"></div>
     <div class="misc-el misc-star"></div>
     <div class="misc-el misc-star2"></div>
-  <h2 class="contacto-title reveal">¿Te acompaño?</h2>
-  <p class="contacto-sub reveal">Charlemos unos minutos sin compromiso.</p>
-  <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3_013vUPPjxyMIcnISoE_AgfQD7vct2cEyuw-O9NaiZTHRDcXznUsITZT9YtZAJ5MAcvhwh9m_" class="btn-dark reveal" target="_blank">Agendá una llamada ↗</a>
+  <h2 class="contacto-title reveal" data-i18n="contacto.title">¿Te acompaño?</h2>
+  <p class="contacto-sub reveal" data-i18n="contacto.sub">Charlemos unos minutos sin compromiso.</p>
+  <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3_013vUPPjxyMIcnISoE_AgfQD7vct2cEyuw-O9NaiZTHRDcXznUsITZT9YtZAJ5MAcvhwh9m_" class="btn-dark reveal" target="_blank" data-i18n="contacto.cta">Agendá una llamada ↗</a>
 </section>
 
 <!-- FOOTER -->
@@ -716,38 +732,6 @@ const heroObs = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 heroObs.observe(document.getElementById('hero'));
 
-// DRAGGABLE CARDS (desktop)
-const stage = document.getElementById('card-stage');
-if (stage) {
-  let zTop = 10;
-  stage.querySelectorAll('.t-card').forEach(card => {
-    const match = card.style.transform.match(/rotate\(([^)]+)deg\)/);
-    const rot = match ? parseFloat(match[1]) : 0;
-    let dragging = false, startX, startY, origX, origY;
-    card.style.zIndex = ++zTop;
-    function startDrag(cx, cy) {
-      dragging = true; card.classList.add('lifted'); card.style.zIndex = ++zTop;
-      const rect = card.getBoundingClientRect(), sr = stage.getBoundingClientRect();
-      origX = rect.left - sr.left; origY = rect.top - sr.top;
-      startX = cx; startY = cy;
-      card.style.left = origX + 'px'; card.style.top = origY + 'px';
-      card.style.transform = `rotate(${rot}deg)`; card.style.transition = 'none';
-    }
-    function moveDrag(cx, cy) {
-      if (!dragging) return;
-      card.style.left = (origX + cx - startX) + 'px';
-      card.style.top = (origY + cy - startY) + 'px';
-    }
-    function endDrag() { dragging = false; card.classList.remove('lifted'); }
-    card.addEventListener('mousedown', e => { e.preventDefault(); startDrag(e.clientX, e.clientY); });
-    card.addEventListener('touchstart', e => startDrag(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
-    window.addEventListener('mousemove', e => moveDrag(e.clientX, e.clientY));
-    window.addEventListener('touchmove', e => { if (dragging) moveDrag(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
-    window.addEventListener('mouseup', endDrag);
-    window.addEventListener('touchend', endDrag);
-  });
-}
-
 // EQUIPO DRAG
 const equipoWrap = document.getElementById('equipo-wrap');
 if (equipoWrap) {
@@ -784,6 +768,11 @@ if (equipoWrap) {
 }
 </script>
 
-<script src="/testimonios.js"></script>
+<!-- i18n: detecta idioma, aplica traducciones y expone setLang() -->
+<script src="i18n.js"></script>
+<!-- Testimonios: lee window.currentLang y carga el JSON correcto -->
+<script src="testimonios.js"></script>
+<!-- Analytics: eventos personalizados GA4 -->
+<script src="analytics.js"></script>
 </body>
 </html>
