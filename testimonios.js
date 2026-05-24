@@ -246,7 +246,7 @@
       });
 
       // Drag en desktop
-      if (window.innerWidth > 600) {
+      if (window.matchMedia('(pointer: fine)').matches) {
         var zTop = 10;
         cardStage.querySelectorAll('.t-card').forEach(function(card) {
           var match = card.style.transform.match(/rotate\(([^)]+)deg\)/);
