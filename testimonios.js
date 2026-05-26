@@ -90,6 +90,13 @@
       "name": "Laura M. González",
       "role": "Arquitecta",
       "brand": "Founder School"
+    },
+    {
+      "quote": "Un placer trabajar con Gauf. Buenas ideas, excelente conexión y siempre con una sonrisa. Nos dio una gran mano en Ethereum Uruguay!",
+      "quoteMobile": "Un placer trabajar con Gauf. Buenas ideas, excelente conexión y siempre con una sonrisa. Nos dio una gran mano en Ethereum Uruguay!",
+      "name": "Lucia Cardellino",
+      "role": "Co Founder & Community Lead",
+      "brand": "Ethereum Uruguay"
     }
   ];
 
@@ -173,6 +180,13 @@
       "name": "Laura M. González",
       "role": "Architect",
       "brand": "Founder School"
+    },
+    {
+      "quote": "A pleasure working with Gauf. Great ideas, excellent connection and always with a smile. He gave us a big hand at Ethereum Uruguay!",
+      "quoteMobile": "A pleasure working with Gauf. Great ideas, excellent connection and always with a smile. He gave us a big hand at Ethereum Uruguay!",
+      "name": "Lucia Cardellino",
+      "role": "Co Founder & Community Lead",
+      "brand": "Ethereum Uruguay"
     }
   ];
 
@@ -246,7 +260,7 @@
       });
 
       // Drag en desktop
-      if (window.matchMedia('(pointer: fine)').matches) {
+      if (window.innerWidth > 600) {
         var zTop = 10;
         cardStage.querySelectorAll('.t-card').forEach(function(card) {
           var match = card.style.transform.match(/rotate\(([^)]+)deg\)/);
