@@ -1,48 +1,42 @@
 // ============================================================
-// LIVING ART FRAME — Configuration
-// Edit this file to customize your installation.
+// LIVING ART FRAME — config.js
+// These are FACTORY DEFAULTS only.
+// At runtime, app.js merges these with values from localStorage.
+// Users can override everything via the settings menu.
 // ============================================================
 
-const CONFIG = {
+const CONFIG_DEFAULTS = {
 
-  // -- LOCATION (for weather) --
-  city: "Buenos Aires",
-  latitude: -34.6037,
+  // -- LOCATION --
+  city:      "Buenos Aires",
+  latitude:  -34.6037,
   longitude: -58.3816,
 
   // -- ARTWORK --
-  // Interval in milliseconds (default: 2 minutes)
-  artworkInterval: 2 * 60 * 1000,
+  artworkInterval: 2 * 60 * 1000,   // 2 minutes
 
   // -- WEATHER --
-  // Refresh interval in milliseconds (default: 30 minutes)
-  weatherRefresh: 30 * 60 * 1000,
+  weatherRefresh: 30 * 60 * 1000,  // 30 minutes
 
   // -- CALENDAR --
-  // "public"  → reads a public iCal/Google Calendar URL (no login required)
-  // "private" → uses Google OAuth to read user's own calendar
-  // "none"    → disables the calendar module entirely
-  calendarMode: "none",
-
-  // Public iCal URL (used when calendarMode === "public")
-  // Export from Google Calendar: Calendar Settings → "Secret address in iCal format"
+  // "none" | "public" | "private"
+  calendarMode:      "none",
   publicCalendarURL: "",
+  googleClientId:    "",
+  calendarRefresh:   15 * 60 * 1000,
 
-  // Google OAuth Client ID (used when calendarMode === "private")
-  // Create at: https://console.developers.google.com
-  googleClientId: "",
+  // -- MEDIA --
+  mediaEnabled:      true,   // tries mediaSession first, then Spotify
+  spotifyEnabled:    false,
+  spotifyClientId:   "",
+  spotifyRedirectUri: window.location.origin + window.location.pathname,
 
-  // Calendar refresh interval in milliseconds (default: 15 minutes)
-  calendarRefresh: 15 * 60 * 1000,
-
-  // -- MEDIA (optional) --
-  // Shows currently playing song above the clock
-  mediaEnabled: false,
-
-  // Spotify Web API — requires your own app credentials
-  // https://developer.spotify.com/dashboard
-  spotifyEnabled: false,
-  spotifyClientId: "",
-  spotifyRedirectUri: "https://gaufgang.com/art",
-
+  // -- ARTWORK CATEGORIES (for next update filter) --
+  artCategories: {
+    paintings:    true,
+    photography:  true,
+    sculpture:    true,
+    prints:       true,
+    contemporary: true,
+  },
 };
