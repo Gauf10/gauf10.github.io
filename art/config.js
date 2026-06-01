@@ -11,12 +11,12 @@ const CONFIG = {
   longitude: -58.3816,
 
   // -- ARTWORK --
-  // Interval in milliseconds (default: 30 minutes)
-  artworkInterval: 30 * 60 * 1000,
+  // Interval in milliseconds (default: 2 minutes)
+  artworkInterval: 2 * 60 * 1000,
 
   // -- WEATHER --
-  // Refresh interval in milliseconds (default: 15 minutes)
-  weatherRefresh: 15 * 60 * 1000,
+  // Refresh interval in milliseconds (default: 30 minutes)
+  weatherRefresh: 30 * 60 * 1000,
 
   // -- CALENDAR --
   // "public"  → reads a public iCal/Google Calendar URL (no login required)
