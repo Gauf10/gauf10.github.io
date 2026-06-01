@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#000000">
+  <title>Living Art Frame</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ── ARTWORK LAYER ──────────────────────────────────────── -->
+  <div id="artwork-bg" class="loading"></div>
+  <div id="artwork-overlay"></div>
+
+  <!-- ── ARTWORK INFO (title + artist, shown 5s on transition) -->
+  <div id="artwork-info" aria-live="polite">
+    <div id="artwork-title"></div>
+    <div id="artwork-artist"></div>
+  </div>
+
+  <!-- ── UI SHELL ───────────────────────────────────────────── -->
+  <div id="ui">
+
+    <!-- Left: Calendar (hidden when no events) -->
+    <div id="calendar-col" aria-label="Upcoming events"></div>
+
+    <!-- Right: Sidebar stack -->
+    <div id="sidebar">
+
+      <!-- Media now playing (hidden when nothing playing) -->
+      <div id="media-col" aria-live="polite">
+        <div id="media-note">♫</div>
+        <div id="media-track"></div>
+        <div id="media-artist"></div>
+      </div>
+
+      <!-- Clock -->
+      <div id="clock-col">
+        <div id="clock-time">00:00</div>
+        <div id="clock-date"></div>
+      </div>
+
+      <!-- Divider -->
+      <div class="subtle-rule"></div>
+
+      <!-- Weather -->
+      <div id="weather-col">
+        <div id="weather-temp">–°C</div>
+        <div id="weather-desc"></div>
+        <div id="weather-city"></div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!--
+    Google Identity Services — only loaded when calendarMode === 'private'.
+    Safe to leave in HTML; if googleClientId is empty it has no effect.
+  -->
+  <script>
+    // Conditionally inject GIS script to avoid unnecessary requests
+    if (typeof CONFIG !== 'undefined' && CONFIG.calendarMode === 'private' && CONFIG.googleClientId) {
+      const s = document.createElement('script');
+      s.src   = 'https://accounts.google.com/gsi/client';
+      s.async = true;
+      document.head.appendChild(s);
+    }
+  </script>
+
+  <!-- Load config first, then app -->
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
