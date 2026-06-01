@@ -1,39 +1,34 @@
 /* ============================================================
-   LIVING ART FRAME — Styles
-   Museum-quality digital art display
+   LIVING ART FRAME — styles.css
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@200;300;400&display=swap');
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --text-primary:   rgba(255,255,255,0.85);
-  --text-secondary: rgba(255,255,255,0.50);
+  --text-primary:   rgba(255,255,255,0.88);
+  --text-secondary: rgba(255,255,255,0.52);
   --text-dim:       rgba(255,255,255,0.30);
   --font-serif:     'Cormorant Garamond', Georgia, serif;
   --font-sans:      'Inter', sans-serif;
+  --panel-bg:       rgba(10,10,12,0.92);
+  --panel-border:   rgba(255,255,255,0.08);
+  --accent:         rgba(255,255,255,0.70);
 }
 
 html, body {
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   overflow: hidden;
   background: #000;
-  cursor: none;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
 }
 
-/* ── ARTWORK LAYER ─────────────────────────────────────────── */
+/* ── ARTWORK ──────────────────────────────────────────────── */
 
 #artwork-bg {
-  position: fixed;
-  inset: 0;
+  position: fixed; inset: 0;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -42,24 +37,81 @@ html, body {
 }
 
 #artwork-overlay {
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.10),
-    rgba(0,0,0,0.30)
-  );
+  position: fixed; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.10), rgba(0,0,0,0.30));
   pointer-events: none;
   z-index: 1;
 }
 
-/* ── ARTWORK TITLE REVEAL ──────────────────────────────────── */
+/* ── PREV / NEXT CLICK ZONES ──────────────────────────────── */
+
+#zone-prev, #zone-next {
+  position: fixed;
+  top: 72px;             /* leave room for top controls (~54px padding + icon) */
+  bottom: 0;
+  width: 30%;
+  z-index: 4;
+  cursor: pointer;
+}
+#zone-prev { left: 0; }
+#zone-next { right: 0; }
+
+/* Subtle ripple on tap */
+#zone-prev:active::after,
+#zone-next:active::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.04);
+  transition: none;
+}
+
+/* ── TOP CONTROLS (fav + gear) ────────────────────────────── */
+
+#top-controls {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.4rem 1.8rem;
+  z-index: 25;           /* above zone-prev/next (z-index:4) and ui (z-index:5) */
+  pointer-events: none;
+}
+
+#top-controls button {
+  pointer-events: all;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: rgba(255,255,255,0.55);
+  transition: color 0.3s ease, transform 0.3s ease;
+  line-height: 0;
+}
+
+#top-controls button:hover,
+#top-controls button:focus-visible {
+  color: rgba(255,255,255,0.90);
+  transform: scale(1.1);
+  outline: none;
+}
+
+#top-controls svg {
+  width: 22px; height: 22px;
+  display: block;
+}
+
+/* Faved state — heart fills white */
+#btn-fav.faved svg {
+  fill: rgba(255,255,255,0.85);
+  stroke: rgba(255,255,255,0.85);
+}
+
+/* ── ARTWORK INFO ─────────────────────────────────────────── */
 
 #artwork-info {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: 0; left: 0; right: 0;
   padding: 3rem 4rem;
   background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 100%);
   z-index: 10;
@@ -67,10 +119,7 @@ html, body {
   transition: opacity 1.2s ease;
   pointer-events: none;
 }
-
-#artwork-info.visible {
-  opacity: 1;
-}
+#artwork-info.visible { opacity: 1; }
 
 #artwork-title {
   font-family: var(--font-serif);
@@ -92,16 +141,13 @@ html, body {
   text-transform: uppercase;
 }
 
-/* ── UI SHELL ──────────────────────────────────────────────── */
+/* ── UI SHELL ─────────────────────────────────────────────── */
 
 #ui {
-  position: fixed;
-  inset: 0;
+  position: fixed; inset: 0;
   z-index: 5;
   display: grid;
   pointer-events: none;
-
-  /* Default: landscape — calendar left, info right */
   grid-template-columns: auto 1fr auto;
   grid-template-rows: 1fr;
   grid-template-areas: "calendar . sidebar";
@@ -110,7 +156,7 @@ html, body {
   gap: 0 2rem;
 }
 
-/* ── CALENDAR COLUMN ───────────────────────────────────────── */
+/* ── CALENDAR ─────────────────────────────────────────────── */
 
 #calendar-col {
   grid-area: calendar;
@@ -119,11 +165,7 @@ html, body {
   transform: translateX(-12px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
-
-#calendar-col.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
+#calendar-col.visible { opacity: 1; transform: translateX(0); }
 
 .cal-day-label {
   font-family: var(--font-sans);
@@ -135,232 +177,325 @@ html, body {
   margin-bottom: 0.55rem;
   margin-top: 1.2rem;
 }
+.cal-day-label:first-child { margin-top: 0; }
 
-.cal-day-label:first-child {
-  margin-top: 0;
-}
-
-.cal-event {
-  display: flex;
-  gap: 0.85em;
-  margin-bottom: 0.38rem;
-}
+.cal-event { display: flex; gap: 0.85em; margin-bottom: 0.38rem; }
 
 .cal-time {
-  font-family: var(--font-sans);
-  font-weight: 300;
+  font-family: var(--font-sans); font-weight: 300;
   font-size: clamp(0.65rem, 1vw, 0.82rem);
-  color: var(--text-dim);
-  min-width: 3.2em;
-  letter-spacing: 0.04em;
+  color: var(--text-dim); min-width: 3.2em; letter-spacing: 0.04em;
 }
 
 .cal-title {
-  font-family: var(--font-sans);
-  font-weight: 300;
+  font-family: var(--font-sans); font-weight: 300;
   font-size: clamp(0.65rem, 1vw, 0.82rem);
   color: var(--text-secondary);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   max-width: 160px;
 }
 
-/* ── SIDEBAR (clock + weather + media) ────────────────────── */
+/* ── SIDEBAR ──────────────────────────────────────────────── */
 
 #sidebar {
   grid-area: sidebar;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 1.6rem;
+  display: flex; flex-direction: column;
+  align-items: flex-end; gap: 1.6rem;
 }
 
-/* ── MEDIA NOW PLAYING ─────────────────────────────────────── */
+/* ── MEDIA ────────────────────────────────────────────────── */
 
 #media-col {
-  text-align: right;
-  opacity: 0;
+  text-align: right; opacity: 0;
   transition: opacity 0.8s ease;
 }
-
-#media-col.visible {
-  opacity: 1;
-}
+#media-col.visible { opacity: 1; }
 
 #media-note {
-  font-family: var(--font-sans);
-  font-weight: 200;
+  font-family: var(--font-sans); font-weight: 200;
   font-size: clamp(0.65rem, 1vw, 0.8rem);
-  color: var(--text-dim);
-  letter-spacing: 0.05em;
-  margin-bottom: 0.25rem;
+  color: var(--text-dim); letter-spacing: 0.05em; margin-bottom: 0.25rem;
 }
 
 #media-track {
-  font-family: var(--font-serif);
-  font-weight: 300;
-  font-style: italic;
+  font-family: var(--font-serif); font-weight: 300; font-style: italic;
   font-size: clamp(0.85rem, 1.5vw, 1.15rem);
-  color: var(--text-secondary);
-  letter-spacing: 0.01em;
+  color: var(--text-secondary); letter-spacing: 0.01em;
 }
 
 #media-artist {
-  font-family: var(--font-sans);
-  font-weight: 200;
+  font-family: var(--font-sans); font-weight: 200;
   font-size: clamp(0.6rem, 0.9vw, 0.75rem);
-  color: var(--text-dim);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-top: 0.15rem;
+  color: var(--text-dim); letter-spacing: 0.1em;
+  text-transform: uppercase; margin-top: 0.15rem;
 }
 
-/* ── CLOCK ─────────────────────────────────────────────────── */
+/* ── CLOCK ────────────────────────────────────────────────── */
 
-#clock-col {
-  text-align: right;
-}
+#clock-col { text-align: right; }
 
 #clock-time {
-  font-family: var(--font-sans);
-  font-weight: 200;
+  font-family: var(--font-sans); font-weight: 200;
   font-size: clamp(2.8rem, 6vw, 5.2rem);
-  color: var(--text-primary);
-  letter-spacing: -0.02em;
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
+  color: var(--text-primary); letter-spacing: -0.02em;
+  line-height: 1; font-variant-numeric: tabular-nums;
 }
 
 #clock-date {
-  font-family: var(--font-sans);
-  font-weight: 200;
+  font-family: var(--font-sans); font-weight: 200;
   font-size: clamp(0.65rem, 1.1vw, 0.9rem);
-  color: var(--text-secondary);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  margin-top: 0.4rem;
+  color: var(--text-secondary); letter-spacing: 0.2em;
+  text-transform: uppercase; margin-top: 0.4rem;
 }
 
-#clock-weekday {
-  display: block;
+.clock-sep {
+  opacity: 0.4;
+  letter-spacing: 0.05em;
 }
 
-/* ── WEATHER ───────────────────────────────────────────────── */
+/* ── WEATHER ──────────────────────────────────────────────── */
 
-#weather-col {
-  text-align: right;
-  margin-top: 0.2rem;
+.subtle-rule {
+  width: 32px; height: 1px;
+  background: rgba(255,255,255,0.12); margin-left: auto;
 }
+
+#weather-col { text-align: right; margin-top: 0.2rem; }
 
 #weather-temp {
-  font-family: var(--font-sans);
-  font-weight: 200;
+  font-family: var(--font-sans); font-weight: 200;
   font-size: clamp(1rem, 2vw, 1.6rem);
-  color: var(--text-primary);
-  letter-spacing: -0.01em;
+  color: var(--text-primary); letter-spacing: -0.01em;
 }
 
 #weather-desc {
-  font-family: var(--font-sans);
-  font-weight: 200;
+  font-family: var(--font-sans); font-weight: 200;
   font-size: clamp(0.6rem, 0.9vw, 0.75rem);
-  color: var(--text-secondary);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  margin-top: 0.2rem;
+  color: var(--text-secondary); letter-spacing: 0.14em;
+  text-transform: uppercase; margin-top: 0.2rem;
 }
 
 #weather-city {
-  font-family: var(--font-sans);
-  font-weight: 200;
+  font-family: var(--font-sans); font-weight: 200;
   font-size: clamp(0.55rem, 0.8vw, 0.68rem);
+  color: var(--text-dim); letter-spacing: 0.18em;
+  text-transform: uppercase; margin-top: 0.12rem;
+}
+
+/* ── SETTINGS BACKDROP ────────────────────────────────────── */
+
+#settings-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 30;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.35s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+#settings-backdrop.open { opacity: 1; pointer-events: all; }
+
+/* ── SETTINGS PANEL ───────────────────────────────────────── */
+
+#settings-panel {
+  position: fixed;
+  top: 50%; right: 0;
+  transform: translate(100%, -50%);
+  width: min(420px, 92vw);
+  max-height: 90vh;
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-right: none;
+  border-radius: 16px 0 0 16px;
+  z-index: 31;
+  display: flex; flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  overflow: hidden;
+}
+#settings-panel.open {
+  transform: translate(0, -50%);
+}
+
+#settings-header {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 1.4rem 1.6rem 1rem;
+  border-bottom: 1px solid var(--panel-border);
+  flex-shrink: 0;
+}
+
+#settings-title {
+  font-family: var(--font-sans); font-weight: 200;
+  font-size: 0.9rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--text-secondary);
+}
+
+#btn-close-settings {
+  background: none; border: none; cursor: pointer;
+  color: var(--text-dim); padding: 0.3rem; line-height: 0;
+  transition: color 0.2s;
+}
+#btn-close-settings:hover { color: var(--text-primary); }
+#btn-close-settings svg { width: 18px; height: 18px; }
+
+#settings-body {
+  overflow-y: auto; padding: 0.4rem 0; flex: 1;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.1) transparent;
+}
+
+.settings-section {
+  padding: 1.2rem 1.6rem;
+  border-bottom: 1px solid var(--panel-border);
+}
+.settings-section:last-child { border-bottom: none; }
+
+.settings-section-label {
+  font-family: var(--font-sans); font-weight: 300;
+  font-size: 0.65rem; letter-spacing: 0.25em;
+  text-transform: uppercase; color: var(--text-dim);
+  margin-bottom: 1rem;
+}
+
+.settings-subsection-label {
+  font-family: var(--font-sans); font-weight: 300;
+  font-size: 0.62rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--text-dim);
+  margin: 1rem 0 0.6rem;
+}
+
+.settings-row {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.85rem; gap: 1rem;
+}
+.settings-row:last-child { margin-bottom: 0; }
+
+.settings-row label {
+  font-family: var(--font-sans); font-weight: 300;
+  font-size: 0.78rem; color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.settings-row input[type="text"],
+.settings-row input[type="number"],
+.settings-row input[type="url"],
+.settings-row select {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-family: var(--font-sans); font-weight: 300;
+  font-size: 0.78rem;
+  padding: 0.45rem 0.7rem;
+  width: 180px;
+  outline: none;
+  transition: border-color 0.2s;
+  cursor: text;
+  user-select: text;
+}
+.settings-row input:focus,
+.settings-row select:focus {
+  border-color: rgba(255,255,255,0.35);
+}
+
+.settings-row select {
+  cursor: pointer; appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.7rem center;
+  padding-right: 2rem;
+}
+
+.settings-row input[type="checkbox"] {
+  width: 18px; height: 18px;
+  cursor: pointer; accent-color: #fff;
+}
+
+/* checkbox group */
+.settings-checks {
+  display: flex; flex-direction: column; gap: 0.55rem;
+}
+.settings-check {
+  display: flex; align-items: center; gap: 0.7rem;
+  font-family: var(--font-sans); font-weight: 300;
+  font-size: 0.78rem; color: var(--text-secondary);
+  cursor: pointer;
+  user-select: none;
+}
+.settings-check input[type="checkbox"] {
+  width: 16px; height: 16px;
+  accent-color: #fff; cursor: pointer; flex-shrink: 0;
+}
+
+.settings-hint {
+  font-family: var(--font-sans); font-weight: 200;
+  font-size: 0.68rem; color: var(--text-dim);
+  line-height: 1.5; margin: -0.4rem 0 0.8rem;
+}
+
+/* hidden conditional rows */
+#row-cal-url,
+#row-cal-gcid,
+#row-spotify-id { display: none; }
+
+#settings-footer {
+  display: flex; flex-direction: column; gap: 0.6rem;
+  padding: 1.2rem 1.6rem;
+  border-top: 1px solid var(--panel-border);
+  flex-shrink: 0;
+}
+
+.btn-primary {
+  background: rgba(255,255,255,0.92);
+  color: #111;
+  border: none; border-radius: 8px;
+  font-family: var(--font-sans); font-weight: 400;
+  font-size: 0.8rem; letter-spacing: 0.05em;
+  padding: 0.7rem 1.2rem;
+  cursor: pointer; transition: background 0.2s;
+  width: 100%;
+}
+.btn-primary:hover { background: #fff; }
+
+.btn-ghost {
+  background: none;
   color: var(--text-dim);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  margin-top: 0.12rem;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 8px;
+  font-family: var(--font-sans); font-weight: 300;
+  font-size: 0.75rem; letter-spacing: 0.05em;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer; transition: border-color 0.2s, color 0.2s;
+  width: 100%;
 }
+.btn-ghost:hover { border-color: rgba(255,255,255,0.28); color: var(--text-secondary); }
 
-/* ── THIN RULE decorating clock/weather separator ─────────── */
-
-.subtle-rule {
-  width: 32px;
-  height: 1px;
-  background: rgba(255,255,255,0.12);
-  margin-left: auto;
-}
-
-/* ── PORTRAIT ORIENTATION ──────────────────────────────────── */
+/* ── PORTRAIT ─────────────────────────────────────────────── */
 
 @media (orientation: portrait) {
   #ui {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr auto auto;
-    grid-template-areas:
-      "."
-      "calendar"
-      "sidebar";
+    grid-template-areas: "." "calendar" "sidebar";
     align-items: end;
     padding: 2rem 2rem;
     gap: 1.6rem 0;
   }
-
-  #calendar-col {
-    max-width: 100%;
-  }
-
-  .cal-title {
-    max-width: 220px;
-  }
-
+  #calendar-col { max-width: 100%; }
+  .cal-title { max-width: 220px; }
   #sidebar {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
-    width: 100%;
+    flex-direction: row; justify-content: space-between;
+    align-items: flex-end; width: 100%;
   }
-
-  #clock-col {
-    text-align: left;
-    order: -1;
-  }
-
-  #clock-date {
-    text-align: left;
-  }
-
-  #weather-col {
-    text-align: right;
-  }
-
-  #media-col {
-    text-align: right;
-  }
-
-  #artwork-info {
-    padding: 2rem 2rem;
-  }
+  #clock-col { text-align: left; order: -1; }
+  #clock-date { text-align: left; }
+  #weather-col, #media-col { text-align: right; }
+  #artwork-info { padding: 2rem; }
 }
-
-/* ── SMALL TABLETS (< 600px wide) ─────────────────────────── */
 
 @media (max-width: 600px) {
-  #clock-time {
-    font-size: clamp(2.2rem, 8vw, 3.5rem);
-  }
-
-  #artwork-info {
-    padding: 1.5rem 1.5rem;
-  }
+  #clock-time { font-size: clamp(2.2rem, 8vw, 3.5rem); }
+  #artwork-info { padding: 1.5rem; }
+  #zone-prev, #zone-next { width: 22%; }
 }
-
-/* ── PRELOAD shimmer while image loads ─────────────────────── */
-
-#artwork-bg.loading {
-  background-color: #111;
-}
-
-/* ── TRANSITIONS ───────────────────────────────────────────── */
-
-.fade-out { opacity: 0 !important; }
-.fade-in  { opacity: 1 !important; }

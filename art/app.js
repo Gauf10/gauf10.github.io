@@ -1,11 +1,40 @@
 // ============================================================
 // LIVING ART FRAME — app.js
-// Vanilla JS. No frameworks. Designed for low-RAM tablets.
+// Vanilla JS. localStorage-persisted settings. No frameworks.
 // ============================================================
 
 'use strict';
 
-// ── DOM REFERENCES ────────────────────────────────────────────
+// ── STORAGE KEY ───────────────────────────────────────────────
+const LS_KEY = 'laf_config';
+const LS_FAVS = 'laf_favs';
+
+// ── MERGE CONFIG: defaults ← localStorage overrides ──────────
+function loadConfig() {
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem(LS_KEY) || '{}'); } catch (_) {}
+  // Deep merge for nested objects (artCategories)
+  return {
+    ...CONFIG_DEFAULTS,
+    ...saved,
+    artCategories: { ...CONFIG_DEFAULTS.artCategories, ...(saved.artCategories || {}) },
+  };
+}
+
+function saveConfig(cfg) {
+  localStorage.setItem(LS_KEY, JSON.stringify(cfg));
+}
+
+// Active config (mutable at runtime)
+let CFG = loadConfig();
+
+// ── FAVOURITES ────────────────────────────────────────────────
+function loadFavs() {
+  try { return JSON.parse(localStorage.getItem(LS_FAVS) || '[]'); } catch (_) { return []; }
+}
+function saveFavs(favs) { localStorage.setItem(LS_FAVS, JSON.stringify(favs)); }
+
+// ── DOM ───────────────────────────────────────────────────────
 const $bg          = document.getElementById('artwork-bg');
 const $artInfo     = document.getElementById('artwork-info');
 const $artTitle    = document.getElementById('artwork-title');
@@ -19,10 +48,25 @@ const $calCol      = document.getElementById('calendar-col');
 const $mediaCol    = document.getElementById('media-col');
 const $mediaTrack  = document.getElementById('media-track');
 const $mediaArtist = document.getElementById('media-artist');
+const $btnFav      = document.getElementById('btn-fav');
+const $btnSettings = document.getElementById('btn-settings');
+const $backdrop    = document.getElementById('settings-backdrop');
+const $panel       = document.getElementById('settings-panel');
+const $btnClose    = document.getElementById('btn-close-settings');
+const $btnSave     = document.getElementById('btn-save-settings');
+const $btnReset    = document.getElementById('btn-reset-settings');
+const $zonePrev    = document.getElementById('zone-prev');
+const $zoneNext    = document.getElementById('zone-next');
 
-// ── OPEN-METEO WMO CODE MAP ───────────────────────────────────
-// Maps WMO weather interpretation codes to readable descriptions.
-const WMO = {
+// ── LOCALE ───────────────────────────────────────────────────
+// Use browser locale for date and weather text
+const LOCALE = navigator.language || 'en';
+
+// ============================================================
+// WMO WEATHER CODES — localised via Intl where possible,
+// fallback English map otherwise.
+// ============================================================
+const WMO_EN = {
   0:'Clear Sky', 1:'Mainly Clear', 2:'Partly Cloudy', 3:'Overcast',
   45:'Foggy', 48:'Foggy', 51:'Light Drizzle', 53:'Drizzle',
   55:'Heavy Drizzle', 61:'Light Rain', 63:'Rain', 65:'Heavy Rain',
@@ -32,399 +76,409 @@ const WMO = {
   95:'Thunderstorm', 96:'Thunderstorm', 99:'Thunderstorm'
 };
 
-// ── STATE ─────────────────────────────────────────────────────
-let nextImageEl   = null; // preloaded <img> element
-let artworkQueue  = [];
-let calendarTimer = null;
-let googleToken   = null; // for private calendar OAuth
+// Translations for common locales
+const WMO_I18N = {
+  es: {
+    0:'Cielo despejado', 1:'Mayormente despejado', 2:'Parcialmente nublado', 3:'Cubierto',
+    45:'Neblina', 48:'Neblina', 51:'Llovizna ligera', 53:'Llovizna', 55:'Llovizna intensa',
+    61:'Lluvia ligera', 63:'Lluvia', 65:'Lluvia intensa',
+    71:'Nieve ligera', 73:'Nieve', 75:'Nieve intensa', 77:'Granizo',
+    80:'Chaparrones', 81:'Chaparrones', 82:'Chaparrones fuertes',
+    85:'Nevada', 86:'Nevada intensa', 95:'Tormenta', 96:'Tormenta', 99:'Tormenta'
+  },
+  pt: {
+    0:'Céu limpo', 1:'Principalmente limpo', 2:'Parcialmente nublado', 3:'Nublado',
+    45:'Nevoeiro', 48:'Nevoeiro', 51:'Garoa leve', 53:'Garoa', 55:'Garoa forte',
+    61:'Chuva leve', 63:'Chuva', 65:'Chuva forte',
+    71:'Neve leve', 73:'Neve', 75:'Neve forte', 77:'Granizo',
+    80:'Pancadas', 81:'Pancadas', 82:'Pancadas fortes',
+    85:'Nevada', 86:'Nevada forte', 95:'Tempestade', 96:'Tempestade', 99:'Tempestade'
+  },
+  fr: {
+    0:'Ciel dégagé', 1:'Principalement dégagé', 2:'Partiellement nuageux', 3:'Couvert',
+    45:'Brouillard', 48:'Brouillard', 51:'Bruine légère', 53:'Bruine', 55:'Bruine forte',
+    61:'Pluie légère', 63:'Pluie', 65:'Pluie forte',
+    71:'Neige légère', 73:'Neige', 75:'Neige forte', 77:'Grésil',
+    80:'Averses', 81:'Averses', 82:'Fortes averses',
+    85:'Chutes de neige', 86:'Chutes de neige fortes', 95:'Orage', 96:'Orage', 99:'Orage'
+  },
+};
+
+function wmoText(code) {
+  const lang = LOCALE.split('-')[0].toLowerCase();
+  const map  = WMO_I18N[lang] || WMO_EN;
+  return map[code] || WMO_EN[code] || '';
+}
 
 // ============================================================
-// CLOCK
+// CLOCK — localized
 // ============================================================
 
 function updateClock() {
   const now = new Date();
-
-  // Time HH:MM
-  const h = String(now.getHours()).padStart(2, '0');
-  const m = String(now.getMinutes()).padStart(2, '0');
+  const h   = String(now.getHours()).padStart(2, '0');
+  const m   = String(now.getMinutes()).padStart(2, '0');
   $clockTime.textContent = `${h}:${m}`;
 
-  // Weekday + Date
-  const days   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  const day    = days[now.getDay()];
-  const date   = `${months[now.getMonth()]} ${now.getDate()}`;
-
-  $clockDate.innerHTML = `<span class="clock-weekday">${day}</span>${date}`;
+  // Localized weekday + date (e.g. "Jueves · 1 de junio")
+  const weekday = now.toLocaleDateString(LOCALE, { weekday: 'long' });
+  const dateStr = now.toLocaleDateString(LOCALE, { month: 'long', day: 'numeric' });
+  // Capitalize first letter
+  const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+  $clockDate.innerHTML = `<span>${cap(weekday)}</span><span class="clock-sep"> · </span>${cap(dateStr)}`;
 }
 
-// Start clock; tick every second
 setInterval(updateClock, 1000);
 updateClock();
 
 // ============================================================
-// WEATHER — Open-Meteo (no API key required)
-// Docs: https://open-meteo.com/en/docs
+// WEATHER — Open-Meteo, no key, localized description
 // ============================================================
 
-async function fetchWeather() {
-  const { latitude, longitude, city } = CONFIG;
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`;
+let weatherTimer = null;
 
+async function fetchWeather() {
+  const { latitude, longitude, city } = CFG;
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`;
   try {
     const res  = await fetch(url);
     const data = await res.json();
     const cw   = data.current_weather;
-
     $weatherTemp.textContent = `${Math.round(cw.temperature)}°C`;
-    $weatherDesc.textContent = WMO[cw.weathercode] || 'Clear';
+    $weatherDesc.textContent = wmoText(cw.weathercode);
     $weatherCity.textContent = city;
   } catch (e) {
-    console.warn('[Weather] fetch failed:', e);
+    console.warn('[Weather]', e);
   }
 }
 
-fetchWeather();
-setInterval(fetchWeather, CONFIG.weatherRefresh);
+function startWeather() {
+  clearInterval(weatherTimer);
+  fetchWeather();
+  weatherTimer = setInterval(fetchWeather, CFG.weatherRefresh);
+}
+
+startWeather();
 
 // ============================================================
 // ARTWORK — Art Institute of Chicago API
-// Docs: https://api.artic.edu/docs/
-// Only fetches works that have public-domain images.
 // ============================================================
 
 const AIC_BASE   = 'https://api.artic.edu/api/v1';
-const AIC_FIELDS = 'id,title,artist_display,image_id,thumbnail';
+const AIC_FIELDS = 'id,title,artist_display,image_id,department_title,medium_display';
 
-/**
- * Fetch a page of random public-domain artworks.
- * Returns an array of objects: { title, artist, imageId }
- */
-async function fetchArtworkPage() {
-  // Random page between 1-200 keeps variety high.
-  const page  = Math.floor(Math.random() * 200) + 1;
-  const url   = `${AIC_BASE}/artworks?page=${page}&limit=20&fields=${AIC_FIELDS}&query[term][is_public_domain]=true`;
+// Category → AIC department search terms
+const CAT_MAP = {
+  paintings:    ['Painting', 'European Painting', 'American Art'],
+  photography:  ['Photography and Media'],
+  sculpture:    ['Sculpture and Decorative Arts', 'African Art and Indian Art'],
+  prints:       ['Prints and Drawings'],
+  contemporary: ['Modern and Contemporary Art'],
+};
 
-  const res   = await fetch(url);
-  const data  = await res.json();
-  const valid = (data.data || []).filter(a => a.image_id);
-
-  return valid.map(a => ({
-    title:   a.title || 'Untitled',
-    artist:  a.artist_display ? a.artist_display.split('\n')[0] : 'Unknown Artist',
-    imageId: a.image_id,
-  }));
+function buildAICQuery() {
+  const cats  = CFG.artCategories;
+  const terms = [];
+  for (const [key, active] of Object.entries(cats)) {
+    if (active && CAT_MAP[key]) terms.push(...CAT_MAP[key]);
+  }
+  return terms;
 }
 
-/**
- * Build the full image URL from an image_id.
- * AIC IIIF endpoint: https://www.artic.edu/iiif/2/{image_id}/full/1686,/0/default.jpg
- * 1686px wide covers tablet + desktop at full quality.
- */
+// ── STATE ─────────────────────────────────────────────────────
+let artworkQueue    = [];
+let currentArtwork  = null;
+let artworkTimer    = null;
+let isTransitioning = false;
+
 function artworkUrl(imageId) {
   return `https://www.artic.edu/iiif/2/${imageId}/full/1686,/0/default.jpg`;
 }
 
-/**
- * Preload an image in the background.
- * Returns a Promise that resolves with the Image element.
- */
 function preloadImage(src) {
   return new Promise((resolve, reject) => {
-    const img  = new Image();
-    img.onload = () => resolve(img);
+    const img    = new Image();
+    img.onload  = () => resolve(img);
     img.onerror = reject;
-    img.src    = src;
+    img.src     = src;
   });
 }
 
-/**
- * Pick the next artwork from the queue, refilling if needed.
- * Automatically skips images that fail to load (404 etc).
- */
+async function fetchArtworkPage() {
+  const page  = Math.floor(Math.random() * 200) + 1;
+  // Build department filter if categories are configured
+  const depts = buildAICQuery();
+  let url;
+  if (depts.length > 0) {
+    const should = depts.map(d => ({ match_phrase: { department_title: d } }));
+    const query  = encodeURIComponent(JSON.stringify({
+      bool: { must: [{ term: { is_public_domain: true } }], should, minimum_should_match: 1 }
+    }));
+    url = `${AIC_BASE}/artworks/search?page=${page}&limit=20&fields=${AIC_FIELDS}&query=${query}`;
+  } else {
+    url = `${AIC_BASE}/artworks?page=${page}&limit=20&fields=${AIC_FIELDS}&query[term][is_public_domain]=true`;
+  }
+
+  const res  = await fetch(url);
+  const data = await res.json();
+  return (data.data || [])
+    .filter(a => a.image_id)
+    .map(a => ({
+      title:    a.title || 'Untitled',
+      artist:   a.artist_display ? a.artist_display.split('\n')[0] : 'Unknown Artist',
+      imageId:  a.image_id,
+      id:       a.id,
+    }));
+}
+
 async function getNextArtwork() {
-  // Refill queue when running low
   if (artworkQueue.length < 3) {
     try {
       const fresh = await fetchArtworkPage();
       artworkQueue = artworkQueue.concat(fresh);
     } catch (e) {
-      console.warn('[Artwork] queue refill failed:', e);
+      console.warn('[Artwork] refill failed', e);
     }
   }
-
-  // Try artworks in queue until one loads successfully
   while (artworkQueue.length > 0) {
     const candidate = artworkQueue.shift();
     const src       = artworkUrl(candidate.imageId);
-
     try {
       await preloadImage(src);
       return { ...candidate, src };
-    } catch (_) {
-      // Image invalid — skip silently and try next
-    }
+    } catch (_) { /* skip invalid */ }
   }
-
-  return null; // Fallback: nothing loaded
+  return null;
 }
 
+// History for prev/next navigation
+let artHistory = [];  // array of artwork objects
+let historyIdx = -1;  // current position
+
 /**
- * Transition to a new artwork with a smooth crossfade.
+ * Transition to artwork with smooth crossfade.
+ * @param {object} artwork
+ * @param {boolean} showInfo — show title overlay
  */
-async function showArtwork(artwork) {
-  if (!artwork) return;
+async function showArtwork(artwork, showInfo = true) {
+  if (!artwork || isTransitioning) return;
+  isTransitioning = true;
 
-  // Fade out current
+  currentArtwork = artwork;
+  updateFavButton();
+
+  // Fade out
   $bg.style.opacity = '0';
+  await delay(1800);
 
-  await delay(1800); // match CSS transition
-
-  // Set new background
   $bg.style.backgroundImage = `url('${artwork.src}')`;
   $bg.style.opacity         = '1';
 
-  // Show title overlay for 5 seconds then fade out
-  $artTitle.textContent  = artwork.title;
-  $artArtist.textContent = artwork.artist;
-  $artInfo.classList.add('visible');
-
-  setTimeout(() => {
-    $artInfo.classList.remove('visible');
-  }, 5000);
-}
-
-/**
- * Main artwork rotation loop.
- */
-async function startArtworkCycle() {
-  // Show first artwork immediately
-  const first = await getNextArtwork();
-  if (first) await showArtwork(first);
-
-  // Preload next while displaying current
-  async function cycle() {
-    const next = await getNextArtwork();
-    if (next) await showArtwork(next);
+  if (showInfo) {
+    $artTitle.textContent  = artwork.title;
+    $artArtist.textContent = artwork.artist;
+    $artInfo.classList.add('visible');
+    setTimeout(() => $artInfo.classList.remove('visible'), 5000);
   }
 
-  setInterval(cycle, CONFIG.artworkInterval);
+  isTransitioning = false;
+}
+
+/** Navigate forward (new artwork or next in history) */
+async function goNext() {
+  // If we're not at the end of history, move forward
+  if (historyIdx < artHistory.length - 1) {
+    historyIdx++;
+    await showArtwork(artHistory[historyIdx]);
+    return;
+  }
+  // Fetch new artwork
+  const next = await getNextArtwork();
+  if (next) {
+    artHistory.push(next);
+    historyIdx = artHistory.length - 1;
+    // Trim history to last 30 to avoid memory bloat
+    if (artHistory.length > 30) {
+      artHistory = artHistory.slice(-30);
+      historyIdx = artHistory.length - 1;
+    }
+    await showArtwork(next);
+  }
+}
+
+/** Navigate backward in history */
+async function goPrev() {
+  if (historyIdx <= 0) return; // nothing before
+  historyIdx--;
+  await showArtwork(artHistory[historyIdx]);
+}
+
+async function startArtworkCycle() {
+  await goNext(); // first artwork
+  artworkTimer = setInterval(goNext, CFG.artworkInterval);
+}
+
+function restartArtworkCycle() {
+  clearInterval(artworkTimer);
+  artworkTimer = setInterval(goNext, CFG.artworkInterval);
 }
 
 startArtworkCycle();
 
+// ── PREV / NEXT ZONES ─────────────────────────────────────────
+$zonePrev.addEventListener('click', () => goPrev());
+$zoneNext.addEventListener('click', () => goNext());
+
+// ── SWIPE SUPPORT (touch) ─────────────────────────────────────
+let touchStartX = 0;
+document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+document.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 60) dx < 0 ? goNext() : goPrev();
+}, { passive: true });
+
 // ============================================================
-// CALENDAR — Public iCal mode
-// Parses iCal format (RFC 5545) from a public Google Calendar URL.
+// FAVOURITES
 // ============================================================
 
-/**
- * Parse iCal text into event objects.
- * Returns array of { title, start }
- */
+function updateFavButton() {
+  if (!currentArtwork) return;
+  const favs = loadFavs();
+  const is   = favs.some(f => f.id === currentArtwork.id);
+  $btnFav.classList.toggle('faved', is);
+  $btnFav.setAttribute('aria-label', is ? 'Remove favourite' : 'Favourite this artwork');
+}
+
+$btnFav.addEventListener('click', () => {
+  if (!currentArtwork) return;
+  let favs = loadFavs();
+  const idx = favs.findIndex(f => f.id === currentArtwork.id);
+  if (idx === -1) {
+    favs.push({ id: currentArtwork.id, title: currentArtwork.title, artist: currentArtwork.artist, imageId: currentArtwork.imageId });
+  } else {
+    favs.splice(idx, 1);
+  }
+  saveFavs(favs);
+  updateFavButton();
+});
+
+// ============================================================
+// CALENDAR
+// ============================================================
+
+const PROXY_URL = 'https://corsproxy.io/?';
+let calTimer = null;
+
 function parseICal(text) {
   const events = [];
   const lines  = text.replace(/\r\n /g, '').replace(/\r\n/g, '\n').split('\n');
-  let current  = null;
-
+  let cur = null;
   for (const line of lines) {
-    if (line === 'BEGIN:VEVENT') {
-      current = {};
-    } else if (line === 'END:VEVENT' && current) {
-      if (current.start && current.title) events.push(current);
-      current = null;
-    } else if (current) {
-      if (line.startsWith('SUMMARY:'))   current.title = line.slice(8).trim();
-      if (line.startsWith('DTSTART'))    current.start = parseICalDate(line);
-      if (line.startsWith('DTSTART;'))   current.start = parseICalDate(line);
+    if (line === 'BEGIN:VEVENT')           { cur = {}; }
+    else if (line === 'END:VEVENT' && cur) { if (cur.start && cur.title) events.push(cur); cur = null; }
+    else if (cur) {
+      if (line.startsWith('SUMMARY:'))  cur.title = line.slice(8).trim();
+      if (line.match(/^DTSTART/))       cur.start = parseICalDate(line);
     }
   }
-
   return events;
 }
 
 function parseICalDate(line) {
-  // Handles: DTSTART:20240101T090000Z  or  DTSTART;VALUE=DATE:20240101
   const val = line.split(':').slice(1).join(':').trim();
   if (val.length === 8) {
-    // All-day: YYYYMMDD
-    const y = val.slice(0,4), mo = val.slice(4,6), d = val.slice(6,8);
-    return new Date(`${y}-${mo}-${d}T00:00:00`);
+    return new Date(`${val.slice(0,4)}-${val.slice(4,6)}-${val.slice(6,8)}T00:00:00`);
   }
-  // DateTime: YYYYMMDDTHHMMSSZ
-  const y  = val.slice(0,4), mo = val.slice(4,6), d = val.slice(6,8);
-  const h  = val.slice(9,11), mi = val.slice(11,13);
-  return new Date(`${y}-${mo}-${d}T${h}:${mi}:00Z`);
+  return new Date(`${val.slice(0,4)}-${val.slice(4,6)}-${val.slice(6,8)}T${val.slice(9,11)}:${val.slice(11,13)}:00Z`);
 }
-
-/**
- * Fetch and render a public Google Calendar via iCal.
- * Passes through a CORS proxy since Google doesn't support direct fetch.
- *
- * CORS proxy: corsproxy.io (free, no key required).
- * If you self-host, replace PROXY_URL.
- */
-const PROXY_URL = 'https://corsproxy.io/?';
 
 async function fetchPublicCalendar() {
-  if (!CONFIG.publicCalendarURL) return;
-
+  if (!CFG.publicCalendarURL) return;
   try {
-    const url = PROXY_URL + encodeURIComponent(CONFIG.publicCalendarURL);
-    const res = await fetch(url);
-    const txt = await res.text();
-    renderCalendarEvents(parseICal(txt));
-  } catch (e) {
-    console.warn('[Calendar] public fetch failed:', e);
-    hideCalendar();
-  }
+    const res = await fetch(PROXY_URL + encodeURIComponent(CFG.publicCalendarURL));
+    renderCalendarEvents(parseICal(await res.text()));
+  } catch (e) { console.warn('[Calendar]', e); hideCalendar(); }
 }
-
-// ============================================================
-// CALENDAR — Private Google Calendar via OAuth
-// Uses Google Identity Services (GIS) + Calendar REST API.
-// Docs: https://developers.google.com/calendar/api/guides/overview
-// Setup: enable Calendar API in Google Cloud Console,
-//        create OAuth 2.0 client ID (Web Application),
-//        add your domain to Authorized JS Origins.
-// ============================================================
 
 function initGoogleOAuth() {
-  if (typeof google === 'undefined' || !CONFIG.googleClientId) {
-    console.warn('[Calendar] Google Identity Services not loaded.');
-    return;
-  }
-
-  const tokenClient = google.accounts.oauth2.initTokenClient({
-    client_id: CONFIG.googleClientId,
+  if (typeof google === 'undefined' || !CFG.googleClientId) return;
+  const tc = google.accounts.oauth2.initTokenClient({
+    client_id: CFG.googleClientId,
     scope: 'https://www.googleapis.com/auth/calendar.readonly',
-    callback: (response) => {
-      if (response.access_token) {
-        googleToken = response.access_token;
-        fetchPrivateCalendar();
-        setInterval(fetchPrivateCalendar, CONFIG.calendarRefresh);
-      }
-    },
+    callback: r => { if (r.access_token) { googleToken = r.access_token; fetchPrivateCalendar(); } },
   });
-
-  // Silently request token (no popup) if user previously consented.
-  tokenClient.requestAccessToken({ prompt: '' });
+  tc.requestAccessToken({ prompt: '' });
 }
 
+let googleToken = null;
 async function fetchPrivateCalendar() {
   if (!googleToken) return;
-
-  const now     = new Date();
-  const tomorrow = new Date(now);
-  tomorrow.setDate(tomorrow.getDate() + 2);
-
-  const params = new URLSearchParams({
-    timeMin:    now.toISOString(),
-    timeMax:    tomorrow.toISOString(),
-    maxResults: 20,
-    singleEvents: true,
-    orderBy:    'startTime',
-  });
-
+  const now  = new Date();
+  const end  = new Date(now); end.setDate(end.getDate() + 2);
+  const p    = new URLSearchParams({ timeMin: now.toISOString(), timeMax: end.toISOString(), maxResults: 20, singleEvents: true, orderBy: 'startTime' });
   try {
-    const res  = await fetch(
-      `https://www.googleapis.com/calendar/v3/calendars/primary/events?${params}`,
-      { headers: { Authorization: `Bearer ${googleToken}` } }
-    );
+    const res  = await fetch(`https://www.googleapis.com/calendar/v3/calendars/primary/events?${p}`, { headers: { Authorization: `Bearer ${googleToken}` } });
     const data = await res.json();
-    const events = (data.items || []).map(e => ({
-      title: e.summary || 'Event',
-      start: new Date(e.start.dateTime || e.start.date),
-    }));
-    renderCalendarEvents(events);
-  } catch (e) {
-    console.warn('[Calendar] private fetch failed:', e);
-    hideCalendar();
-  }
+    renderCalendarEvents((data.items || []).map(e => ({ title: e.summary || 'Event', start: new Date(e.start.dateTime || e.start.date) })));
+  } catch (e) { hideCalendar(); }
 }
 
-// ============================================================
-// CALENDAR — Render
-// ============================================================
+// Localized day labels
+function localDayLabel(date) {
+  const today = new Date();
+  const tmrw  = new Date(today); tmrw.setDate(tmrw.getDate() + 1);
+  if (dateKey(date) === dateKey(today)) {
+    return new Intl.RelativeTimeFormat(LOCALE, { numeric: 'auto' }).format(0, 'day');
+  }
+  if (dateKey(date) === dateKey(tmrw)) {
+    return new Intl.RelativeTimeFormat(LOCALE, { numeric: 'auto' }).format(1, 'day');
+  }
+  return date.toLocaleDateString(LOCALE, { weekday: 'long' });
+}
 
-/**
- * Render events to the calendar column.
- * Groups events into "Today" and "Tomorrow".
- * If no events exist → hides the column completely.
- */
 function renderCalendarEvents(events) {
-  const now       = new Date();
-  const todayStr  = dateKey(now);
-  const tmrw      = new Date(now);
-  tmrw.setDate(tmrw.getDate() + 1);
-  const tmrwStr   = dateKey(tmrw);
+  const now      = new Date();
+  const todayStr = dateKey(now);
+  const tmrw     = new Date(now); tmrw.setDate(tmrw.getDate() + 1);
+  const tmrwStr  = dateKey(tmrw);
 
   const todays    = events.filter(e => e.start && dateKey(e.start) === todayStr && e.start >= now);
   const tomorrows = events.filter(e => e.start && dateKey(e.start) === tmrwStr);
 
-  if (todays.length === 0 && tomorrows.length === 0) {
-    hideCalendar();
-    return;
-  }
+  if (!todays.length && !tomorrows.length) { hideCalendar(); return; }
 
   let html = '';
-
   if (todays.length) {
-    html += `<div class="cal-day-label">Today</div>`;
-    html += todays.map(e => eventHtml(e)).join('');
+    const label = localDayLabel(now);
+    html += `<div class="cal-day-label">${label}</div>`;
+    html += todays.map(eventHtml).join('');
   }
-
   if (tomorrows.length) {
-    html += `<div class="cal-day-label">Tomorrow</div>`;
-    html += tomorrows.map(e => eventHtml(e)).join('');
+    const label = localDayLabel(tmrw);
+    html += `<div class="cal-day-label">${label}</div>`;
+    html += tomorrows.map(eventHtml).join('');
   }
-
   $calCol.innerHTML = html;
   $calCol.classList.add('visible');
 }
 
 function eventHtml(e) {
-  const h = String(e.start.getHours()).padStart(2, '0');
-  const m = String(e.start.getMinutes()).padStart(2, '0');
-  return `<div class="cal-event">
-    <span class="cal-time">${h}:${m}</span>
-    <span class="cal-title">${escapeHtml(e.title)}</span>
-  </div>`;
+  const h = String(e.start.getHours()).padStart(2,'0');
+  const m = String(e.start.getMinutes()).padStart(2,'0');
+  return `<div class="cal-event"><span class="cal-time">${h}:${m}</span><span class="cal-title">${escapeHtml(e.title)}</span></div>`;
 }
 
-function hideCalendar() {
-  $calCol.classList.remove('visible');
-  $calCol.innerHTML = '';
-}
-
-function dateKey(d) {
-  return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
-}
-
-function escapeHtml(s) {
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-// ============================================================
-// CALENDAR — Init based on mode
-// ============================================================
+function hideCalendar() { $calCol.classList.remove('visible'); $calCol.innerHTML = ''; }
 
 function initCalendar() {
-  if (CONFIG.calendarMode === 'public' && CONFIG.publicCalendarURL) {
+  clearInterval(calTimer);
+  if (CFG.calendarMode === 'public' && CFG.publicCalendarURL) {
     fetchPublicCalendar();
-    setInterval(fetchPublicCalendar, CONFIG.calendarRefresh);
-
-  } else if (CONFIG.calendarMode === 'private') {
-    // GIS script loaded async in index.html; wait for it.
-    if (typeof google !== 'undefined') {
-      initGoogleOAuth();
-    } else {
-      window.addEventListener('load', initGoogleOAuth);
-    }
-
+    calTimer = setInterval(fetchPublicCalendar, CFG.calendarRefresh);
+  } else if (CFG.calendarMode === 'private') {
+    if (CFG.googleClientId) window._loadGIS();
+    typeof google !== 'undefined' ? initGoogleOAuth() : window.addEventListener('load', initGoogleOAuth);
   } else {
-    // calendarMode === 'none' or not configured — hide calendar
     hideCalendar();
   }
 }
@@ -432,121 +486,45 @@ function initCalendar() {
 initCalendar();
 
 // ============================================================
-// MEDIA — Now Playing
-// Supports: Browser Media Session API + Spotify Web API
-// ============================================================
-
-/**
- * Browser Media Session API:
- * Works natively with YouTube, Spotify Web Player, etc.
- * when the browser tab has media focus.
- * No credentials required.
- */
-function pollMediaSession() {
-  if (!CONFIG.mediaEnabled) return;
-
-  if ('mediaSession' in navigator) {
-    const meta = navigator.mediaSession.metadata;
-
-    if (meta && meta.title) {
-      $mediaTrack.textContent  = meta.title;
-      $mediaArtist.textContent = meta.artist || '';
-      $mediaCol.classList.add('visible');
-    } else {
-      trySpotify();
-    }
-  } else {
-    trySpotify();
-  }
-}
-
-// ============================================================
-// MEDIA — Spotify Web API
-// Docs: https://developer.spotify.com/documentation/web-api
-// Requires: spotifyClientId in config.js and user auth flow.
-// Uses Authorization Code Flow with PKCE for browser-based apps.
+// MEDIA — mediaSession first, then Spotify fallback
 // ============================================================
 
 let spotifyToken = null;
+let mediaTimer   = null;
 
-async function spotifyAuth() {
-  if (!CONFIG.spotifyEnabled || !CONFIG.spotifyClientId) return;
+/**
+ * 1. Try navigator.mediaSession (works with YouTube, Spotify Web, etc.)
+ * 2. If no active session → try Spotify API if enabled
+ * 3. If nothing → hide module
+ */
+function pollMedia() {
+  if (!CFG.mediaEnabled) { $mediaCol.classList.remove('visible'); return; }
 
-  // Check URL for auth callback code
-  const params = new URLSearchParams(window.location.search);
-  const code   = params.get('code');
+  const meta = ('mediaSession' in navigator) ? navigator.mediaSession.metadata : null;
+  const state = ('mediaSession' in navigator) ? navigator.mediaSession.playbackState : 'none';
 
-  if (code) {
-    await exchangeSpotifyCode(code);
-    // Clean URL
-    window.history.replaceState({}, '', window.location.pathname);
+  if (meta && meta.title && state !== 'paused') {
+    $mediaTrack.textContent  = meta.title;
+    $mediaArtist.textContent = meta.artist || '';
+    $mediaCol.classList.add('visible');
     return;
   }
 
-  // Check stored token
-  const stored = sessionStorage.getItem('spotify_token');
-  if (stored) {
-    spotifyToken = stored;
-    return;
-  }
-
-  // Redirect to Spotify auth
-  const codeVerifier  = generateCodeVerifier();
-  const codeChallenge = await generateCodeChallenge(codeVerifier);
-  sessionStorage.setItem('spotify_verifier', codeVerifier);
-
-  const authUrl = 'https://accounts.spotify.com/authorize?' + new URLSearchParams({
-    response_type:         'code',
-    client_id:             CONFIG.spotifyClientId,
-    scope:                 'user-read-currently-playing user-read-playback-state',
-    redirect_uri:          CONFIG.spotifyRedirectUri,
-    code_challenge_method: 'S256',
-    code_challenge:        codeChallenge,
-  });
-
-  window.location.href = authUrl;
-}
-
-async function exchangeSpotifyCode(code) {
-  const verifier = sessionStorage.getItem('spotify_verifier');
-
-  const res  = await fetch('https://accounts.spotify.com/api/token', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({
-      grant_type:    'authorization_code',
-      code,
-      redirect_uri:  CONFIG.spotifyRedirectUri,
-      client_id:     CONFIG.spotifyClientId,
-      code_verifier: verifier,
-    }),
-  });
-
-  const data = await res.json();
-  if (data.access_token) {
-    spotifyToken = data.access_token;
-    sessionStorage.setItem('spotify_token', spotifyToken);
-  }
-}
-
-async function trySpotify() {
-  if (!spotifyToken) {
+  // Fallback: Spotify API
+  if (CFG.spotifyEnabled && spotifyToken) {
+    fetchSpotifyCurrent();
+  } else {
     $mediaCol.classList.remove('visible');
-    return;
   }
+}
 
+async function fetchSpotifyCurrent() {
   try {
     const res  = await fetch('https://api.spotify.com/v1/me/player/currently-playing', {
       headers: { Authorization: `Bearer ${spotifyToken}` }
     });
-
-    if (res.status === 204) {
-      $mediaCol.classList.remove('visible');
-      return;
-    }
-
+    if (res.status === 204) { $mediaCol.classList.remove('visible'); return; }
     const data = await res.json();
-
     if (data && data.is_playing && data.item) {
       $mediaTrack.textContent  = data.item.name;
       $mediaArtist.textContent = data.item.artists.map(a => a.name).join(', ');
@@ -554,52 +532,190 @@ async function trySpotify() {
     } else {
       $mediaCol.classList.remove('visible');
     }
-  } catch (e) {
-    $mediaCol.classList.remove('visible');
-  }
+  } catch (_) { $mediaCol.classList.remove('visible'); }
 }
 
-// PKCE helpers for Spotify OAuth
-function generateCodeVerifier() {
+// ── Spotify PKCE Auth ─────────────────────────────────────────
+function genVerifier() {
   const arr = new Uint8Array(64);
   crypto.getRandomValues(arr);
   return btoa(String.fromCharCode(...arr)).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
 }
-
-async function generateCodeChallenge(verifier) {
-  const data   = new TextEncoder().encode(verifier);
-  const digest = await crypto.subtle.digest('SHA-256', data);
-  return btoa(String.fromCharCode(...new Uint8Array(digest))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+async function genChallenge(v) {
+  const d = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v));
+  return btoa(String.fromCharCode(...new Uint8Array(d))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
 }
 
-// Start media polling if enabled
-if (CONFIG.mediaEnabled) {
-  spotifyAuth().then(() => {
-    pollMediaSession();
-    setInterval(pollMediaSession, 10000);
+async function initSpotify() {
+  if (!CFG.spotifyEnabled || !CFG.spotifyClientId) return;
+  const params = new URLSearchParams(window.location.search);
+  const code   = params.get('code');
+  if (code) {
+    const verifier = sessionStorage.getItem('sp_verifier');
+    const res = await fetch('https://accounts.spotify.com/api/token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({ grant_type: 'authorization_code', code, redirect_uri: CFG.spotifyRedirectUri, client_id: CFG.spotifyClientId, code_verifier: verifier }),
+    });
+    const data = await res.json();
+    if (data.access_token) { spotifyToken = data.access_token; sessionStorage.setItem('sp_token', spotifyToken); }
+    window.history.replaceState({}, '', window.location.pathname);
+    return;
+  }
+  const stored = sessionStorage.getItem('sp_token');
+  if (stored) { spotifyToken = stored; return; }
+  // Need auth — open flow
+  const verifier   = genVerifier();
+  const challenge  = await genChallenge(verifier);
+  sessionStorage.setItem('sp_verifier', verifier);
+  window.location.href = 'https://accounts.spotify.com/authorize?' + new URLSearchParams({
+    response_type: 'code', client_id: CFG.spotifyClientId,
+    scope: 'user-read-currently-playing user-read-playback-state',
+    redirect_uri: CFG.spotifyRedirectUri,
+    code_challenge_method: 'S256', code_challenge: challenge,
   });
 }
+
+function startMedia() {
+  clearInterval(mediaTimer);
+  if (!CFG.mediaEnabled) { $mediaCol.classList.remove('visible'); return; }
+  initSpotify().then(() => {
+    pollMedia();
+    mediaTimer = setInterval(pollMedia, 10000);
+  });
+}
+
+startMedia();
+
+// ============================================================
+// SETTINGS PANEL
+// ============================================================
+
+function openSettings() {
+  populateSettingsForm();
+  $panel.classList.add('open');
+  $backdrop.classList.add('open');
+}
+
+function closeSettings() {
+  $panel.classList.remove('open');
+  $backdrop.classList.remove('open');
+}
+
+$btnSettings.addEventListener('click', openSettings);
+$btnClose.addEventListener('click', closeSettings);
+$backdrop.addEventListener('click', closeSettings);
+
+// Populate form from current CFG
+function populateSettingsForm() {
+  document.getElementById('cfg-city').value            = CFG.city;
+  document.getElementById('cfg-lat').value             = CFG.latitude;
+  document.getElementById('cfg-lon').value             = CFG.longitude;
+  document.getElementById('cfg-art-interval').value    = Math.round(CFG.artworkInterval / 60000);
+  document.getElementById('cfg-weather-interval').value= Math.round(CFG.weatherRefresh / 60000);
+  document.getElementById('cfg-cal-mode').value        = CFG.calendarMode;
+  document.getElementById('cfg-cal-url').value         = CFG.publicCalendarURL;
+  document.getElementById('cfg-gcid').value            = CFG.googleClientId;
+  document.getElementById('cfg-media-enabled').checked = CFG.mediaEnabled;
+  document.getElementById('cfg-spotify-enabled').checked = CFG.spotifyEnabled;
+  document.getElementById('cfg-spotify-id').value      = CFG.spotifyClientId;
+
+  // Categories
+  document.getElementById('cat-paintings').checked    = !!CFG.artCategories.paintings;
+  document.getElementById('cat-photography').checked  = !!CFG.artCategories.photography;
+  document.getElementById('cat-sculpture').checked    = !!CFG.artCategories.sculpture;
+  document.getElementById('cat-prints').checked       = !!CFG.artCategories.prints;
+  document.getElementById('cat-contemporary').checked = !!CFG.artCategories.contemporary;
+
+  updateCalendarRowVisibility();
+  updateSpotifyRowVisibility();
+}
+
+// Show/hide conditional rows
+const $calMode = document.getElementById('cfg-cal-mode');
+$calMode.addEventListener('change', updateCalendarRowVisibility);
+
+function updateCalendarRowVisibility() {
+  const mode = $calMode.value;
+  document.getElementById('row-cal-url').style.display  = mode === 'public'  ? 'flex' : 'none';
+  document.getElementById('row-cal-gcid').style.display = mode === 'private' ? 'flex' : 'none';
+}
+
+const $spotifyEnabled = document.getElementById('cfg-spotify-enabled');
+$spotifyEnabled.addEventListener('change', updateSpotifyRowVisibility);
+
+function updateSpotifyRowVisibility() {
+  document.getElementById('row-spotify-id').style.display = $spotifyEnabled.checked ? 'flex' : 'none';
+}
+
+// Save
+$btnSave.addEventListener('click', () => {
+  const artMins     = parseInt(document.getElementById('cfg-art-interval').value) || 2;
+  const weatherMins = parseInt(document.getElementById('cfg-weather-interval').value) || 30;
+
+  const newCFG = {
+    city:              document.getElementById('cfg-city').value.trim() || CFG.city,
+    latitude:          parseFloat(document.getElementById('cfg-lat').value) || CFG.latitude,
+    longitude:         parseFloat(document.getElementById('cfg-lon').value) || CFG.longitude,
+    artworkInterval:   artMins * 60 * 1000,
+    weatherRefresh:    weatherMins * 60 * 1000,
+    calendarMode:      document.getElementById('cfg-cal-mode').value,
+    publicCalendarURL: document.getElementById('cfg-cal-url').value.trim(),
+    googleClientId:    document.getElementById('cfg-gcid').value.trim(),
+    calendarRefresh:   CFG.calendarRefresh,
+    mediaEnabled:      document.getElementById('cfg-media-enabled').checked,
+    spotifyEnabled:    document.getElementById('cfg-spotify-enabled').checked,
+    spotifyClientId:   document.getElementById('cfg-spotify-id').value.trim(),
+    spotifyRedirectUri: CFG.spotifyRedirectUri,
+    artCategories: {
+      paintings:    document.getElementById('cat-paintings').checked,
+      photography:  document.getElementById('cat-photography').checked,
+      sculpture:    document.getElementById('cat-sculpture').checked,
+      prints:       document.getElementById('cat-prints').checked,
+      contemporary: document.getElementById('cat-contemporary').checked,
+    },
+  };
+
+  saveConfig(newCFG);
+  CFG = newCFG;
+
+  // Apply changes live
+  startWeather();
+  initCalendar();
+  startMedia();
+  restartArtworkCycle();
+  artworkQueue = []; // flush queue so categories apply on next fetch
+
+  closeSettings();
+});
+
+// Reset to factory defaults
+$btnReset.addEventListener('click', () => {
+  if (!confirm('Reset all settings to defaults?')) return;
+  localStorage.removeItem(LS_KEY);
+  CFG = loadConfig();
+  startWeather();
+  initCalendar();
+  startMedia();
+  restartArtworkCycle();
+  artworkQueue = [];
+  closeSettings();
+});
 
 // ============================================================
 // UTILS
 // ============================================================
 
-function delay(ms) {
-  return new Promise(r => setTimeout(r, ms));
-}
+function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+function dateKey(d) { return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`; }
+function escapeHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-// ── Prevent screen sleep on Android (where supported) ────────
-// The Wake Lock API keeps the screen on during display mode.
+// ── Wake Lock (keep screen on) ────────────────────────────────
 async function requestWakeLock() {
   if ('wakeLock' in navigator) {
-    try {
-      await navigator.wakeLock.request('screen');
-    } catch (e) {
-      // Not fatal — screen may sleep
-    }
+    try { await navigator.wakeLock.request('screen'); } catch (_) {}
   }
 }
-
 requestWakeLock();
 document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'visible') requestWakeLock();
