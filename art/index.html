@@ -5,76 +5,137 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#000000">
   <title>Living Art Frame</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Inter:wght@200;300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- ── ARTWORK LAYER ──────────────────────────────────────── -->
-  <div id="artwork-bg" class="loading"></div>
-  <div id="artwork-overlay"></div>
+  <!-- BACKGROUND -->
+  <div id="bg"></div>
+  <div id="overlay"></div>
 
-  <!-- ── ARTWORK INFO (title + artist, shown 5s on transition) -->
-  <div id="artwork-info" aria-live="polite">
-    <div id="artwork-title"></div>
-    <div id="artwork-artist"></div>
+  <!-- CLICK ZONES -->
+  <div id="zone-prev"></div>
+  <div id="zone-next"></div>
+
+  <!-- TOP ICONS -->
+  <div id="top-bar">
+    <button id="btn-fav" title="Favourite">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+      </svg>
+    </button>
+    <button id="btn-cfg" title="Settings">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+      </svg>
+    </button>
   </div>
 
-  <!-- ── UI SHELL ───────────────────────────────────────────── -->
-  <div id="ui">
+  <!-- ARTWORK CAPTION (shown 5s on change) -->
+  <div id="caption">
+    <div id="cap-title"></div>
+    <div id="cap-artist"></div>
+  </div>
 
-    <!-- Left: Calendar (hidden when no events) -->
-    <div id="calendar-col" aria-label="Upcoming events"></div>
+  <!-- HUD -->
+  <div id="hud">
+    <!-- LEFT: calendar (hidden when empty) -->
+    <div id="cal"></div>
 
-    <!-- Right: Sidebar stack -->
-    <div id="sidebar">
-
-      <!-- Media now playing (hidden when nothing playing) -->
-      <div id="media-col" aria-live="polite">
-        <div id="media-note">♫</div>
+    <!-- RIGHT: media + clock + weather -->
+    <div id="info">
+      <div id="media">
+        <div id="media-sym">♫</div>
         <div id="media-track"></div>
         <div id="media-artist"></div>
       </div>
-
-      <!-- Clock -->
-      <div id="clock-col">
-        <div id="clock-time">00:00</div>
+      <div id="clock">
+        <div id="clock-time">--:--</div>
         <div id="clock-date"></div>
       </div>
+      <div id="rule"></div>
+      <div id="weather">
+        <div id="w-temp"></div>
+        <div id="w-desc"></div>
+        <div id="w-city"></div>
+      </div>
+    </div>
+  </div>
 
-      <!-- Divider -->
-      <div class="subtle-rule"></div>
+  <!-- SETTINGS -->
+  <div id="cfg-backdrop"></div>
+  <div id="cfg-panel">
+    <div id="cfg-head">
+      <span>Settings</span>
+      <button id="btn-cfg-close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div id="cfg-body">
 
-      <!-- Weather -->
-      <div id="weather-col">
-        <div id="weather-temp">–°C</div>
-        <div id="weather-desc"></div>
-        <div id="weather-city"></div>
+      <div class="cfg-section">
+        <div class="cfg-label">Location</div>
+        <div class="cfg-row"><label>City</label><input id="i-city" type="text"></div>
+        <div class="cfg-row"><label>Latitude</label><input id="i-lat" type="number" step="0.0001"></div>
+        <div class="cfg-row"><label>Longitude</label><input id="i-lon" type="number" step="0.0001"></div>
+      </div>
+
+      <div class="cfg-section">
+        <div class="cfg-label">Artwork</div>
+        <div class="cfg-row"><label>Change every (min)</label><input id="i-art" type="number" min="1" max="120"></div>
+        <div class="cfg-sub">Categories</div>
+        <div class="cfg-checks">
+          <label class="cfg-check"><input type="checkbox" id="c-paint"> Classic Paintings</label>
+          <label class="cfg-check"><input type="checkbox" id="c-photo"> Photography</label>
+          <label class="cfg-check"><input type="checkbox" id="c-sculpt"> Sculpture</label>
+          <label class="cfg-check"><input type="checkbox" id="c-print"> Prints</label>
+          <label class="cfg-check"><input type="checkbox" id="c-mod"> Contemporary</label>
+        </div>
+      </div>
+
+      <div class="cfg-section">
+        <div class="cfg-label">Weather</div>
+        <div class="cfg-row"><label>Refresh (min)</label><input id="i-wx" type="number" min="5" max="120"></div>
+      </div>
+
+      <div class="cfg-section">
+        <div class="cfg-label">Calendar</div>
+        <div class="cfg-row">
+          <label>Mode</label>
+          <select id="i-cal-mode">
+            <option value="none">Disabled</option>
+            <option value="public">Public iCal</option>
+            <option value="private">Google OAuth</option>
+          </select>
+        </div>
+        <div class="cfg-row" id="r-cal-url"><label>iCal URL</label><input id="i-cal-url" type="url"></div>
+        <div class="cfg-row" id="r-gcid"><label>Google Client ID</label><input id="i-gcid" type="text"></div>
+      </div>
+
+      <div class="cfg-section">
+        <div class="cfg-label">Music</div>
+        <div class="cfg-row"><label>Show now playing</label><input id="i-media" type="checkbox"></div>
+        <div class="cfg-hint">Reads browser media session (YouTube, Spotify Web…)</div>
+        <div class="cfg-row"><label>Spotify API fallback</label><input id="i-sp-on" type="checkbox"></div>
+        <div class="cfg-row" id="r-sp-id"><label>Spotify Client ID</label><input id="i-sp-id" type="text"></div>
       </div>
 
     </div>
-
+    <div id="cfg-foot">
+      <button id="btn-save" class="btn-p">Save &amp; Apply</button>
+      <button id="btn-reset" class="btn-g">Reset to defaults</button>
+    </div>
   </div>
 
-  <!--
-    Google Identity Services — only loaded when calendarMode === 'private'.
-    Safe to leave in HTML; if googleClientId is empty it has no effect.
-  -->
-  <script>
-    // Conditionally inject GIS script to avoid unnecessary requests
-    if (typeof CONFIG !== 'undefined' && CONFIG.calendarMode === 'private' && CONFIG.googleClientId) {
-      const s = document.createElement('script');
-      s.src   = 'https://accounts.google.com/gsi/client';
-      s.async = true;
-      document.head.appendChild(s);
-    }
-  </script>
-
-  <!-- Load config first, then app -->
   <script src="config.js"></script>
   <script src="app.js"></script>
-
 </body>
 </html>

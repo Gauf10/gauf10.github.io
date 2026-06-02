@@ -1,42 +1,21 @@
-// ============================================================
-// LIVING ART FRAME — config.js
-// These are FACTORY DEFAULTS only.
-// At runtime, app.js merges these with values from localStorage.
-// Users can override everything via the settings menu.
-// ============================================================
+// Living Art Frame — config.js — 2026-06-01 17:41 Buenos Aires
+// Factory defaults. User overrides are stored in localStorage.
 
-const CONFIG_DEFAULTS = {
-
-  // -- LOCATION --
-  city:      "Buenos Aires",
-  latitude:  -34.6037,
-  longitude: -58.3816,
-
-  // -- ARTWORK --
-  artworkInterval: 2 * 60 * 1000,   // 2 minutes
-
-  // -- WEATHER --
-  weatherRefresh: 30 * 60 * 1000,  // 30 minutes
-
-  // -- CALENDAR --
-  // "none" | "public" | "private"
-  calendarMode:      "none",
-  publicCalendarURL: "",
-  googleClientId:    "",
-  calendarRefresh:   15 * 60 * 1000,
-
-  // -- MEDIA --
-  mediaEnabled:      true,   // tries mediaSession first, then Spotify
-  spotifyEnabled:    false,
-  spotifyClientId:   "",
-  spotifyRedirectUri: window.location.origin + window.location.pathname,
-
-  // -- ARTWORK CATEGORIES (for next update filter) --
+var CONFIG_DEFAULTS = {
+  city:             'Buenos Aires',
+  latitude:         -34.6037,
+  longitude:        -58.3816,
+  artworkInterval:  2 * 60 * 1000,   // 2 min
+  weatherRefresh:   30 * 60 * 1000,  // 30 min
+  calendarMode:     'none',
+  publicCalendarURL:'',
+  googleClientId:   '',
+  calendarRefresh:  15 * 60 * 1000,
+  mediaEnabled:     true,
+  spotifyEnabled:   false,
+  spotifyClientId:  '',
   artCategories: {
-    paintings:    true,
-    photography:  true,
-    sculpture:    true,
-    prints:       true,
-    contemporary: true,
-  },
+    paintings: true, photography: true, sculpture: true,
+    prints: true, contemporary: true
+  }
 };
