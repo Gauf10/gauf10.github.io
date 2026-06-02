@@ -7,6 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#000">
 <title>Living Art Frame</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNCIgZmlsbD0iIzBhMGEwYSIvPjxyZWN0IHg9IjMiIHk9IjMiIHdpZHRoPSIyNiIgaGVpZ2h0PSIyNiIgcng9IjIiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjcpIiBzdHJva2Utd2lkdGg9IjIiLz48cmVjdCB4PSI3IiB5PSI3IiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHJ4PSIxIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTIpIi8+PHJlY3QgeD0iMTAiIHk9IjE5IiB3aWR0aD0iMTIiIGhlaWdodD0iMS41IiByeD0iLjc1IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuNSkiLz48cmVjdCB4PSIxMiIgeT0iMjEuNSIgd2lkdGg9IjgiIGhlaWdodD0iMSIgcng9Ii41IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMykiLz48L3N2Zz4=">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Inter:wght@200;300&display=swap" rel="stylesheet">
@@ -379,19 +380,27 @@ function doWx(){
 var eBg=G('bg'),eCap=G('caption'),eCapT=G('cap-title'),eCapA=G('cap-artist'),eFav=G('btn-fav');
 var queue=[],artLog=[],hIdx=-1,cur=null,busy=false,artTmr=null;
 
+// AIC simple endpoint — page-based, no bracket params, works reliably
 function fetchAIC(){
-  var from=Math.floor(Math.random()*3000);
-  return fetch('https://api.artic.edu/api/v1/artworks/search?query[term][is_public_domain]=true&fields=id,title,artist_display,image_id&limit=20&from='+from,
-    {headers:{'AIC-User-Agent':'LivingArtFrame/1.0'}})
+  var page=Math.floor(Math.random()*200)+1;
+  var url='https://api.artic.edu/api/v1/artworks?page='+page+'&limit=20&fields=id,title,artist_display,image_id';
+  return fetch(url,{headers:{'AIC-User-Agent':'LivingArtFrame/1.0 (gaufgang.com)'}})
     .then(function(r){if(!r.ok)throw new Error('aic '+r.status);return r.json()})
     .then(function(d){
       return(d.data||[]).filter(function(a){return!!a.image_id}).map(function(a){
-        return{id:'aic_'+a.id,title:a.title||'Untitled',artist:(a.artist_display||'').split('\n')[0],
-               src:'https://www.artic.edu/iiif/2/'+a.image_id+'/full/843,/0/default.jpg'};
+        // Use smaller thumb first (400px) for fast first paint, swap to full on load
+        return{
+          id:'aic_'+a.id,
+          title:a.title||'Untitled',
+          artist:(a.artist_display||'').split('\n')[0],
+          src:'https://www.artic.edu/iiif/2/'+a.image_id+'/full/843,/0/default.jpg',
+          thumb:'https://www.artic.edu/iiif/2/'+a.image_id+'/full/400,/0/default.jpg'
+        };
       });
     });
 }
 
+// Met Museum fallback
 function fetchMet(){
   var dept=[11,13,14,15,21][Math.floor(Math.random()*5)];
   return fetch('https://collectionapi.metmuseum.org/public/collection/v1/search?departmentId='+dept+'&hasImages=true&isPublicDomain=true&q=painting')
@@ -408,8 +417,9 @@ function fetchMet(){
       var out=[];
       rs.forEach(function(r){
         if(r.status==='fulfilled'){var o=r.value;
-          if(o&&o.primaryImage&&o.isPublicDomain)
-            out.push({id:'met_'+o.objectID,title:o.title||'Untitled',artist:o.artistDisplayName||'',src:o.primaryImage});
+          if(o&&o.primaryImageSmall&&o.isPublicDomain)
+            out.push({id:'met_'+o.objectID,title:o.title||'Untitled',artist:o.artistDisplayName||'',
+                      src:o.primaryImage||o.primaryImageSmall,thumb:o.primaryImageSmall});
         }
       });
       return out;
@@ -417,24 +427,53 @@ function fetchMet(){
 }
 
 function imgOk(src){
-  return new Promise(function(res,rej){var i=new Image();i.onload=function(){res(src)};i.onerror=rej;i.src=src});
+  return new Promise(function(res,rej){
+    var i=new Image();
+    i.onload=function(){res()};
+    i.onerror=function(){rej(new Error('img fail'))};
+    i.src=src;
+  });
+}
+
+// Race: try to load thumb fast, resolve as soon as it lands
+function loadFast(a){
+  return imgOk(a.thumb||a.src).then(function(){return a});
 }
 
 function refill(){
   return fetchAIC()
-    .then(function(items){if(items.length){queue=queue.concat(items)}else throw new Error('aic empty')})
-    .catch(function(){return fetchMet().then(function(items){queue=queue.concat(items)})})
-    .catch(function(e){console.warn('[art refill]',e.message)});
+    .then(function(items){
+      if(items.length){queue=queue.concat(items);return;}
+      throw new Error('aic empty');
+    })
+    .catch(function(){
+      return fetchMet().then(function(items){queue=queue.concat(items);});
+    })
+    .catch(function(e){console.warn('[art]',e.message);});
 }
 
+// Kick off parallel image preloads from queue; return first that loads
 function nextFromQueue(){
   if(!queue.length)return Promise.resolve(null);
-  var a=queue.shift();
-  return imgOk(a.src).then(function(){return a}).catch(function(){return nextFromQueue()});
+  // Try up to 4 in parallel, return whichever loads first
+  var candidates=queue.splice(0,4);
+  return new Promise(function(resolve){
+    var resolved=false,pending=candidates.length;
+    candidates.forEach(function(a){
+      loadFast(a)
+        .then(function(art){
+          if(!resolved){resolved=true;resolve(art);}
+        })
+        .catch(function(){
+          pending--;
+          if(pending===0&&!resolved)resolve(null);
+        });
+    });
+  });
 }
 
 function getNext(){
-  var p=queue.length<3?refill():Promise.resolve();
+  var p=queue.length<4?refill():Promise.resolve();
   return p.then(nextFromQueue);
 }
 
@@ -443,27 +482,37 @@ function showArt(a,info){
   if(info===undefined)info=true;
   busy=true;cur=a;updateFav();
   eBg.style.opacity='0';
-  return wait(1600).then(function(){
+  return wait(1400).then(function(){
     eBg.style.backgroundImage='url("'+a.src+'")';
     eBg.style.opacity='1';
-    if(info){eCapT.textContent=a.title;eCapA.textContent=a.artist;eCap.classList.add('show');
-      setTimeout(function(){eCap.classList.remove('show')},5000);}
+    if(info){
+      eCapT.textContent=a.title;
+      eCapA.textContent=a.artist;
+      eCap.classList.add('show');
+      setTimeout(function(){eCap.classList.remove('show');},5000);
+    }
     busy=false;
+    // Silently upgrade to full-res after display (if thumb was used)
+    if(a.thumb&&a.thumb!==a.src){
+      imgOk(a.src).then(function(){
+        if(cur===a)eBg.style.backgroundImage='url("'+a.src+'")';
+      }).catch(function(){});
+    }
   });
 }
 
 function goNext(){
-  if(hIdx<artLog.length-1){hIdx++;return showArt(artLog[hIdx])}
+  if(hIdx<artLog.length-1){hIdx++;return showArt(artLog[hIdx]);}
   return getNext().then(function(a){
     if(!a)return;
     artLog.push(a);hIdx=artLog.length-1;
-    if(artLog.length>40){artLog=artLog.slice(-40);hIdx=artLog.length-1}
+    if(artLog.length>40){artLog=artLog.slice(-40);hIdx=artLog.length-1;}
     return showArt(a);
   });
 }
-function goPrev(){if(hIdx>0){hIdx--;showArt(artLog[hIdx])}}
+function goPrev(){if(hIdx>0){hIdx--;showArt(artLog[hIdx]);}}
 
-function startArt(){clearInterval(artTmr);goNext();artTmr=setInterval(goNext,C.artworkInterval)}
+function startArt(){clearInterval(artTmr);goNext();artTmr=setInterval(goNext,C.artworkInterval);}
 
 G('zone-prev').addEventListener('click',function(){goPrev()});
 G('zone-next').addEventListener('click',function(){goNext()});
