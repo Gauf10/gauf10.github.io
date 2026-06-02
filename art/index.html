@@ -223,8 +223,8 @@ html,body{width:100%;height:100%;overflow:hidden;background:#0a0a0a;-webkit-tap-
     <div class="cfg-sec">
       <div class="cfg-lbl">Location</div>
       <div class="cfg-row"><label>City</label><input id="i-city" type="text"></div>
-      <div class="cfg-row"><label>Latitude</label><input id="i-lat" type="number" step="0.0001"></div>
-      <div class="cfg-row"><label>Longitude</label><input id="i-lon" type="number" step="0.0001"></div>
+      
+      
     </div>
 
     <div class="cfg-sec">
@@ -347,22 +347,37 @@ function tick(){
 setInterval(tick,1000);tick();
 
 // ── WEATHER ──────────────────────────────────────────────────
+// Geocodes city name → lat/lon, then fetches weather
 var eTemp=G('w-temp'),eDesc=G('w-desc'),eCity=G('w-city'),wxTmr=null;
+var _wxLat=C.latitude,_wxLon=C.longitude; // cached coords
+
 function startWx(){clearInterval(wxTmr);doWx();wxTmr=setInterval(doWx,C.weatherRefresh)}
+
 function doWx(){
-  fetch('https://api.open-meteo.com/v1/forecast?latitude='+C.latitude+'&longitude='+C.longitude+'&current_weather=true')
+  // Step 1: geocode city to get coordinates
+  fetch('https://geocoding-api.open-meteo.com/v1/search?name='+encodeURIComponent(C.city)+'&count=1&language=en&format=json')
+    .then(function(r){return r.json()})
+    .then(function(g){
+      if(g.results&&g.results.length){
+        _wxLat=g.results[0].latitude;
+        _wxLon=g.results[0].longitude;
+      }
+      // Step 2: fetch weather with coords
+      return fetch('https://api.open-meteo.com/v1/forecast?latitude='+_wxLat+'&longitude='+_wxLon+'&current_weather=true');
+    })
     .then(function(r){return r.json()})
     .then(function(d){
       var cw=d.current_weather;
       eTemp.textContent=Math.round(cw.temperature)+'\u00b0C';
       eDesc.textContent=wmo(cw.weathercode);
       eCity.textContent=C.city;
-    }).catch(function(e){console.warn('[wx]',e.message)});
+    })
+    .catch(function(e){console.warn('[wx]',e.message);eCity.textContent=C.city});
 }
 
 // ── ARTWORK ──────────────────────────────────────────────────
 var eBg=G('bg'),eCap=G('caption'),eCapT=G('cap-title'),eCapA=G('cap-artist'),eFav=G('btn-fav');
-var queue=[],history=[],hIdx=-1,cur=null,busy=false,artTmr=null;
+var queue=[],artLog=[],hIdx=-1,cur=null,busy=false,artTmr=null;
 
 function fetchAIC(){
   var from=Math.floor(Math.random()*3000);
@@ -438,15 +453,15 @@ function showArt(a,info){
 }
 
 function goNext(){
-  if(hIdx<history.length-1){hIdx++;return showArt(history[hIdx])}
+  if(hIdx<artLog.length-1){hIdx++;return showArt(artLog[hIdx])}
   return getNext().then(function(a){
     if(!a)return;
-    history.push(a);hIdx=history.length-1;
-    if(history.length>40){history=history.slice(-40);hIdx=history.length-1}
+    artLog.push(a);hIdx=artLog.length-1;
+    if(artLog.length>40){artLog=artLog.slice(-40);hIdx=artLog.length-1}
     return showArt(a);
   });
 }
-function goPrev(){if(hIdx>0){hIdx--;showArt(history[hIdx])}}
+function goPrev(){if(hIdx>0){hIdx--;showArt(artLog[hIdx])}}
 
 function startArt(){clearInterval(artTmr);goNext();artTmr=setInterval(goNext,C.artworkInterval)}
 
@@ -566,7 +581,7 @@ bClose.addEventListener('click',closeCfg);
 bBack.addEventListener('click',closeCfg);
 
 function fillForm(){
-  G('i-city').value=C.city;G('i-lat').value=C.latitude;G('i-lon').value=C.longitude;
+  G('i-city').value=C.city;
   G('i-art').value=Math.round(C.artworkInterval/60000);G('i-wx').value=Math.round(C.weatherRefresh/60000);
   selCal.value=C.calendarMode;G('i-cal-url').value=C.publicCalendarURL||'';G('i-gcid').value=C.googleClientId||'';
   G('i-media').checked=!!C.mediaEnabled;cbSp.checked=!!C.spotifyEnabled;G('i-sp-id').value=C.spotifyClientId||'';
@@ -582,7 +597,7 @@ function updSp(){G('r-sp-id').style.display=cbSp.checked?'flex':'none'}
 
 bSave.addEventListener('click',function(){
   var am=parseInt(G('i-art').value)||2,wm=parseInt(G('i-wx').value)||30;
-  C={city:G('i-city').value.trim()||C.city,latitude:+G('i-lat').value||C.latitude,longitude:+G('i-lon').value||C.longitude,
+  C={city:G('i-city').value.trim()||C.city,latitude:C.latitude,longitude:C.longitude,
     artworkInterval:am*60000,weatherRefresh:wm*60000,calendarMode:selCal.value,
     publicCalendarURL:G('i-cal-url').value.trim(),googleClientId:G('i-gcid').value.trim(),
     calendarRefresh:C.calendarRefresh,mediaEnabled:G('i-media').checked,
