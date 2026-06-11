@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chord Flow</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:#f4f4f0;
+  font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
+  display:flex;flex-direction:column;align-items:center;
+  min-height:100vh;padding:14px 8px;color:#1a1a1a;user-select:none;
+}
+h1{font-size:13px;font-weight:700;letter-spacing:6px;text-transform:uppercase;margin-bottom:10px}
+#app{display:flex;flex-direction:column;align-items:center;width:100%;max-width:860px;gap:0}
+.hud{display:flex;gap:20px;margin-bottom:8px;align-items:center}
+.hi{text-align:center}
+.hl{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#999;margin-bottom:1px}
+.hv{font-size:20px;font-weight:700;line-height:1}
+#game-wrap{position:relative;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+canvas{display:block}
+.ov{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;background:rgba(244,244,240,.93);
+}
+.ov h2{font-size:20px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.ov .big{font-size:52px;font-weight:800;margin-bottom:14px;line-height:1}
+.ov p{font-size:11px;color:#666;text-align:center;line-height:2.2;max-width:270px;margin-bottom:20px}
+.btn{
+  padding:10px 28px;background:#1a1a1a;color:#f4f4f0;border:none;
+  border-radius:8px;font-size:12px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;cursor:pointer;
+}
+.btn:hover{background:#333}
+
+/* right panel */
+#right{display:flex;flex-direction:column;align-items:center;gap:9px;width:100%;margin-top:8px}
+
+/* chord display */
+#chord-panel{
+  background:#fff;border-radius:10px;padding:12px 18px;
+  display:flex;flex-direction:column;align-items:center;width:100%;max-width:360px;
+  box-shadow:0 1px 3px rgba(0,0,0,.06);min-height:80px;justify-content:center;
+}
+#chord-panel .hl{margin-bottom:6px}
+#chord-big{
+  font-size:42px;font-weight:800;line-height:1;letter-spacing:2px;
+  transition:color .1s;
+}
+#chord-sub{font-size:10px;color:#aaa;margin-top:4px;letter-spacing:1px;height:14px}
+
+/* waveform */
+#wave-wrap{position:relative;border-radius:8px;overflow:hidden;width:100%;max-width:360px}
+.wlabel{position:absolute;top:5px;left:8px;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#ccc}
+
+/* chord buttons */
+.cbbtns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;max-width:260px}
+.cb{
+  width:46px;height:46px;border-radius:50%;border:2px solid;
+  font-size:12px;font-weight:700;cursor:pointer;transition:transform .1s;font-family:inherit;
+}
+.cb:active{transform:scale(.88)}
+
+/* controls */
+.ctrls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center; flex-direction:column}
+.mbtn{
+  padding:6px 14px;border:1px solid #ddd;background:transparent;
+  border-radius:6px;font-size:10px;font-family:inherit;cursor:pointer;color:#999;transition:all .15s;
+}
+.mbtn.on{border-color:#16a34a;color:#16a34a;background:#f0fdf4}
+.hint{font-size:9px;color:#bbb;letter-spacing:1px; text-align:center;}
+
+@media (min-width:720px){
+  body{padding:20px 16px}
+  h1{margin-bottom:0}
+  #app{flex-direction:row;align-items:flex-start;gap:28px;justify-content:center}
+  #left{display:flex;flex-direction:column;align-items:center;gap:8px;flex:0 0 auto}
+  #right{margin-top:0;width:260px;flex:0 0 260px;align-items:stretch}
+  #chord-panel{max-width:none}
+  #chord-big{font-size:52px}
+  #wave-wrap{max-width:none}
+}
+</style>
+</head>
+<body>
+<h1>Chord Flow</h1>
+<div id="app">
+
+  <div id="left">
+    <div class="hud">
+      <div class="hi"><div class="hl">Score</div><div class="hv" id="score">0</div></div>
+      <div class="hi"><div class="hl">Lives</div><div class="hv" id="lives" style="color:#ef4444">♥♥♥</div></div>
+      <div class="hi"><div class="hl">Combo</div><div class="hv" id="combo" style="color:#f59e0b">—</div></div>
+      <div class="hi"><div class="hl">Level</div><div class="hv" id="level">1</div></div>
+    </div>
+    <div id="game-wrap">
+      <canvas id="gc" width="360" height="500"></canvas>
+      <div class="ov" id="ov"><div id="oc"></div></div>
+    </div>
+  </div>
+
+  <div id="right">
+    <div id="chord-panel">
+      <div class="hl">Acorde detectado</div>
+      <div id="chord-big">—</div>
+      <div id="chord-sub"></div>
+    </div>
+
+    <div id="wave-wrap">
+      <canvas id="wc" width="260" height="60"></canvas>
+      <span class="wlabel">Waveform</span>
+    </div>
+
+    <div class="cbbtns" id="cbbtns"></div>
+
+    <div class="ctrls">
+      <button class="mbtn" id="mbtn">🎤 Activar micrófono</button>
+      <span class="hint" id="keyboard-hints">Teclas detectadas automáticamente</span>
+    </div>
+  </div>
+
+</div>
+<script>
+const GW=360,GH=500;
+const SLASH_Y=GH*.83;
+
+// Level progression system
+const LEVELS = [
+  ['Em','Am'],                        // Lvl 1
+  ['Em','Am','C'],                    // Lvl 2
+  ['Em','Am','C','G'],                // Lvl 3
+  ['G','C','D','Em','Am'],            // Lvl 4
+  ['G','C','D','Em','Am','E','A'],    // Lvl 5
+  ['G','C','D','Em','Am','E','A','Dm','F'] // Lvl 6+
+];
+
+const KEY_MAP={g:'G',c:'C',d:'D',e:'Em',a:'Am', x:'E', z:'A', f:'F', v:'Dm'};
+const PAL={
+  G: {bg:'#FEF3C7',bdr:'#D97706',tx:'#92400E'},
+  C: {bg:'#CFFAFE',bdr:'#0891B2',tx:'#164E63'},
+  D: {bg:'#FCE7F3',bdr:'#DB2777',tx:'#831843'},
+  Em:{bg:'#DCFCE7',bdr:'#16A34A',tx:'#14532D'},
+  Am:{bg:'#EDE9FE',bdr:'#7C3AED',tx:'#4C1D95'},
+  E: {bg:'#FFEDD5',bdr:'#EA580C',tx:'#9A3412'},
+  A: {bg:'#E0E7FF',bdr:'#4F46E5',tx:'#312E81'},
+  Dm:{bg:'#F1F5F9',bdr:'#475569',tx:'#1E293B'},
+  F: {bg:'#FCE7F3',bdr:'#E11D48',tx:'#881337'},
+};
+
+const gc=document.getElementById('gc');
+const gx=gc.getContext('2d');
+const wc=document.getElementById('wc');
+const wx=wc.getContext('2d');
+const WW=wc.width,WH=wc.height;
+
+const S={
+  status:'intro',score:0,combo:0,lives:3,level:1,
+  orbs:[],slashes:[],misses:[],popups:[],
+  st:0,si:2500,lt:0,
+  wave:new Float32Array(128),
+  micOn:false,det:null,detAt:0,rawFreq:0,
+  activeChords: LEVELS[0]
+};
+
+let actx=null,anl=null,mstr=null,prevRMS=0;
+let sndCtx=null;
+
+function getSnd(){
+  if(!sndCtx||sndCtx.state==='closed')sndCtx=new AudioContext();
+  return sndCtx;
+}
+function playHit(perf){
+  const c=getSnd(),t=c.currentTime;
+  const o=c.createOscillator(),g=c.createGain();
+  o.connect(g);g.connect(c.destination);
+  o.type='sine';
+  if(perf){
+    o.frequency.setValueAtTime(880,t);
+    o.frequency.setValueAtTime(1320,t+.07);
+  } else {
+    o.frequency.setValueAtTime(660,t);
+  }
+  g.gain.setValueAtTime(.2,t);
+  g.gain.exponentialRampToValueAtTime(.001,t+.28);
+  o.start(t);o.stop(t+.28);
+}
+function playLose(){
+  const c=getSnd(),t=c.currentTime;
+  const o=c.createOscillator(),g=c.createGain();
+  o.connect(g);g.connect(c.destination);
+  o.type='triangle';
+  o.frequency.setValueAtTime(260,t);
+  o.frequency.exponentialRampToValueAtTime(65,t+.5);
+  g.gain.setValueAtTime(.25,t);
+  g.gain.exponentialRampToValueAtTime(.001,t+.5);
+  o.start(t);o.stop(t+.5);
+}
+
+function mkOrb(){
+  const ch = S.activeChords[Math.floor(Math.random()*S.activeChords.length)];
+  return{id:Math.random(),chord:ch,x:45+Math.random()*(GW-90),y:-42,
+    speed:1.0+Math.random()*.4+(S.level-1)*.18,r:30,wb:Math.random()*Math.PI*2};
+}
+function mkSlash(x,y,ch,perf){
+  const pts=Array.from({length:12},()=>{
+    const a=Math.random()*Math.PI*2,spd=2+Math.random()*5;
+    return{vx:Math.cos(a)*spd,vy:Math.sin(a)*spd,px:0,py:0,r:3+Math.random()*3};
+  });
+  return{id:Math.random(),x,y,chord:ch,op:1,sc:1,pts,perf};
+}
+function mkPop(x,y,v,perf){return{id:Math.random(),x,y,val:v,op:1,dy:0,perf};}
+
+function trySlash(ch){
+  if(S.status!=='playing')return;
+  let best=-1,bestY=-Infinity;
+  for(let i=0;i<S.orbs.length;i++){
+    if(S.orbs[i].chord===ch&&S.orbs[i].y>bestY){bestY=S.orbs[i].y;best=i;}
+  }
+  if(best!==-1){
+    const o=S.orbs.splice(best,1)[0];
+    S.combo++;
+    const onLine=Math.abs(o.y-SLASH_Y)<24;
+    const pts=(onLine?20:10)*Math.min(S.combo,5);
+    S.score+=pts;
+    S.slashes.push(mkSlash(o.x,o.y,o.chord,onLine));
+    S.popups.push(mkPop(o.x,o.y-22,pts,onLine));
+    playHit(onLine);
+  }
+  updateHUD();
+}
+
+function renderButtons() {
+  const cbw=document.getElementById('cbbtns');
+  cbw.innerHTML = '';
+  S.activeChords.forEach(ch=>{
+    const p=PAL[ch];
+    const b=document.createElement('button');
+    b.className='cb';b.textContent=ch;
+    b.style.cssText=`background:${p.bg};border-color:${p.bdr};color:${p.tx}`;
+    b.addEventListener('pointerdown',()=>trySlash(ch));
+    cbw.appendChild(b);
+  });
+  
+  // Update keyboard hints
+  const hints = S.activeChords.map(ch => {
+    let k = Object.keys(KEY_MAP).find(key => KEY_MAP[key] === ch);
+    return `${k.toUpperCase()}:${ch}`;
+  }).join('  ');
+  document.getElementById('keyboard-hints').textContent = "Teclas: " + hints;
+}
+
+function startGame(){
+  Object.assign(S,{status:'playing',score:0,combo:0,lives:3,level:1,
+    orbs:[],slashes:[],misses:[],popups:[],si:2500});
+  S.activeChords = LEVELS[0];
+  renderButtons();
+  S.st=S.lt=performance.now();
+  document.getElementById('ov').style.display='none';
+  updateHUD();
+}
+
+function updateHUD(){
+  document.getElementById('score').textContent=S.score;
+  document.getElementById('combo').textContent=S.combo>1?`${S.combo}×`:'—';
+  document.getElementById('level').textContent=S.level;
+  const h=Math.max(0,S.lives);
+  document.getElementById('lives').textContent='♥'.repeat(h)+'♡'.repeat(3-h);
+}
+
+function showOverlay(html){
+  document.getElementById('oc').innerHTML=html;
+  document.getElementById('ov').style.display='flex';
+}
+
+function showIntro(){
+  showOverlay(`<h2>Chord Flow</h2><p>Toca el acorde real en tu guitarra para destruir el orbe. Avanza de nivel para desbloquear nuevos acordes.<br><br><span style="color:#d97706;font-weight:700;">Doble puntaje</span> en la línea.</p><button class="btn" onclick="startGame()">Empezar</button>`);
+  S.activeChords = LEVELS[0];
+  renderButtons();
+}
+
+function showGameOver(){
+  showOverlay(`<h2>Game over</h2><div class="big">${S.score}</div><button class="btn" onclick="startGame()">Reintentar</button>`);
+}
+
+function drawGame(now){
+  gx.clearRect(0,0,GW,GH);
+  gx.fillStyle='#f9f9f6';gx.fillRect(0,0,GW,GH);
+
+  gx.strokeStyle='rgba(0,0,0,.04)';gx.lineWidth=1;
+  for(let x=0;x<GW;x+=36){gx.beginPath();gx.moveTo(x,0);gx.lineTo(x,GH);gx.stroke();}
+  for(let y=0;y<GH;y+=36){gx.beginPath();gx.moveTo(0,y);gx.lineTo(GW,y);gx.stroke();}
+
+  gx.fillStyle='rgba(0,0,0,.025)';gx.fillRect(0,SLASH_Y,GW,GH-SLASH_Y);
+  gx.setLineDash([5,4]);
+  gx.strokeStyle='rgba(0,0,0,.18)';gx.lineWidth=1;
+  gx.beginPath();gx.moveTo(0,SLASH_Y);gx.lineTo(GW,SLASH_Y);gx.stroke();
+  gx.setLineDash([]);
+  gx.fillStyle='rgba(0,0,0,.28)';gx.font='bold 8px -apple-system,sans-serif';
+  gx.textAlign='left';gx.fillText('◆  SLASH ZONE  ×2',8,SLASH_Y-8);
+
+  for(const o of S.orbs){
+    const p=PAL[o.chord];
+    const wx2=Math.sin(now*.0012+o.wb)*2.5;
+    const cx=o.x+wx2,cy=o.y;
+    const dist=SLASH_Y-cy;
+    if(dist>0&&dist<110){
+      const t=1-dist/110;
+      gx.beginPath();gx.arc(cx,cy,o.r+4+t*6,0,Math.PI*2);
+      const al=Math.floor(t*160).toString(16).padStart(2,'0');
+      gx.strokeStyle=p.bdr+al;gx.lineWidth=1.5;gx.stroke();
+    }
+    gx.beginPath();gx.arc(cx+2,cy+3,o.r,0,Math.PI*2);
+    gx.fillStyle='rgba(0,0,0,.07)';gx.fill();
+    gx.beginPath();gx.arc(cx,cy,o.r,0,Math.PI*2);
+    gx.fillStyle=p.bg;gx.fill();
+    gx.strokeStyle=p.bdr;gx.lineWidth=2;gx.stroke();
+    gx.fillStyle=p.tx;
+    gx.font=`700 ${o.chord.length>2?13:16}px -apple-system,sans-serif`;
+    gx.textAlign='center';gx.textBaseline='middle';
+    gx.fillText(o.chord,cx,cy);
+  }
+
+  for(const sl of S.slashes){
+    const p=PAL[sl.chord];
+    gx.globalAlpha=sl.op;
+    gx.beginPath();gx.arc(sl.x,sl.y,30*sl.sc,0,Math.PI*2);
+    gx.strokeStyle=p.bdr;gx.lineWidth=Math.max(.5,2.5*(2-sl.sc));gx.stroke();
+    if(sl.perf){
+      gx.beginPath();gx.arc(sl.x,sl.y,44*sl.sc,0,Math.PI*2);
+      gx.strokeStyle=p.bdr+'66';gx.lineWidth=1;gx.stroke();
+    }
+    for(const pt of sl.pts){
+      gx.beginPath();gx.arc(sl.x+pt.px,sl.y+pt.py,pt.r*sl.op,0,Math.PI*2);
+      gx.fillStyle=p.bdr;gx.fill();
+    }
+    if(sl.op>.55){
+      gx.strokeStyle=p.bdr;gx.lineWidth=2.5;gx.lineCap='round';
+      gx.beginPath();gx.moveTo(sl.x-9,sl.y+1);gx.lineTo(sl.x-3,sl.y+7);gx.lineTo(sl.x+10,sl.y-7);
+      gx.stroke();gx.lineCap='butt';
+    }
+    gx.globalAlpha=1;
+  }
+
+  for(const sp of S.popups){
+    gx.globalAlpha=sp.op;
+    if(sp.perf){
+      gx.fillStyle='#d97706';
+      gx.font='bold 11px -apple-system,sans-serif';
+      gx.textAlign='center';gx.textBaseline='middle';
+      gx.fillText('PERFECT',sp.x,sp.y+sp.dy-14);
+    }
+    gx.fillStyle='#1a1a1a';
+    gx.font=`bold ${sp.perf?16:13}px -apple-system,sans-serif`;
+    gx.textAlign='center';gx.textBaseline='middle';
+    gx.fillText(`+${sp.val}`,sp.x,sp.y+sp.dy);
+    gx.globalAlpha=1;
+  }
+
+  for(const m of S.misses){
+    gx.globalAlpha=m.op;
+    gx.fillStyle='#ef4444';gx.font='bold 22px sans-serif';
+    gx.textAlign='center';gx.textBaseline='middle';
+    gx.fillText('✕',m.x,m.y);
+    gx.globalAlpha=1;
+  }
+  gx.textAlign='left';gx.textBaseline='alphabetic';
+}
+
+function drawWave(now){
+  wx.clearRect(0,0,WW,WH);
+  wx.fillStyle='#fff';wx.fillRect(0,0,WW,WH);
+  const col=S.micOn?'#16a34a':'#e5e5e0';
+  wx.strokeStyle=col;wx.lineWidth=1.5;wx.beginPath();
+  if(S.micOn&&S.wave.length>0){
+    for(let i=0;i<WW;i++){
+      const idx=Math.floor(i/WW*S.wave.length);
+      const y=WH/2+S.wave[idx]*WH*.44;
+      i===0?wx.moveTo(i,y):wx.lineTo(i,y);
+    }
+  } else {
+    const t=now*.002;
+    for(let i=0;i<WW;i++){
+      const y=WH/2+Math.sin(i*.055+t)*7+Math.sin(i*.018+t*.6)*3;
+      i===0?wx.moveTo(i,y):wx.lineTo(i,y);
+    }
+  }
+  wx.stroke();
+}
+
+function updateChordDisplay(now){
+  const el=document.getElementById('chord-big');
+  const sub=document.getElementById('chord-sub');
+  if(!S.micOn){el.textContent='—';el.style.color='#ddd';sub.textContent='';return;}
+  if(!S.det){el.textContent='…';el.style.color='#bbb';sub.textContent='escuchando';return;}
+  const age=now-S.detAt;
+  const op=Math.max(0,1-age/2000);
+  el.textContent=S.det;
+  el.style.color=op>.15?PAL[S.det].bdr:'#ddd';
+  sub.textContent=S.rawFreq?`${Math.round(S.rawFreq)} Hz peak`:'';
+  if(op<=0.05){S.det=null;sub.textContent='';}
+}
+
+function loop(now){
+  if(S.micOn&&anl)analyzeMic(now);
+
+  if(S.status==='playing'){
+    if(now-S.st>S.si){S.st=now;S.orbs.push(mkOrb());}
+    
+    // Level up every 25 seconds
+    if(now-S.lt>25000){
+      S.level++;
+      S.si=Math.max(1200,S.si-200);
+      S.lt=now;
+      
+      const newLvlIdx = Math.min(S.level - 1, LEVELS.length - 1);
+      if(S.activeChords !== LEVELS[newLvlIdx]) {
+         S.activeChords = LEVELS[newLvlIdx];
+         renderButtons();
+      }
+      updateHUD();
+    }
+
+    for(let i=S.orbs.length-1;i>=0;i--){
+      S.orbs[i].y+=S.orbs[i].speed;
+      if(S.orbs[i].y>GH+50){
+        const o=S.orbs.splice(i,1)[0];
+        S.lives=Math.max(0,S.lives-1);S.combo=0;
+        S.misses.push({id:Math.random(),x:o.x,y:GH-40,op:1});
+        playLose();
+        if(S.lives<=0){S.lives=0;S.status='gameover';showGameOver();}
+        updateHUD();
+      }
+    }
+    for(let i=S.slashes.length-1;i>=0;i--){
+      const sl=S.slashes[i];sl.op-=.036;sl.sc+=.04;
+      for(const pt of sl.pts){pt.px+=pt.vx*.75;pt.py+=pt.vy*.75;pt.vy+=.18;}
+      if(sl.op<=0)S.slashes.splice(i,1);
+    }
+    for(let i=S.popups.length-1;i>=0;i--){
+      S.popups[i].op-=.03;S.popups[i].dy-=.9;
+      if(S.popups[i].op<=0)S.popups.splice(i,1);
+    }
+    for(let i=S.misses.length-1;i>=0;i--){
+      S.misses[i].op-=.028;S.misses[i].y-=1.2;
+      if(S.misses[i].op<=0)S.misses.splice(i,1);
+    }
+  }
+
+  drawGame(now);drawWave(now);updateChordDisplay(now);
+  requestAnimationFrame(loop);
+}
+
+// NUEVO SISTEMA CHROMAGRAM: Analiza las 12 notas de la escala en lugar de frecuencias exactas
+function scoreChords(fq, sampleRate, fftSize){
+  const binHz = sampleRate / fftSize;
+  let chroma = new Array(12).fill(0);
+  
+  // Analizar desde ~75Hz (D2) hasta ~1200Hz (D6)
+  const minBin = Math.floor(75 / binHz);
+  const maxBin = Math.floor(1200 / binHz);
+
+  for (let i = minBin; i < maxBin; i++) {
+    let energy = fq[i];
+    if (energy > 15) { // Ignorar ruido estático bajo
+      let freq = i * binHz;
+      // Convertir frecuencia a Pitch Class (C0 = 16.3516 Hz)
+      let pitch = 12 * Math.log2(freq / 16.3516);
+      let pitchClass = Math.round(pitch) % 12;
+      if (pitchClass < 0) pitchClass += 12;
+      
+      chroma[pitchClass] += energy;
+    }
+  }
+
+  // Normalizar array para que la nota dominante valga 1.0
+  let maxChroma = Math.max(...chroma);
+  if (maxChroma < 40) return null; // Señal demasiado débil
+  
+  for (let i = 0; i < 12; i++) {
+    chroma[i] /= maxChroma;
+  }
+
+  // 0=C, 1=C#, 2=D, 3=D#, 4=E, 5=F, 6=F#, 7=G, 8=G#, 9=A, 10=A#, 11=B
+  const PROFILES = {
+    C:  [0, 4, 7],     // C, E, G
+    D:  [2, 6, 9],     // D, F#, A
+    Em: [4, 7, 11],    // E, G, B
+    G:  [7, 11, 2],    // G, B, D
+    Am: [9, 0, 4],     // A, C, E
+    E:  [4, 8, 11],    // E, G#, B
+    A:  [9, 1, 4],     // A, C#, E
+    Dm: [2, 5, 9],     // D, F, A
+    F:  [5, 9, 0],     // F, A, C
+  };
+
+  let bestChord = null;
+  let bestScore = 0.8; // Umbral mínimo exigente para evitar falsos positivos
+
+  for (const ch of S.activeChords) {
+    let notes = PROFILES[ch];
+    if (!notes) continue;
+
+    let score = 0;
+    for (let i = 0; i < 12; i++) {
+      if (notes.includes(i)) {
+        score += chroma[i]; // Recompensa si detecta notas del acorde
+      } else {
+        score -= chroma[i] * 0.6; // PENALIZA fuertemente las notas ajenas
+      }
+    }
+
+    if (score > bestScore) {
+      bestScore = score;
+      bestChord = ch;
+    }
+  }
+  return bestChord;
+}
+
+function analyzeMic(now){
+  const fq=new Uint8Array(anl.frequencyBinCount);
+  const tm=new Float32Array(anl.fftSize);
+  anl.getByteFrequencyData(fq);
+  anl.getFloatTimeDomainData(tm);
+  S.wave=tm.slice(0,128);
+
+  let rms=0;
+  for(let i=0;i<tm.length;i++)rms+=tm[i]*tm[i];
+  rms=Math.sqrt(rms/tm.length);
+
+  if(rms>prevRMS*1.8 && rms>0.015 && now-S.detAt>350){
+    let mx=0,mi=0;
+    for(let i=10;i<fq.length/8;i++)if(fq[i]>mx){mx=fq[i];mi=i;}
+    S.rawFreq=(mi*actx.sampleRate)/anl.fftSize;
+
+    const ch=scoreChords(fq,actx.sampleRate,anl.fftSize);
+    if(ch){
+      S.det=ch;S.detAt=now;
+      trySlash(ch);
+    }
+  }
+  prevRMS=rms*.6+prevRMS*.4;
+}
+
+async function toggleMic(){
+  const btn=document.getElementById('mbtn');
+  if(S.micOn){
+    if(mstr)mstr.getTracks().forEach(t=>
