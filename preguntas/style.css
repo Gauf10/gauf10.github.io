@@ -1,0 +1,238 @@
+/* ============================================================
+   style.css — Preguntas que me hago a diario
+   Paleta y tipografía tomadas de gaufgang.com para coherencia
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f5f2ec;
+  --ink: #1a1a1a;
+  --muted: #6b6b6b;
+  --accent: #27D3CC;
+  --border: rgba(26,26,26,0.12);
+  --serif: 'Archivo Black', sans-serif;
+  --body: 'Archivo', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--body);
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Layout general ── */
+.wrap {
+  flex: 1;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 5rem 1.75rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* ── Encabezado ── */
+.header { margin-bottom: 2rem; }
+
+.titulo {
+  font-family: var(--serif);
+  font-size: clamp(26px, 4vw, 38px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.75rem;
+}
+
+.subtitulo {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+/* ── Intro ── */
+.intro {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 480px;
+  margin-bottom: 3.5rem;
+}
+
+/* ── Pregunta ── */
+.pregunta-stage {
+  width: 100%;
+  padding: 3rem 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: #fff;
+  margin-bottom: 3rem;
+}
+
+.pregunta {
+  font-family: var(--serif);
+  font-size: clamp(20px, 3.2vw, 28px);
+  line-height: 1.4;
+  margin-bottom: 2rem;
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.4s ease;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ink);
+  color: #f5f2ec;
+  font-family: var(--body);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 12px 26px;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-primary:hover { background: var(--accent); color: var(--ink); }
+
+/* ── Escribir ── */
+.escribir-stage { width: 100%; }
+
+.btn-texto {
+  background: none;
+  border: none;
+  font-family: var(--body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.btn-texto:hover { color: var(--ink); }
+
+.escribir-box {
+  display: none;
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+.textarea-diario {
+  width: 100%;
+  min-height: 280px;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: #fff;
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink);
+  resize: vertical;
+}
+
+.textarea-diario:focus { outline: none; border-color: var(--accent); }
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: 2rem 1.75rem;
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.footer-link { color: var(--muted); text-decoration: none; }
+.footer-link:hover { color: var(--accent); }
+
+.btn-admin {
+  background: none;
+  border: none;
+  color: rgba(26,26,26,0.25);
+  font-size: 11px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.btn-admin:hover { color: var(--muted); }
+
+/* ── Admin panel ── */
+.admin-panel {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(26,26,26,0.6);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.admin-box {
+  background: var(--bg);
+  border-radius: 6px;
+  padding: 2rem;
+  max-width: 560px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.admin-titulo {
+  font-family: var(--serif);
+  font-size: 20px;
+  margin-bottom: 0.75rem;
+}
+
+.admin-nota {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.admin-textarea {
+  width: 100%;
+  min-height: 320px;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: #fff;
+  font-family: var(--body);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink);
+  resize: vertical;
+}
+
+.admin-status {
+  font-size: 13px;
+  color: var(--muted);
+  min-height: 1.2em;
+  margin: 0.75rem 0;
+}
+
+.admin-botones {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
+  .wrap { padding: 3.5rem 1.25rem 2rem; }
+  .pregunta-stage { padding: 2rem 1.25rem; }
+}
