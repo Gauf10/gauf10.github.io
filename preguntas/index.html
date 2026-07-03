@@ -3,55 +3,99 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Preguntas que me hago a diario</title>
+<title>Preguntas que me hago a diario · Gabo Aufgang</title>
 
-<!-- Misma tipografía que gaufgang.com -->
+<link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+<link rel="shortcut icon" href="../images/favicon.ico">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@300;400;500&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<main class="wrap">
+<div class="cursor" id="cursor"></div>
 
-  <!-- Encabezado -->
-  <header class="header">
-    <h1 class="titulo">Preguntas que me hago a diario</h1>
-    <p class="subtitulo">Una pregunta. Cinco minutos. Un momento para vos.</p>
-  </header>
+<!-- NAV — igual a la home, links apuntan a las secciones del home -->
+<nav>
+  <a href="../index.html#hero" class="nav-logo-wrap">
+    <img src="../images/logo_negro.svg" alt="Gauf logo">
+    <span class="nav-tagline">mentor y speaker con liderazgo humano</span>
+  </a>
+  <div class="nav-links">
+    <a href="../index.html#dolores">¿Te suena?</a>
+    <a href="../index.html#quien">Sobre mí</a>
+    <a href="../index.html#servicios">Servicios</a>
+    <a href="../index.html#proyectos">Proyectos</a>
+    <a href="../index.html#testimonios">Opiniones</a>
+    <a href="../index.html#valores">Valores</a>
+    <a href="../index.html#contacto" class="nav-cta">Hablemos</a>
+  </div>
+  <button class="nav-burger" id="burger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-  <!-- Intro -->
-  <p class="intro">
-    Hace un tiempo empecé a escribir un diario personal. Con los meses descubrí
-    que las páginas más valiosas casi nunca nacían de grandes acontecimientos,
-    sino de una buena pregunta. Decidí compartir algunas de ellas. Ojalá una
-    también pueda acompañarte hoy.
-  </p>
+<!-- Menú mobile -->
+<div class="nav-mobile" id="nav-mobile">
+  <a href="../index.html#dolores" onclick="closeMobile()">¿Te suena?</a>
+  <a href="../index.html#quien" onclick="closeMobile()">Sobre mí</a>
+  <a href="../index.html#servicios" onclick="closeMobile()">Servicios</a>
+  <a href="../index.html#proyectos" onclick="closeMobile()">Proyectos</a>
+  <a href="../index.html#testimonios" onclick="closeMobile()">Opiniones</a>
+  <a href="../index.html#valores" onclick="closeMobile()">Valores</a>
+  <a href="../index.html#contacto" class="nav-cta" onclick="closeMobile()">Hablemos</a>
+</div>
 
-  <!-- Pregunta del día -->
-  <section class="pregunta-stage">
-    <p id="pregunta" class="pregunta">Cargando...</p>
-    <button id="btn-otra" class="btn-primary" onclick="mostrarPreguntaAleatoria()">Otra pregunta</button>
-  </section>
-
-  <!-- Escribir -->
-  <section class="escribir-stage">
-    <button id="btn-escribir" class="btn-texto" onclick="toggleEscribir()">Escribir</button>
-    <div id="escribir-box" class="escribir-box">
-      <textarea id="textarea-diario" class="textarea-diario" placeholder="Escribí acá..."></textarea>
+<!-- HERO: título/bajada a la izq, pregunta+botón a la der. Sin scroll para verla. -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-left">
+      <h1 class="hero-title">Preguntas que me<br>hago a diario</h1>
+      <div class="hero-sub-block">
+        <p>Una pregunta. Cinco minutos.<br>Un momento para vos.</p>
+      </div>
+      <details class="intro-detalle">
+        <summary>Por qué esto existe</summary>
+        <p>Hace un tiempo empecé a escribir un diario personal. Con los meses
+        descubrí que las páginas más valiosas casi nunca nacían de grandes
+        acontecimientos, sino de buenas preguntas. Comparto algunas de las
+        que uso. Ojalá también te puedan acompañar hoy.</p>
+      </details>
     </div>
-  </section>
 
-</main>
+    <div class="pregunta-col">
+      <p id="pregunta" class="pregunta">Cargando...</p>
+      <button class="btn-primary" onclick="mostrarPreguntaAleatoria()">Otra pregunta</button>
+    </div>
+  </div>
+</section>
 
-<!-- Footer -->
-<footer class="footer">
-  <p>Creado por Gabriel Aufgang</p>
-  <a href="https://gaufgang.com" class="footer-link">gaufgang.com</a>
-  <button class="btn-admin" onclick="abrirAdmin()">Admin</button>
+<!-- ESCRIBIR: toggle + textarea con autoguardado -->
+<section class="escribir-section">
+  <button id="btn-escribir" class="btn-texto" onclick="toggleEscribir()">Escribir</button>
+  <div id="escribir-box" class="escribir-box">
+    <textarea id="textarea-diario" class="textarea-diario" placeholder="Escribí acá..."></textarea>
+  </div>
+</section>
+
+<!-- GRACIAS: CTA breve, mismo estilo que el CTA de la home -->
+<section id="gracias">
+  <h2 class="contacto-title">Gracias</h2>
+  <a href="https://gaufgang.com" class="btn-dark">Ir a gaufgang.com →</a>
+</section>
+
+<!-- FOOTER — igual a la home, con botón admin casi imperceptible -->
+<footer>
+  <div class="footer-logo"><img src="../images/logo_negro.svg" alt="Gauf"></div>
+  <p class="footer-name">Gabo Aufgang · <span id="footer-year"></span></p>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/gaufgang/" target="_blank">LinkedIn</a>
+    <a href="https://www.instagram.com/gaufgang/" target="_blank">Instagram</a>
+    <a href="https://x.com/gaufgang" target="_blank">X</a>
+    <button class="admin-dot" onclick="abrirAdmin()" title="Admin" aria-label="Admin">·</button>
+  </div>
 </footer>
 
-<!-- Panel de administración (oculto por defecto) -->
+<!-- Panel de administración -->
 <div id="admin-panel" class="admin-panel">
   <div class="admin-box">
     <h2 class="admin-titulo">Editar preguntas</h2>
