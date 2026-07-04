@@ -22,7 +22,6 @@ let preguntaActualIndex = -1;
 // ------------------------------------------------------------
 async function cargarPreguntas() {
   try {
-    // Cache-busting simple para evitar que el navegador sirva una versión vieja
     const res = await fetch('preguntas.json?_=' + Date.now());
     if (!res.ok) throw new Error('HTTP ' + res.status);
     preguntas = await res.json();
@@ -55,8 +54,6 @@ function mostrarPreguntaAleatoria() {
 // ------------------------------------------------------------
 //  Escribir — autoguardado en LocalStorage, sin backend
 // ------------------------------------------------------------
-
-/** Clave de LocalStorage para el día de hoy (así no se pisan entradas de distintos días) */
 function claveHoy() {
   return 'diario-' + new Date().toISOString().slice(0, 10);
 }
@@ -73,11 +70,11 @@ function toggleEscribir() {
 }
 
 // ------------------------------------------------------------
-//  Admin — edición de preguntas
+//  Admin — edición de preguntas vía GitHub Contents API
 // ------------------------------------------------------------
 function abrirAdmin() {
   const pass = prompt('Contraseña de administrador:');
-  if (pass === null) return; // canceló
+  if (pass === null) return;
   if (pass !== ADMIN_PASSWORD) {
     alert('Contraseña incorrecta.');
     return;
@@ -91,13 +88,6 @@ function cerrarAdmin() {
   document.getElementById('admin-panel').style.display = 'none';
 }
 
-/**
- * Guarda las preguntas editadas haciendo commit directo al repo
- * vía GitHub Contents API. Requiere un Personal Access Token con
- * permiso Contents (read/write) sobre el repo. El token se pide
- * por prompt y solo vive en memoria durante la operación — nunca
- * se guarda ni queda expuesto en el código.
- */
 async function guardarPreguntas() {
   const texto = document.getElementById('admin-textarea').value;
   const nuevas = texto
@@ -119,18 +109,15 @@ async function guardarPreguntas() {
   try {
     const apiUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
 
-    // 1. Obtener el sha actual del archivo (lo exige la API para actualizar)
     const getRes = await fetch(apiUrl + '?ref=' + BRANCH, {
       headers: { Authorization: 'token ' + token }
     });
     if (!getRes.ok) throw new Error('No se pudo leer el archivo actual (HTTP ' + getRes.status + ')');
     const getData = await getRes.json();
 
-    // 2. Codificar el nuevo contenido en base64 (soporta acentos/ñ)
     const contenidoJSON = JSON.stringify(nuevas, null, 2);
     const contenidoB64 = btoa(unescape(encodeURIComponent(contenidoJSON)));
 
-    // 3. Commit vía PUT
     const putRes = await fetch(apiUrl, {
       method: 'PUT',
       headers: {
@@ -159,6 +146,14 @@ async function guardarPreguntas() {
 }
 
 // ------------------------------------------------------------
+//  Nav mobile (igual a la home)
+// ------------------------------------------------------------
+function closeMobile() {
+  document.getElementById('nav-mobile').classList.remove('open');
+  document.getElementById('burger').classList.remove('open');
+}
+
+// ------------------------------------------------------------
 //  Inicialización
 // ------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
@@ -166,5 +161,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('textarea-diario').addEventListener('input', (e) => {
     localStorage.setItem(claveHoy(), e.target.value);
+  });
+
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+  document.getElementById('burger').addEventListener('click', function () {
+    this.classList.toggle('open');
+    document.getElementById('nav-mobile').classList.toggle('open');
+  });
+
+  // Cursor custom (igual a la home)
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button, summary').forEach((el) => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
   });
 });
