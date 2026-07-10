@@ -51,7 +51,11 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(
 .nav-mobile a { font-size: 16px; font-weight: 500; color: var(--ink); text-decoration: none; opacity: 0.75; padding: 0.4rem 0; border-bottom: 1px solid rgba(26,26,26,0.08); }
 .nav-mobile a:last-of-type { border-bottom: none; opacity: 1; }
 .nav-mobile .nav-cta { background: var(--ink) !important; color: #f5f2ec !important; padding: 10px 20px; border-radius: 100px; text-align: center; border: none !important; margin-top: 0.25rem; }
-@media (max-width: 600px) { .nav-links { display: none; } .nav-burger { display: flex; } }
+@media (max-width: 600px) {
+  .nav-links { display: none; }
+  .nav-burger { display: flex; }
+  nav { padding: 0 1.5rem; } /* mismo padding que .hero-content mobile, para alinear GAUF con el título */
+}
 
 /* ── HERO: título/bajada izq, pregunta/botón der. Sin scroll para ver la pregunta. ── */
 #hero {
@@ -105,7 +109,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(
   gap: 1.5rem;
   padding: 2rem;
   border: 1px solid var(--border);
-  border-radius: 4px;
+  border-radius: 20px;
   background: #fff;
 }
 
@@ -138,11 +142,13 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(
 .btn-primary:hover { background: var(--accent); color: var(--ink); }
 
 @media (max-width: 600px) {
-  #hero { padding: calc(var(--nav-h) + 1.5rem) 0 1.5rem; align-items: flex-start; }
-  .hero-content { grid-template-columns: 1fr; display: flex; flex-direction: column; gap: 1.5rem; padding: 0 1.5rem; }
+  #hero { padding: calc(var(--nav-h) + 1rem) 0 1rem; align-items: flex-start; }
+  .hero-content { grid-template-columns: 1fr; display: flex; flex-direction: column; gap: 1rem; padding: 0 1.5rem; }
   .hero-left { order: 1; }
-  .pregunta-col { order: 2; padding: 1.5rem; }
-  .hero-title { font-size: clamp(26px, 7vw, 34px); }
+  .hero-title { font-size: clamp(24px, 7vw, 30px); margin-bottom: 0.75rem; }
+  .hero-sub-block p { font-size: 15px; margin-bottom: 0.75rem; }
+  .pregunta-col { order: 2; padding: 1.5rem; gap: 1rem; }
+  .pregunta { font-size: clamp(17px, 4.5vw, 20px); min-height: auto; }
   .intro-detalle p { max-width: none; }
 }
 
@@ -168,7 +174,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(
   min-height: 260px;
   padding: 1.25rem;
   border: 1px solid var(--border);
-  border-radius: 4px;
+  border-radius: 20px;
   background: #fff;
   font-family: var(--body);
   font-size: 15px;
