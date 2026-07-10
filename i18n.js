@@ -62,7 +62,7 @@ const TRANSLATIONS = {
     'quien.body1':   'Dirijo la agencia creativa <a href="https://5seis.com" target="_blank">5SEIS</a> y hace años que acompaño proyectos propios y ajenos para que tomen alto vuelo.',
     'quien.body2':   'Doy charlas sobre liderazgo, emprendimiento e improvisación aplicada al trabajo en equipo. Participo como mentor y speaker en eventos de industria, universidades, hackathones y programas formativos.',
     'quien.body3':   'Creo en los proyectos que nacen desde una búsqueda genuina y en las conversaciones que abren nuevas posibilidades. Mi trabajo consiste en escuchar, detectar patrones y ayudar a transformar intuiciones en decisiones concretas y sostenibles.',
-    'quien.tagline': 'Aporto una mirada estratégica, <a href="https://gaufgang.com/pregunta">preguntas</a> valiosas y foco a largo plazo.',
+    'quien.tagline': 'Aporto una mirada estratégica, <a href="https://gaufgang.com/preguntas">preguntas</a> valiosas y foco a largo plazo.',
 
     // ✏️ SECCIÓN SERVICIOS / SERVICES SECTION
     'servicios.label':       'Servicios',
