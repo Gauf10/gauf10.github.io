@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GAUF · Mentor y Speaker</title>
 
-  <!-- ================================================
+<!-- ================================================
     Google Analytics 4
     Reemplazá G-XXXXXXXXXX con tu Measurement ID
     (también en analytics.js)
     ================================================ -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NF0X4QWTN6"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -168,6 +168,7 @@
   .quien-body a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(136,237,101,0.3); transition: border-color 0.2s; }
   .quien-body a:hover { border-color: var(--accent); }
   .quien-tagline { font-size: 17px; font-weight: 500; color: var(--accent); line-height: 1.5; margin-top: 1.5rem; }
+  .quien-tagline a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 
   /* SERVICIOS */
   #servicios { background: var(--bg); }
@@ -237,12 +238,42 @@
   .valor-title { font-family: var(--serif); font-size: 15px; color: var(--accent); margin-bottom: 0.5rem; line-height: 1.2; }
   .valor-body { font-size: 13px; line-height: 1.6; color: rgba(245,242,236,0.5); }
 
+  /* NO ES ESTO — reusa .dolores-grid / .dolor-item, sin CSS nuevo */
+
+  /* PROCESO — sección "Cómo seguimos" */
+  #proceso { background: var(--bg); }
+  .proceso-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--border); border-radius: 2px; overflow: hidden; margin-top: 1rem; }
+  .proceso-item { padding: 2rem; border-right: 1px solid var(--border); transition: background 0.2s; }
+  .proceso-item:last-child { border-right: none; }
+  .proceso-item:hover { background: rgba(26,26,26,0.03); }
+  .proceso-num { font-family: var(--serif); font-size: 13px; color: var(--accent2); margin-bottom: 0.5rem; letter-spacing: 0.04em; }
+  .proceso-title { font-family: var(--serif); font-size: 17px; margin-bottom: 0.5rem; line-height: 1.2; }
+  .proceso-body { font-size: 14px; line-height: 1.6; color: var(--muted); }
+  @media (max-width: 600px) {
+    .proceso-grid { grid-template-columns: 1fr; }
+    .proceso-item { border-right: none; border-bottom: 1px solid var(--border); }
+    .proceso-item:last-child { border-bottom: none; }
+  }
+
+  /* FAQ */
+  #faq { background: var(--bg); }
+  .faq-item { border-bottom: 1px solid var(--border); padding: 1.5rem 0; cursor: none; }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-item summary { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 1rem; font-size: 17px; font-weight: 500; color: var(--ink); }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: '+'; font-size: 22px; font-weight: 400; color: var(--muted); flex-shrink: 0; }
+  .faq-item[open] summary::after { content: '−'; }
+  .faq-item p { font-size: 15px; line-height: 1.7; color: var(--muted); margin-top: 1rem; max-width: 640px; }
+  @media (max-width: 600px) { .faq-item summary { font-size: 15px; } }
+
   /* CONTACTO */
   #contacto { background: var(--accent); text-align: center; padding: 8rem 3rem; }
   .contacto-title { font-family: var(--serif); font-size: clamp(36px, 6vw, 72px); line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 1.25rem; max-width: 700px; margin-left: auto; margin-right: auto; }
   .contacto-sub { font-size: 16px; color: rgba(26,26,26,0.6); margin-bottom: 3rem; }
   .btn-dark { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: #f5f2ec; font-family: var(--body); font-size: 15px; font-weight: 500; padding: 16px 36px; border-radius: 100px; text-decoration: none; transition: transform 0.2s; }
   .btn-dark:hover { background: var(--accent2); color: #fff !important; transform: none; box-shadow: none; }
+  .contacto-fallback { font-size: 13px; color: rgba(26,26,26,0.6); margin-top: 1.5rem; }
+  .contacto-fallback a { color: var(--ink); text-decoration: underline; }
 
   /* FOOTER */
   footer { background: var(--ink); color: rgba(245,242,236,0.4); padding: 2.5rem 3rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; font-size: 12px; }
@@ -376,7 +407,7 @@
   .hero-btn-group { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
   .hero-btn-note { font-size: 12px; color: rgba(26,26,26,0.45); margin-top: 2px; }
 
-  a, button, [role="button"], .proyecto-pill, .dolor-item, .valor-item, .servicio-card, .t-card, .equipo-photo, .lang-btn {
+  a, button, [role="button"], .proyecto-pill, .dolor-item, .valor-item, .servicio-card, .t-card, .equipo-photo, .lang-btn, .proceso-item, .faq-item {
     cursor: none;
   }
   .cursor.link-hover {
@@ -510,7 +541,7 @@
     <p class="quien-body reveal" data-i18n-html="quien.body1">Dirijo la agencia creativa <a href="https://5seis.com" target="_blank">5SEIS</a> y hace años que acompaño proyectos propios y ajenos para que tomen alto vuelo.</p>
     <p class="quien-body reveal" data-i18n="quien.body2">Doy charlas sobre liderazgo, emprendimiento e improvisación aplicada al trabajo en equipo. Participo como mentor y speaker en eventos de industria, universidades, hackathones y programas formativos.</p>
     <p class="quien-body reveal" data-i18n="quien.body3">Creo en los proyectos que nacen desde una búsqueda genuina y en las conversaciones que abren nuevas posibilidades. Mi trabajo consiste en escuchar, detectar patrones y ayudar a transformar intuiciones en decisiones concretas y sostenibles.</p>
-    <p class="quien-tagline reveal" data-i18n="quien.tagline">Aporto una mirada estratégica, preguntas valiosas y foco a largo plazo.</p>
+    <p class="quien-tagline reveal" data-i18n-html="quien.tagline">Aporto una mirada estratégica, <a href="https://gaufgang.com/pregunta">preguntas</a> valiosas y foco a largo plazo.</p>
   </div>
 </section>
 
@@ -542,6 +573,17 @@
     </div>
   </div>
 </section>
+
+<!-- Posible sección para ayudar al visitante a identificar si este es un buen momento para conversar. -->
+<!-- <section id="buen momento">
+  <div class="section-label reveal" data-i18n="buenmomento.label">Es buen momento para conversar si...</div>
+  <div class="dolores-grid reveal">
+    <div class="dolor-item"><p class="dolor-text" data-i18n="buenmomento.01">Estás en momentos de cambio y querés más perspectiva.</p></div>
+    <div class="dolor-item"><p class="dolor-text" data-i18n="buenmomento.02">Sentís que necesitás pensar antes de seguir haciendo.</p></div>
+    <div class="dolor-item"><p class="dolor-text" data-i18n="buenmomento.03">Hay una decisión importante que merece algo más que una respuesta rápida.</p></div>
+    <div class="dolor-item"><p class="dolor-text" data-i18n="buenmomento.04">Disfrutás las conversaciones honestas y las preguntas que invitan a mirar distinto.</p></div>
+  </div>
+</section> -->
 
 <!-- PROYECTOS -->
 <section id="proyectos">
@@ -665,6 +707,51 @@
   </div>
 </div>
 
+<!-- CÓMO SEGUIMOS — proceso en 3 pasos para bajar la ansiedad previa al contacto -->
+<section id="proceso">
+  <div class="section-label reveal" data-i18n="proceso.label">Cómo seguimos</div>
+  <div class="proceso-grid reveal">
+    <div class="proceso-item">
+      <div class="proceso-num">01</div>
+      <p class="proceso-title" data-i18n="proceso.1.title">Agendamos</p>
+      <p class="proceso-body" data-i18n="proceso.1.body">Charlamos sin costo para entender tu momento y objetivos.</p>
+    </div>
+    <div class="proceso-item">
+      <div class="proceso-num">02</div>
+      <p class="proceso-title" data-i18n="proceso.2.title">Definimos foco</p>
+      <p class="proceso-body" data-i18n="proceso.2.body">Armamos juntos el plan de trabajo según lo que necesites.</p>
+    </div>
+    <div class="proceso-item">
+      <div class="proceso-num">03</div>
+      <p class="proceso-title" data-i18n="proceso.3.title">Arrancamos</p>
+      <p class="proceso-body" data-i18n="proceso.3.body">Primeros encuentros, y ajustamos el rumbo sobre la marcha.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ — resuelve objeciones típicas sin alargar el resto de la página -->
+<section id="faq">
+  <div class="section-label reveal" data-i18n="faq.label">Preguntas frecuentes</div>
+  <div class="reveal">
+    <details class="faq-item">
+      <summary data-i18n="faq.q1">¿Cómo es la primera reunión?</summary>
+      <p data-i18n="faq.a1">Es una charla breve, sin costo, para conocernos y definimos todo antes de avanzar.</p>
+    </details>
+    <details class="faq-item">
+      <summary data-i18n="faq.q2">¿Las mentorías son individuales o grupales?</summary>
+      <p data-i18n="faq.a2">Depende del formato que elijas: trabajo tanto con personas como con equipos.</p>
+    </details>
+    <details class="faq-item">
+      <summary data-i18n="faq.q3">¿Cuánto dura el acompañamiento?</summary>
+      <p data-i18n="faq.a3">Varía según el plan: desde encuentros puntuales hasta procesos de varios meses.</p>
+    </details>
+    <details class="faq-item">
+      <summary data-i18n="faq.q4">¿Qué pasa si no es lo que esperaba?</summary>
+      <p data-i18n="faq.a4">Hablamos abiertamente y ajustamos el enfoque. La primera charla evita sorpresas.</p>
+    </details>
+  </div>
+</section>
+
 <!-- CONTACTO -->
 <section id="contacto">
     <div class="misc-el misc-dot2"></div>
@@ -673,12 +760,14 @@
   <h2 class="contacto-title reveal" data-i18n="contacto.title">¿Te acompaño?</h2>
   <p class="contacto-sub reveal" data-i18n="contacto.sub">Charlemos unos minutos sin compromiso.</p>
   <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3_013vUPPjxyMIcnISoE_AgfQD7vct2cEyuw-O9NaiZTHRDcXznUsITZT9YtZAJ5MAcvhwh9m_" class="btn-dark reveal" target="_blank" data-i18n="contacto.cta">Agendá una llamada ↗</a>
+  <!-- Fallback de contacto directo por email — reemplazá el mail por el real -->
+  <p class="contacto-fallback reveal" data-i18n-html="contacto.fallback">¿Preferís escribirme? <a href="mailto:hablemos@gaufgang.com">hablemos@gaufgang.com</a></p>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo"><img src="images/logo_negro.svg" alt="Gauf"></div>
-  <p class="footer-name">Gabo Aufgang · <span id="footer-year"></span></p>
+  <p class="footer-name">Gabriel Aufgang · <span id="footer-year"></span></p>
   <div class="footer-links">
     <a href="https://www.linkedin.com/in/gaufgang/" target="_blank">LinkedIn</a>
     <a href="https://www.instagram.com/gaufgang/" target="_blank">Instagram</a>
@@ -708,7 +797,8 @@ document.addEventListener('mousemove', e => {
   const inDark = el && el.closest('#quien, #valores, footer, .marquee-wrap:not(.light)');
   cursor.classList.toggle('dark', !!inDark);
 });
-document.querySelectorAll('a, button, .dolor-item, .servicio-card, .t-card, .proyecto-pill, .valor-item, .equipo-photo').forEach(el => {
+// Se agregan .faq-item y .proceso-item para que el cursor custom reaccione en las secciones nuevas
+document.querySelectorAll('a, button, .dolor-item, .servicio-card, .t-card, .proyecto-pill, .valor-item, .equipo-photo, .faq-item, .proceso-item').forEach(el => {
   const isLink = el.tagName === 'A' || el.tagName === 'BUTTON' || el.classList.contains('nav-cta');
   el.addEventListener('mouseenter', () => {
     cursor.classList.add('hover');

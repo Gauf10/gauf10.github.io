@@ -62,7 +62,7 @@ const TRANSLATIONS = {
     'quien.body1':   'Dirijo la agencia creativa <a href="https://5seis.com" target="_blank">5SEIS</a> y hace años que acompaño proyectos propios y ajenos para que tomen alto vuelo.',
     'quien.body2':   'Doy charlas sobre liderazgo, emprendimiento e improvisación aplicada al trabajo en equipo. Participo como mentor y speaker en eventos de industria, universidades, hackathones y programas formativos.',
     'quien.body3':   'Creo en los proyectos que nacen desde una búsqueda genuina y en las conversaciones que abren nuevas posibilidades. Mi trabajo consiste en escuchar, detectar patrones y ayudar a transformar intuiciones en decisiones concretas y sostenibles.',
-    'quien.tagline': 'Aporto una mirada estratégica, preguntas valiosas y foco a largo plazo.',
+    'quien.tagline': 'Aporto una mirada estratégica, <a href="https://gaufgang.com/pregunta">preguntas</a> valiosas y foco a largo plazo.',
 
     // ✏️ SECCIÓN SERVICIOS / SERVICES SECTION
     'servicios.label':       'Servicios',
@@ -74,6 +74,22 @@ const TRANSLATIONS = {
     'servicios.card2.body':  'Dos formatos pensados para equipos, universidades y programas de emprendedores.',
     'servicios.card2.sub':   '· <strong>Liderazgo y emprendimiento</strong> — Casos reales de error y aprendizaje en proyectos creativos.<br><br>· <strong>Impro aplicada al trabajo</strong> — Herramientas de improvisación para comunicación y toma de decisiones. <strong>Con <a href="https://docs.google.com/presentation/d/1JK7U9H6azAvt2NnKXozJtR1rJLz7ZCk0dZasKsct0xY/present" target="_blank">La Chispa Escuela de Impro</a>.</strong>',
     'servicios.card2.cta':   'Diseñemos la experiencia →',
+
+	// ✏️ SECCIÓN BUEN MOMENTO
+    'buenmomento.label': 'Es buen momento para conversar si...',
+    'buenmomento.01': 'Estás en momentos de cambio y querés más perspectiva.',
+    'buenmomento.02': 'Sentís que necesitás pensar antes de seguir haciendo.',
+    'buenmomento.03': 'Hay una decisión importante que merece algo más que una respuesta rápida.',
+    'buenmomento.04': 'Disfrutás las conversaciones honestas y las preguntas que invitan a mirar distinto.',
+    
+    // ✏️ SECCIÓN PARA ESTAR EN SINTONÍA
+    'sintonia.label': 'Para estar en sintonía',
+    'sintonia.01': 'Cada proceso es único. Lo construimos juntos.',
+    'sintonia.02': 'Las personas están antes que los problemas.',
+    'sintonia.03': 'Las decisiones siempre son tuyas.',
+    'sintonia.04': 'Respeto tu forma de pensar y me gusta desafiarla con buenas preguntas.',
+    'sintonia.05': 'Buscamos conversaciones profundas que generen claridad y acción.',
+    'sintonia.06': 'Trabajamos con honestidad, curiosidad y apertura.',
 
     // ✏️ SECCIÓN PROYECTOS / PROJECTS SECTION
     'proyectos.label': 'Proyectos',
@@ -114,10 +130,31 @@ const TRANSLATIONS = {
     'valores.6.title': 'Adaptabilidad',
     'valores.6.body':  'Cada proyecto es distinto, me adapto a las necesidades de cada uno y cada momento, con creatividad y propósito.',
 
+    // ✏️ SECCIÓN CÓMO TRABAJAMOS / PROCESS SECTION
+    'proceso.label':   'Cómo trabajamos',
+    'proceso.1.title': 'Nos conocemos',
+    'proceso.1.body':  'Tenemos una primera conversación para entender tu momento, tus desafíos y descubrir si realmente puedo aportarte valor.',
+    'proceso.2.title': 'Definimos el foco',
+    'proceso.2.body':  'Diseñamos juntos un proceso acorde a tu contexto, tus objetivos y el momento que estás atravesando.',
+    'proceso.3.title': 'Empezamos el recorrido',
+    'proceso.3.body':  'Cada encuentro busca abrir nuevas perspectivas, generar conversaciones profundas y transformar esas reflexiones en decisiones y acciones concretas. El camino se ajusta a medida que avanzamos.',
+
+    // ✏️ SECCIÓN FAQ
+    'faq.label': 'Preguntas frecuentes',
+    'faq.q1': '¿Cómo es la primera reunión?',
+    'faq.a1': 'Es una conversación sin costo para conocernos, entender tu contexto y evaluar juntos si este espacio puede ser valioso para vos.',
+    'faq.q2': '¿Las mentorías son individuales o grupales?',
+    'faq.a2': 'Trabajo tanto con personas como con equipos. El formato depende de los objetivos y del tipo de desafío.',
+    'faq.q3': '¿Cuánto dura el acompañamiento?',
+    'faq.a3': 'No trabajo con procesos idénticos. La duración se define según el momento y las necesidades de cada persona u organización.',
+    'faq.q4': '¿Qué pasa si siento que no es lo que esperaba?',
+    'faq.a4': 'Lo conversamos con total honestidad. Si creo que otro enfoque o profesional puede ayudarte más, también te lo voy a decir.',
+
     // ✏️ SECCIÓN CONTACTO / CONTACT SECTION
-    'contacto.title': '¿Te acompaño?',
-    'contacto.sub':   'Charlemos unos minutos sin compromiso.',
-    'contacto.cta':   'Agendá una llamada ↗',
+    'contacto.title':    '¿Te acompaño?',
+    'contacto.sub':      'Charlemos unos minutos sin compromiso.',
+    'contacto.cta':      'Agendá una llamada ↗',
+    'contacto.fallback': '¿Preferís escribirme? <a href="mailto:hablemos@gaufgang.com">hablemos@gaufgang.com</a>',
 
     // ✏️ MARQUEE DE HOBBIES (barra inferior animada)
     'hobby.basket':      'Basket',
@@ -145,8 +182,8 @@ const TRANSLATIONS = {
     'page.title': 'GAUF · Mentor & Speaker',
 
     // ✏️ NAVEGACIÓN / NAVIGATION
-    'nav.tagline':      'mentor & speaker for human-centered leadership',
-    'nav.dolores':      'Does this resonate?',
+    'nav.tagline':      'mentor & speaker for thoughtful leadership',
+    'nav.dolores':      'Sounds familiar?',
     'nav.quien':        'About me',
     'nav.servicios':    'Services',
     'nav.proyectos':    'Projects',
@@ -156,11 +193,11 @@ const TRANSLATIONS = {
     'nav.back-top':     'Back to top',
 
     // ✏️ HERO
-    'hero.title': 'I help you lead<br>with more <em>clarity</em> and<br><em>humanity</em>',
-    'hero.sub1':  'Mentoring and workshops for teams looking to<br><strong>make better decisions, build</strong> and move forward with purpose.',
-    'hero.sub2':  'I work with teams, companies and<br>training programs in LATAM.',
-    'hero.cta':   'Book a call →',
-    'hero.note':  'First conversation free',
+    'hero.title': 'Helping leaders make thoughtful decisions<br>with more <em>clarity</em> and<br><em>humanity</em>',
+    'hero.sub1': 'Mentoring and talks for people and teams looking to<br><strong>make better decisions, build meaningful projects</strong> and move forward with purpose.',
+    'hero.sub2': 'I work with companies, founders, universities and<br>innovation programs across Latin America.',
+    'hero.cta':   'Book a conversation →',
+    'hero.note': 'First conversation at no cost',
 
     // ✏️ MARQUEE DE SERVICIOS (barra superior animada)
     'marquee.mentoria':       '1:1 Mentoring',
@@ -182,25 +219,42 @@ const TRANSLATIONS = {
 
     // ✏️ SECCIÓN SOBRE MÍ / ABOUT ME SECTION
     'quien.label':   'About me',
-    'quien.body1':   'I lead the creative agency <a href="https://5seis.com" target="_blank">5SEIS</a>, and for years I\'ve been mentoring projects so they can grow to their full potential.',
-    'quien.body2':   'I give talks on leadership, entrepreneurship, and improvisation applied to teamwork. I participate as a mentor and speaker at industry events, universities, hackathons, and training programs.',
-    'quien.body3':   'I believe in projects that come from a genuine intention and in conversations that open new possibilities. My work is to listen, detect patterns and help transform intuitions into concrete, sustainable decisions.',
-    'quien.tagline': 'I bring a strategic perspective, thoughtful questions and a long-term focus.',
+    'quien.body1': 'I lead the creative agency <a href="https://5seis.com" target="_blank">5SEIS</a> and have spent years supporting founders, teams and creative projects as they grow.',
+    'quien.body2': 'I speak about leadership, entrepreneurship and applied improvisation. I also mentor founders, leaders and teams through industry events, universities, hackathons and innovation programs.',
+    'quien.body3': 'I believe in projects driven by genuine curiosity and in conversations that open new possibilities. My role is to listen carefully, recognize patterns and help transform intuition into thoughtful, sustainable decisions.',
+    'quien.tagline': 'I bring strategic perspective, meaningful questions and a long-term view.',
 
     // ✏️ SECCIÓN SERVICIOS / SERVICES SECTION
     'servicios.label':       'Services',
-    'servicios.card1.title': 'Mentoring for leaders and people at decision-making moments',
-    'servicios.card1.body':  'I bring a strategic perspective, thoughtful questions and a long-term focus.',
-    'servicios.card1.sub':   '· Annual plan · Periodic sessions<br>· Quarterly plan · 2 sessions per month<br>· Strategic plan · Occasional coaching',
-    'servicios.card1.cta':   "Let's talk about your next step →",
-    'servicios.card2.title': 'Talks & conferences',
-    'servicios.card2.body':  'Two formats designed for teams, universities and entrepreneur programs.',
+    'servicios.card1.title': 'Mentoring for leaders and people navigating important decisions',
+    'servicios.card1.body': 'A space to organize ideas, gain perspective and make thoughtful decisions about your work, leadership and future.',
+    'servicios.card1.sub': 'Annual partnership · Ongoing mentoring<br>Quarterly program · Two sessions per month<br>Strategic sessions · On-demand mentoring',
+    'servicios.card1.cta': "Let's talk about your next step →",
+    'servicios.card2.title': 'Talks & Workshops',
+    'servicios.card2.body': 'Two formats designed for companies, universities and entrepreneurship programs.',
     'servicios.card2.sub':   '· <strong>Leadership & entrepreneurship</strong> — Real cases of failure and learning in creative projects.<br><br>· <strong>Improv applied to work</strong> — Improvisation tools for communication and decision-making. <strong>With <a href="https://docs.google.com/presentation/d/1JK7U9H6azAvt2NnKXozJtR1rJLz7ZCk0dZasKsct0xY/present" target="_blank">La Chispa Escuela de Impro</a>.</strong>',
     'servicios.card2.cta':   "Let's design the experience →",
 
+// buen momento
+'buenmomento.title': 'It might be a good time for a conversation if...',
+'buenmomento.1': 'You’re going through a period of change and looking for perspective.',
+'buenmomento.2': 'You feel the need to pause before simply doing more.',
+'buenmomento.3': 'An important decision deserves more than a quick answer.',
+'buenmomento.4': 'You value honest conversations and thoughtful questions.',
+'buenmomento.5': 'You’re open to challenging assumptions and exploring new possibilities.',
+
+    // ✏️ SECCIÓN PARA ESTAR EN SINTONÍA / IN TUNE SECTION
+    'sintonia.label': 'To be in tune',
+    'sintonia.01': 'Every process is unique. We build it together.',
+    'sintonia.02': 'People come before problems.',
+    'sintonia.03': 'The decisions are always yours.',
+    'sintonia.04': 'I respect the way you think, and I like challenging it with good questions.',
+    'sintonia.05': 'We look for deep conversations that generate clarity and action.',
+    'sintonia.06': 'We work with honesty, curiosity and openness.',
+
     // ✏️ SECCIÓN PROYECTOS / PROJECTS SECTION
     'proyectos.label': 'Projects',
-    'proyectos.title': "Projects I've collaborated with",
+    'proyectos.title': 'Some of the projects I support',
     'proyectos.easy-lunch.tooltip':     'Mentoring · Sales pitch',
     'proyectos.maldo.tooltip':          'Mentoring · UX research · Rebranding',
     'proyectos.chispa.tooltip':         'Mentoring · Restructuring · Talks',
@@ -219,7 +273,7 @@ const TRANSLATIONS = {
     'proyectos.uade.tooltip':            'Thesis jury',
 
     // ✏️ SECCIÓN TESTIMONIOS / TESTIMONIALS SECTION
-    'testimonios.title': 'What people say',
+    'testimonios.title': 'Kind words',
     'testimonios.tag':   'review',
 
     // ✏️ SECCIÓN VALORES / VALUES SECTION
@@ -237,10 +291,31 @@ const TRANSLATIONS = {
     'valores.6.title': 'Adaptability',
     'valores.6.body':  'Every project is different; I adapt to the needs of each one and each moment, with creativity and purpose.',
 
+    // ✏️ SECCIÓN HOW WE WORK / PROCESS SECTION
+    'proceso.label':   'How we work',
+    'proceso.1.title': "Let's meet",
+    'proceso.1.body': 'We start with a conversation to understand your context, goals and whether this is the right fit.',
+    'proceso.2.title': 'Define the focus',
+    'proceso.2.body': 'Together we shape the process around your needs and priorities.',
+    'proceso.3.title': "Let's begin",
+    'proceso.3.body': 'We meet, reflect, experiment and adjust the path as we move forward.',
+
+    // ✏️ SECCIÓN FAQ
+    'faq.label': 'Frequently asked questions',
+    'faq.q1': 'What is the first meeting like?',
+    'faq.a1': 'It is a free introductory conversation where we get to know each other and decide together how to move forward.',
+    'faq.q2': 'Are the mentoring sessions individual or for teams?',
+    'faq.a2': 'Both. I work with individuals, leadership teams and organizations.',
+    'faq.q3': 'How long does the mentoring process last?',
+    'faq.a3': 'There is no fixed duration. Each process is designed around the goals, context and pace of the people involved.',
+    'faq.q4': "What if it's not what I expected?",
+    'faq.a4': "We'll talk about it openly. If I believe another approach or professional would be a better fit, I'll tell you honestly.",
+
     // ✏️ SECCIÓN CONTACTO / CONTACT SECTION
-    'contacto.title': 'Need someone to think with?',
-    'contacto.sub':   "Let's chat for a few minutes, no strings attached.",
-    'contacto.cta':   'Book a call ↗',
+    'contacto.title': 'Shall we talk?',
+    'contacto.sub': "Let's have a conversation. No pressure.",
+    'contacto.cta':      'Book a conversation ↗',
+    'contacto.fallback': 'Prefer to write first? <a href="mailto:hablemos@gaufgang.com">hablemos@gaufgang.com</a>',
 
     // ✏️ MARQUEE DE HOBBIES (barra inferior animada)
     'hobby.basket':      'Basketball',
@@ -257,7 +332,7 @@ const TRANSLATIONS = {
     'hobby.viajes':      'Travel',
     'hobby.lectura':     'Reading',
     'hobby.reciclaje':   'Recycling',
-    'hobby.hongos':      'Mushrooms',
+    'hobby.hongos':      'Fungi',
     'hobby.tantra':      'Tantra',
     'hobby.familia':     'Family',
   }
