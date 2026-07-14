@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Encendé tu Chispa | Retiro de Impro</title>
+<link rel="icon" href="https://lachispaimpro.com.ar/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+
+:root{
+    --cream:#faf7ef;
+    --ink:#1b1b1b;
+    --yellow:#ffd34d;
+    --ochre:#e39d00;
+    --white:#ffffff;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+html{scroll-behavior:smooth;}
+
+body{
+    font-family:'Manrope',sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.7;
+}
+
+section{
+    max-width:1100px;
+    margin:auto;
+    padding:100px 30px;
+}
+
+img{max-width:100%;display:block;}
+
+/* ---------- NAV ---------- */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    max-width:1100px;
+    margin:auto;
+    padding:28px 30px 0;
+}
+
+.topbar .brand{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:20px;
+    letter-spacing:.02em;
+}
+
+.topbar .eyebrow{
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    color:var(--ochre);
+    font-weight:700;
+}
+
+.topbar img.logo{height:34px;width:auto;}
+
+.navlinks{
+    display:flex;
+    gap:26px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.navlinks a{
+    font-size:14px;
+    font-weight:600;
+    color:var(--ink);
+    text-decoration:none;
+    opacity:.75;
+    transition:opacity .15s;
+}
+
+.navlinks a:hover{opacity:1;color:var(--ochre);}
+
+/* ---------- HERO ---------- */
+
+.hero{
+    text-align:center;
+    padding:100px 30px 70px;
+    position:relative;
+}
+
+.hero .kicker{
+    display:inline-block;
+    font-size:14px;
+    text-transform:uppercase;
+    letter-spacing:.18em;
+    font-weight:700;
+    color:var(--ochre);
+    margin-bottom:22px;
+}
+
+.hero h1{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:clamp(48px,9vw,86px);
+    line-height:1.02;
+    margin-bottom:18px;
+    letter-spacing:-.01em;
+}
+
+.hero h2{
+    font-family:'Manrope',sans-serif;
+    font-size:26px;
+    font-weight:600;
+    color:var(--ochre);
+    margin-bottom:36px;
+}
+
+.hero p{
+    max-width:720px;
+    margin:auto;
+    font-size:20px;
+}
+
+.highlight{
+    background:var(--yellow);
+    padding:2px 10px;
+    border-radius:8px;
+    font-weight:600;
+}
+
+.hero-photo{
+    margin-top:60px;
+    border-radius:26px;
+    overflow:hidden;
+    box-shadow:0 20px 50px rgba(0,0,0,.12);
+}
+
+.hero-photo img{
+    width:100%;
+    height:420px;
+    object-fit:cover;
+}
+
+/* ---------- SECTION HEADERS ---------- */
+
+.eyebrow-label{
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.16em;
+    font-weight:700;
+    color:var(--ochre);
+    margin-bottom:14px;
+    display:block;
+}
+
+h2.section{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:44px;
+    margin-bottom:30px;
+    letter-spacing:-.01em;
+}
+
+.lead{
+    font-size:21px;
+    max-width:820px;
+}
+
+/* ---------- PILARES / CONCEPTOS ---------- */
+
+.pilares{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:26px;
+    margin-top:50px;
+}
+
+.pilar{
+    background:var(--white);
+    border-radius:20px;
+    padding:40px 30px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+}
+
+.pilar .glyph{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:40px;
+    color:var(--ochre);
+    margin-bottom:14px;
+}
+
+.pilar h4{
+    font-size:19px;
+    font-weight:700;
+    letter-spacing:.02em;
+}
+
+/* ---------- LABS GRID ---------- */
+
+.labs-wrap{
+    background:var(--white);
+    border-radius:24px;
+    padding:50px;
+    margin-top:50px;
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+}
+
+.labs-wrap h3{
+    font-family:'Fraunces',serif;
+    font-size:28px;
+    margin-bottom:24px;
+}
+
+.tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+.tags span{
+    background:var(--cream);
+    border:1px solid rgba(0,0,0,.08);
+    padding:10px 18px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:15px;
+}
+
+/* ---------- SCHEDULE ---------- */
+
+.schedule{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+    margin-top:40px;
+}
+
+.day{
+    background:var(--white);
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+}
+
+.day h3{
+    font-family:'Fraunces',serif;
+    font-size:30px;
+    margin-bottom:22px;
+}
+
+.day p{
+    display:flex;
+    gap:14px;
+    font-size:16px;
+    padding:6px 0;
+    border-bottom:1px solid rgba(0,0,0,.05);
+}
+
+.day p:last-child{border-bottom:none;}
+
+.time{
+    font-weight:700;
+    color:var(--ochre);
+    min-width:52px;
+}
+
+/* ---------- GALERIA ---------- */
+
+.galeria{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-top:40px;
+}
+
+.galeria img{
+    width:100%;
+    height:170px;
+    object-fit:cover;
+    border-radius:14px;
+}
+
+.galeria a:nth-child(1){grid-column:span 2;grid-row:span 2;}
+.galeria a:nth-child(1) img{height:100%;}
+
+/* ---------- DOCENTES / PRODUCCION ---------- */
+
+.people-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:30px;
+    margin-top:20px;
+}
+
+.person{
+    background:var(--white);
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+}
+
+.person img{
+    width:100%;
+    height:230px;
+    object-fit:cover;
+}
+
+.person .info{padding:22px 24px 26px;}
+
+.person h4{
+    font-family:'Fraunces',serif;
+    font-size:21px;
+    margin-bottom:4px;
+}
+
+.person .role{
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    color:var(--ochre);
+    font-weight:700;
+}
+
+/* Producción: sin foto, discreta */
+
+.produccion{
+    margin-top:70px;
+    padding-top:40px;
+    border-top:1px solid rgba(0,0,0,.08);
+}
+
+.produccion .eyebrow-label{margin-bottom:10px;}
+
+.produccion-grid{
+    display:flex;
+    gap:18px;
+    margin-top:6px;
+}
+
+.produccion-grid .person{
+    width:115px;
+    box-shadow:0 6px 16px rgba(0,0,0,.05);
+}
+
+.produccion-grid .person img{height:115px;}
+
+.produccion-grid .person .info{padding:12px 14px 14px;}
+
+.produccion-grid .person h4{font-size:14px;margin-bottom:2px;}
+
+.produccion-grid .person .role{font-size:10px;}
+
+/* ---------- INFO CARDS ---------- */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:var(--white);
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+}
+
+.card h3{
+    font-family:'Fraunces',serif;
+    margin-bottom:18px;
+    font-size:25px;
+}
+
+.card ul{padding-left:20px;}
+.card li{margin-bottom:10px;}
+
+/* ---------- FOOTER / CTA ---------- */
+
+footer{padding:100px 30px 70px;text-align:center;}
+
+.cta{
+    max-width:1100px;
+    margin:auto;
+    background:var(--ink);
+    color:var(--white);
+    padding:70px 40px;
+    border-radius:28px;
+    position:relative;
+    overflow:hidden;
+}
+
+.cta h2{
+    font-family:'Fraunces',serif;
+    font-size:44px;
+    margin-bottom:18px;
+}
+
+.cta .highlight{color:var(--ink);}
+
+.small{
+    opacity:.65;
+    margin-top:26px;
+    font-size:14px;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+}
+
+@media(max-width:760px){
+    .schedule{grid-template-columns:1fr;}
+    .pilares{grid-template-columns:1fr;}
+    .galeria{grid-template-columns:repeat(2,1fr);}
+    .galeria a:nth-child(1){grid-column:span 2;grid-row:span 1;}
+    .galeria a:nth-child(1) img{height:170px;}
+    .topbar{flex-direction:column;gap:14px;text-align:center;}
+    .navlinks{gap:16px;}
+    .produccion-grid{justify-content:center;}
+    section{padding:70px 22px;}
+}
+
+</style>
+</head>
+<body>
+
+<div class="topbar">
+<img class="logo" src="assets/logo.png" alt="La Chispa - Escuela de Impro">
+<nav class="navlinks">
+<a href="#experiencia">Experiencia</a>
+<a href="#cronograma">Cronograma</a>
+<a href="#docentes">Docentes</a>
+<a href="#info">Info</a>
+</nav>
+<span class="eyebrow">Retiro 2026</span>
+</div>
+
+<section class="hero">
+<span class="kicker">Un fin de semana, otra versión de vos</span>
+<h1>Encendé tu Chispa</h1>
+<h2>Retiro de profundización en improvisación</h2>
+<p>
+Dos días para salir de la rutina y entrar de lleno en el universo de la improvisación.
+Una experiencia para <span class="highlight">entrenar, jugar, crear y compartir</span> junto a una comunidad que entiende el error como oportunidad, la escucha como punto de partida y el juego como una forma de crecer.
+</p>
+<div class="hero-photo">
+<img src="https://lachispaimpro.com.ar/foto6.jpg" alt="Foto de la escuela de impro">
+</div>
+</section>
+
+<section id="experiencia">
+<span class="eyebrow-label">Una experiencia diferente</span>
+<h2 class="section">No es un intensivo más</h2>
+<p class="lead">
+Durante un fin de semana completo conviviremos, entrenaremos y exploraremos distintas herramientas de la improvisación, el clown y la creación colectiva. El retiro está pensado para cualquier nivel de experiencia. Primero abrirá exclusivamente para alumnos de la Escuela de Impro de Buenos Aires y luego se habilitarán los cupos restantes para participantes de otras escuelas y disciplinas.
+</p>
+
+<div class="pilares">
+<div class="pilar"><div class="glyph">Sí, y...</div><h4>Aceptación</h4></div>
+<div class="pilar"><div class="glyph">···</div><h4>Escucha</h4></div>
+<div class="pilar"><div class="glyph">◡</div><h4>Confianza</h4></div>
+</div>
+
+<div class="labs-wrap">
+<h3>Posibles laboratorios</h3>
+<div class="tags">
+<span>Juegos de Impro</span>
+<span>Personajes</span>
+<span>Plataforma</span>
+<span>Tiempo</span>
+<span>Long Form</span>
+<span>Improyecciones</span>
+<span>Creatividad</span>
+<span>Máscaras</span>
+<span>Títeres</span>
+<span>Soundpainting</span>
+</div>
+</div>
+</section>
+
+<section id="cronograma">
+<span class="eyebrow-label">Cronograma tentativo</span>
+<h2 class="section">Dos días, ocho bloques</h2>
+
+<div class="schedule">
+<div class="day">
+<h3>Sábado</h3>
+<p><span class="time">11:00</span> Llegada y bienvenida</p>
+<p><span class="time">11:30</span> Juegos de Impro</p>
+<p><span class="time">13:30</span> Almuerzo compartido</p>
+<p><span class="time">15:00</span> Plataforma</p>
+<p><span class="time">17:00</span> Personajes / Creatividad</p>
+<p><span class="time">19:30</span> Improyecciones</p>
+<p><span class="time">20:30</span> Pizza compartida</p>
+<p><span class="time">22:00</span> Long Form</p>
+</div>
+<div class="day">
+<h3>Domingo</h3>
+<p><span class="time">09:30</span> Yoga y Meditación</p>
+<p><span class="time">10:30</span> Clown</p>
+<p><span class="time">12:00</span> Clase de Impro</p>
+<p><span class="time">13:30</span> Almuerzo</p>
+<p><span class="time">15:00</span> Segunda clase de Impro</p>
+<p><span class="time">16:15</span> Soundpainting (optativo)</p>
+<p><span class="time">17:00</span> Cierre</p>
+</div>
+</div>
+
+<div class="galeria">
+<a href="#"><img src="https://lachispaimpro.com.ar/foto1.jpg" alt="Show de improvisación en vivo"></a>
+<a href="#"><img src="https://lachispaimpro.com.ar/foto5.jpg" alt="Alumnos realizando juegos teatrales"></a>
+<a href="#"><img src="https://lachispaimpro.com.ar/foto4.jpg" alt="Equipo de avanzados en escena"></a>
+<a href="#"><img src="https://lachispaimpro.com.ar/foto2.jpg" alt="Clase de nivel inicial"></a>
+<a href="#"><img src="https://lachispaimpro.com.ar/foto9.jpg" alt="Foto de la escuela de impro"></a>
+</div>
+</section>
+
+<section id="docentes">
+<span class="eyebrow-label">Docentes</span>
+<h2 class="section">Quiénes te acompañan</h2>
+
+<div class="people-grid">
+<div class="person">
+<img src="https://lachispaimpro.com.ar/lucho.jpg" alt="Lucho Barreda">
+<div class="info"><h4>Lucho Barreda</h4><span class="role">Docente</span></div>
+</div>
+<div class="person">
+<img src="https://lachispaimpro.com.ar/santi.jpg" alt="Santi Beldi">
+<div class="info"><h4>Santi Beldi</h4><span class="role">Docente</span></div>
+</div>
+<div class="person">
+<img src="https://lachispaimpro.com.ar/vale.png" alt="Vale Stilman">
+<div class="info"><h4>Vale Stilman</h4><span class="role">Docente</span></div>
+</div>
+<div class="person">
+<img src="assets/paula.jpg" alt="Paula Farias">
+<div class="info"><h4>Paula Farias</h4><span class="role">Docente</span></div>
+</div>
+</div>
+
+<div class="produccion">
+<span class="eyebrow-label">Producción</span>
+<div class="produccion-grid">
+<div class="person">
+<img src="https://lachispaimpro.com.ar/Gabi.png" alt="Gabriel Aufgang">
+<div class="info"><h4>Gabriel Aufgang</h4><span class="role">Producción</span></div>
+</div>
+<div class="person">
+<img src="assets/meli.jpg" alt="Melina Paracino">
+<div class="info"><h4>Melina Paracino</h4><span class="role">Producción</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="info">
+<div class="grid">
+<div class="card">
+<h3>Incluye</h3>
+<ul>
+<li>Acceso a todas las clases</li>
+<li>Desayunos</li>
+<li>Merienda</li>
+<li>Cena del sábado</li>
+<li>Almuerzo del domingo</li>
+<li>Pernocte</li>
+<li>Materiales</li>
+</ul>
+</div>
+<div class="card">
+<h3>Fecha</h3>
+<p>26 y 27 de septiembre (a confirmar)<br><br>Zona Norte (a confirmar)</p>
+</div>
+<div class="card">
+<h3>Valor</h3>
+<p>Costo estimado equivalente a cuatro intensivos de la escuela, incluyendo alojamiento, comidas y todas las actividades.</p>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="cta">
+<h2>Viví la impro durante 48 horas.</h2>
+<p>Entrenar. Crear. Descansar. Reír. Compartir.<br>Salir distinto de como llegaste.</p>
+<p class="small">Escuela de Impro de Buenos Aires</p>
+</div>
+</footer>
+
+</body>
+</html>
