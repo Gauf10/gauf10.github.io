@@ -4,8 +4,6 @@
   --dim: rgba(245,242,236,.4);
   --dim2: rgba(245,242,236,.06);
   --accent: #27D3CC;
-  --warn: #E8B84B;
-  --danger: #E84A4A;
   --pad: clamp(24px, 3vw, 48px);
 }
 
@@ -87,10 +85,7 @@ html,body{
   font-size:clamp(11px,.9vw,14px);font-weight:300;letter-spacing:.04em;color:var(--dim)
 }
 .status-item span{color:var(--fg)}
-.status-item.is-warn{color:var(--warn);transition:color 1s ease}
-.status-item.is-warn span{color:var(--warn)}
-.status-item.is-danger{color:var(--danger);transition:color 1s ease}
-.status-item.is-danger span{color:var(--danger)}
+
 
 /* ========== arrows ========== */
 
@@ -112,7 +107,7 @@ html,body{
 }
 #login.hidden{display:none}
 #login-box{text-align:center;max-width:320px;width:90%}
-#login-logo{width:clamp(48px,6vw,80px);height:auto;opacity:.5;margin-bottom:clamp(16px,2vh,24px)}
+#login-logo{width:clamp(48px,6vw,80px);height:auto;border-radius:50%;margin-bottom:clamp(16px,2vh,24px)}
 #login-title{
   font-size:clamp(16px,1.8vw,24px);font-weight:300;
   letter-spacing:.08em;color:var(--dim);margin-bottom:clamp(24px,3vh,40px)
@@ -140,7 +135,7 @@ html,body{
   height:100vh;position:absolute;inset:0;z-index:100;background:var(--bg)
 }
 #waiting.show{display:flex}
-#waiting-logo img{width:clamp(48px,6vw,80px);height:auto;opacity:.25}
+#waiting-logo img{width:clamp(48px,6vw,80px);height:auto;border-radius:50%}
 #waiting-text{
   font-size:clamp(16px,1.8vw,24px);font-weight:300;
   letter-spacing:.08em;color:rgba(245,242,236,.15)

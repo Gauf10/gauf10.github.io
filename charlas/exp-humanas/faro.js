@@ -12,7 +12,7 @@
    *  CONFIG
    * ────────────────────────────────────────────── */
 
-  var API_BASE = 'https://api.gaufgang.com';
+  var API_BASE = 'https://faro-api.gauf10.workers.dev';
   var CHARLA_NAME = 'Diseñar experiencias humanas';
   var TOTAL_SLIDES = 24;
 
@@ -321,28 +321,12 @@
     var el = document.getElementById('st-elapsed');
     el.textContent = String(mins).padStart(2,'0') + ':' + String(secs).padStart(2,'0');
 
-    if (totalMinutes > 0) {
-      var totalMs = totalMinutes * 60000;
-      var pct = elapsed / totalMs;
-      el.classList.remove('is-warn', 'is-danger');
-      if (pct >= 1) el.classList.add('is-danger');
-      else if (pct >= 0.8) el.classList.add('is-warn');
-    }
-
     var elSlide = document.getElementById('st-slide-time');
     if (slideStartTime) {
       var sElapsed = Date.now() - slideStartTime;
       var sMins = Math.floor(sElapsed / 60000);
       var sSecs = Math.floor((sElapsed % 60000) / 1000);
       elSlide.textContent = '+' + String(sMins).padStart(2,'0') + ':' + String(sSecs).padStart(2,'0');
-
-      if (slideMinutes > 0) {
-        var sMs = slideMinutes * 60000;
-        var sPct = sElapsed / sMs;
-        elSlide.classList.remove('is-warn', 'is-danger');
-        if (sPct >= 1) elSlide.classList.add('is-danger');
-        else if (sPct >= 0.8) elSlide.classList.add('is-warn');
-      }
     }
   }
 
