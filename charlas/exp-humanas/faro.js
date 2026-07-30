@@ -496,34 +496,36 @@
     if (e.target.closest('#aprendizajes-editor')) return;
     if (e.target.closest('#login-password')) return;
 
+    e.preventDefault();
+
     switch (e.key) {
-      case 'ArrowLeft': case 'ArrowUp': case 'PageUp': e.preventDefault(); prevSlide(); break;
-      case 'ArrowRight': case 'ArrowDown': case 'PageDown': e.preventDefault(); nextSlide(); break;
-      case 'Home': e.preventDefault(); if (broadcast) broadcast.postMessage({ type: 'goto', index: 0 }); break;
-      case 'End': e.preventDefault(); if (broadcast) broadcast.postMessage({ type: 'goto', index: TOTAL_SLIDES - 1 }); break;
-      case 'n': case 'N': e.preventDefault();
+      case 'ArrowLeft': case 'ArrowUp': case 'PageUp': prevSlide(); break;
+      case 'ArrowRight': case 'ArrowDown': case 'PageDown': nextSlide(); break;
+      case 'Home': if (broadcast) broadcast.postMessage({ type: 'goto', index: 0 }); break;
+      case 'End': if (broadcast) broadcast.postMessage({ type: 'goto', index: TOTAL_SLIDES - 1 }); break;
+      case 'n': case 'N':
         var sec = document.getElementById('notes-section');
         sec.style.display = sec.style.display === 'none' ? '' : 'none';
         setTimeout(applyRatio, 50);
         break;
-      case '+': case '=': e.preventDefault();
+      case '+': case '=':
         var ed = document.getElementById('notes-editor');
         var sz = parseFloat(getComputedStyle(ed).fontSize) || 14;
         ed.style.fontSize = (sz + 2) + 'px';
         break;
-      case '-': e.preventDefault();
+      case '-':
         var ed = document.getElementById('notes-editor');
         var sz = parseFloat(getComputedStyle(ed).fontSize) || 14;
         if (sz > 8) ed.style.fontSize = (sz - 2) + 'px';
         break;
-      case 'f': case 'F': e.preventDefault();
+      case 'f': case 'F':
         if (document.fullscreenElement) document.exitFullscreen();
         else document.documentElement.requestFullscreen();
         break;
-      case 't': case 'T': e.preventDefault(); resetTimer(); break;
-      case 's': case 'S': e.preventDefault(); setTotalMinutes(); break;
-      case 'p': case 'P': e.preventDefault(); setSlideMinutes(); break;
-      case 'b': case 'B': e.preventDefault();
+      case 't': case 'T': resetTimer(); break;
+      case 's': case 'S': setTotalMinutes(); break;
+      case 'p': case 'P': setSlideMinutes(); break;
+      case 'b': case 'B':
         blackoutActive = !blackoutActive;
         if (broadcast) broadcast.postMessage({ type: 'blackout', active: blackoutActive });
         break;
