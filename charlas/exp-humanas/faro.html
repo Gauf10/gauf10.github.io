@@ -6,6 +6,7 @@
 <title>FARO</title>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="faro.css">
+<link rel="icon" href="data:,">
 </head>
 <body>
 
@@ -52,7 +53,11 @@
 </div>
 
 <!-- Waiting -->
-<div id="waiting"><div id="waiting-logo"><img src="assets/faro.png" alt="FARO"></div><div id="waiting-text">Esperando presentación...</div></div>
+<div id="waiting">
+  <div id="waiting-logo"><img src="assets/faro.png" alt="FARO"></div>
+  <div id="waiting-text">Esperando presentación...</div>
+  <button id="waiting-open" onclick="window.open('index.html','_blank')">Abrir presentación</button>
+</div>
 
 <!-- Aprendizajes -->
 <div id="aprendizajes-panel" class="hidden">
