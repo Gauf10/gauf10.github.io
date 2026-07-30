@@ -497,8 +497,8 @@
     if (e.target.closest('#login-password')) return;
 
     switch (e.key) {
-      case 'ArrowLeft': case 'ArrowUp': e.preventDefault(); prevSlide(); break;
-      case 'ArrowRight': case 'ArrowDown': e.preventDefault(); nextSlide(); break;
+      case 'ArrowLeft': case 'ArrowUp': case 'PageUp': e.preventDefault(); prevSlide(); break;
+      case 'ArrowRight': case 'ArrowDown': case 'PageDown': e.preventDefault(); nextSlide(); break;
       case 'Home': e.preventDefault(); if (broadcast) broadcast.postMessage({ type: 'goto', index: 0 }); break;
       case 'End': e.preventDefault(); if (broadcast) broadcast.postMessage({ type: 'goto', index: TOTAL_SLIDES - 1 }); break;
       case 'n': case 'N': e.preventDefault();
