@@ -584,15 +584,6 @@
 
     broadcast.onmessage = function(e) {
       var d = e.data;
-      if (d.type === 'init') {
-        slides = d.slides || [];
-        if (slides.length) {
-          hideWaiting();
-          cur = -1;
-          switchToSlide(d.current || 0);
-          lastPong = Date.now();
-        }
-      }
       if (d.type === 'slideChanged') {
         switchToSlide(d.current);
         lastPong = Date.now();
@@ -607,6 +598,8 @@
         }
       }
     };
+
+    broadcast.postMessage({ type: 'ping' });
 
     setInterval(function() {
       if (connected) broadcast.postMessage({ type: 'ping' });
