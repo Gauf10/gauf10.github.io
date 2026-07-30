@@ -501,29 +501,29 @@
       case 'ArrowRight': case 'ArrowDown': e.preventDefault(); nextSlide(); break;
       case 'Home': e.preventDefault(); if (broadcast) broadcast.postMessage({ type: 'goto', index: 0 }); break;
       case 'End': e.preventDefault(); if (broadcast) broadcast.postMessage({ type: 'goto', index: TOTAL_SLIDES - 1 }); break;
-      case 'n': case 'N':
+      case 'n': case 'N': e.preventDefault();
         var sec = document.getElementById('notes-section');
         sec.style.display = sec.style.display === 'none' ? '' : 'none';
         setTimeout(applyRatio, 50);
         break;
-      case '+': case '=':
+      case '+': case '=': e.preventDefault();
         var ed = document.getElementById('notes-editor');
         var sz = parseFloat(getComputedStyle(ed).fontSize) || 14;
         ed.style.fontSize = (sz + 2) + 'px';
         break;
-      case '-':
+      case '-': e.preventDefault();
         var ed = document.getElementById('notes-editor');
         var sz = parseFloat(getComputedStyle(ed).fontSize) || 14;
         if (sz > 8) ed.style.fontSize = (sz - 2) + 'px';
         break;
-      case 'f': case 'F':
+      case 'f': case 'F': e.preventDefault();
         if (document.fullscreenElement) document.exitFullscreen();
         else document.documentElement.requestFullscreen();
         break;
-      case 't': case 'T': resetTimer(); break;
-      case 's': case 'S': setTotalMinutes(); break;
-      case 'p': case 'P': setSlideMinutes(); break;
-      case 'b': case 'B':
+      case 't': case 'T': e.preventDefault(); resetTimer(); break;
+      case 's': case 'S': e.preventDefault(); setTotalMinutes(); break;
+      case 'p': case 'P': e.preventDefault(); setSlideMinutes(); break;
+      case 'b': case 'B': e.preventDefault();
         blackoutActive = !blackoutActive;
         if (broadcast) broadcast.postMessage({ type: 'blackout', active: blackoutActive });
         break;
