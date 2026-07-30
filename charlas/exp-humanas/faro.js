@@ -119,8 +119,8 @@
       };
       if (body) opts.body = JSON.stringify(body);
       return fetch(API_BASE + path, opts).then(function(r) {
-        if (r.status === 401) { Auth.logout(); showLogin(); throw new Error('unauthorized'); }
-        if (!r.ok) throw new Error('api error');
+        if (r.status === 401) { Auth.logout(); return Promise.reject('unauthorized'); }
+        if (!r.ok) return Promise.reject('api error');
         return r.json();
       });
     },
@@ -584,17 +584,16 @@
 
     broadcast.onmessage = function(e) {
       var d = e.data;
+      lastPong = Date.now();
       if (d.type === 'slideChanged') {
-        switchToSlide(d.current);
-        lastPong = Date.now();
+        try { switchToSlide(d.current); } catch(e) {}
       }
       if (d.type === 'pong') {
-        lastPong = Date.now();
         if (!connected && d.slides && d.slides.length) {
           slides = d.slides;
           hideWaiting();
           cur = -1;
-          switchToSlide(d.current || 0);
+          try { switchToSlide(d.current || 0); } catch(e) {}
         }
       }
     };
@@ -602,9 +601,13 @@
     broadcast.postMessage({ type: 'ping' });
 
     setInterval(function() {
-      if (connected) broadcast.postMessage({ type: 'ping' });
-      if (connected && Date.now() - lastPong > 5000) { showWaiting(); }
-    }, 2500);
+      if (Date.now() - lastPong > 12000) {
+        if (connected) { showWaiting(); connected = false; }
+        broadcast.postMessage({ type: 'ping' });
+      } else if (connected) {
+        broadcast.postMessage({ type: 'ping' });
+      }
+    }, 4000);
   }
 
   /* ──────────────────────────────────────────────
@@ -635,6 +638,12 @@
     }).catch(function() {});
 
     window.addEventListener('resize', applyRatio);
+
+    setInterval(function() {
+      fetch(API_BASE + '/api/notes', {
+        headers: { 'Authorization': 'Bearer ' + Auth.getToken() },
+      }).catch(function() {});
+    }, 60000);
   }
 
   /* ──────────────────────────────────────────────
