@@ -355,7 +355,6 @@
     } else {
       totalMinutes = 0;
       localStorage.removeItem('faro-total-minutes');
-      document.getElementById('st-elapsed').classList.remove('is-warn', 'is-danger');
     }
   }
 
@@ -369,7 +368,6 @@
     } else {
       slideMinutes = 0;
       localStorage.removeItem('faro-slide-minutes');
-      document.getElementById('st-slide-time').classList.remove('is-warn', 'is-danger');
     }
   }
 
