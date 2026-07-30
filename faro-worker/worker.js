@@ -44,7 +44,7 @@ function error(msg, status, origin) {
 
 function getOrigin(request) {
   var o = request.headers.get('Origin');
-  return o && (o.endsWith('.gaufgang.com') || o === 'http://localhost:8787') ? o : null;
+  return o && (o.endsWith('gaufgang.com') || o === 'http://localhost:8787') ? o : null;
 }
 
 function getAuth(request) {
