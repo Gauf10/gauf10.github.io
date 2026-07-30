@@ -1,0 +1,9 @@
+name = "faro-api"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+GITHUB_REPO = "Gauf10/gauf10.github.io"
+CHARLA_PATH = "charlas/exp-humanas"
+FARO_PASSWORD = ""
+GITHUB_TOKEN = ""

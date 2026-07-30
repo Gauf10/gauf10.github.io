@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>FARO</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="faro.css">
+</head>
+<body>
+
+<!-- Arrows -->
+<button class="arr arr-up" onclick="Faro.prev()" aria-label="Anterior">↑</button>
+<button class="arr arr-down" onclick="Faro.next()" aria-label="Siguiente">↓</button>
+
+<!-- App -->
+<div id="app">
+  <div id="top-bar">
+    <div class="status-item" id="st-time">--:--</div>
+    <button id="help-btn" onclick="Faro.toggleHelp()" aria-label="Ayuda">ⓘ</button>
+  </div>
+  <div id="slide-current"></div>
+  <div class="divider is-draggable" id="drag-handle">
+    <div class="drag-dot"></div>
+  </div>
+  <div id="notes-section">
+    <div id="notes-label">NOTAS</div>
+    <textarea id="notes-editor" placeholder="Escribí disparadores para este slide…" spellcheck="true"></textarea>
+  </div>
+  <div class="divider"></div>
+  <div id="bottom-section">
+    <div id="next-preview">
+      <div id="next-label">SIGUIENTE</div>
+    </div>
+    <div id="status-bar">
+      <div class="status-item" id="st-elapsed">--:--</div>
+      <div class="status-item" id="st-slide-time">+--:--</div>
+      <div class="status-item" id="st-slide">--/--</div>
+      <button id="aprendizajes-btn" onclick="Faro.toggleAprendizajes()" aria-label="Aprendizajes">✦</button>
+    </div>
+  </div>
+</div>
+
+<!-- Login -->
+<div id="login">
+  <div id="login-box">
+    <img src="assets/faro.png" alt="FARO" id="login-logo">
+    <div id="login-title">FARO</div>
+    <input id="login-password" type="password" placeholder="Contraseña" autocomplete="off">
+    <div id="login-error"></div>
+  </div>
+</div>
+
+<!-- Waiting -->
+<div id="waiting"><div id="waiting-logo"><img src="assets/faro.png" alt="FARO"></div><div id="waiting-text">Esperando presentación...</div></div>
+
+<!-- Aprendizajes -->
+<div id="aprendizajes-panel" class="hidden">
+  <div class="aprendizajes-header">
+    <span>APRENDIZAJES</span>
+    <button onclick="Faro.toggleAprendizajes()" aria-label="Cerrar">✕</button>
+  </div>
+  <textarea id="aprendizajes-editor" placeholder="¿Qué funcionó? ¿Qué mejorar?" spellcheck="true"></textarea>
+</div>
+
+<!-- Help overlay -->
+<div id="help-overlay" class="hidden" onclick="if(event.target===this)Faro.toggleHelp()">
+  <div id="help-box">
+    <div id="help-title">Shortcuts</div>
+    <div class="help-row"><span class="help-key">← →</span><span class="help-desc">Navegar slide</span></div>
+    <div class="help-row"><span class="help-key">N</span><span class="help-desc">Mostrar / ocultar notas</span></div>
+    <div class="help-row"><span class="help-key">+ -</span><span class="help-desc">Tamaño de texto de notas</span></div>
+    <div class="help-row"><span class="help-key">F</span><span class="help-desc">Pantalla completa</span></div>
+    <div class="help-row"><span class="help-key">T</span><span class="help-desc">Reiniciar cronómetro</span></div>
+    <div class="help-row"><span class="help-key">S</span><span class="help-desc">Configurar duración total</span></div>
+    <div class="help-row"><span class="help-key">P</span><span class="help-desc">Configurar tiempo por slide</span></div>
+    <div class="help-row"><span class="help-key">B</span><span class="help-desc">Pantalla negra (audiencia)</span></div>
+    <div class="help-row"><span class="help-key">Esc</span><span class="help-desc">Salir de ayuda / blackout</span></div>
+    <div id="help-dismiss">Click fuera para cerrar</div>
+  </div>
+</div>
+
+<script src="faro.js"></script>
+</body>
+</html>
