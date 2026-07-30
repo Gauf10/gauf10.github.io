@@ -402,12 +402,12 @@
 
   function prevSlide() {
     if (!connected) return;
-    if (broadcast) broadcast.postMessage('goto', { index: cur - 1 });
+    if (broadcast) broadcast.postMessage({ type: 'goto', index: cur - 1 });
   }
 
   function nextSlide() {
     if (!connected) return;
-    if (broadcast) broadcast.postMessage('goto', { index: cur + 1 });
+    if (broadcast) broadcast.postMessage({ type: 'goto', index: cur + 1 });
   }
 
   /* ──────────────────────────────────────────────
@@ -499,8 +499,8 @@
     switch (e.key) {
       case 'ArrowLeft': case 'ArrowUp': e.preventDefault(); prevSlide(); break;
       case 'ArrowRight': case 'ArrowDown': e.preventDefault(); nextSlide(); break;
-      case 'Home': e.preventDefault(); if (broadcast) broadcast.postMessage('goto', { index: 0 }); break;
-      case 'End': e.preventDefault(); if (broadcast) broadcast.postMessage('goto', { index: TOTAL_SLIDES - 1 }); break;
+      case 'Home': e.preventDefault(); if (broadcast) broadcast.postMessage({ type: 'goto', index: 0 }); break;
+      case 'End': e.preventDefault(); if (broadcast) broadcast.postMessage({ type: 'goto', index: TOTAL_SLIDES - 1 }); break;
       case 'n': case 'N':
         var sec = document.getElementById('notes-section');
         sec.style.display = sec.style.display === 'none' ? '' : 'none';
@@ -525,7 +525,7 @@
       case 'p': case 'P': setSlideMinutes(); break;
       case 'b': case 'B':
         blackoutActive = !blackoutActive;
-        if (broadcast) broadcast.postMessage('blackout', { active: blackoutActive });
+        if (broadcast) broadcast.postMessage({ type: 'blackout', active: blackoutActive });
         break;
       case 'Escape':
         if (document.getElementById('help-overlay').classList.contains('open')) {
@@ -538,7 +538,7 @@
         }
         if (blackoutActive) {
           blackoutActive = false;
-          if (broadcast) broadcast.postMessage('blackout', { active: false });
+          if (broadcast) broadcast.postMessage({ type: 'blackout', active: false });
         }
         break;
     }
@@ -609,7 +609,7 @@
     };
 
     setInterval(function() {
-      if (connected) broadcast.postMessage('ping', {});
+      if (connected) broadcast.postMessage({ type: 'ping' });
       if (connected && Date.now() - lastPong > 5000) { showWaiting(); }
     }, 2500);
   }
