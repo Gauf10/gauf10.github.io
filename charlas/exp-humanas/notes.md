@@ -1,5 +1,5 @@
 # s0
-Ac� hablo de
+Aca hablo de
 
 # s2
 Hablar con
