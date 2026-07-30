@@ -619,6 +619,7 @@
     document.getElementById('notes-editor').addEventListener('input', onNotesInput);
     document.getElementById('aprendizajes-editor').addEventListener('input', onAprendizajesInput);
 
+    showWaiting();
     initDrag();
     initBroadcast();
 
@@ -634,9 +635,6 @@
     }).catch(function() {});
 
     window.addEventListener('resize', applyRatio);
-
-    /* Initial state: waiting for presentation */
-    showWaiting();
   }
 
   /* ──────────────────────────────────────────────
