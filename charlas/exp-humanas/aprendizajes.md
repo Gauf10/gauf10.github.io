@@ -1,1 +1,1 @@
-El chamán me present�
+El chamán me present
