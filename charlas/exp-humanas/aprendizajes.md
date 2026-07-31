@@ -1,1 +1,1 @@
-El chamán me presentó
+El chamn me presentï¿½
