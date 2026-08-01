@@ -107,7 +107,7 @@ la doy así, cabizbajo, brazos cruzados, mirada apagada?
 Todo deja huellas.
 
 # s13
-que ven en est
+que ven en esta charla de 
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
