@@ -18,7 +18,8 @@ Además mentoreo emprendedores en distintos estadíos.
 Estoy involucrado con disciplinas actorales, como la dirección de actores, la improvisación, el clown. Esto va a cobrar sentido al final de la charla.
 
 # s2
-tenemos claro los productos, las marcas, 
+tenemos claro los productos, las marcas, las empresas y organizaciones, no voy a entrar ahí hoy.
+
 entiendo que estamos en presencia de líderes, de
 
 # s5
