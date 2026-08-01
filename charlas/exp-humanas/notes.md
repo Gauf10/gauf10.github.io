@@ -128,7 +128,7 @@ la palabra construye realidad, cuando charlamos y nos apoyamos en lo que dice el
 
 # s16
 propongo esta diagrama, estar disponible: con puertas abiertas, tiempo para las necesidades del otro.
-No digo ir mesa por mesa, reunión por reunión, preguntando como ayudar, 
+No digo ir mesa por mesa, reunión por reunión, preguntando como ayudar, solo 
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
