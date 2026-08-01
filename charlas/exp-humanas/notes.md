@@ -83,7 +83,7 @@ Generó vínculo y mucha recordación.
 # s10
 que ven?
 
-de nuevo, despúes de lo obvio.
+de nuevo, después de lo obvio.
 
 Los productos lucen, están presentes, en el centro.
 Son hermosos. Miren los muñequitos TRIBE abajo a la derecha, ojo ahí puede haber un vínculo con Tribu.
