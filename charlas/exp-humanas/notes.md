@@ -34,6 +34,11 @@ Empecé a mirar, a mirarme, activar el modo observador que me trae información 
 
 Vamos a ponerlo a prueba.
 
+# s4
+Esta será la pregunta gúia de toda la charla.
+
+
+
 # s5
 s
 
