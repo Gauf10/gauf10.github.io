@@ -60,7 +60,7 @@ no lo que dijiste, no lo que leyeron o vieron.
 
 que decía el cartel con el QR? salvo quien tenga memoria fotográfica, incluso aquel.
 
-Lo que cuenta en una reunión de amigos, o una cena familiar, 
+Lo que cuenta en una reunión de amigos, o una cena familiar, es lo que 
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
