@@ -88,7 +88,7 @@ de nuevo, despúes de lo obvio.
 Los productos lucen, están presentes, en el centro.
 Son hermosos. Miren los muñequitos TRIBE abajo a la derecha, ojo ahí puede haber un vínculo con Tribu.
 
-comida, sonrisas. Todos los departamentos juntos en una gran 
+comida, sonrisas. Todos los departamentos juntos en una gran sala de 
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
