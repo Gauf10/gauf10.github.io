@@ -42,7 +42,9 @@ el esto puede ser lo que quieran, una foto, un momento, una reunión, un video c
 veámoslo juntos.
 
 # s5
-s
+Que ven?
+
+
 
 # s7
 Meg en abasto
