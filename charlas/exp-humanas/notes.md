@@ -30,7 +30,7 @@ Vengo a hablar en detalle de las conversaciones, de los diálogos, de su importa
 # s3
 Como les decía, en tantos años involucrado en experiencias.
 
-Empecé a mirar, a mirarme, activar el modo observador que me trae información y 
+Empecé a mirar, a mirarme, activar el modo observador que me trae información y s
 
 # s5
 s
