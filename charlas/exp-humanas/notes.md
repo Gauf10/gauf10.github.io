@@ -46,7 +46,7 @@ Que ven?
 
 Además de lo evidente.
 
-Es un eu
+Es el equ
 
 # s7
 Meg en abasto
