@@ -37,7 +37,9 @@ Vamos a ponerlo a prueba.
 # s4
 Esta será la pregunta gúia de toda la charla.
 
-el esto puede ser lo que quieran, una foto, un momento, una reunión, un video caso, un viaje en ascensor con alguien de otra 
+el esto puede ser lo que quieran, una foto, un momento, una reunión, un video caso, un viaje en ascensor con alguien de otra área.
+
+
 
 # s5
 s
