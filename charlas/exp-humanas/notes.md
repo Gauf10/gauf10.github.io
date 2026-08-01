@@ -76,7 +76,7 @@ El arte.
 
 Miren el gorro que teníamos.
 
-La gente viene a ser devo
+La gente viene a ser devorados, se rien, actuan
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
