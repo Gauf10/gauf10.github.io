@@ -44,7 +44,7 @@ veámoslo juntos.
 # s5
 Que ven?
 
-Además de lo evin
+Además de lo evidente.
 
 # s7
 Meg en abasto
