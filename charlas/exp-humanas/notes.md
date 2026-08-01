@@ -51,7 +51,7 @@ Es el equipo de trabajo, gente muy querida con quienes colaboro hace una década
 Pensamos y cuidamos que sucede con el usuario, el fan en este caso, cuando se acerca a la experiencia.
 
 Tengo la suerte de trabajar con la industria del entretenimiento, los contenidos son muy queridos por la gente.
-También colab
+También colaboro con otras industrias y entiendo que l
 
 # s7
 Meg en abasto
