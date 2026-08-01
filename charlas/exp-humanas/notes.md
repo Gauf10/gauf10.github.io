@@ -166,7 +166,7 @@ risas, gente compartiendo, vasos de pintura... van a crear algo.
 Disfrutan y conectan.
 
 # s20
-ninguno sabía hacer esta discilplina, claro había gente más capaz, con más habilidad manual que otra, está quien es más prolija que otra.
+ninguno sabía hacer esta disciplina, claro había gente más capaz, con más habilidad manual que otra, está quien es más prolija que otra.
 
 Traje a un experto que nos enseño, colaboramos, fuimos todos juntos 
 
