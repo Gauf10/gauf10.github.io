@@ -114,7 +114,7 @@ Está parte de mi equipo y de cliente, estamos armando una avant premiere de otr
 Está todo blureado intensionalmente, no es importante el contenido.
 
 Es la mañana de armado, hubo planos, fotos, reuniones y documentos, igualmente el espacio real trae nuevos desafíos y hay que decidir en el momento.
-
+Mire
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
