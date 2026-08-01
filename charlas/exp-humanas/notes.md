@@ -76,7 +76,7 @@ El arte.
 
 Miren el gorro que teníamos.
 
-La gente vi
+La gente viene a
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
