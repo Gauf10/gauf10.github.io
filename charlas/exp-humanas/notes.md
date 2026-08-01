@@ -46,7 +46,7 @@ Que ven?
 
 Además de lo evidente.
 
-Es el equipo de tra
+Es el equipo de trabajo, 
 
 # s7
 Meg en abasto
