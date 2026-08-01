@@ -8,7 +8,7 @@ Hacer un recorrido en el diseño de experiencias con personas, todo tipo de expe
 
 
 # s1
-tengo más de 
+tengo más de 40 años
 
 # s2
 Hablar con e
