@@ -70,6 +70,9 @@ Vamos con otro caso, otra experiencia.
 
 
 
+# s9
+Todo comunica,
+
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
  las experiencias son recordadas por las personas.
