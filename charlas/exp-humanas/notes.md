@@ -48,7 +48,7 @@ Además de lo evidente.
 
 Es el equipo de trabajo, gente muy querida con quienes colaboro hace una década.
 
-Pensamos y cuidamos que sucede con el usu
+Pensamos y cuidamos que sucede con el usuario, el fan 
 
 # s7
 Meg en abasto
