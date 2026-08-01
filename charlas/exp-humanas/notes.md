@@ -86,7 +86,7 @@ que ven?
 de nuevo, despúes de lo obvio.
 
 Los productos lucen, están presentes, en el centro.
-Son 
+Son hermosos. MIre
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
