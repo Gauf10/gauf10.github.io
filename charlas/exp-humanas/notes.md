@@ -97,7 +97,7 @@ Lo que despierta la sana competencia, las dinámicas simples y divertidas.
 Lo que hablamos, lo que vivimos y sobre todo los espacios brindados para conectar, nos marcan.
 
 Piensen en cualquier interacción reciente, tal vez hablaron con alguien de su equipo, o quizás con la persona de seguridad o limpieza, y más allá del contenido hablado, que caras había? 
-Gestos 
+Gestos amables? mirada blanda? 
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
