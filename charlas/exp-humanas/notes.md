@@ -94,7 +94,7 @@ comida, sonrisas. Todos los departamentos juntos en una gran sala de reunión.
 Lo que despierta la sana competencia, las dinámicas simples y divertidas.
 
 # s12
-Lo que hablamos, lo que vivi
+Lo que hablamos, lo que vivimos y sobre todo 
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
