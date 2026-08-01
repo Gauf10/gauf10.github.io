@@ -124,7 +124,7 @@ Buenísimo
 como venimos hablando, repasen sus propias charlas, que espacio están dando?
 
 # s15
-la palabra construye realidad
+la palabra construye realidad, cuando charlamos y 
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
