@@ -99,7 +99,7 @@ Lo que hablamos, lo que vivimos y sobre todo los espacios brindados para conecta
 Piensen en cualquier interacción reciente, tal vez hablaron con alguien de su equipo, o quizás con la persona de seguridad o limpieza, y más allá del contenido hablado, que caras había? 
 Gestos amables? mirada blanda? Escucha activa?
 
-o por el contrario, enojo, frases imperativas, mirada 
+o por el contrario, enojo, frases imperativas, mirada a
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
