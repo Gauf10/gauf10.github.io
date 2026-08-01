@@ -127,7 +127,7 @@ como venimos hablando, repasen sus propias charlas, que espacio están dando?
 la palabra construye realidad, cuando charlamos y nos apoyamos en lo que dice el otro, construimos realidades juntos.
 
 # s16
-propongo esta diagrama, estar disponible, 
+propongo esta diagrama, estar disponible: con puertas abiertas, 
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
