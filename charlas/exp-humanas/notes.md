@@ -166,7 +166,7 @@ risas, gente compartiendo, vasos de pintura... van a crear algo.
 Disfrutan y conectan.
 
 # s20
-ninguno sabía hacer esta discilplina, claro había gente más capaz, con más habilidad manual que otra 
+ninguno sabía hacer esta discilplina, claro había gente más capaz, con más habilidad manual que otra, 
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
