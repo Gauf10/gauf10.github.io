@@ -166,7 +166,7 @@ risas, gente compartiendo, vasos de pintura... van a crear algo.
 Disfrutan y conectan.
 
 # s20
-ninguno sabía hacer
+ninguno sabía hacer esta disp
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
