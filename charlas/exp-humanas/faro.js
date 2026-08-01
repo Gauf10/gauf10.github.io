@@ -14,7 +14,7 @@
 
   var API_BASE = 'https://faro-api.gauf10.workers.dev';
   var CHARLA_NAME = 'Diseñar experiencias humanas';
-  var TOTAL_SLIDES = 24;
+  var TOTAL_SLIDES = 27;
 
   /* ──────────────────────────────────────────────
    *  STATE
@@ -64,6 +64,8 @@
     '.img-wrap{display:flex;justify-content:center;align-items:center;width:100%;height:50vh}' +
     '.img-wrap img{max-width:90%;max-height:100%;object-fit:contain;opacity:.85;border-radius:2px}' +
     '.img-wrap video{max-width:90%;max-height:100%;object-fit:contain;opacity:1;border-radius:2px}' +
+    '.img-caption{margin-top:clamp(16px,2.5vh,32px);text-align:center}' +
+    '.img-caption a{font-size:clamp(13px,1.2vw,18px);font-weight:300;letter-spacing:.05em;color:#27d3cc;text-decoration:none}' +
     '.obs-label{font-size:clamp(10px,.9vw,14px);color:var(--dim);letter-spacing:0.12em;text-transform:uppercase;font-weight:400}' +
     '.reveal-steps{text-align:center}' +
     '.reveal-step{font-size:clamp(18px,3.2vw,44px);font-weight:300;line-height:1.5;letter-spacing:0.04em;color:var(--bone);opacity:0;transition:opacity .8s ease,transform .8s ease;transform:translateY(8px)}' +

@@ -50,6 +50,9 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
 .img-wrap{display:flex;justify-content:center;align-items:center;width:100%;height:50vh}
 .img-wrap img{max-width:90%;max-height:100%;object-fit:contain;opacity:.85;border-radius:2px}
 .img-wrap video{max-width:90%;max-height:100%;object-fit:contain;opacity:1;border-radius:2px}
+.img-caption{margin-top:clamp(16px,2.5vh,32px);text-align:center}
+.img-caption a{font-size:clamp(13px,1.2vw,18px);font-weight:300;letter-spacing:.05em;color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .3s}
+.img-caption a:hover{border-bottom-color:var(--accent)}
 
 /* Observation label */
 .obs-label{font-size:clamp(10px,.9vw,14px);color:var(--dim);letter-spacing:0.12em;text-transform:uppercase;font-weight:400}
@@ -111,6 +114,9 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
   <div class="dot" onclick="goTo(21)"></div>
   <div class="dot" onclick="goTo(22)"></div>
   <div class="dot" onclick="goTo(23)"></div>
+  <div class="dot" onclick="goTo(24)"></div>
+  <div class="dot" onclick="goTo(25)"></div>
+  <div class="dot" onclick="goTo(26)"></div>
 </div>
 
 <!-- Arrows -->
@@ -131,7 +137,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
       </div>
       <img src="assets/tribu-Logo-Horizontal-2.png" alt="Tribu" class="footer-logo-circle">
       <div class="si-footer">
-        <img src="assets/GAUF SVG.svg" alt="GAUF" class="footer-logo">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
       </div>
     </div>
   </div>
@@ -146,7 +152,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
       </div>
       <img src="assets/tribu-Logo-Horizontal-2.png" alt="Tribu" class="footer-logo-circle">
       <div class="si-footer">
-        <img src="assets/GAUF SVG.svg" alt="GAUF" class="footer-logo">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
       </div>
     </div>
   </div>
@@ -165,7 +171,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
       </div>
       <img src="assets/tribu-Logo-Horizontal-2.png" alt="Tribu" class="footer-logo-circle">
       <div class="si-footer">
-        <img src="assets/GAUF SVG.svg" alt="GAUF" class="footer-logo">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
       </div>
     </div>
   </div>
@@ -180,7 +186,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
       </div>
       <img src="assets/tribu-Logo-Horizontal-2.png" alt="Tribu" class="footer-logo-circle">
       <div class="si-footer">
-        <img src="assets/GAUF SVG.svg" alt="GAUF" class="footer-logo">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
       </div>
     </div>
   </div>
@@ -195,7 +201,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
       </div>
       <img src="assets/tribu-Logo-Horizontal-2.png" alt="Tribu" class="footer-logo-circle">
       <div class="si-footer">
-        <img src="assets/GAUF SVG.svg" alt="GAUF" class="footer-logo">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
       </div>
     </div>
   </div>
@@ -210,23 +216,38 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
       </div>
       <img src="assets/tribu-Logo-Horizontal-2.png" alt="Tribu" class="footer-logo-circle">
       <div class="si-footer">
-        <img src="assets/GAUF SVG.svg" alt="GAUF" class="footer-logo">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
       </div>
     </div>
   </div>
 
-  <!-- ═══ 7 – Observación 01 ═══ -->
+  <!-- ═══ 7 – experiencia.mp4 ═══ -->
+  <div class="slide" id="s5b">
+    <div class="si">
+      <div class="si-content">
+        <div class="img-wrap">
+          <video src="assets/experiencia.mp4" controls playsinline></video>
+        </div>
+      </div>
+      <img src="assets/tribu-Logo-Horizontal-2.png" alt="Tribu" class="footer-logo-circle">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 8 – Observación 01 ═══ -->
   <div class="slide" id="s6">
     <div class="si">
       <div class="si-content">
         <div class="hero">
           <div class="obs-label">Observación 01</div>
-          <div class="hero-line" style="margin-top:clamp(24px,3vh,52px)">Las <span class="accent">personas</span> recuerdan experiencias</div>
+          <div class="hero-line" style="margin-top:clamp(24px,3vh,52px)">Las <span class="accent">personas</span><br>recuerdan experiencias</div>
         </div>
       </div>
       <img src="assets/tribu-Logo-Horizontal-2.png" alt="Tribu" class="footer-logo-circle">
       <div class="si-footer">
-        <img src="assets/GAUF SVG.svg" alt="GAUF" class="footer-logo">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
       </div>
     </div>
   </div>
@@ -241,7 +262,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
       </div>
       <img src="assets/tribu-Logo-Horizontal-2.png" alt="Tribu" class="footer-logo-circle">
       <div class="si-footer">
-        <img src="assets/GAUF SVG.svg" alt="GAUF" class="footer-logo">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
       </div>
     </div>
   </div>
@@ -256,7 +277,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
       </div>
       <img src="assets/tribu-Logo-Horizontal-2.png" alt="Tribu" class="footer-logo-circle">
       <div class="si-footer">
-        <img src="assets/GAUF SVG.svg" alt="GAUF" class="footer-logo">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
       </div>
     </div>
   </div>
@@ -271,23 +292,38 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
       </div>
       <img src="assets/tribu-Logo-Horizontal-2.png" alt="Tribu" class="footer-logo-circle">
       <div class="si-footer">
-        <img src="assets/GAUF SVG.svg" alt="GAUF" class="footer-logo">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
       </div>
     </div>
   </div>
 
-  <!-- ═══ 11 – Observación 02 ═══ -->
+  <!-- ═══ 11 – reunion.mp4 ═══ -->
+  <div class="slide" id="s9b">
+    <div class="si">
+      <div class="si-content">
+        <div class="img-wrap">
+          <video src="assets/reunion.mp4" controls playsinline></video>
+        </div>
+      </div>
+      <img src="assets/tribu-Logo-Horizontal-2.png" alt="Tribu" class="footer-logo-circle">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 12 – Observación 02 ═══ -->
   <div class="slide" id="s10">
     <div class="si">
       <div class="si-content">
         <div class="hero">
           <div class="obs-label">Observación 02</div>
-          <div class="hero-line" style="margin-top:clamp(24px,3vh,52px)">Las <span class="accent">conversaciones</span> dejan huellas</div>
+          <div class="hero-line" style="margin-top:clamp(24px,3vh,52px)">Las <span class="accent">conversaciones</span><br>dejan huellas</div>
         </div>
       </div>
       <img src="assets/tribu-Logo-Horizontal-2.png" alt="Tribu" class="footer-logo-circle">
       <div class="si-footer">
-        <img src="assets/GAUF SVG.svg" alt="GAUF" class="footer-logo">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
       </div>
     </div>
   </div>
@@ -302,7 +338,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
       </div>
       <img src="assets/tribu-Logo-Horizontal-2.png" alt="Tribu" class="footer-logo-circle">
       <div class="si-footer">
-        <img src="assets/GAUF SVG.svg" alt="GAUF" class="footer-logo">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
       </div>
     </div>
   </div>
@@ -317,7 +353,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
       </div>
       <img src="assets/tribu-Logo-Horizontal-2.png" alt="Tribu" class="footer-logo-circle">
       <div class="si-footer">
-        <img src="assets/GAUF SVG.svg" alt="GAUF" class="footer-logo">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
       </div>
     </div>
   </div>
@@ -328,12 +364,12 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
       <div class="si-content">
         <div class="hero">
           <div class="obs-label">Observación 03</div>
-          <div class="hero-line" style="margin-top:clamp(24px,3vh,52px);max-width:640px;line-height:1.5">Conversando <span class="accent">construimos</span> realidades</div>
+          <div class="hero-line" style="margin-top:clamp(24px,3vh,52px);max-width:640px;line-height:1.5">Conversando<br><span class="accent">construimos</span> realidades</div>
         </div>
       </div>
       <img src="assets/tribu-Logo-Horizontal-2.png" alt="Tribu" class="footer-logo-circle">
       <div class="si-footer">
-        <img src="assets/GAUF SVG.svg" alt="GAUF" class="footer-logo">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
       </div>
     </div>
   </div>
@@ -351,7 +387,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
       </div>
       <img src="assets/tribu-Logo-Horizontal-2.png" alt="Tribu" class="footer-logo-circle">
       <div class="si-footer">
-        <img src="assets/GAUF SVG.svg" alt="GAUF" class="footer-logo">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
       </div>
     </div>
   </div>
@@ -363,10 +399,11 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
         <div class="img-wrap">
           <img src="assets/impro.jpg" alt="">
         </div>
+        <div class="img-caption"><a href="https://www.youtube.com/@lachispaimpro/videos" target="_blank">La Chispa Impro</a></div>
       </div>
       <img src="assets/tribu-Logo-Horizontal-2.png" alt="Tribu" class="footer-logo-circle">
       <div class="si-footer">
-        <img src="assets/GAUF SVG.svg" alt="GAUF" class="footer-logo">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
       </div>
     </div>
   </div>
@@ -385,7 +422,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
       </div>
       <img src="assets/tribu-Logo-Horizontal-2.png" alt="Tribu" class="footer-logo-circle">
       <div class="si-footer">
-        <img src="assets/GAUF SVG.svg" alt="GAUF" class="footer-logo">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
       </div>
     </div>
   </div>
@@ -400,23 +437,38 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
       </div>
       <img src="assets/tribu-Logo-Horizontal-2.png" alt="Tribu" class="footer-logo-circle">
       <div class="si-footer">
-        <img src="assets/GAUF SVG.svg" alt="GAUF" class="footer-logo">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
       </div>
     </div>
   </div>
 
-  <!-- ═══ 19 – Observación 04 ═══ -->
+  <!-- ═══ 19 – equipo2.jpg ═══ -->
+  <div class="slide" id="s17b">
+    <div class="si">
+      <div class="si-content">
+        <div class="img-wrap">
+          <img src="assets/equipo2.jpg" alt="">
+        </div>
+      </div>
+      <img src="assets/tribu-Logo-Horizontal-2.png" alt="Tribu" class="footer-logo-circle">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 20 – Observación 04 ═══ -->
   <div class="slide" id="s18">
     <div class="si">
       <div class="si-content">
         <div class="hero">
           <div class="obs-label">Observación 04</div>
-          <div class="hero-line" style="margin-top:clamp(24px,3vh,52px);max-width:640px;line-height:1.5">Las <span class="accent">conversaciones</span> diseñan experiencias</div>
+          <div class="hero-line" style="margin-top:clamp(24px,3vh,52px);max-width:640px;line-height:1.5">Diseñamos espacios para que las <span class="accent">personas</span> conversen</div>
         </div>
       </div>
       <img src="assets/tribu-Logo-Horizontal-2.png" alt="Tribu" class="footer-logo-circle">
       <div class="si-footer">
-        <img src="assets/GAUF SVG.svg" alt="GAUF" class="footer-logo">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
       </div>
     </div>
   </div>
@@ -431,7 +483,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
       </div>
       <img src="assets/tribu-Logo-Horizontal-2.png" alt="Tribu" class="footer-logo-circle">
       <div class="si-footer">
-        <img src="assets/GAUF SVG.svg" alt="GAUF" class="footer-logo">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
       </div>
     </div>
   </div>
@@ -446,7 +498,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
       </div>
       <img src="assets/tribu-Logo-Horizontal-2.png" alt="Tribu" class="footer-logo-circle">
       <div class="si-footer">
-        <img src="assets/GAUF SVG.svg" alt="GAUF" class="footer-logo">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
       </div>
     </div>
   </div>
@@ -461,7 +513,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
       </div>
       <img src="assets/tribu-Logo-Horizontal-2.png" alt="Tribu" class="footer-logo-circle">
       <div class="si-footer">
-        <img src="assets/GAUF SVG.svg" alt="GAUF" class="footer-logo">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
       </div>
     </div>
   </div>
@@ -478,7 +530,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
       </div>
       <img src="assets/tribu-Logo-Horizontal-2.png" alt="Tribu" class="footer-logo-circle">
       <div class="si-footer">
-        <img src="assets/GAUF SVG.svg" alt="GAUF" class="footer-logo">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
       </div>
     </div>
   </div>
@@ -487,7 +539,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
   <div class="slide" id="s23">
     <div class="si">
       <div class="si-content" style="justify-content:center;position:relative">
-        <div class="s9-quote hero" style="max-width:780px"><div class="hero-line" style="line-height:1.5">Las organizaciones no se transforman cuando por la aparición de nuevas ideas, lo hacen cuando las personas construyen en conjunto con las ideas de los demás</div></div>
+        <div class="s9-quote hero" style="max-width:780px"><div class="hero-line" style="line-height:1.5">Las organizaciones no se transforman cuando aparece una gran idea<br><br><span class="accent">Se transforman cuando las personas construyen sobre las ideas de los demás</span></div></div>
         <div style="position:absolute;bottom:clamp(56px,6vh,80px);left:var(--pad);right:var(--pad);display:flex;justify-content:space-between;align-items:center;z-index:3;-webkit-user-select:text;user-select:text">
           <div class="hero-line" style="font-weight:700;font-size:clamp(20px,2.8vw,40px);letter-spacing:0.04em">GRACIAS</div>
           <div style="text-align:right">
@@ -497,7 +549,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
       </div>
       <img src="assets/tribu-Logo-Horizontal-2.png" alt="Tribu" class="footer-logo-circle">
       <div class="si-footer">
-        <img src="assets/GAUF SVG.svg" alt="GAUF" class="footer-logo">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
       </div>
     </div>
   </div>
@@ -507,7 +559,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
 <script src="broadcast.js"></script>
 <script>
 var cur = 0;
-var TOTAL = 24;
+var TOTAL = 27;
 var animating = false;
 var autoTimer = null;
 var slidesHTML = [];
