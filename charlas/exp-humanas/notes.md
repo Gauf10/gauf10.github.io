@@ -175,4 +175,4 @@ Como líderes, creamos espacios para que surjan conversaciones que generan exper
  las experiencias son recordadas por las personas.
 
 # s22
-reu
+reunión virtual, creamos experiencias colaborando
