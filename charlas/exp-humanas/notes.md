@@ -142,7 +142,7 @@ Construyen juntos en un diálogo breve, cual es el punto de vista de cada uno.
 Y transforman, crear una nueva realidad: la reunión será el martes, solo que en vez de llegar estresados y a medias, presentarán 2 de los 4 temas y esos dos estarán desarrollados en profundidad.
 
 # s17
-Nos vamos brevemente a otra faceta, acá estoy constru
+Nos vamos brevemente a otra faceta, acá estoy construyendo una escena imrp
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
