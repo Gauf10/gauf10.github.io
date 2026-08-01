@@ -91,7 +91,7 @@ Son hermosos. Miren los muñequitos TRIBE abajo a la derecha, ojo ahí puede hab
 comida, sonrisas. Todos los departamentos juntos en una gran sala de reunión.
 
 # s11
-L
+Lo que despierta la sana competencia, 
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
