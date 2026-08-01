@@ -46,7 +46,7 @@ Que ven?
 
 Además de lo evidente.
 
-Es el equipo de trabajo, gente muy 
+Es el equipo de trabajo, gente muy querida con quienes colabor
 
 # s7
 Meg en abasto
