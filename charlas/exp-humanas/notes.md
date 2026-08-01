@@ -13,4 +13,4 @@ fecha
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
- las cuales son recordadas por las personas.
+ las experienciascuales son recordadas por las personas.
