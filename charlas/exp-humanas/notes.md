@@ -93,6 +93,9 @@ comida, sonrisas. Todos los departamentos juntos en una gran sala de reunión.
 # s11
 Lo que despierta la sana competencia, las dinámicas simples y divertidas.
 
+# s12
+Lo que 
+
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
  las experiencias son recordadas por las personas.
