@@ -13,7 +13,7 @@ más de 20 años laborales.
 más de 15 años liderando y dedicadome a la creación de experiencias.
 
 Trabajé en productoras audiovisuales y luego fundé mi agencia de marketing de experiencias de marca.
-Además tuve diversos emprendimientos mentoreo emp
+Además mentoreo emp
 
 # s2
 Hablar con e
