@@ -12,4 +12,5 @@ Meg en abasto
 fecha
 
 # s21
-Como líderes, creamos espacios para que surjan conversaciones que generan experiencias, las cuales son recordadas por las personas.
+Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
+ las cuales son recordadas por las personas.
