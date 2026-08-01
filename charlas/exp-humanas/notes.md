@@ -131,7 +131,9 @@ propongo esta diagrama, estar disponible: con puertas abiertas, tiempo para las 
 No digo ir mesa por mesa, reunión por reunión, preguntando como ayudar, solo mostrarse disponible, estar presente.
 
 Validar opiniones, incluso si al tomar decisiiones no satisfaga a todos. Escuchar, aceptar, por ejemplo:
-Alguien de tu equipo viene y te dice, no llegamos al martes con la presentación, 
+Alguien de tu equipo viene y te dice, no llegamos al martes con la presentación, me gustaría pasarlo a jueves.
+
+Vos sabes que conviene martes para 
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
