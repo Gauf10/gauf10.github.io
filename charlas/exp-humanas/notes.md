@@ -151,7 +151,7 @@ En la impro, los participantes crean escenas sin tener idea que va a pasar, no h
 Se acepta y construye sobre lo que todos proponen.
 
 # s18
-cada uno trae sus 
+cada uno trae sus herramientas
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
