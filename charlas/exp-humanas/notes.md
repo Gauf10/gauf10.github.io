@@ -144,7 +144,7 @@ Y transforman, crear una nueva realidad: la reunión será el martes, solo que e
 # s17
 Nos vamos brevemente a otra faceta, acá estoy construyendo una escena improvisada con Agus.
 
-No importa que es lo que pasa, tal vez es una 
+No importa que es lo que pasa, tal vez es una nave despa
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
