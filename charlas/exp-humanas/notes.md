@@ -112,7 +112,8 @@ que ven en esta charla de whatsapp?
 Está parte de mi equipo y de cliente, estamos armando una avant premiere de otra pelicula.
 
 Está todo blureado intensionalmente, no es importante el contenido.
-E
+
+Es la mañana
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
