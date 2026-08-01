@@ -53,6 +53,8 @@ Pensamos y cuidamos que sucede con el usuario, el fan en este caso, cuando se ac
 Tengo la suerte de trabajar con la industria del entretenimiento, los contenidos son muy queridos por la gente.
 También colaboro con otras industrias y entiendo que tiene otros desafíos, por ejemplo hablar de finanzar, jhonny puede desarrollar esto mucho mejor que yo.
 
+Pero acá no 
+
 # s7
 Meg en abasto
 fecha
