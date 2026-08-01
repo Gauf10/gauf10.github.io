@@ -4,7 +4,7 @@ Gracias todos los que dan un ratito de su tiempo para conectarse en vivo y a qui
 
 Vengo a dar mi mirada, una opinión, más bien una invitación. 
 
-H
+Hacer un recc
 
 # s2
 Hablar con e
