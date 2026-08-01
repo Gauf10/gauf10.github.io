@@ -1,5 +1,5 @@
 # s0
-Muchas gracias Dani, 
+Muchas gracias Dani, Jhonny y todo el equipo de Tribu por abrirme 
 
 # s2
 Hablar con e
