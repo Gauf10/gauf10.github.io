@@ -19,7 +19,7 @@ Estoy involucrado con disciplinas actorales, como la dirección de actores, la i
 
 # s2
 tenemos claro los productos, las marcas, las empresas y organizaciones, no voy a entrar ahí hoy.
-También sabemos que 
+También sabemos que l
 entiendo que estamos en presencia de líderes, de
 
 # s5
