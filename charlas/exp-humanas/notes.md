@@ -60,7 +60,7 @@ no lo que dijiste, no lo que leyeron o vieron.
 
 que decía el cartel con el QR? salvo quien tenga memoria fotográfica, incluso aquel.
 
-Lo que 
+Lo que cuenta en una reunión de 
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
