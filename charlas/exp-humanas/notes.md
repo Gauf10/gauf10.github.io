@@ -28,7 +28,7 @@ No voy a entrar ahí hoy tampoco.
 Vengo a hablar en detalle de las conversaciones, de los diálogos, de su importancia.
 
 # s3
-Como les decía, en tantos años 
+Como les decía, en tantos años involucrado en experiencias
 
 # s5
 s
