@@ -1,6 +1,6 @@
 # s0
 Muchas gracias Dani, Jhonny y todo el equipo de Tribu por abrirme la tienda.
-Gracias todos
+Gracias todos los que 
 
 # s2
 Hablar con e
