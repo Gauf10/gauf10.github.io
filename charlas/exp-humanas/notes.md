@@ -22,7 +22,7 @@ tenemos claro los productos, las marcas, las empresas y organizaciones, no voy a
 También sabemos que los proyectos se hacen en equipo, ya sean equipos internos o colaboradores externos.
 Freelance, remotos, clientes, proveedores.
 
-entiendo que estamos en presencia de líderes, 
+entiendo que estamos en presencia de líderes, que saben confor
 
 # s5
 s
