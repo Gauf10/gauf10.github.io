@@ -85,6 +85,8 @@ que ven?
 
 de nuevo, despúes de lo obvio.
 
+T
+
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
  las experiencias son recordadas por las personas.
