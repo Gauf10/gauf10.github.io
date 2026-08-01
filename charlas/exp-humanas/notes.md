@@ -15,7 +15,7 @@ más de 15 años liderando y dedicadome a la creación de experiencias.
 Trabajé en productoras audiovisuales y luego fundé mi agencia de marketing de experiencias de marca.
 Además mentoreo emprendedores en distintos estadíos.
 
-Estoy involucrado con disciplinas actorales, como la dirección de actores, la improvisación, el clown
+Estoy involucrado con disciplinas actorales, como la dirección de actores, la improvisación, el clown. Esto va a
 
 # s2
 Hablar con e
