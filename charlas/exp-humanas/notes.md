@@ -4,7 +4,7 @@ Gracias todos los que dan un ratito de su tiempo para conectarse en vivo y a qui
 
 Vengo a dar mi mirada, una opinión, más bien una invitación. 
 
-Hacer un recorrido en el diseño de experiencias con personas, todo tipo de experiencias no solo profecion
+Hacer un recorrido en el diseño de experiencias con personas, todo tipo de experiencias no solo profecionales.
 
 # s2
 Hablar con e
