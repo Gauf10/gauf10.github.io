@@ -83,7 +83,7 @@ Generó vínculo y mucha recordación.
 # s10
 que ven?
 
-de nuevo, 
+de nuevo, despúes de lo 
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
