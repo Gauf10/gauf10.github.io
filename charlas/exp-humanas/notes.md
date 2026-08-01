@@ -118,6 +118,8 @@ Miren como colaboran.
 
 Como se dan espacio, tiempo, incluso confianza. No hace falta que sea presencial, la conversación sucede en todo ámbito, sincrónico o asincrónico.
 
+Buenisimo
+
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
  las experiencias son recordadas por las personas.
