@@ -48,7 +48,9 @@ Además de lo evidente.
 
 Es el equipo de trabajo, gente muy querida con quienes colaboro hace una década.
 
-Pensamos y cuidamos que sucede con el usuario, el fan en este caso, cuando se acerca 
+Pensamos y cuidamos que sucede con el usuario, el fan en este caso, cuando se acerca a la experiencia.
+
+Tengo la suerte de trabaj
 
 # s7
 Meg en abasto
