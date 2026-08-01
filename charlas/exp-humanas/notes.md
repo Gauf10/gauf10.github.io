@@ -65,6 +65,9 @@ Lo que cuenta en una reunión de amigos, o una cena familiar, es lo que sintió,
 Las experiencias son lo que nos llevamos. Si volaste o tuviste super fuerza como superman.
 Si viajaste al fondo del mar, si pudiste dejar una opinión, dar estrellas, si te sonrieron y te agradecieron. 
 
+# s8
+Vamos con t
+
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
  las experiencias son recordadas por las personas.
