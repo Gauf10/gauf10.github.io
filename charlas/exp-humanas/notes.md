@@ -8,7 +8,7 @@ Hacer un recorrido en el diseño de experiencias con personas, todo tipo de expe
 
 
 # s1
-tengo 
+tengo más de 
 
 # s2
 Hablar con e
