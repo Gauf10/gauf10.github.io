@@ -96,7 +96,7 @@ Lo que despierta la sana competencia, las dinámicas simples y divertidas.
 # s12
 Lo que hablamos, lo que vivimos y sobre todo los espacios brindados para conectar, nos marcan.
 
-Piensen en cualquier interacción reciente, tal vez hablaron con alguien de su equipo, o 
+Piensen en cualquier interacción reciente, tal vez hablaron con alguien de su equipo, o quizás con el 
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
