@@ -30,7 +30,7 @@ Vengo a hablar en detalle de las conversaciones, de los diálogos, de su importa
 # s3
 Como les decía, en tantos años involucrado en experiencias.
 
-Emp
+Empecé a m
 
 # s5
 s
