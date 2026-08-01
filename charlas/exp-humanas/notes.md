@@ -139,7 +139,7 @@ Le podes decis entiendo que te preocupe, que los está trabando?
 
 Construyen juntos en un diálogo breve, cual es el punto de vista de cada uno.
 
-Y transforman, crear una nueva realidad: la reunión será el martes, 
+Y transforman, crear una nueva realidad: la reunión será el martes, solo que en vez de llegar estr
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
