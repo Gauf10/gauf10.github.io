@@ -113,7 +113,7 @@ Está parte de mi equipo y de cliente, estamos armando una avant premiere de otr
 
 Está todo blureado intensionalmente, no es importante el contenido.
 
-Es la mañana
+Es la mañana de armado, 
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
