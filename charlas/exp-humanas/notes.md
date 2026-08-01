@@ -76,7 +76,7 @@ El arte.
 
 Miren el gorro que teníamos.
 
-La gente viene a ser devorados, se rien, actuan. No lo hacen p
+La gente viene a ser devorados, se rien, actuan. No lo hacen para nuestras cámaras, lo hace
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
