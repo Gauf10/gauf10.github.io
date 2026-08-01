@@ -46,7 +46,7 @@ Que ven?
 
 Además de lo evidente.
 
-Es el equ
+Es el equipo de tra
 
 # s7
 Meg en abasto
