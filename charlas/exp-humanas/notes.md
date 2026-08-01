@@ -116,7 +116,7 @@ Está todo blureado intensionalmente, no es importante el contenido.
 Es la mañana de armado, hubo planos, fotos, reuniones y documentos, igualmente el espacio real trae nuevos desafíos y hay que decidir en el momento.
 Miren como colaboran.
 
-Como se dan espacio, tiempo, incluso confianza. No hace falta que sea presencial, la conversación sucede en todo ámbito, incluso 
+Como se dan espacio, tiempo, incluso confianza. No hace falta que sea presencial, la conversación sucede en todo ámbito, sincrónico o asincrónico.
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
