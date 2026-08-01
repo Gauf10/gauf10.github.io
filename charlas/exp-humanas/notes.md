@@ -10,3 +10,6 @@ s
 # s7
 Meg en abasto
 fecha
+
+# s21
+Como líderes, creamos, diseñamos, espacios para que surjan conversaciones que generan experiencias, las cuales son recordadas por las personas.
