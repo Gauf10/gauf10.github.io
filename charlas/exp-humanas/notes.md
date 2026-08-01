@@ -101,7 +101,7 @@ Gestos amables? mirada blanda? Escucha activa?
 
 o por el contrario, enojo, frases imperativas, mirada baja?
 
-Que pasa 
+Que pasa y yo en vez de w
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
