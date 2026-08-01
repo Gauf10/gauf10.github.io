@@ -102,7 +102,7 @@ Gestos amables? mirada blanda? Escucha activa?
 o por el contrario, enojo, frases imperativas, mirada baja?
 
 Que pasa y yo en vez de dar esta charla con pecho abierto, manos abierta, dientes visibles.
-la doy así, cabizbajo, brazos cruzados, m
+la doy así, cabizbajo, brazos cruzados, mirada apagada.
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
