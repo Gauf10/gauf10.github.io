@@ -74,7 +74,7 @@ Vamos con otro caso, otra experiencia.
 Todo comunica, la ropa de los promotores, la sonrisa, la aplicación, el video de convocatoria.
 El arte.
 
-Miren el 
+Miren el gorro que teníamos
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
