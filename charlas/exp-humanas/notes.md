@@ -48,7 +48,7 @@ Además de lo evidente.
 
 Es el equipo de trabajo, gente muy querida con quienes colaboro hace una década.
 
-Cui
+Pensamos y cuidamos que suce
 
 # s7
 Meg en abasto
