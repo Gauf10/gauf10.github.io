@@ -18,7 +18,7 @@ Además mentoreo emprendedores en distintos estadíos.
 Estoy involucrado con disciplinas actorales, como la dirección de actores, la improvisación, el clown. Esto va a cobrar sentido al final de la charla.
 
 # s2
-Hablar con e
+entiendo que 
 
 # s5
 s
