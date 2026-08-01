@@ -46,7 +46,7 @@ Que ven?
 
 Además de lo evidente.
 
-Es el equipo de trabajo, gente muy querida con quienes colaboro hace 
+Es el equipo de trabajo, gente muy querida con quienes colaboro hace una década.
 
 # s7
 Meg en abasto
