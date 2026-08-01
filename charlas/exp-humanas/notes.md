@@ -80,6 +80,11 @@ La gente viene a ser devorados, se rien, actuan. No lo hacen para nuestras cáma
 
 Generó vínculo y mucha recordación.
 
+# s10
+que ven?
+
+
+
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
  las experiencias son recordadas por las personas.
