@@ -168,7 +168,7 @@ Disfrutan y conectan.
 # s20
 ninguno sabía hacer esta disciplina, claro había gente más capaz, con más habilidad manual que otra, está quien es más prolija que otra.
 
-Traje a un experto que nos enseño, colaboramos, fuimos todos juntos, n
+Traje a un experto que nos enseño, colaboramos, fuimos todos juntos, nos ayudamos, 
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
