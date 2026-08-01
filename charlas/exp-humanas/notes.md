@@ -168,6 +168,8 @@ Disfrutan y conectan.
 # s20
 ninguno sabía hacer esta discilplina, claro había gente más capaz, con más habilidad manual que otra, está quien es más prolija que otra.
 
+Traje a un experto que nos enseño, colaboram
+
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
  las experiencias son recordadas por las personas.
