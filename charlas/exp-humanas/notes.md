@@ -106,6 +106,9 @@ la doy así, cabizbajo, brazos cruzados, mirada apagada?
 
 Todo deja huellas.
 
+# s13
+que ven en est
+
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
  las experiencias son recordadas por las personas.
