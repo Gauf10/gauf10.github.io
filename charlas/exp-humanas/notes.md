@@ -2,6 +2,8 @@
 Muchas gracias Dani, Jhonny y todo el equipo de Tribu por abrirme la tienda.
 Gracias todos los que dan un ratito de su tiempo para conectarse en vivo y a quienes lo ven en diferido.
 
+
+
 # s2
 Hablar con e
 
