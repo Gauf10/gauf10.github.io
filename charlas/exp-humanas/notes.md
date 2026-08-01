@@ -157,7 +157,7 @@ Todos proponen desde lo que saben, lo que entienden, lo que pueden.
 
 Todo tiene valor y esta bien.
 
-No 
+No es suma, no es AB 
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
