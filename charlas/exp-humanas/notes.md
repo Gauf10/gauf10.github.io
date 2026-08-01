@@ -146,7 +146,9 @@ Nos vamos brevemente a otra faceta, acá estoy construyendo una escena improvisa
 
 No importa que es lo que pasa, tal vez es una nave despegando, o lo que sea.
 
-En la impro, los participantes crean escenas sin tener idea que va a pasar, no hay materiales, solo cuerpo y vos
+En la impro, los participantes crean escenas sin tener idea que va a pasar, no hay materiales, solo cuerpo y voz.
+
+Se 
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
