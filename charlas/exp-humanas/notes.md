@@ -78,7 +78,7 @@ Miren el gorro que teníamos.
 
 La gente viene a ser devorados, se rien, actuan. No lo hacen para nuestras cámaras, lo hicieron durante toda la semana que estuvimos para su propia experiencia, para su video que compartieron en redes, en familia, que atesoraron. Fueron devorados por un megalodón. 
 
-Generó 
+Generó vínculo y mucha
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
