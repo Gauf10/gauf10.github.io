@@ -12,7 +12,7 @@ tengo más de 40 años.
 más de 20 años laborales.
 más de 15 años liderando y dedicadome a la creación de experiencias.
 
-Trabajé en productoras audiovisuales y luego fundé mi agencia de marketing de Bra
+Trabajé en productoras audiovisuales y luego fundé mi agencia de marketing de experiencias de marca
 
 # s2
 Hablar con e
