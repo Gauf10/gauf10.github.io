@@ -56,7 +56,7 @@ También colaboro con otras industrias y entiendo que tiene otros desafíos, por
 Pero acá no hablamos de producto, sino de experiencias.
 
 # s7
-no lo que dijiste, 
+no lo que dijiste, no
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
