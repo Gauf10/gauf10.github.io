@@ -146,7 +146,7 @@ Nos vamos brevemente a otra faceta, acá estoy construyendo una escena improvisa
 
 No importa que es lo que pasa, tal vez es una nave despegando, o lo que sea.
 
-En la impro, los participantes
+En la impro, los participantes 
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
