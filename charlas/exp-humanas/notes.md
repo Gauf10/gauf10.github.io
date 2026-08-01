@@ -135,7 +135,7 @@ Alguien de tu equipo viene y te dice, no llegamos al martes con la presentación
 
 Vos sabes que conviene martes para anticiparte, para lograr cerrar el negocio, etc.
 
-Le podes decír 
+Le podes decis entiendo qu
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
