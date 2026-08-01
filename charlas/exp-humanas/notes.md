@@ -153,7 +153,7 @@ Se acepta y construye sobre lo que todos proponen.
 # s18
 cada uno trae sus herramientas, sus talentos, su mirada, sus capacidades.
 
-Todos proponen desde do
+Todos proponen desde lo que saben, lo que entienden, lo que pueden
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
