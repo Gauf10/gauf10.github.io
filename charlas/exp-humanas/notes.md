@@ -109,6 +109,8 @@ Todo deja huellas.
 # s13
 que ven en esta charla de whatsapp?
 
+Está parte de mi equipo y de cliente, estamos armando 
+
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
  las experiencias son recordadas por las personas.
