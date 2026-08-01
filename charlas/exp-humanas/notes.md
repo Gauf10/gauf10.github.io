@@ -32,6 +32,8 @@ Como les decía, en tantos años involucrado en experiencias.
 
 Empecé a mirar, a mirarme, activar el modo observador que me trae información y sensaciones más allá de lo evidente.
 
+Vamos a ponerlo a prueba.
+
 # s5
 s
 
