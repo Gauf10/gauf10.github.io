@@ -138,6 +138,7 @@ Vos sabes que conviene martes para anticiparte, para lograr cerrar el negocio, e
 Le podes decis entiendo que te preocupe, que los está trabando?
 
 
+
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
  las experiencias son recordadas por las personas.
