@@ -71,7 +71,7 @@ Vamos con otro caso, otra experiencia.
 
 
 # s9
-Todo comunica, la ropa de los promotores, la son
+Todo comunica, la ropa de los promotores, la sonriza, l
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
