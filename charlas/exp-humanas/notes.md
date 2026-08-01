@@ -9,7 +9,8 @@ Hacer un recorrido en el diseño de experiencias con personas, todo tipo de expe
 
 # s1
 tengo más de 40 años.
-más de 20 años 
+más de 20 años laborales.
+
 
 # s2
 Hablar con e
