@@ -24,7 +24,7 @@ Freelance, remotos, clientes, proveedores.
 
 entiendo que estamos en presencia de líderes, que saben conformar equipos, contratar servicios, consolidar procesos.
 
-Vengo a hablar 
+Vengo a hablar en detalle
 
 # s5
 s
