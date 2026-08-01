@@ -12,6 +12,4 @@ Meg en abasto
 fecha
 
 # s18
-
-
 Como líderes, creamos, diseñamos, espacios para que surjan conversaciones que generan experiencias, las cuales son recordadas por las personas.
