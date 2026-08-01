@@ -58,7 +58,7 @@ Pero acá no hablamos de producto, sino de experiencias.
 # s7
 no lo que dijiste, no lo que leyeron o vieron.
 
-que decía el cartel con el QR? salvo 
+que decía el cartel con el QR? salvo quien tenga 
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
