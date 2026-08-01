@@ -72,7 +72,9 @@ Vamos con otro caso, otra experiencia.
 
 # s9
 Todo comunica, la ropa de los promotores, la sonrisa, la aplicación, el video de convocatoria.
-El arte
+El arte.
+
+Mire 
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
