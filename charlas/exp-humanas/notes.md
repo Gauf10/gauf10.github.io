@@ -163,6 +163,8 @@ No es suma, no es AB ni BA ni ABBBAAB  es C, es algo nuevo transformado del apor
 que ven?
 risas, gente compartiendo, vasos de pintura... van a crear algo.
 
+Disfrutan y conectan.
+
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
  las experiencias son recordadas por las personas.
