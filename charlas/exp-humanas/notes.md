@@ -85,7 +85,7 @@ que ven?
 
 de nuevo, despúes de lo obvio.
 
-T
+Los productos 
 
 # s21
 Como líderes, creamos espacios para que surjan conversaciones que generan experiencias
