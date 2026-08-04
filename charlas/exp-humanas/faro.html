@@ -19,13 +19,7 @@
 <div id="app">
   <div id="top-bar">
     <div class="status-item" id="st-time">--:--</div>
-    <div id="top-right">
-      <button id="share-btn" aria-label="Compartir">
-        <svg class="share-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
-        <span>Compartir</span>
-      </button>
-      <button id="help-btn" onclick="Faro.toggleHelp()" aria-label="Ayuda">ⓘ</button>
-    </div>
+    <button id="help-btn" onclick="Faro.toggleHelp()" aria-label="Ayuda">ⓘ</button>
   </div>
   <div id="slide-current"></div>
   <div class="divider is-draggable" id="drag-handle">
@@ -44,6 +38,9 @@
       <div class="status-item" id="st-elapsed">--:--</div>
       <div class="status-item" id="st-slide-time">+--:--</div>
       <div class="status-item" id="st-slide">--/--</div>
+      <button id="share-btn" aria-label="Compartir">
+        <svg class="share-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+      </button>
       <button id="aprendizajes-btn" onclick="Faro.toggleAprendizajes()" aria-label="Aprendizajes">✦</button>
     </div>
   </div>

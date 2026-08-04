@@ -30,15 +30,19 @@ html,body{
   font-size:clamp(11px,.8vw,13px);font-weight:300;
   letter-spacing:.06em;color:var(--dim)
 }
-#top-right{display:flex;align-items:center;gap:clamp(8px,1vw,14px)}
-#share-btn,#help-btn{
+#help-btn{
   background:transparent;border:none;color:var(--dim);
   cursor:pointer;font-size:clamp(11px,.9vw,14px);line-height:1;
   padding:2px 4px;transition:color .3s
 }
-#share-btn{display:flex;align-items:center;gap:6px;font-family:'Archivo',sans-serif;font-weight:300;letter-spacing:.04em}
-.share-icon{width:clamp(13px,1vw,16px);height:clamp(13px,1vw,16px)}
-#share-btn:hover,#help-btn:hover{color:var(--fg)}
+#help-btn:hover{color:var(--fg)}
+#share-btn{
+  background:transparent;border:none;color:var(--dim);
+  cursor:pointer;line-height:1;padding:2px 4px;
+  display:flex;align-items:center;transition:color .3s
+}
+#share-btn:hover{color:var(--accent)}
+.share-icon{width:clamp(12px,1vw,15px);height:clamp(12px,1vw,15px)}
 
 /* ========== share menu ========== */
 

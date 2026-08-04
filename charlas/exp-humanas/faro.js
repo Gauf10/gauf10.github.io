@@ -745,8 +745,14 @@
 
   function openShareMenu() {
     var r = shareBtnEl.getBoundingClientRect();
-    shareMenuEl.style.left = Math.max(8, r.right - shareMenuEl.offsetWidth) + 'px';
-    shareMenuEl.style.top = (r.bottom + 8) + 'px';
+    var w = shareMenuEl.offsetWidth;
+    var left = Math.max(8, r.right - w);
+    var top = r.bottom + 8;
+    if (top + shareMenuEl.offsetHeight > window.innerHeight) {
+      top = r.top - shareMenuEl.offsetHeight - 8;
+    }
+    shareMenuEl.style.left = left + 'px';
+    shareMenuEl.style.top = top + 'px';
     shareMenuEl.classList.add('open');
     shareMenuOpen = true;
   }
