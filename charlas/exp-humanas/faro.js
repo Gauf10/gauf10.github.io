@@ -532,6 +532,7 @@
         if (broadcast) broadcast.postMessage({ type: 'blackout', active: blackoutActive });
         break;
       case 'Escape':
+        if (shareMenuOpen) { closeShareMenu(); return; }
         if (document.getElementById('help-overlay').classList.contains('open')) {
           document.getElementById('help-overlay').classList.remove('open');
           return;
@@ -629,6 +630,7 @@
     showWaiting();
     initDrag();
     initBroadcast();
+    initShare();
 
     /* Load notes + aprendizajes from API */
     Api.getNotes().then(function(data) {
@@ -648,6 +650,124 @@
         headers: { 'Authorization': 'Bearer ' + Auth.getToken() },
       }).catch(function() {});
     }, 60000);
+  }
+
+  /* ──────────────────────────────────────────────
+   *  SHARE
+   *  Cada ítem del menú es una entrada de SHARE_ITEMS:
+   *  agregar una opción nueva = sumar un objeto acá.
+   * ────────────────────────────────────────────── */
+
+  var shareBtnEl = document.getElementById('share-btn');
+  var shareMenuEl = document.getElementById('share-menu');
+  var shareMenuOpen = false;
+  var toastTimer = null;
+
+  var SHARE_ITEMS = [
+    {
+      id: 'pdf',
+      label: 'Exportar PDF',
+      icon: '<path d="M12 3v12m0-12L8 7m4-4l4 4"/><path d="M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/>',
+      run: exportPDF
+    },
+    {
+      id: 'link',
+      label: 'Copiar enlace',
+      icon: '<path d="M9 12h6"/><path d="M8.5 15.5L6.6 17.4a3 3 0 01-4.2-4.2l3-3a3 3 0 014.2 0"/><path d="M15.5 8.5l1.9-1.9a3 3 0 114.2 4.2l-3 3a3 3 0 01-4.2 0"/>',
+      run: copyLink
+    },
+    {
+      id: 'open',
+      label: 'Abrir presentación pública',
+      icon: '<path d="M13 5h6v6"/><path d="M19 5l-8 8"/><path d="M10 5H7a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-3"/>',
+      run: openPresentation
+    }
+  ];
+
+  function buildShareMenu() {
+    shareMenuEl.innerHTML = '<div class="share-menu-title">Compartir</div>';
+    for (var i = 0; i < SHARE_ITEMS.length; i++) {
+      var it = SHARE_ITEMS[i];
+      var btn = document.createElement('button');
+      btn.className = 'share-menu-item';
+      btn.setAttribute('data-share', it.id);
+      btn.innerHTML =
+        '<svg class="share-menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">' +
+        it.icon + '</svg>' +
+        '<span class="share-menu-label">' + it.label + '</span>';
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var id = this.getAttribute('data-share');
+        for (var j = 0; j < SHARE_ITEMS.length; j++) {
+          if (SHARE_ITEMS[j].id === id) { SHARE_ITEMS[j].run(); break; }
+        }
+        closeShareMenu();
+      });
+      shareMenuEl.appendChild(btn);
+    }
+  }
+
+  function exportPDF() {
+    window.open('index.html?print', '_blank');
+  }
+
+  function copyLink() {
+    var url = location.origin + location.pathname.replace(/[^/]*$/, '') + 'index.html';
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(showToast).catch(function() { fallbackCopy(url); });
+    } else {
+      fallbackCopy(url);
+    }
+  }
+
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); showToast(); } catch (err) {}
+    document.body.removeChild(ta);
+  }
+
+  function openPresentation() {
+    window.open('index.html', '_blank');
+  }
+
+  function showToast() {
+    var el = document.getElementById('toast');
+    el.textContent = 'Enlace copiado.';
+    el.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function() { el.classList.remove('show'); }, 1600);
+  }
+
+  function openShareMenu() {
+    var r = shareBtnEl.getBoundingClientRect();
+    shareMenuEl.style.left = Math.max(8, r.right - shareMenuEl.offsetWidth) + 'px';
+    shareMenuEl.style.top = (r.bottom + 8) + 'px';
+    shareMenuEl.classList.add('open');
+    shareMenuOpen = true;
+  }
+
+  function closeShareMenu() {
+    shareMenuEl.classList.remove('open');
+    shareMenuOpen = false;
+  }
+
+  function toggleShareMenu(e) {
+    if (e) e.stopPropagation();
+    if (shareMenuOpen) closeShareMenu();
+    else openShareMenu();
+  }
+
+  function initShare() {
+    buildShareMenu();
+    shareBtnEl.addEventListener('click', toggleShareMenu);
+    document.addEventListener('click', function(e) {
+      if (shareMenuOpen && !shareMenuEl.contains(e.target) && !shareBtnEl.contains(e.target)) closeShareMenu();
+    });
   }
 
   /* ──────────────────────────────────────────────
