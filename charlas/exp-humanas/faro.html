@@ -36,7 +36,7 @@
     </div>
     <div id="status-bar">
       <div class="status-item" id="st-elapsed">--:--</div>
-      <div class="status-item" id="st-slide-time">+--:--</div>
+      <div class="status-item" id="st-slide-time" title="Objetivo por slide — click para configurar" onclick="Faro.setSlideTarget()">+--:--</div>
       <div class="status-item" id="st-slide">--/--</div>
       <button id="share-btn" aria-label="Compartir">
         <svg class="share-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
@@ -69,7 +69,24 @@
     <span>APRENDIZAJES</span>
     <button onclick="Faro.toggleAprendizajes()" aria-label="Cerrar">✕</button>
   </div>
-  <textarea id="aprendizajes-editor" placeholder="¿Qué funcionó? ¿Qué mejorar?" spellcheck="true"></textarea>
+  <div id="aprendizajes-fields">
+    <div class="aprendizajes-field">
+      <label class="aprendizajes-field-label">Qué funcionó</label>
+      <textarea class="aprendizajes-input" data-field="funciono" placeholder="Lo que dio resultado…" spellcheck="true"></textarea>
+    </div>
+    <div class="aprendizajes-field">
+      <label class="aprendizajes-field-label">Qué cambiaría</label>
+      <textarea class="aprendizajes-input" data-field="cambiaria" placeholder="Lo que mejoraría…" spellcheck="true"></textarea>
+    </div>
+    <div class="aprendizajes-field">
+      <label class="aprendizajes-field-label">Preguntas que aparecieron</label>
+      <textarea class="aprendizajes-input" data-field="preguntas" placeholder="Lo que preguntó la gente…" spellcheck="true"></textarea>
+    </div>
+    <div class="aprendizajes-field">
+      <label class="aprendizajes-field-label">Ideas nuevas</label>
+      <textarea class="aprendizajes-input" data-field="ideas" placeholder="Lo que me llevo…" spellcheck="true"></textarea>
+    </div>
+  </div>
 </div>
 
 <!-- Share menu -->
@@ -90,7 +107,8 @@
     <div class="help-row"><span class="help-key">F</span><span class="help-desc">Pantalla completa</span></div>
     <div class="help-row"><span class="help-key">T</span><span class="help-desc">Reiniciar cronómetro</span></div>
     <div class="help-row"><span class="help-key">S</span><span class="help-desc">Configurar duración total</span></div>
-    <div class="help-row"><span class="help-key">P</span><span class="help-desc">Configurar tiempo por slide</span></div>
+    <div class="help-row"><span class="help-key">P</span><span class="help-desc">Objetivo por slide (segundos)</span></div>
+    <div class="help-row"><span class="help-key">A</span><span class="help-desc">Abrir / cerrar aprendizajes</span></div>
     <div class="help-row"><span class="help-key">B</span><span class="help-desc">Pantalla negra (audiencia)</span></div>
     <div class="help-row"><span class="help-key">Esc</span><span class="help-desc">Salir de ayuda / blackout</span></div>
     <div id="help-dismiss">Click fuera para cerrar</div>

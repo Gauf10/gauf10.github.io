@@ -29,7 +29,7 @@
   var blackoutActive = false;
   var connected = false;
   var totalMinutes = 0;
-  var slideMinutes = 0;
+  var slideTargetSeconds = 0;
   var layoutRatio = 0.7;
   var authToken = null;
   var broadcast = null;
@@ -220,7 +220,17 @@
     var blob = new Blob([html], { type: 'text/html' });
     var url = URL.createObjectURL(blob);
     _blobUrls.push(url);
-    el.innerHTML = '<iframe src="' + url + '"></iframe>';
+    var hasVideo = /<video/i.test(html);
+    el.innerHTML = '<iframe src="' + url + '"></iframe>'
+      + (hasVideo ? '<div id="video-play" title="Reproducir video">'
+        + '<button id="video-play-btn" aria-label="Reproducir video">'
+        + '<svg class="play-tri" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>'
+        + '<span>Reproducir video</span>'
+        + '</button></div>' : '');
+  }
+
+  function playCurrentVideo() {
+    if (broadcast) broadcast.postMessage({ type: 'playVideo' });
   }
 
   function renderNext(index) {
@@ -284,26 +294,30 @@
   }
 
   /* ──────────────────────────────────────────────
-   *  APRENDIZAJES
+   *  APRENDIZAJES (local por ahora; backend después)
    * ────────────────────────────────────────────── */
 
-  var _aprendizajesContent = '';
+  var _aprendizajesLocal = {};
 
   function toggleAprendizajes() {
     var panel = document.getElementById('aprendizajes-panel');
     panel.classList.toggle('open');
     if (panel.classList.contains('open')) {
-      document.getElementById('aprendizajes-editor').focus();
+      var first = document.querySelector('.aprendizajes-input');
+      if (first) first.focus();
     }
   }
 
-  var _aprendizajesDebounce = null;
+  function loadAprendizajes() {
+    try { _aprendizajesLocal = JSON.parse(localStorage.getItem('faro-aprendizajes')) || {}; } catch (e) { _aprendizajesLocal = {}; }
+    document.querySelectorAll('.aprendizajes-input').forEach(function(ta) {
+      ta.value = _aprendizajesLocal[ta.getAttribute('data-field')] || '';
+    });
+  }
+
   function onAprendizajesInput() {
-    _aprendizajesContent = document.getElementById('aprendizajes-editor').value;
-    if (_aprendizajesDebounce) clearTimeout(_aprendizajesDebounce);
-    _aprendizajesDebounce = setTimeout(function() {
-      Api.saveAprendizajes(_aprendizajesContent).catch(function() {});
-    }, 500);
+    _aprendizajesLocal[this.getAttribute('data-field')] = this.value;
+    localStorage.setItem('faro-aprendizajes', JSON.stringify(_aprendizajesLocal));
   }
 
   /* ──────────────────────────────────────────────
@@ -328,7 +342,15 @@
       var sElapsed = Date.now() - slideStartTime;
       var sMins = Math.floor(sElapsed / 60000);
       var sSecs = Math.floor((sElapsed % 60000) / 1000);
-      elSlide.textContent = '+' + String(sMins).padStart(2,'0') + ':' + String(sSecs).padStart(2,'0');
+      elSlide.innerHTML = '<span>+' + String(sMins).padStart(2,'0') + ':' + String(sSecs).padStart(2,'0') + '</span>'
+        + (slideTargetSeconds > 0 ? '<span class="obj">/' + slideTargetSeconds + 's</span>' : '');
+      elSlide.classList.remove('warn', 'over');
+      if (slideTargetSeconds > 0) {
+        if (sElapsed > slideTargetSeconds * 1500) elSlide.classList.add('over');
+        else if (sElapsed > slideTargetSeconds * 1000) elSlide.classList.add('warn');
+      }
+    } else {
+      elSlide.innerHTML = '';
     }
   }
 
@@ -360,17 +382,18 @@
     }
   }
 
-  function setSlideMinutes() {
-    var input = prompt('Tiempo sugerido por slide en minutos:', slideMinutes || '2');
+  function setSlideTarget() {
+    var input = prompt('Objetivo por slide en segundos:', slideTargetSeconds || '90');
     if (input === null) return;
-    var n = parseFloat(input);
+    var n = parseInt(input, 10);
     if (!isNaN(n) && n > 0) {
-      slideMinutes = n;
-      localStorage.setItem('faro-slide-minutes', slideMinutes);
+      slideTargetSeconds = n;
+      localStorage.setItem('faro-slide-target-seconds', n);
     } else {
-      slideMinutes = 0;
-      localStorage.removeItem('faro-slide-minutes');
+      slideTargetSeconds = 0;
+      localStorage.removeItem('faro-slide-target-seconds');
     }
+    updateTimer();
   }
 
   /* ──────────────────────────────────────────────
@@ -494,15 +517,18 @@
    * ────────────────────────────────────────────── */
 
   document.addEventListener('keydown', function(e) {
-    if (e.target.closest('#notes-editor')) return;
-    if (e.target.closest('#aprendizajes-editor')) return;
-    if (e.target.closest('#login-password')) return;
+    var t = e.target;
+
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); prevSlide(); return; }
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); nextSlide(); return; }
+
+    if (t.closest && t.closest('#notes-editor')) return;
+    if (t.closest && t.closest('.aprendizajes-input')) return;
+    if (t.closest && t.closest('#login-password')) return;
 
     e.preventDefault();
 
     switch (e.key) {
-      case 'ArrowLeft': case 'ArrowUp': case 'PageUp': prevSlide(); break;
-      case 'ArrowRight': case 'ArrowDown': case 'PageDown': nextSlide(); break;
       case 'Home': if (broadcast) broadcast.postMessage({ type: 'goto', index: 0 }); break;
       case 'End': if (broadcast) broadcast.postMessage({ type: 'goto', index: TOTAL_SLIDES - 1 }); break;
       case 'n': case 'N':
@@ -526,7 +552,8 @@
         break;
       case 't': case 'T': resetTimer(); break;
       case 's': case 'S': setTotalMinutes(); break;
-      case 'p': case 'P': setSlideMinutes(); break;
+      case 'p': case 'P': setSlideTarget(); break;
+      case 'a': case 'A': toggleAprendizajes(); break;
       case 'b': case 'B':
         blackoutActive = !blackoutActive;
         if (broadcast) broadcast.postMessage({ type: 'blackout', active: blackoutActive });
@@ -549,12 +576,20 @@
     }
   });
 
+  /* Las flechas funcionan siempre: tras cada interacción, el foco
+     vuelve a FARO (no queda atrapado en botones/iframe). */
+  document.addEventListener('click', function() {
+    var a = document.activeElement;
+    if (a && a !== document.body && a.tagName !== 'TEXTAREA' && a.tagName !== 'INPUT') a.blur();
+  });
+
   /* ──────────────────────────────────────────────
    *  WHEEL + TOUCH
    * ────────────────────────────────────────────── */
 
   var _wheelAcc = 0, _wheelDeb = false;
   document.addEventListener('wheel', function(e) {
+    if (e.target.closest && (e.target.closest('textarea') || e.target.closest('input'))) return;
     if (_wheelDeb) return;
     _wheelAcc += Math.abs(e.deltaY);
     if (_wheelAcc >= 60) {
@@ -622,25 +657,28 @@
   function initApp() {
     loadRatio();
     totalMinutes = parseFloat(localStorage.getItem('faro-total-minutes')) || 0;
-    slideMinutes = parseFloat(localStorage.getItem('faro-slide-minutes')) || 0;
+    slideTargetSeconds = parseInt(localStorage.getItem('faro-slide-target-seconds'), 10) || 0;
 
     document.getElementById('notes-editor').addEventListener('input', onNotesInput);
-    document.getElementById('aprendizajes-editor').addEventListener('input', onAprendizajesInput);
+    loadAprendizajes();
+    document.querySelectorAll('.aprendizajes-input').forEach(function(ta) {
+      ta.addEventListener('input', onAprendizajesInput);
+    });
+
+    document.addEventListener('click', function(e) {
+      var ov = e.target.closest ? e.target.closest('#video-play') : null;
+      if (ov) playCurrentVideo();
+    });
 
     showWaiting();
     initDrag();
     initBroadcast();
     initShare();
 
-    /* Load notes + aprendizajes from API */
+    /* Load notes from API */
     Api.getNotes().then(function(data) {
       notesCache = parseNotes(data.content || '');
       if (cur >= 0) document.getElementById('notes-editor').value = getNotesForSlide(cur);
-    }).catch(function() {});
-
-    Api.getAprendizajes().then(function(data) {
-      _aprendizajesContent = data.content || '';
-      document.getElementById('aprendizajes-editor').value = _aprendizajesContent;
     }).catch(function() {});
 
     window.addEventListener('resize', applyRatio);
@@ -796,5 +834,6 @@
     next: nextSlide,
     toggleHelp: toggleHelp,
     toggleAprendizajes: toggleAprendizajes,
+    setSlideTarget: setSlideTarget,
   };
 })();
