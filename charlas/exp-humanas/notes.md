@@ -1,5 +1,5 @@
 # s0
-Muchas gracias Javier y todo el equipo que hace posible el hackaGracias todos los que dan un ratito de su tiempo para conectarse en vivo y a quienes lo ven en diferido.
+Muchas gracias Javier y todo el equipo que hace posible el hackathon.Gracias todos los que dan un ratito de su tiempo para conectarse en vivo y a quienes lo ven en diferido.
 Vengo a dar mi mirada, una opinión, más bien una invitación. 
 Hacer un recorrido en el diseño de experiencias con personas, todo tipo de experiencias no solo profesionales.
 
