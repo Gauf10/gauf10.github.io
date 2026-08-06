@@ -37,6 +37,7 @@ Solo algunas señales que pueden indicar, como una especie de brújula, si vamos
 alertas si aparecen cositas como estas
 
 No hablamos de "la idea correcta".
+
 Hablar siempre de "la siguiente decisión".
 
 # s6
