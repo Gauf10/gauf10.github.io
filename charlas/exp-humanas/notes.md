@@ -51,7 +51,7 @@ Es más que nada la idea de no dudar, no darle vueltas al asunto y salir a teste
 si no reconocen claridad en vuestro proyecto, acá algunos consejos.
 
 # s9
-Y dejo preguntas d
+Y dejo preguntas disparadoras para que pien
 
 # s10
 que ven?
