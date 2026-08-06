@@ -16,7 +16,7 @@ Lo que más quiero subrayar hoy es la importancia de alinearse, estar de acuerdo
 
 # s2
 Estar siempre en contacto con lo que pasa fuera de nuestra cabeza, de nuestras charlas.
-Medir, encuestar, consultar, y
+Medir, encuestar, consultar, y sobre todo 
 
 # s3
 Como les decía, en tantos años involucrado en experiencias.
