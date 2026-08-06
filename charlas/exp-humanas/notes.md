@@ -51,11 +51,7 @@ Es más que nada la idea de no dudar, no darle vueltas al asunto y salir a teste
 si no reconocen claridad en vuestro proyecto, acá algunos consejos.
 
 # s9
-Todo comunica, la ropa de los promotores, la sonrisa, la aplicación, el video de convocatoria.
-El arte.
-Miren el gorro que teníamos.
-La gente viene a ser devorados, se rien, actuan. No lo hacen para nuestras cámaras, lo hicieron durante toda la semana que estuvimos para su propia experiencia, para su video que compartieron en redes, en familia, que atesoraron. Fueron devorados por un megalodón. 
-Generó vínculo y mucha recordación.
+Y dejo preguntas 
 
 # s10
 que ven?
