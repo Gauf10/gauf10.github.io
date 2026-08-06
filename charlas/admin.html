@@ -467,20 +467,7 @@ function loadData() {
 function saveData() {
   try { localStorage.setItem(LS_DATA, JSON.stringify(CHARLAS)); } catch(e){}
   var el = document.getElementById('save-status');
-  if (el) el.textContent = 'Guardando…';
-  if (authToken) {
-    fetch(API_BASE + '/api/notes', {
-      method:'PUT',
-      headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},
-      body: JSON.stringify({ content: JSON.stringify(CHARLAS) })
-    }).then(function(r){
-      if (el) el.textContent = r.ok ? 'Guardado en servidor ✓' : 'Guardado localmente (sin servidor)';
-    }).catch(function(){
-      if (el) el.textContent = 'Guardado localmente';
-    });
-  } else {
-    if (el) el.textContent = 'Guardado localmente ✓';
-  }
+  if (el) el.textContent = 'Guardado ✓';
 }
 
 /* ══════════════════════════════════════════════
@@ -520,27 +507,8 @@ function doLogin() {
 
 function onLoggedIn() {
   CHARLAS = loadData();
-  if (authToken) {
-    /* Cargar desde servidor: usamos /api/notes para persistir el JSON de charlas */
-    fetch(API_BASE + '/api/notes', {
-      headers:{'Authorization':'Bearer '+authToken}
-    }).then(function(r){
-      if (!r.ok) return;
-      return r.json().then(function(d){
-        if (d && d.content) {
-          try {
-            var arr = JSON.parse(d.content);
-            if (Array.isArray(arr) && arr.length) {
-              CHARLAS = arr;
-              localStorage.setItem(LS_DATA, JSON.stringify(arr));
-            }
-          } catch(e){}
-        }
-      });
-    }).catch(function(){}).then(function(){ renderList(); screen('s-list'); });
-  } else {
-    renderList(); screen('s-list');
-  }
+  renderList();
+  screen('s-list');
 }
 
 /* ══════════════════════════════════════════════
