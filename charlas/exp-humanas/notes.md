@@ -21,7 +21,7 @@ Medir, encuestar, consultar, y sobre todo avanzar con cautela y seguridad.
 Foco.
 
 # s3
-Retomando, 
+Retomando, cual es el objetivo de 
 
 # s4
 Esta será la pregunta guía de toda la charla.
