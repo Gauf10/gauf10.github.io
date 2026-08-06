@@ -49,7 +49,8 @@ Insistir en una dirección equivocada sí puede serlo.
 # s7
 Algo que me gusta aclarar es que siempre conviene claridad, simpleza, explicar todo en pocas líneas, con pocos elementos.
 Antes que algo perfecto, super complejo y recontra pensado.
-Deben haber escuchado sobre los MVPs que si no te avergüenza la primer versión, lanzaste tarde. 
+
+Deben haber escuchado sobre los MVPs que si no te avergüenza la primer versión, lanzaste tarde.
 Es más que nada la idea de no dudar, no darle vueltas al asunto y salir a testear.
 
 # s8
