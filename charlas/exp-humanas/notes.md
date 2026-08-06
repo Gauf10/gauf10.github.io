@@ -55,8 +55,5 @@ Y dejo preguntas disparadoras para que piensen sobre sus desarrollos.
 Tomen captura de pantalla, igualmente voy a compartir el link
 
 # s10
-que ven?
-de nuevo, después de lo obvio.
-Los productos lucen, están presentes, en el centro.
-Son hermosos. Miren los muñequitos TRIBE abajo a la derecha, ojo ahí puede haber un vínculo con Tribu.
-comida, sonrisas. Todos los departamentos juntos en una gran sala de reunión.
+Estaré disponible con algunos horarios para mentorear 1 a 1 y luego me encuentran en mi web y redes.
+Muchas gracias!
