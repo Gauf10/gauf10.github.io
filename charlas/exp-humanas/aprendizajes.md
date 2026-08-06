@@ -16,7 +16,15 @@ Tal vez no correr tanto. Tomarme los 2 min por slide que había estipulado.
 
 ## Preguntas que aparecieron
 
-—
+¿cómo hacer post hackathon a mediano y largo plazo?
+Recalqué la idea de equipo alineado y llevandose bien. También hablé de roadmap y de objetivos concretos que puedan realizar.
+
+¿Como escalar en usuarios ETH, a quien contactar?
+Insistí con que no hay recetas, que depeden de la solución que están creando, que sea funcional, atractiva y mejoradora a lo actual.
+
+Les aconsejé que si van a emprender, deberán sortear barreras, como la timidez, hablar o mostrarse en público, que hagan encuestas, que digan lo que piensan, que pregunten lo que les da dudas. Y que sin dudas, la manera de avanzar es colaborando con otros.
+
+Luego consultaron sobre el evento y Javier tomó la posta.
 
 ## Ideas nuevas
 
