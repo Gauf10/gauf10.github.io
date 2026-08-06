@@ -30,8 +30,8 @@ Si, si. Genial. Avancen nomás.
 Si, no. Revisen nuevamente, evalúen las ideas descartadas tal vez.
 
 # s4
-No hay recetas, solo una especie de brújula para ver si vamos al norte, a buen rumbo y buen ritmo.
-Planteo una especie de semáforo, luz verde si van por este camino
+No hay recetas.
+Solo algunas señales que pueden indicar, como una especie de brújula, si vamos a buen rumbo y buen ritmo.
 
 # s5
 alertas si aparecen cositas como estas
