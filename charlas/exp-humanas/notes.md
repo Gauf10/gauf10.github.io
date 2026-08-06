@@ -37,6 +37,9 @@ Planteo una especie de semáforo, luz verde si van por este camino
 # s5
 alertas si aparecen cositas como estas
 
+# s6
+Replantea
+
 # s7
 no lo que dijiste, no lo que leyeron o vieron.
 que decía el cartel con el QR? salvo quien tenga memoria fotográfica, incluso aquel.
