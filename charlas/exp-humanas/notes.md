@@ -58,7 +58,7 @@ si tienen tiempo para solo una cosa, acá algunos consejos.
 
 # s9
 Y dejo preguntas disparadoras para que piensen sobre sus desarrollos.
-Tomen captura de pantalla, igualmente voy a compartir el link
+Tomen captura de pantalla, igualmente voy a compartir el link.
 
 # s10
 Estaré disponible con algunos horarios para mentorear 1 a 1 y luego me encuentran en mi web y redes.
