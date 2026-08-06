@@ -51,7 +51,7 @@ Es más que nada la idea de no dudar, no darle vueltas al asunto y salir a teste
 si no reconocen claridad en vuestro proyecto, acá algunos consejos.
 
 # s9
-Y dejo preguntas disparadoras para que piensen en equipo
+Y dejo preguntas disparadoras para que piensen sobre sus desarrollos
 
 # s10
 que ven?
