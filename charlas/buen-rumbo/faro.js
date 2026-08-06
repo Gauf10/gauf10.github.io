@@ -305,7 +305,7 @@
   }
 
   function loadAprendizajes() {
-    try { _aprendizajesLocal = JSON.parse(localStorage.getItem('faro-aprendizajes')) || {}; } catch (e) { _aprendizajesLocal = {}; }
+    try { _aprendizajesLocal = JSON.parse(localStorage.getItem('faro-aprendizajes-' + CHARLA_NAME)) || {}; } catch (e) { _aprendizajesLocal = {}; }
     document.querySelectorAll('.aprendizajes-input').forEach(function(ta) {
       ta.value = _aprendizajesLocal[ta.getAttribute('data-field')] || '';
     });
@@ -330,7 +330,7 @@
   var _aprendizajesDebounce = null;
   function onAprendizajesInput() {
     _aprendizajesLocal[this.getAttribute('data-field')] = this.value;
-    localStorage.setItem('faro-aprendizajes', JSON.stringify(_aprendizajesLocal));
+    localStorage.setItem('faro-aprendizajes-' + CHARLA_NAME, JSON.stringify(_aprendizajesLocal));
     if (_aprendizajesDebounce) clearTimeout(_aprendizajesDebounce);
     _aprendizajesDebounce = setTimeout(function() {
       var fields = [
