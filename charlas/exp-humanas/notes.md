@@ -35,6 +35,8 @@ Solo algunas señales que pueden indicar, como una especie de brújula, si vamos
 
 # s5
 alertas si aparecen cositas como estas
+No hablar de "la idea correcta".
+Hablar siempre de "la siguiente decisión".
 
 # s6
 Si sienten que están por estos lados, replantearía los objetivos, el equipo y las ideas rectoras.
