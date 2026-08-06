@@ -1,37 +1,27 @@
 # s0
 Muchas gracias Javier y todo el equipo que hace posible el hackathon.
 Gracias todos los que dan un ratito de su tiempo para conectarse en vivo y a quienes lo ven en diferido.
-Vengo a dar mi mirada, una opinión, más bien una invitación. 
-tengo más de 40 años. Más de 20 años laborales.
-Más de 15 años liderando y emprendiendo.
-Mentoreando emprendedores en distintos estadios.
-Participé de hackáthones, gané, perdí, aprendí.
+Vengo a dar mi mirada, una opinión, más bien una invitación.
+Hace más de veinte años que trabajo creando proyectos. Algunos funcionaron muy bien. Otros no tanto. También participé de hackáthones: gané, perdí y aprendí mucho.
 
 # s1
 Preguntas que pueden surgir en los primeros días, también en los últimos.
-
 Son genuinas, lo importante es no paralizarse.
-
 Lo que más quiero subrayar hoy es la importancia de alinearse, estar de acuerdo en equipo y si son solos, estar en línea con lo que lo que prometen.
 
 # s2
 Estar siempre en contacto con lo que pasa fuera de nuestra cabeza, de nuestras charlas.
 Medir, encuestar, consultar, y sobre todo avanzar con cautela y seguridad.
-
 Foco.
 
 # s3
 Retomando, cual es el objetivo de su startup? de su emprendimiento?
-
 Contesta alguna de estas preguntas?
-
 Si, si. Genial. Avancen nomás.
-
 Si, no. Revisen nuevamente, evalúen las ideas descartadas tal vez.
 
 # s4
 No hay recetas, solo una especie de brújula para ver si vamos al norte, a buen rumbo y buen ritmo.
-
 Planteo una especie de semáforo, luz verde si van por este camino
 
 # s5
@@ -43,7 +33,6 @@ Si sienten que están por estos lados, replantearía los objetivos, el equipo y 
 # s7
 Algo que me gusta aclarar es que siempre conviene claridad, simpleza, explicar todo en pocas líneas, con pocos elementos.
 Antes que algo perfecto, super complejo y recontra pensado.
-
 Deben haber escuchado sobre los MVPs que si no te avergüenza la primer versión, lanzaste tarde. 
 Es más que nada la idea de no dudar, no darle vueltas al asunto y salir a testear.
 
