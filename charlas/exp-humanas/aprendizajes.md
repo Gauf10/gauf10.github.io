@@ -7,7 +7,7 @@ Buena charla, 25 personas aprox conectadas y escuchando, ninguno prendió cámar
 Recalqué la idea de equipo alineado y llevandose bien. También hablé de roadmap y de objetivos concretos que puedan realizar.
 
 ¿Como escalar en usuarios ETH, a quien contactar?
-Insistí con que no hay recetas, que depeden de la solución que están creando, que sea
+Insistí con que no hay recetas, que depeden de la solución que están creando, que sea funcional, atractiva y
 
 ## Qué cambiaría
 
