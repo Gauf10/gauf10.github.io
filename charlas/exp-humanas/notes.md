@@ -38,7 +38,7 @@ alertas si aparecen cositas como estas
 
 No hablamos de "la idea correcta".
 
-Siempre nos referimos a la siguiente decisión.
+Siempre nos referimos a la siguiente mejor decisión.
 
 # s6
 Si sienten que están por estos lados, replantearía los objetivos, el equipo y las ideas rectoras.
