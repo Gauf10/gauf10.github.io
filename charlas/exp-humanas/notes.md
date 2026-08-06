@@ -30,7 +30,7 @@ Si, si. Genial. Avancen nomás.
 Si, no. Revisen nuevamente, evalúen las ideas descartadas tal vez.
 
 # s4
-Planteo una especie de 
+Planteo una especie de semáforo, 
 
 # s5
 Que ven?
