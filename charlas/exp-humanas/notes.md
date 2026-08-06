@@ -10,8 +10,10 @@ También participé de hackáthones: gané, perdí y aprendí mucho.
 
 # s1
 Preguntas que pueden surgir en los primeros días, también en los últimos.
+
 Son genuinas, lo importante es no paralizarse.
-Lo que más quiero subrayar hoy es la importancia de alinearse, estar de acuerdo en equipo y si son solos, estar en línea con lo que lo que prometen.
+
+No es problema tener dudas. Sino que cada decisión empiece a apuntar hacia un lugar distinto.
 
 # s2
 Estar siempre en contacto con lo que pasa fuera de nuestra cabeza, de nuestras charlas.
