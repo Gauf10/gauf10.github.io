@@ -8,7 +8,7 @@ Mentoreando emprendedores en distintos estadios.
 Participé de hackáthones, gané, perdí, aprendí.
 
 # s1
-Preguntas que pueden surgir en los primeros días
+Preguntas que pueden surgir en los primeros días, t
 
 # s2
 tenemos claro los productos, las marcas, las empresas y organizaciones, no voy a entrar ahí hoy.
