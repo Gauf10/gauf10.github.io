@@ -41,7 +41,8 @@ alertas si aparecen cositas como estas
 Si sienten que están por estos lados, replantearía los objetivos, el equipo y las ideas rectoras.
 
 # s7
-Algo que me gusta aclarar es que siempre conviene claridad, simpleza, explicar todo en pocas líneas, con pocos elementos
+Algo que me gusta aclarar es que siempre conviene claridad, simpleza, explicar todo en pocas líneas, con pocos elementos.
+Antes que algo perfecto, 
 
 # s8
 Vamos con otro caso, otra experiencia.
