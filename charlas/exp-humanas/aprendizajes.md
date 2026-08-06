@@ -11,7 +11,10 @@ Insistí con que no hay recetas, que depeden de la solución que están creando,
 
 Les aconsejé que si van a emprender, deberán sortear barreras, como la timidez, hablar o mostrarse en público, que hagan encuestas, que digan lo que piensan, que pregunten lo que les da dudas. Y que sin dudas, la manera de avanzar es colaborando con otros.
 
-Luego consultaron sobre el evento y Javier tomó l
+Luego consultaron sobre el evento y Javier tomó la posta.
+Agradecí mucho, desee suerte a todos y quedo disponible.
+
+Dos preguntaron para agendar conmigo,
 
 ## Qué cambiaría
 
