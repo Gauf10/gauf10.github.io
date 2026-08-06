@@ -310,23 +310,39 @@
 
   var LS_APRENDIZAJES = 'faro-aprendizajes-' + CHARLA_NAME;
 
+  function parseAprendizajesMD(md) {
+    var map = { 'Qué funcionó':'funciono', 'Qué cambiaría':'cambiaria', 'Preguntas que aparecieron':'preguntas', 'Ideas nuevas':'ideas' };
+    var result = {};
+    var current = null;
+    var lines = md.split('\n');
+    var buf = [];
+    function flush() { if (current) { var v = buf.join('\n').trim(); result[current] = v === '—' ? '' : v; } }
+    lines.forEach(function(l) {
+      var m = l.match(/^## (.+)/);
+      if (m) { flush(); current = map[m[1].trim()] || null; buf = []; }
+      else if (current) buf.push(l);
+    });
+    flush();
+    return result;
+  }
+
   function loadAprendizajes() {
     try { _aprendizajesLocal = JSON.parse(localStorage.getItem(LS_APRENDIZAJES)) || {}; } catch (e) { _aprendizajesLocal = {}; }
+    function fillFields() {
+      document.querySelectorAll('.aprendizajes-input').forEach(function(ta) {
+        ta.value = _aprendizajesLocal[ta.getAttribute('data-field')] || '';
+      });
+    }
     Api.getAprendizajes().then(function(d) {
       if (d && d.content) {
         try {
-          var parsed = JSON.parse(d.content);
-          if (parsed && typeof parsed === 'object') { _aprendizajesLocal = parsed; localStorage.setItem(LS_APRENDIZAJES, JSON.stringify(parsed)); }
+          var parsed = parseAprendizajesMD(d.content);
+          _aprendizajesLocal = parsed;
+          localStorage.setItem(LS_APRENDIZAJES, JSON.stringify(parsed));
         } catch(e){}
       }
-      document.querySelectorAll('.aprendizajes-input').forEach(function(ta) {
-        ta.value = _aprendizajesLocal[ta.getAttribute('data-field')] || '';
-      });
-    }).catch(function() {
-      document.querySelectorAll('.aprendizajes-input').forEach(function(ta) {
-        ta.value = _aprendizajesLocal[ta.getAttribute('data-field')] || '';
-      });
-    });
+      fillFields();
+    }).catch(fillFields);
   }
 
   var _aprendizajesDebounce = null;
