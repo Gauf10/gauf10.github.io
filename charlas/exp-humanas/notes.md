@@ -27,7 +27,7 @@ Contesta alguna de estas preguntas?
 
 Si, si. Genial. Avancen nomás.
 
-Si, no. Revisen nuevamente, evaluen las ideas descartadas tal vez.
+Si, no. Revisen nuevamente, evalúen las ideas descartadas tal vez.
 
 # s4
 Esta será la pregunta guía de toda la charla.
