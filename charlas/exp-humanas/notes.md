@@ -17,8 +17,8 @@ No es problema tener dudas. Sino que cada decisión empiece a apuntar hacia un l
 
 # s2
 Estar siempre en contacto con lo que pasa fuera de nuestra cabeza, de nuestras charlas.
-Medir, encuestar, consultar, y sobre todo avanzar con cautela y seguridad.
-Foco.
+Enfocarse.
+Las mejores decisiones nacen cuando una idea se encuentra con la realidad.
 
 # s3
 Retomando, cual es el objetivo de su startup? de su emprendimiento?
