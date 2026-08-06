@@ -386,7 +386,9 @@ select option{background:var(--bk)}
 
 var API_BASE   = 'https://faro-api.gauf10.workers.dev';
 var LS_DATA    = 'gauf-charlas-data';
-var LS_TOKEN   = 'faro-token-charlas';
+var LS_TOKEN   = 'gauf-charlas-token';
+/* Usar la misma charla que FARO para autenticar */
+var LOGIN_CHARLA = '¿Vamos bien?';
 var ALL_THEMES = ['Liderazgo','Comunicación','Creatividad','Improvisación','Marca personal','Experiencias','Startups','Hackathons','Trabajo en equipo'];
 
 /* ══════════════════════════════════════════════
@@ -464,19 +466,20 @@ function loadData() {
 
 function saveData() {
   try { localStorage.setItem(LS_DATA, JSON.stringify(CHARLAS)); } catch(e){}
-  /* sync al API */
+  var el = document.getElementById('save-status');
+  if (el) el.textContent = 'Guardando…';
   if (authToken) {
-    fetch(API_BASE + '/api/charlas', {
+    fetch(API_BASE + '/api/notes', {
       method:'PUT',
       headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},
       body: JSON.stringify({ content: JSON.stringify(CHARLAS) })
     }).then(function(r){
-      var el = document.getElementById('save-status');
       if (el) el.textContent = r.ok ? 'Guardado en servidor ✓' : 'Guardado localmente (sin servidor)';
     }).catch(function(){
-      var el = document.getElementById('save-status');
       if (el) el.textContent = 'Guardado localmente';
     });
+  } else {
+    if (el) el.textContent = 'Guardado localmente ✓';
   }
 }
 
@@ -496,45 +499,45 @@ function doLogin() {
   if (!pw) { showMsg('login-msg','Ingresá la contraseña.','err'); return; }
   showMsg('login-msg','Verificando…','ok');
 
-  /* intentar login con charla 'charlas-admin', fallback a 'buen-rumbo' */
-  function tryLogin(charlaName, fallback) {
-    fetch(API_BASE + '/api/login', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ charla: charlaName, password: pw })
-    }).then(function(r){
-      if (r.ok) return r.json().then(function(d){
-        authToken = d.token;
-        sessionStorage.setItem(LS_TOKEN, d.token);
-        onLoggedIn();
-      });
-      if (fallback) { tryLogin(fallback, null); return; }
-      showMsg('login-msg','Contraseña incorrecta.','err');
-    }).catch(function(){
-      /* sin conexión: entrar de todas formas con acceso local */
-      authToken = null;
-      showMsg('login-msg','Sin conexión al servidor. Modo local.','ok');
-      setTimeout(onLoggedIn, 800);
+  fetch(API_BASE + '/api/login', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ charla: LOGIN_CHARLA, password: pw })
+  }).then(function(r){
+    if (r.ok) return r.json().then(function(d){
+      authToken = d.token;
+      sessionStorage.setItem(LS_TOKEN, d.token);
+      onLoggedIn();
     });
-  }
-  tryLogin('charlas-admin', 'buen-rumbo');
+    showMsg('login-msg','Contraseña incorrecta.','err');
+  }).catch(function(){
+    /* sin conexión: entrar en modo local */
+    authToken = null;
+    showMsg('login-msg','Sin conexión. Modo local.','ok');
+    setTimeout(onLoggedIn, 600);
+  });
 }
 
 function onLoggedIn() {
   CHARLAS = loadData();
-  /* intentar cargar desde API también */
   if (authToken) {
-    fetch(API_BASE + '/api/charlas', {
+    /* Cargar desde servidor: usamos /api/notes para persistir el JSON de charlas */
+    fetch(API_BASE + '/api/notes', {
       headers:{'Authorization':'Bearer '+authToken}
     }).then(function(r){
       if (!r.ok) return;
       return r.json().then(function(d){
         if (d && d.content) {
-          try { var arr = JSON.parse(d.content); if(Array.isArray(arr)&&arr.length){ CHARLAS=arr; localStorage.setItem(LS_DATA,JSON.stringify(arr)); } }
-          catch(e){}
+          try {
+            var arr = JSON.parse(d.content);
+            if (Array.isArray(arr) && arr.length) {
+              CHARLAS = arr;
+              localStorage.setItem(LS_DATA, JSON.stringify(arr));
+            }
+          } catch(e){}
         }
       });
-    }).catch(function(){}).finally(function(){ renderList(); screen('s-list'); });
+    }).catch(function(){}).then(function(){ renderList(); screen('s-list'); });
   } else {
     renderList(); screen('s-list');
   }
