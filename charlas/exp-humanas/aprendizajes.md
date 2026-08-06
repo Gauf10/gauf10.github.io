@@ -9,7 +9,7 @@ Recalqué la idea de equipo alineado y llevandose bien. También hablé de roadm
 ¿Como escalar en usuarios ETH, a quien contactar?
 Insistí con que no hay recetas, que depeden de la solución que están creando, que sea funcional, atractiva y mejoradora a lo actual.
 
-Les aconsejé que si van a emprender, deberán sortear barreras, como la timidez,
+Les aconsejé que si van a emprender, deberán sortear barreras, como la timidez, hablar o mostrarse en público
 
 ## Qué cambiaría
 
