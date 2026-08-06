@@ -5,7 +5,7 @@ Vengo a dar mi mirada, una opinión, más bien una invitación.
 tengo más de 40 años. Más de 20 años laborales.
 Más de 15 años liderando y emprendiendo.
 Mentoreando emprendedores en distintos estadíos.
-Estoy involucrado con disciplinas actorales, como la dirección de actores, la improvisación, el clown. Esto va a cobrar sentido al final de la charla.
+Participé de hacka
 
 # s2
 tenemos claro los productos, las marcas, las empresas y organizaciones, no voy a entrar ahí hoy.
