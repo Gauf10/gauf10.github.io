@@ -2,7 +2,7 @@
 
 ## Qué funcionó
 
-Buena charla, 25 personas aprox conectadas y escuchando, ninguno prendió cámara salvo Javier el organizador
+Buena charla, 25 personas aprox conectadas y escuchando, ninguno prendió cámara salvo Javier el organizador.
 
 ## Qué cambiaría
 
