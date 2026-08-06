@@ -28,4 +28,4 @@ Tal vez no correr tanto. Tomarme los 2 min por slide que había estipulado.
 
 ## Ideas nuevas
 
-—
+tener en cuenta el tiempo de presentaciones del host,
