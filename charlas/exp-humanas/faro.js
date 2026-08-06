@@ -308,16 +308,45 @@
     }
   }
 
+  var LS_APRENDIZAJES = 'faro-aprendizajes-' + CHARLA_NAME;
+
   function loadAprendizajes() {
-    try { _aprendizajesLocal = JSON.parse(localStorage.getItem('faro-aprendizajes')) || {}; } catch (e) { _aprendizajesLocal = {}; }
-    document.querySelectorAll('.aprendizajes-input').forEach(function(ta) {
-      ta.value = _aprendizajesLocal[ta.getAttribute('data-field')] || '';
+    try { _aprendizajesLocal = JSON.parse(localStorage.getItem(LS_APRENDIZAJES)) || {}; } catch (e) { _aprendizajesLocal = {}; }
+    Api.getAprendizajes().then(function(d) {
+      if (d && d.content) {
+        try {
+          var parsed = JSON.parse(d.content);
+          if (parsed && typeof parsed === 'object') { _aprendizajesLocal = parsed; localStorage.setItem(LS_APRENDIZAJES, JSON.stringify(parsed)); }
+        } catch(e){}
+      }
+      document.querySelectorAll('.aprendizajes-input').forEach(function(ta) {
+        ta.value = _aprendizajesLocal[ta.getAttribute('data-field')] || '';
+      });
+    }).catch(function() {
+      document.querySelectorAll('.aprendizajes-input').forEach(function(ta) {
+        ta.value = _aprendizajesLocal[ta.getAttribute('data-field')] || '';
+      });
     });
   }
 
+  var _aprendizajesDebounce = null;
   function onAprendizajesInput() {
     _aprendizajesLocal[this.getAttribute('data-field')] = this.value;
-    localStorage.setItem('faro-aprendizajes', JSON.stringify(_aprendizajesLocal));
+    localStorage.setItem(LS_APRENDIZAJES, JSON.stringify(_aprendizajesLocal));
+    if (_aprendizajesDebounce) clearTimeout(_aprendizajesDebounce);
+    _aprendizajesDebounce = setTimeout(function() {
+      var fields = [
+        { key:'funciono', label:'Qué funcionó' },
+        { key:'cambiaria', label:'Qué cambiaría' },
+        { key:'preguntas', label:'Preguntas que aparecieron' },
+        { key:'ideas', label:'Ideas nuevas' },
+      ];
+      var md = '# Aprendizajes — ' + CHARLA_NAME + '\n\n';
+      fields.forEach(function(f) {
+        md += '## ' + f.label + '\n\n' + ((_aprendizajesLocal[f.key]||'').trim()||'—') + '\n\n';
+      });
+      Api.saveAprendizajes(md.trim()).catch(function() {});
+    }, 800);
   }
 
   /* ──────────────────────────────────────────────
