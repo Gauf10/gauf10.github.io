@@ -7,6 +7,9 @@ Más de 15 años liderando y emprendiendo.
 Mentoreando emprendedores en distintos estadios.
 Participé de hackáthones, gané, perdí, aprendí.
 
+# s1
+Preguntas que pueden s
+
 # s2
 tenemos claro los productos, las marcas, las empresas y organizaciones, no voy a entrar ahí hoy.
 También sabemos que los proyectos se hacen en equipo, ya sean equipos internos o colaboradores externos.
