@@ -21,7 +21,8 @@ Medir, encuestar, consultar, y sobre todo avanzar con cautela y seguridad.
 Foco.
 
 # s3
-Retomando, cual es el objetivo de su startup? de su emprendimiento
+Retomando, cual es el objetivo de su startup? de su emprendimiento?
+
 
 # s4
 Esta será la pregunta guía de toda la charla.
