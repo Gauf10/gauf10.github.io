@@ -30,7 +30,7 @@ Si, si. Genial. Avancen nomás.
 Si, no. Revisen nuevamente, evalúen las ideas descartadas tal vez.
 
 # s4
-No hay recetas, soPlanteo una especie de semáforo, luz verde si van por este camino
+No hay recetas, Planteo una especie de semáforo, luz verde si van por este camino
 
 # s5
 Que ven?
