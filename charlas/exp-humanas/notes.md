@@ -34,7 +34,7 @@ No hay recetas.
 Solo algunas señales que pueden indicar, como una especie de brújula, si vamos a buen rumbo y buen ritmo.
 
 # s5
-alertas si aparecen cositas como estas
+Algunas alertas si aparecen cositas como estas
 
 No hablamos de la idea correcta.
 
