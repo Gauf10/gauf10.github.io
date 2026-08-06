@@ -41,7 +41,10 @@ No hablamos de la idea correcta.
 Siempre nos referimos a la siguiente mejor decisión.
 
 # s6
-Si sienten que están por estos lados, replantearía los objetivos, el equipo y las ideas rectoras.
+Si sienten que están por estos lados, replantearía los objetivos...
+
+Cambiar de rumbo no es fracaso. 
+Insistir en una dirección equivocada sí puede serlo.
 
 # s7
 Algo que me gusta aclarar es que siempre conviene claridad, simpleza, explicar todo en pocas líneas, con pocos elementos.
