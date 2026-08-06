@@ -15,12 +15,8 @@ Son genuinas, lo importante es no paralizarse.
 Lo que más quiero subrayar hoy es la importancia de alinearse, estar de acuerdo en equipo y si son solos, estar en línea con lo que lo que prometen.
 
 # s2
-tenemos claro los productos, las marcas, las empresas y organizaciones, no voy a entrar ahí hoy.
-También sabemos que los proyectos se hacen en equipo, ya sean equipos internos o colaboradores externos.
-Freelance, remotos, clientes, proveedores.
-entiendo que estamos en presencia de líderes, que saben conformar equipos, contratar servicios, consolidar procesos.
-No voy a entrar ahí hoy tampoco.
-Vengo a hablar en detalle de las conversaciones, de los diálogos, de su importancia.
+Estar siempre en contacto con lo que pasa fuera de nuestra cabeza, de nuestras charlas.
+
 
 # s3
 Como les decía, en tantos años involucrado en experiencias.
