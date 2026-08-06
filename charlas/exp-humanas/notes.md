@@ -54,7 +54,7 @@ Deben haber escuchado sobre los MVPs que si no te avergüenza la primer versión
 Es más que nada la idea de no dudar, no darle vueltas al asunto y salir a testear.
 
 # s8
-si no reconocen claridad en vuestro proyecto, acá algunos consejos.
+si tienen tiempo para solo una cosa, acá algunos consejos.
 
 # s9
 Y dejo preguntas disparadoras para que piensen sobre sus desarrollos.
