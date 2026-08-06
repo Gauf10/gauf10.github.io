@@ -47,9 +47,6 @@ Antes que algo perfecto, super complejo y recontra pensado.
 Deben haber escuchado sobre los MVPs que si no te avergüenza la primer versión, lanzaste tarde. 
 Es más que nada la idea de no dudar, no darle vueltas al asunto y salir a testear.
 
-# s8
-Vamos con otro caso, otra experiencia.
-
 # s9
 Todo comunica, la ropa de los promotores, la sonrisa, la aplicación, el video de convocatoria.
 El arte.
