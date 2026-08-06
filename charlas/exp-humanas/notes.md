@@ -25,6 +25,8 @@ Retomando, cual es el objetivo de su startup? de su emprendimiento?
 
 Contesta alguna de estas preguntas?
 
+Si
+
 # s4
 Esta será la pregunta guía de toda la charla.
 el esto puede ser lo que quieran, una foto, un momento, una reunión, un video caso, un viaje en ascensor con alguien de otra área.
