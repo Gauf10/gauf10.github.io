@@ -21,9 +21,12 @@ Enfocarse.
 Las mejores decisiones nacen cuando una idea se encuentra con la realidad.
 
 # s3
-Retomando, cual es el objetivo de su startup? de su emprendimiento?
-Contesta alguna de estas preguntas?
+¿Qué están intentando validar?
+
+¿Contesta alguna de estas preguntas?
+
 Si, si. Genial. Avancen nomás.
+
 Si, no. Revisen nuevamente, evalúen las ideas descartadas tal vez.
 
 # s4
