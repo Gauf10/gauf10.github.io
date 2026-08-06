@@ -20,6 +20,9 @@ Medir, encuestar, consultar, y sobre todo avanzar con cautela y seguridad.
 
 Foco.
 
+# s3
+Retomando, 
+
 # s4
 Esta será la pregunta guía de toda la charla.
 el esto puede ser lo que quieran, una foto, un momento, una reunión, un video caso, un viaje en ascensor con alguien de otra área.
