@@ -5,7 +5,7 @@ Vengo a dar mi mirada, una opinión, más bien una invitación.
 tengo más de 40 años. Más de 20 años laborales.
 Más de 15 años liderando y emprendiendo.
 Mentoreando emprendedores en distintos estadios.
-Participé de hackathones, gané, perdí, aprendí.
+Participé de hackáthones, gané, perdí, aprendí.
 
 # s2
 tenemos claro los productos, las marcas, las empresas y organizaciones, no voy a entrar ahí hoy.
