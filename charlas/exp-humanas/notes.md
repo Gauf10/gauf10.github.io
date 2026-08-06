@@ -30,7 +30,9 @@ Si, si. Genial. Avancen nomás.
 Si, no. Revisen nuevamente, evalúen las ideas descartadas tal vez.
 
 # s4
-No hay recetas, solo una especie de brújula para ver si vamos al norte, a buen rumbo y buen riPlanteo una especie de semáforo, luz verde si van por este camino
+No hay recetas, solo una especie de brújula para ver si vamos al norte, a buen rumbo y buen ritmo.
+
+Planteo una especie de semáforo, luz verde si van por este camino
 
 # s5
 Que ven?
