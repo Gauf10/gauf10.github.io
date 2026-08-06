@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Configurador — Charlas GAUF</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --bk:#1a1a1a; --bone:#f5f2ec; --accent:#27d3cc;
+  --dim:rgba(245,242,236,.35); --dim2:rgba(245,242,236,.07);
+  --err:#e05252; --warn:#e7b84a;
+  --pad:clamp(20px,4vw,56px);
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;min-height:100%;font-family:'Archivo',sans-serif;background:var(--bk);color:var(--bone);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:transparent}
+
+/* ── LAYOUT ── */
+
+.page{max-width:860px;margin:0 auto;padding:0 var(--pad) 80px}
+
+/* ── HEADER ── */
+
+.admin-header{
+  max-width:860px;margin:0 auto;
+  padding:clamp(16px,2.5vh,24px) var(--pad);
+  border-bottom:1px solid var(--dim2);
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  margin-bottom:0;
+}
+.admin-logo{height:clamp(13px,1.4vw,18px);width:auto;opacity:.8}
+.admin-title{font-size:clamp(11px,.9vw,14px);font-weight:300;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.admin-hright{display:flex;align-items:center;gap:16px}
+.back-home{font-size:clamp(10px,.75vw,11px);font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);transition:color .18s}
+.back-home:hover{color:var(--bone)}
+
+/* ── SCREENS ── */
+
+.screen{display:none}
+.screen.on{display:block}
+
+/* ── LOGIN ── */
+
+#s-login{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  min-height:calc(100vh - 60px);padding:40px var(--pad);
+}
+#s-login.on{display:flex}
+
+.login-box{width:100%;max-width:360px;text-align:center}
+.login-title{font-size:clamp(22px,2.5vw,32px);font-weight:300;letter-spacing:-.01em;margin-bottom:8px}
+.login-sub{font-size:clamp(12px,.95vw,14px);font-weight:300;color:var(--dim);margin-bottom:clamp(32px,5vh,48px)}
+
+/* ── FORM ELEMENTS (shared) ── */
+
+.field{display:flex;flex-direction:column;gap:7px;margin-bottom:clamp(16px,2.5vh,24px)}
+.field-label{font-size:clamp(9px,.7vw,11px);font-weight:400;letter-spacing:.13em;text-transform:uppercase;color:var(--dim)}
+.field-note{font-size:clamp(10px,.78vw,12px);font-weight:300;color:var(--dim);margin-top:3px;line-height:1.5}
+
+input[type="text"],input[type="number"],input[type="url"],input[type="date"],
+input[type="password"],textarea,select{
+  width:100%;background:transparent;
+  border:1px solid var(--dim2);
+  padding:clamp(9px,1.3vh,13px) clamp(12px,1.5vw,16px);
+  color:var(--bone);font-family:'Archivo',sans-serif;
+  font-size:clamp(13px,1vw,15px);font-weight:300;
+  outline:none;transition:border-color .18s;
+  -webkit-appearance:none;
+}
+input:focus,textarea:focus,select:focus{border-color:var(--accent)}
+input::placeholder,textarea::placeholder{color:var(--dim)}
+textarea{resize:vertical;min-height:80px;line-height:1.6}
+select{cursor:pointer;background:var(--bk)}
+select option{background:var(--bk)}
+
+.input-pw{position:relative}
+.input-pw input{padding-right:48px}
+.pw-toggle{
+  position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--dim);transition:color .18s;padding:4px;
+}
+.pw-toggle:hover{color:var(--bone)}
+
+/* ── BUTTONS ── */
+
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:clamp(9px,1.3vh,13px) clamp(18px,2.5vw,28px);
+  font-size:clamp(11px,.9vw,13px);font-weight:400;
+  letter-spacing:.08em;text-transform:uppercase;
+  border:1px solid var(--dim2);color:var(--dim);
+  transition:border-color .18s,color .18s,background .18s;
+}
+.btn:hover{border-color:rgba(245,242,236,.22);color:var(--bone)}
+.btn.primary{border-color:var(--accent);color:var(--accent)}
+.btn.primary:hover{background:rgba(39,211,204,.08)}
+.btn.danger{border-color:var(--err);color:var(--err)}
+.btn.danger:hover{background:rgba(224,82,82,.08)}
+.btn.full{width:100%;justify-content:center}
+.btn svg{width:13px;height:13px;flex-shrink:0}
+
+/* ── ERROR / INFO ── */
+
+.msg{font-size:clamp(12px,.95vw,14px);font-weight:300;margin-top:12px;min-height:20px;text-align:center;transition:opacity .2s}
+.msg.err{color:var(--err)}
+.msg.ok{color:var(--accent)}
+.msg.hidden{opacity:0}
+
+/* ── LIST ── */
+
+#s-list .page{padding-top:clamp(24px,4vh,40px)}
+
+.list-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:clamp(20px,3vh,32px);
+}
+.list-title{font-size:clamp(18px,2vw,26px);font-weight:300;letter-spacing:-.01em}
+
+.charla-row{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:clamp(14px,2vh,20px) 0;
+  border-bottom:1px solid var(--dim2);cursor:default;
+}
+.charla-row:first-of-type{border-top:1px solid var(--dim2)}
+
+.cr-left{flex:1;min-width:0}
+.cr-title{font-size:clamp(14px,1.2vw,17px);font-weight:300;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cr-meta{font-size:clamp(10px,.78vw,12px);font-weight:300;color:var(--dim);letter-spacing:.03em}
+.cr-right{display:flex;gap:8px;flex-shrink:0}
+
+.icon-btn{
+  width:32px;height:32px;border:1px solid var(--dim2);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--dim);transition:border-color .18s,color .18s;
+}
+.icon-btn:hover{border-color:var(--accent);color:var(--accent)}
+.icon-btn.del:hover{border-color:var(--err);color:var(--err)}
+.icon-btn svg{width:13px;height:13px}
+
+.list-footer{margin-top:clamp(28px,4vh,44px);display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+
+/* ── EDIT FORM ── */
+
+#s-edit .page{padding-top:clamp(20px,3vh,32px)}
+
+.edit-header{display:flex;align-items:center;gap:12px;margin-bottom:clamp(24px,4vh,40px)}
+.edit-title{font-size:clamp(18px,2vw,26px);font-weight:300;letter-spacing:-.01em}
+
+.section-label{
+  font-size:clamp(9px,.7vw,11px);font-weight:400;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--dim);
+  margin-bottom:clamp(14px,2vh,20px);padding-bottom:10px;
+  border-bottom:1px solid var(--dim2);
+}
+.form-section{margin-bottom:clamp(28px,4.5vh,44px)}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.5vw,20px)}
+@media(max-width:600px){.two-col{grid-template-columns:1fr}}
+
+/* ── THEMES CHECKBOXES ── */
+
+.themes-grid{display:flex;flex-wrap:wrap;gap:7px}
+.theme-check{display:none}
+.theme-label{
+  padding:4px clamp(9px,1.1vw,13px);
+  border:1px solid var(--dim2);
+  font-size:clamp(9px,.65vw,11px);font-weight:400;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--dim);
+  cursor:pointer;transition:border-color .18s,color .18s;
+  user-select:none;
+}
+.theme-check:checked+.theme-label{border-color:var(--accent);color:var(--accent)}
+
+/* ── CONVERSATIONS ── */
+
+.conv-card{
+  border:1px solid var(--dim2);
+  margin-bottom:12px;
+}
+.conv-card-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:clamp(10px,1.5vh,14px) clamp(12px,1.5vw,16px);
+  border-bottom:1px solid var(--dim2);cursor:pointer;
+  font-size:clamp(12px,.95vw,14px);font-weight:300;
+}
+.conv-card-body{padding:clamp(12px,1.8vh,18px) clamp(12px,1.5vw,16px)}
+.conv-card-body .field:last-child{margin-bottom:0}
+.conv-toggle{color:var(--dim);font-size:12px;transition:transform .2s}
+.conv-card.open .conv-toggle{transform:rotate(180deg)}
+.conv-card-body{display:none}
+.conv-card.open .conv-card-body{display:block}
+
+.add-conv{
+  width:100%;padding:clamp(9px,1.3vh,13px);
+  border:1px dashed var(--dim2);
+  font-size:clamp(11px,.9vw,13px);font-weight:300;
+  letter-spacing:.06em;color:var(--dim);
+  transition:border-color .18s,color .18s;
+  text-align:center;
+}
+.add-conv:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ── TOAST ── */
+
+#toast{
+  position:fixed;left:50%;bottom:clamp(20px,4vh,40px);z-index:500;
+  transform:translateX(-50%) translateY(8px);
+  background:rgba(26,26,26,.95);border:1px solid rgba(245,242,236,.12);
+  border-radius:4px;color:var(--bone);font-weight:300;
+  font-size:clamp(12px,.95vw,14px);letter-spacing:.02em;
+  padding:10px 20px;opacity:0;pointer-events:none;
+  transition:opacity .22s ease,transform .22s ease;
+}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── EXPORT PANEL ── */
+
+.export-panel{
+  background:rgba(39,211,204,.04);
+  border:1px solid rgba(39,211,204,.15);
+  padding:clamp(16px,2.5vh,24px);
+  margin-top:clamp(20px,3vh,32px);
+  display:none;
+}
+.export-panel.on{display:block}
+.export-label{font-size:clamp(9px,.7vw,11px);font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.export-text{
+  width:100%;background:rgba(0,0,0,.3);border:1px solid var(--dim2);
+  padding:12px;color:var(--dim);font-family:'Archivo',monospace;
+  font-size:clamp(10px,.78vw,12px);line-height:1.5;
+  resize:none;height:120px;outline:none;
+}
+.export-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="admin-header">
+  <div style="display:flex;align-items:center;gap:14px">
+    <svg viewBox="0 0 1202 404" fill="none" class="admin-logo"><path d="M188.856.831C222.339-3.208 268.635 7.939 297.927 24.274 350.979 53.86 380.598 93.274 397.666 150.497 367.953 152.831 327.788 150.135 296.571 150.982 283.3 129.718 266.796 114.156 243.313 104.582 216.198 93.6 185.822 93.896 158.927 105.405 132.31 116.531 111.234 137.818 100.373 164.544 89.671 190.367 89.754 219.401 100.604 245.162 112.079 271.933 133.785 293.002 160.886 303.676 187.661 314.28 221.542 314.07 247.863 302.459 277.687 289.303 293.094 268.435 304.659 239.525L200.345 239.276C199.89 217.18 199.955 195.077 200.541 172.984L252.322 172.817 402.238 172.979C404.126 207.816 403.712 239.801 403.674 274.643L403.46 403.288 310.963 403.276C311.025 392.268 310.928 381.26 310.671 370.255 281.997 388.293 255.715 399.351 221.621 402.639 165.921 408.011 114.721 391.771 71.726 356.384 31.136 322.466 5.642 273.845.827 221.17-4.035 167.739 12.692 114.585 47.275 73.567 83.262 30.012 133.018 6.061 188.856.831Z" fill="currentColor"/><path d="M555.143.41C589.756.23 622.992 13.951 647.398 38.495 663.247 54.376 675.749 75.516 680.846 97.461 684.78 114.405 683.892 134.206 683.882 151.726L683.827 207.351 683.753 403.429 586.924 403.267 586.845 320.9 565.302 320.884 522.554 320.889 522.471 403.286 425.707 403.088 425.715 212.886 425.609 155.173C425.576 138.025 424.882 119.196 428.152 102.43 432.126 82.843 440.71 64.483 453.192 48.872 476.357 19.656 508.547 5.076 544.99.821 547.689.495 552.304.412 555.143.41ZM605.687 139.241C598.77 113.33 575.248 98.823 549.498 100.446 533.952 103.006 521.77 108.569 512.352 121.72 507.775 128.165 504.652 135.529 503.2 143.301 501.141 153.991 501.822 173.502 501.895 185.029L501.957 238.213 561.767 238.216 607.503 238.219 607.701 185.962C607.791 172.585 609.049 151.832 605.687 139.241Z" fill="currentColor"/><path d="M548.405 135.923C568.471 132.36 587.615 145.773 591.118 165.85 594.62 185.927 581.15 205.03 561.062 208.473 541.061 211.9 522.056 198.499 518.568 178.508 515.08 158.516 528.424 139.471 548.405 135.923Z" fill="#27D3CC"/><path d="M848.129.712C884.208-.092 922.018.493 958.228.603V102.707L958.258 229.55C958.268 252.2 959.908 296.358 954.948 316.797 950.288 335.639 940.598 352.863 926.918 366.632 864.334 429.595 733.308 411.581 708.525 317.965 703.753 299.939 704.944 276.703 704.971 258.035L704.987 202.448 705.062.709C741.159.078 778.46.545 814.652.601L814.677 189.44 814.655 245.859C814.602 256.847 814.202 267.816 814.631 278.798 815.038 289.202 817.077 300.412 829.874 301.351 834.659 301.721 839.378 300.051 842.866 296.755 850.133 289.931 848.062 265.765 848.09 255.393L848.15 195.566 848.129.712Z" fill="currentColor"/><path d="M981.497.724C1054.52-.247 1128.82.502 1201.91.602 1202.08 67.255 1158.61 125.379 1090.61 134.825 1082.71 135.923 1075.58 136.132 1067.59 136.286L1067.39 160.293 1168.78 160.379C1168.68 195.248 1162.99 213.949 1142.79 242.352 1124.32 264.638 1104.63 276.559 1076.24 282.654L1076.16 403.299 981.397 403.42 981.497.724Z" fill="currentColor"/></svg>
+    <span class="admin-title">Configurador de charlas</span>
+  </div>
+  <div class="admin-hright">
+    <a class="back-home" href="index.html">← Volver al sitio</a>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div id="s-login" class="screen on">
+  <div class="login-box">
+    <div class="login-title">Acceso</div>
+    <div class="login-sub">Misma clave que FARO</div>
+    <div class="field">
+      <div class="input-pw">
+        <input type="password" id="login-pw" placeholder="Contraseña" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+        <button class="pw-toggle" onclick="togglePw()">Ver</button>
+      </div>
+    </div>
+    <button class="btn primary full" onclick="doLogin()">Entrar</button>
+    <div class="msg hidden" id="login-msg"></div>
+  </div>
+</div>
+
+<!-- LIST -->
+<div id="s-list" class="screen">
+  <div class="page">
+    <div class="list-header">
+      <div class="list-title">Charlas</div>
+      <button class="btn primary" onclick="newCharla()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg>
+        Nueva charla
+      </button>
+    </div>
+    <div id="charla-list"></div>
+    <div class="list-footer">
+      <div style="font-size:clamp(10px,.78vw,12px);font-weight:300;color:var(--dim)" id="save-status"></div>
+      <button class="btn" onclick="toggleExport()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Exportar JSON
+      </button>
+    </div>
+    <div class="export-panel" id="export-panel">
+      <div class="export-label">JSON para pegar en index.html → DEFAULT_CHARLAS</div>
+      <textarea class="export-text" id="export-text" readonly></textarea>
+      <div class="export-actions">
+        <button class="btn primary" onclick="copyExport()">Copiar al portapapeles</button>
+        <span style="font-size:clamp(10px,.78vw,12px);font-weight:300;color:var(--dim);align-self:center">Reemplazá el array DEFAULT_CHARLAS en index.html y hacé git push.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT -->
+<div id="s-edit" class="screen">
+  <div class="page">
+    <div class="edit-header">
+      <button class="btn" onclick="goList()" style="padding:8px 12px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      </button>
+      <div class="edit-title" id="edit-title">Nueva charla</div>
+    </div>
+
+    <form id="edit-form" onsubmit="return false">
+
+      <!-- INFO BÁSICA -->
+      <div class="form-section">
+        <div class="section-label">Información básica</div>
+        <div class="field"><div class="field-label">Título</div><input type="text" id="f-title" placeholder="Nombre de la charla"></div>
+        <div class="two-col">
+          <div class="field"><div class="field-label">Slug (carpeta)</div><input type="text" id="f-slug" placeholder="mi-charla"><div class="field-note">Nombre de la carpeta. Solo letras, números y guiones.</div></div>
+          <div class="field"><div class="field-label">Duración (minutos)</div><input type="number" id="f-duration" placeholder="30" min="1" max="480"></div>
+        </div>
+        <div class="field">
+          <div class="field-label">Estado</div>
+          <select id="f-status">
+            <option value="activa">Activa</option>
+            <option value="en-desarrollo">En desarrollo</option>
+            <option value="pausada">Pausada</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- CONTENIDO -->
+      <div class="form-section">
+        <div class="section-label">Contenido</div>
+        <div class="field"><div class="field-label">Observación</div><input type="text" id="f-obs" placeholder="Una frase corta que resume la charla."></div>
+        <div class="field"><div class="field-label">Pregunta rectora</div><input type="text" id="f-question" placeholder="¿La pregunta que guía la conversación?"></div>
+        <div class="field"><div class="field-label">Idea fuerza</div><textarea id="f-idea" rows="2" placeholder="La tesis central, en una o dos líneas."></textarea></div>
+        <div class="field"><div class="field-label">Resumen</div><textarea id="f-summary" rows="4" placeholder="Descripción más extensa para la página de detalle."></textarea></div>
+      </div>
+
+      <!-- TEMÁTICAS -->
+      <div class="form-section">
+        <div class="section-label">Temáticas</div>
+        <div class="themes-grid" id="themes-grid"></div>
+      </div>
+
+      <!-- RECURSOS -->
+      <div class="form-section">
+        <div class="section-label">Recursos</div>
+        <div class="field"><div class="field-label">Presentación (ruta relativa o URL)</div><input type="text" id="f-pres" placeholder="mi-charla/index.html"></div>
+        <div class="two-col">
+          <div class="field"><div class="field-label">PDF (URL)</div><input type="url" id="f-pdf" placeholder="https://…"></div>
+          <div class="field"><div class="field-label">Video madre (URL)</div><input type="url" id="f-video" placeholder="https://…"></div>
+        </div>
+      </div>
+
+      <!-- CONVERSACIONES -->
+      <div class="form-section">
+        <div class="section-label">Conversamos con</div>
+        <div id="convs-container"></div>
+        <button type="button" class="add-conv" onclick="addConv()">+ Agregar conversación</button>
+      </div>
+
+      <!-- ACCIONES -->
+      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;padding-top:clamp(16px,2.5vh,24px);border-top:1px solid var(--dim2)">
+        <button type="button" class="btn danger" id="del-btn" onclick="deleteCharla()" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+          Eliminar charla
+        </button>
+        <button type="button" class="btn primary" onclick="saveCharla()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+          Guardar charla
+        </button>
+      </div>
+      <div class="msg hidden" id="edit-msg" style="text-align:left;margin-top:12px"></div>
+
+    </form>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+
+/* ══════════════════════════════════════════════
+   CONFIG
+══════════════════════════════════════════════ */
+
+var API_BASE   = 'https://faro-api.gauf10.workers.dev';
+var LS_DATA    = 'gauf-charlas-data';
+var LS_TOKEN   = 'faro-token-charlas';
+var ALL_THEMES = ['Liderazgo','Comunicación','Creatividad','Improvisación','Marca personal','Experiencias','Startups','Hackathons','Trabajo en equipo'];
+
+/* ══════════════════════════════════════════════
+   STATE
+══════════════════════════════════════════════ */
+
+var authToken = sessionStorage.getItem(LS_TOKEN) || null;
+var CHARLAS   = [];
+var editIdx   = -1;   // -1 = nueva
+var editConvs = [];
+
+/* ══════════════════════════════════════════════
+   UTILS
+══════════════════════════════════════════════ */
+
+function showToast(msg, dur) {
+  var t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show') }, dur||2200);
+}
+
+function showMsg(id, text, type) {
+  var el = document.getElementById(id);
+  el.textContent = text; el.className = 'msg ' + (type||'ok');
+}
+
+function slugify(s) {
+  return s.toLowerCase().trim()
+    .replace(/[áàä]/g,'a').replace(/[éèë]/g,'e')
+    .replace(/[íìï]/g,'i').replace(/[óòö]/g,'o')
+    .replace(/[úùü]/g,'u').replace(/ñ/g,'n')
+    .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+}
+
+function screen(id) {
+  ['s-login','s-list','s-edit'].forEach(function(s){
+    document.getElementById(s).classList.remove('on');
+  });
+  document.getElementById(id).classList.add('on');
+}
+
+/* ══════════════════════════════════════════════
+   STORAGE
+══════════════════════════════════════════════ */
+
+function loadData() {
+  try {
+    var raw = localStorage.getItem(LS_DATA);
+    if (raw) { var d = JSON.parse(raw); if (Array.isArray(d)) return d; }
+  } catch(e) {}
+  /* intentar cargar los defaults de index.html embebidos */
+  return [
+    {
+      slug:'exp-humanas',title:'Diseñar desde la experiencia humana',
+      observation:'Diseñamos para personas. Primero hay que entenderlas.',
+      question:'¿Cómo tomamos mejores decisiones cuando diseñamos con y para otras personas?',
+      idea:'Las mejores decisiones nacen cuando una idea se encuentra con la realidad de las personas.',
+      summary:'Una exploración sobre cómo el diseño centrado en la experiencia humana transforma la manera en que creamos productos, servicios y conversaciones.',
+      themes:['Experiencias','Liderazgo','Comunicación'],duration:45,status:'activa',
+      resources:{presentation:'exp-humanas/index.html',pdf:null,video:null},
+      conversations:[{event:'Sesión en vivo',organization:'Comunidad GAUF',location:'Buenos Aires, Argentina',date:'2024',description:null,video:null,testimonial:null}]
+    },
+    {
+      slug:'buen-rumbo',title:'¿Vamos bien?',
+      observation:'Cambiar de rumbo no es fracaso. Insistir en una dirección equivocada sí puede serlo.',
+      question:'¿Cómo saber si tu proyecto está avanzando en la dirección correcta?',
+      idea:'No hay recetas. Solo algunas señales que, como una brújula, indican si vamos a buen rumbo y buen ritmo.',
+      summary:'Una charla para equipos en etapa de desarrollo que necesitan herramientas simples para evaluar si sus decisiones apuntan en la dirección correcta.',
+      themes:['Startups','Hackathons','Creatividad'],duration:25,status:'activa',
+      resources:{presentation:'buen-rumbo/index.html',pdf:null,video:null},
+      conversations:[{event:'ETH Lima Hackathon 2026',organization:'ETH Lima',location:'Lima, Perú',date:'2026-08-06',description:'Sesión en vivo de 25 minutos.',video:null,testimonial:null}]
+    }
+  ];
+}
+
+function saveData() {
+  try { localStorage.setItem(LS_DATA, JSON.stringify(CHARLAS)); } catch(e){}
+  /* sync al API */
+  if (authToken) {
+    fetch(API_BASE + '/api/charlas', {
+      method:'PUT',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},
+      body: JSON.stringify({ content: JSON.stringify(CHARLAS) })
+    }).then(function(r){
+      var el = document.getElementById('save-status');
+      if (el) el.textContent = r.ok ? 'Guardado en servidor ✓' : 'Guardado localmente (sin servidor)';
+    }).catch(function(){
+      var el = document.getElementById('save-status');
+      if (el) el.textContent = 'Guardado localmente';
+    });
+  }
+}
+
+/* ══════════════════════════════════════════════
+   AUTH
+══════════════════════════════════════════════ */
+
+function togglePw() {
+  var inp = document.getElementById('login-pw');
+  var btn = document.querySelector('.pw-toggle');
+  if (inp.type==='password'){ inp.type='text'; btn.textContent='Ocultar'; }
+  else { inp.type='password'; btn.textContent='Ver'; }
+}
+
+function doLogin() {
+  var pw = document.getElementById('login-pw').value.trim();
+  if (!pw) { showMsg('login-msg','Ingresá la contraseña.','err'); return; }
+  showMsg('login-msg','Verificando…','ok');
+
+  /* intentar login con charla 'charlas-admin', fallback a 'buen-rumbo' */
+  function tryLogin(charlaName, fallback) {
+    fetch(API_BASE + '/api/login', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ charla: charlaName, password: pw })
+    }).then(function(r){
+      if (r.ok) return r.json().then(function(d){
+        authToken = d.token;
+        sessionStorage.setItem(LS_TOKEN, d.token);
+        onLoggedIn();
+      });
+      if (fallback) { tryLogin(fallback, null); return; }
+      showMsg('login-msg','Contraseña incorrecta.','err');
+    }).catch(function(){
+      /* sin conexión: entrar de todas formas con acceso local */
+      authToken = null;
+      showMsg('login-msg','Sin conexión al servidor. Modo local.','ok');
+      setTimeout(onLoggedIn, 800);
+    });
+  }
+  tryLogin('charlas-admin', 'buen-rumbo');
+}
+
+function onLoggedIn() {
+  CHARLAS = loadData();
+  /* intentar cargar desde API también */
+  if (authToken) {
+    fetch(API_BASE + '/api/charlas', {
+      headers:{'Authorization':'Bearer '+authToken}
+    }).then(function(r){
+      if (!r.ok) return;
+      return r.json().then(function(d){
+        if (d && d.content) {
+          try { var arr = JSON.parse(d.content); if(Array.isArray(arr)&&arr.length){ CHARLAS=arr; localStorage.setItem(LS_DATA,JSON.stringify(arr)); } }
+          catch(e){}
+        }
+      });
+    }).catch(function(){}).finally(function(){ renderList(); screen('s-list'); });
+  } else {
+    renderList(); screen('s-list');
+  }
+}
+
+/* ══════════════════════════════════════════════
+   LIST
+══════════════════════════════════════════════ */
+
+function renderList() {
+  var el = document.getElementById('charla-list');
+  if (!CHARLAS.length) {
+    el.innerHTML = '<div style="padding:clamp(24px,4vh,40px) 0;color:var(--dim);font-size:clamp(13px,1vw,15px);font-weight:300">Todavía no hay charlas. Creá la primera.</div>';
+    return;
+  }
+  el.innerHTML = CHARLAS.map(function(c,i){
+    var n=(c.conversations||[]).length;
+    return '<div class="charla-row">'
+      +'<div class="cr-left">'
+        +'<div class="cr-title">'+c.title+'</div>'
+        +'<div class="cr-meta">'+c.themes.join(' · ')+' · '+c.duration+' min · '+n+(n===1?' conversación':' conversaciones')+'</div>'
+      +'</div>'
+      +'<div class="cr-right">'
+        +'<button class="icon-btn" onclick="editCharla('+i+')" title="Editar">'
+          +'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>'
+        +'</button>'
+      +'</div>'
+    +'</div>';
+  }).join('');
+}
+
+/* ══════════════════════════════════════════════
+   EDIT
+══════════════════════════════════════════════ */
+
+function newCharla() {
+  editIdx = -1;
+  editConvs = [blankConv()];
+  fillForm({
+    slug:'',title:'',observation:'',question:'',idea:'',summary:'',
+    themes:[],duration:30,status:'activa',
+    resources:{presentation:'',pdf:'',video:''},
+    conversations:[]
+  });
+  document.getElementById('edit-title').textContent = 'Nueva charla';
+  document.getElementById('del-btn').style.display = 'none';
+  screen('s-edit');
+  window.scrollTo(0,0);
+}
+
+function editCharla(i) {
+  editIdx = i;
+  var c = JSON.parse(JSON.stringify(CHARLAS[i]));
+  editConvs = c.conversations && c.conversations.length ? c.conversations : [blankConv()];
+  fillForm(c);
+  document.getElementById('edit-title').textContent = 'Editar charla';
+  document.getElementById('del-btn').style.display = 'inline-flex';
+  document.getElementById('edit-msg').className = 'msg hidden';
+  screen('s-edit');
+  window.scrollTo(0,0);
+}
+
+function fillForm(c) {
+  document.getElementById('f-title').value    = c.title       || '';
+  document.getElementById('f-slug').value     = c.slug        || '';
+  document.getElementById('f-duration').value = c.duration    || 30;
+  document.getElementById('f-status').value   = c.status      || 'activa';
+  document.getElementById('f-obs').value      = c.observation || '';
+  document.getElementById('f-question').value = c.question    || '';
+  document.getElementById('f-idea').value     = c.idea        || '';
+  document.getElementById('f-summary').value  = c.summary     || '';
+  document.getElementById('f-pres').value     = (c.resources&&c.resources.presentation) || '';
+  document.getElementById('f-pdf').value      = (c.resources&&c.resources.pdf)          || '';
+  document.getElementById('f-video').value    = (c.resources&&c.resources.video)        || '';
+
+  /* themes */
+  renderThemes(c.themes || []);
+
+  /* auto-slug from title */
+  var titleEl = document.getElementById('f-title');
+  var slugEl  = document.getElementById('f-slug');
+  titleEl.oninput = function() {
+    if (!slugEl.dataset.manual) slugEl.value = slugify(titleEl.value);
+  };
+  slugEl.oninput = function(){ slugEl.dataset.manual = '1' };
+
+  renderConvs();
+}
+
+function renderThemes(selected) {
+  var grid = document.getElementById('themes-grid');
+  grid.innerHTML = ALL_THEMES.map(function(t) {
+    var id = 'th-'+t.replace(/\s+/g,'-');
+    var chk = selected.indexOf(t)>=0 ? ' checked' : '';
+    return '<label><input type="checkbox" class="theme-check" id="'+id+'" value="'+t+'"'+chk+'><label class="theme-label" for="'+id+'">'+t+'</label></label>';
+  }).join('');
+}
+
+function getSelectedThemes() {
+  return ALL_THEMES.filter(function(t){
+    var el = document.getElementById('th-'+t.replace(/\s+/g,'-'));
+    return el && el.checked;
+  });
+}
+
+/* ── CONVERSATIONS ── */
+
+function blankConv() {
+  return { event:'', organization:'', location:'', date:'', description:'', video:'', testimonial:'' };
+}
+
+function renderConvs() {
+  var ct = document.getElementById('convs-container');
+  ct.innerHTML = editConvs.map(function(v,i){
+    var label = v.event || ('Conversación ' + (i+1));
+    return '<div class="conv-card open" id="conv-card-'+i+'">'
+      +'<div class="conv-card-header" onclick="toggleConv('+i+')">'
+        +'<span id="conv-label-'+i+'">'+label+'</span>'
+        +'<div style="display:flex;gap:10px;align-items:center">'
+          +(editConvs.length>1?'<button type="button" onclick="removeConv(event,'+i+')" style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--err);padding:2px 4px">Quitar</button>':'')
+          +'<span class="conv-toggle">▾</span>'
+        +'</div>'
+      +'</div>'
+      +'<div class="conv-card-body">'
+        +'<div class="field"><div class="field-label">Evento</div><input type="text" value="'+esc(v.event||'')+'" oninput="editConvs['+i+'].event=this.value;document.getElementById(\'conv-label-'+i+'\').textContent=this.value||\'Conversación '+(i+1)+'\'" placeholder="Nombre del evento"></div>'
+        +'<div class="two-col">'
+          +'<div class="field"><div class="field-label">Organización</div><input type="text" value="'+esc(v.organization||'')+'" oninput="editConvs['+i+'].organization=this.value" placeholder="Nombre de la org."></div>'
+          +'<div class="field"><div class="field-label">Fecha</div><input type="text" value="'+esc(v.date||'')+'" oninput="editConvs['+i+'].date=this.value" placeholder="2025-09-15 o 2025"></div>'
+        +'</div>'
+        +'<div class="field"><div class="field-label">Lugar</div><input type="text" value="'+esc(v.location||'')+'" oninput="editConvs['+i+'].location=this.value" placeholder="Ciudad, País"></div>'
+        +'<div class="field"><div class="field-label">Descripción (opcional)</div><textarea oninput="editConvs['+i+'].description=this.value" rows="2">'+esc(v.description||'')+'</textarea></div>'
+        +'<div class="two-col">'
+          +'<div class="field"><div class="field-label">Video (URL, opcional)</div><input type="url" value="'+esc(v.video||'')+'" oninput="editConvs['+i+'].video=this.value" placeholder="https://…"></div>'
+          +'<div class="field"><div class="field-label">Testimonio (opcional)</div><input type="text" value="'+esc(v.testimonial||'')+'" oninput="editConvs['+i+'].testimonial=this.value" placeholder="Frase de alguien"></div>'
+        +'</div>'
+      +'</div>'
+    +'</div>';
+  }).join('');
+}
+
+function toggleConv(i) {
+  document.getElementById('conv-card-'+i).classList.toggle('open');
+}
+
+function addConv() {
+  editConvs.push(blankConv());
+  renderConvs();
+  var last = document.getElementById('conv-card-'+(editConvs.length-1));
+  if (last) last.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function removeConv(e, i) {
+  e.stopPropagation();
+  if (editConvs.length<=1) return;
+  editConvs.splice(i,1);
+  renderConvs();
+}
+
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') }
+
+/* ── SAVE / DELETE ── */
+
+function saveCharla() {
+  var title = document.getElementById('f-title').value.trim();
+  var slug  = document.getElementById('f-slug').value.trim() || slugify(title);
+  if (!title) { showMsg('edit-msg','El título es obligatorio.','err'); return; }
+  if (!slug)  { showMsg('edit-msg','El slug es obligatorio.','err'); return; }
+
+  var themes = getSelectedThemes();
+  var pres   = document.getElementById('f-pres').value.trim();
+  var pdf    = document.getElementById('f-pdf').value.trim();
+  var video  = document.getElementById('f-video').value.trim();
+
+  /* limpiar conversaciones vacías */
+  var convs = editConvs.filter(function(v){ return v.event && v.event.trim() }).map(function(v){
+    return {
+      event:        v.event        || '',
+      organization: v.organization || '',
+      location:     v.location     || '',
+      date:         v.date         || '',
+      description:  v.description  ? v.description.trim()  : null,
+      video:        v.video        ? v.video.trim()        : null,
+      testimonial:  v.testimonial  ? v.testimonial.trim()  : null
+    };
+  });
+
+  var charla = {
+    slug:        slug,
+    title:       title,
+    observation: document.getElementById('f-obs').value.trim(),
+    question:    document.getElementById('f-question').value.trim(),
+    idea:        document.getElementById('f-idea').value.trim(),
+    summary:     document.getElementById('f-summary').value.trim(),
+    themes:      themes.length ? themes : ['Sin clasificar'],
+    duration:    parseInt(document.getElementById('f-duration').value,10)||30,
+    status:      document.getElementById('f-status').value,
+    resources: {
+      presentation: pres  || null,
+      pdf:          pdf   || null,
+      video:        video || null
+    },
+    conversations: convs
+  };
+
+  if (editIdx >= 0) CHARLAS[editIdx] = charla;
+  else CHARLAS.push(charla);
+
+  saveData();
+  showToast(editIdx>=0 ? 'Charla guardada.' : 'Charla creada.');
+  goList();
+}
+
+function deleteCharla() {
+  if (!confirm('¿Eliminar esta charla? No se puede deshacer.')) return;
+  CHARLAS.splice(editIdx,1);
+  saveData();
+  showToast('Charla eliminada.');
+  goList();
+}
+
+function goList() {
+  CHARLAS = loadData(); /* refrescar */
+  renderList();
+  screen('s-list');
+  window.scrollTo(0,0);
+}
+
+/* ── EXPORT ── */
+
+function toggleExport() {
+  var p = document.getElementById('export-panel');
+  if (p.classList.toggle('on')) {
+    document.getElementById('export-text').value = JSON.stringify(CHARLAS, null, 2);
+  }
+}
+
+function copyExport() {
+  var ta = document.getElementById('export-text');
+  ta.select();
+  try { document.execCommand('copy'); showToast('¡Copiado al portapapeles!'); }
+  catch(e) { showToast('Seleccioná el texto y copiá manualmente.'); }
+}
+
+/* ══════════════════════════════════════════════
+   INIT — verificar si ya hay sesión activa
+══════════════════════════════════════════════ */
+
+if (authToken) {
+  CHARLAS = loadData();
+  renderList();
+  screen('s-list');
+}
+
+</script>
+</body>
+</html>

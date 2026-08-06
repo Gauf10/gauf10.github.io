@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Charlas — Gabriel Aufgang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --bk:     #1a1a1a;
+  --bone:   #f5f2ec;
+  --accent: #27d3cc;
+  --dim:    rgba(245,242,236,.35);
+  --dim2:   rgba(245,242,236,.07);
+  --pad:    clamp(20px,5vw,80px);
+}
+@media (prefers-color-scheme:light){:root{
+  --bk:#f5f2ec;--bone:#1a1a1a;--accent:#19aaa4;
+  --dim:rgba(26,26,26,.4);--dim2:rgba(26,26,26,.08);
+}}
+:root[data-theme="dark"]{--bk:#1a1a1a;--bone:#f5f2ec;--accent:#27d3cc;--dim:rgba(245,242,236,.35);--dim2:rgba(245,242,236,.07)}
+:root[data-theme="light"]{--bk:#f5f2ec;--bone:#1a1a1a;--accent:#19aaa4;--dim:rgba(26,26,26,.4);--dim2:rgba(26,26,26,.08)}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;min-height:100%;font-family:'Archivo',sans-serif;background:var(--bk);color:var(--bone);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:transparent}
+
+#app{opacity:1;transition:opacity .15s ease}
+#app.fade{opacity:0}
+
+/* ── HEADER COMPACTO ── */
+
+.site-header{
+  max-width:1280px;margin:0 auto;
+  padding:clamp(14px,2vh,22px) var(--pad);
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+}
+
+.h-left{display:flex;align-items:center;gap:clamp(14px,2vw,24px)}
+
+.h-gauf{height:clamp(13px,1.4vw,19px);width:auto;opacity:.85;flex-shrink:0}
+
+.h-divider{width:1px;height:clamp(20px,2.5vh,28px);background:var(--dim2);flex-shrink:0}
+
+.h-title{
+  font-size:clamp(18px,2.2vw,28px);
+  font-weight:300;letter-spacing:-.01em;
+  white-space:nowrap;
+}
+
+.h-desc{
+  font-size:clamp(11px,.85vw,13px);
+  font-weight:300;color:var(--dim);
+  line-height:1.4;
+  display:none;
+}
+@media(min-width:680px){.h-desc{display:block}}
+
+.h-right{display:flex;align-items:center;gap:clamp(16px,2.5vw,32px);flex-shrink:0}
+
+.h-stats{display:flex;gap:clamp(14px,2vw,28px);align-items:center}
+
+.stat{display:flex;align-items:baseline;gap:5px}
+.stat-n{
+  font-size:clamp(13px,1.2vw,17px);font-weight:300;
+  font-variant-numeric:tabular-nums;letter-spacing:-.01em;
+}
+.stat-l{
+  font-size:clamp(9px,.65vw,11px);font-weight:400;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--dim);
+  white-space:nowrap;
+}
+
+.theme-toggle{
+  width:28px;height:28px;border-radius:50%;
+  border:1px solid var(--dim2);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--dim);font-size:13px;transition:border-color .2s,color .2s;flex-shrink:0;
+}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ── CONTROLS ── */
+
+.controls{
+  max-width:1280px;margin:0 auto;
+  padding:clamp(10px,1.5vh,16px) var(--pad);
+  border-top:1px solid var(--dim2);
+  border-bottom:1px solid var(--dim2);
+  display:flex;flex-wrap:wrap;align-items:center;gap:clamp(10px,1.5vw,16px);
+}
+
+.search{
+  flex:1;min-width:160px;background:transparent;border:none;
+  color:var(--bone);font-family:'Archivo',sans-serif;
+  font-size:clamp(12px,.95vw,15px);font-weight:300;letter-spacing:.01em;
+  outline:none;
+}
+.search::placeholder{color:var(--dim)}
+
+.ctrl-sep{width:1px;height:18px;background:var(--dim2);flex-shrink:0}
+
+.filters{display:flex;flex-wrap:wrap;gap:clamp(5px,.7vw,8px)}
+
+.chip{
+  padding:4px clamp(9px,1.1vw,14px);
+  border:1px solid var(--dim2);
+  font-size:clamp(9px,.65vw,11px);font-weight:400;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--dim);
+  transition:border-color .18s,color .18s;
+}
+.chip:hover{border-color:rgba(245,242,236,.22);color:var(--bone)}
+.chip.on{border-color:var(--accent);color:var(--accent)}
+
+/* ── GRID ── */
+
+.grid{
+  max-width:1280px;margin:0 auto;
+  padding:0 var(--pad);
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(min(100%,500px),1fr));
+  gap:1px;background:var(--dim2);
+  border-bottom:1px solid var(--dim2);
+  margin-bottom:clamp(40px,7vh,80px);
+}
+
+/* ── CARD ── */
+
+.card{
+  display:block;cursor:pointer;background:var(--bk);
+  padding:clamp(24px,4vh,44px) clamp(20px,3vw,40px);
+  position:relative;transition:background .18s;
+}
+.card::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:var(--accent);opacity:0;transition:opacity .18s;
+}
+.card:hover{background:rgba(245,242,236,.025)}
+.card:hover::before{opacity:1}
+
+.card-title{
+  font-size:clamp(17px,1.9vw,26px);font-weight:300;
+  letter-spacing:-.01em;line-height:1.28;
+  margin-bottom:clamp(10px,1.6vh,16px);text-wrap:balance;
+}
+.card-obs{
+  font-size:clamp(12px,.9vw,14px);font-weight:300;
+  color:var(--dim);line-height:1.6;
+  margin-bottom:clamp(14px,2.2vh,22px);
+}
+.card-q{
+  font-size:clamp(12px,.95vw,15px);font-weight:300;font-style:italic;
+  color:var(--accent);opacity:.75;line-height:1.55;
+  margin-bottom:clamp(18px,2.8vh,30px);
+}
+.card-foot{
+  display:flex;flex-wrap:wrap;align-items:center;
+  gap:clamp(8px,1.2vw,14px);
+}
+.meta{
+  font-size:clamp(9px,.65vw,11px);font-weight:400;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--dim);
+}
+.meta b{font-weight:400;color:var(--bone)}
+.sdot{display:inline-block;width:5px;height:5px;border-radius:50%;margin-right:4px;vertical-align:middle}
+.sdot.activa{background:var(--accent)}
+.sdot.en-desarrollo{background:#e7b84a}
+.sdot.pausada{background:var(--dim)}
+
+/* ── EMPTY ── */
+
+.empty{
+  max-width:1280px;margin:0 auto;
+  padding:clamp(32px,6vh,56px) var(--pad);
+  font-size:clamp(13px,1vw,16px);font-weight:300;color:var(--dim);
+}
+
+/* ── DETAIL ── */
+
+.detail{max-width:820px;margin:0 auto;padding:0 var(--pad) clamp(64px,10vh,120px)}
+
+.back{
+  display:inline-flex;align-items:center;gap:8px;
+  margin:clamp(24px,4vh,44px) 0 clamp(36px,5.5vh,64px);
+  font-size:clamp(10px,.75vw,11px);font-weight:400;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--dim);
+  transition:color .18s;
+}
+.back:hover{color:var(--bone)}
+.back svg{width:12px;height:12px}
+
+.d-eye{font-size:clamp(9px,.65vw,11px);font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:clamp(12px,1.8vh,20px)}
+.d-title{font-size:clamp(30px,5vw,68px);font-weight:300;letter-spacing:-.02em;line-height:1.08;text-wrap:balance;margin-bottom:clamp(20px,3.5vh,40px)}
+.d-idea{font-size:clamp(14px,1.3vw,18px);font-weight:300;font-style:italic;color:var(--dim);line-height:1.6;border-left:2px solid var(--accent);padding-left:clamp(14px,2vw,24px);max-width:620px;margin-bottom:clamp(28px,4.5vh,52px)}
+.d-ql{font-size:clamp(9px,.65vw,11px);font-weight:400;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);margin-bottom:10px}
+.d-q{font-size:clamp(14px,1.3vw,18px);font-weight:300;line-height:1.6;max-width:620px;margin-bottom:clamp(32px,5vh,60px)}
+
+.d-meta{display:flex;flex-wrap:wrap;gap:clamp(20px,3.5vw,48px);padding:clamp(14px,2vh,24px) 0;border-top:1px solid var(--dim2);border-bottom:1px solid var(--dim2);margin-bottom:clamp(36px,5.5vh,64px)}
+.d-mi{display:flex;flex-direction:column;gap:6px}
+.d-ml{font-size:clamp(9px,.65vw,11px);font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.d-mv{font-size:clamp(14px,1.2vw,17px);font-weight:300}
+
+.d-sec{margin-bottom:clamp(36px,5.5vh,64px)}
+.d-sl{font-size:clamp(9px,.65vw,11px);font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:clamp(14px,2vh,24px);padding-bottom:10px;border-bottom:1px solid var(--dim2)}
+.d-sum{font-size:clamp(13px,1.1vw,16px);font-weight:300;color:var(--dim);line-height:1.8;max-width:640px}
+
+.res-list{display:flex;flex-wrap:wrap;gap:clamp(7px,.9vw,11px)}
+.res-chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--dim2);padding:8px clamp(12px,1.5vw,18px);font-size:clamp(11px,.9vw,13px);font-weight:300;transition:border-color .18s,color .18s}
+.res-chip:hover{border-color:var(--accent);color:var(--accent)}
+.res-chip svg{width:13px;height:13px;flex-shrink:0}
+
+.conv-list{display:flex;flex-direction:column}
+.conv{display:grid;grid-template-columns:1fr auto;gap:clamp(12px,2vw,28px);align-items:start;padding:clamp(18px,2.8vh,32px) 0;border-bottom:1px solid var(--dim2)}
+.conv:first-child{border-top:1px solid var(--dim2)}
+.conv-ev{font-size:clamp(14px,1.2vw,18px);font-weight:300;line-height:1.3;margin-bottom:5px}
+.conv-org{font-size:clamp(11px,.85vw,13px);font-weight:400;letter-spacing:.04em;color:var(--dim);margin-bottom:3px}
+.conv-loc{font-size:clamp(11px,.85vw,12px);font-weight:300;color:var(--dim)}
+.conv-desc{font-size:clamp(12px,.9vw,14px);font-weight:300;color:var(--dim);line-height:1.65;margin-top:9px;max-width:500px}
+.conv-quote{font-style:italic;opacity:.7;margin-top:7px;font-size:clamp(12px,.9vw,14px);font-weight:300;color:var(--dim);line-height:1.65;max-width:500px}
+.conv-vlink{display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-size:clamp(9px,.7vw,11px);font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);transition:opacity .18s}
+.conv-vlink:hover{opacity:.65}
+.conv-vlink svg{width:11px;height:11px}
+.conv-date{font-size:clamp(11px,.85vw,12px);font-weight:300;color:var(--dim);white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums}
+
+/* ── FOOTER ── */
+
+.site-footer{max-width:1280px;margin:0 auto;padding:clamp(16px,2.5vh,24px) var(--pad);border-top:1px solid var(--dim2);display:flex;justify-content:space-between;align-items:center}
+.f-txt{font-size:clamp(10px,.75vw,11px);font-weight:300;letter-spacing:.06em;color:var(--dim)}
+.f-link{font-size:clamp(10px,.75vw,11px);font-weight:300;letter-spacing:.06em;color:var(--dim);transition:color .18s}
+.f-link:hover{color:var(--bone)}
+
+/* ── RESPONSIVE ── */
+
+@media(max-width:600px){
+  .h-stats{display:none}
+  .conv{grid-template-columns:1fr}
+  .conv-date{text-align:left;margin-top:3px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}}
+
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+
+/* ══════════════════════════════════════════════
+   DEFAULT DATA (fallback si no hay localStorage)
+══════════════════════════════════════════════ */
+
+var DEFAULT_CHARLAS = [
+  {
+    slug: 'exp-humanas',
+    title: 'Diseñar desde la experiencia humana',
+    observation: 'Diseñamos para personas. Primero hay que entenderlas.',
+    question: '¿Cómo tomamos mejores decisiones cuando diseñamos con y para otras personas?',
+    idea: 'Las mejores decisiones nacen cuando una idea se encuentra con la realidad de las personas.',
+    summary: 'Una exploración sobre cómo el diseño centrado en la experiencia humana transforma la manera en que creamos productos, servicios y conversaciones. Propone mirar a las personas antes de mirar las soluciones — y acompañar eso con herramientas simples para observar, escuchar y decidir mejor.',
+    themes: ['Experiencias','Liderazgo','Comunicación'],
+    duration: 45,
+    status: 'activa',
+    resources: { presentation:'exp-humanas/index.html', pdf:null, video:null },
+    conversations: [
+      { event:'Sesión en vivo', organization:'Comunidad GAUF', location:'Buenos Aires, Argentina', date:'2024', description:null, video:null, testimonial:null }
+    ]
+  },
+  {
+    slug: 'buen-rumbo',
+    title: '¿Vamos bien?',
+    observation: 'Cambiar de rumbo no es fracaso. Insistir en una dirección equivocada sí puede serlo.',
+    question: '¿Cómo saber si tu proyecto está avanzando en la dirección correcta?',
+    idea: 'No hay recetas. Solo algunas señales que, como una brújula, indican si vamos a buen rumbo y buen ritmo.',
+    summary: 'Una charla para equipos en etapa de desarrollo que necesitan herramientas simples para evaluar si sus decisiones apuntan en la dirección correcta. Sin fórmulas: con preguntas. Pensada especialmente para hackathones y comunidades de producto e innovación.',
+    themes: ['Startups','Hackathons','Creatividad'],
+    duration: 25,
+    status: 'activa',
+    resources: { presentation:'buen-rumbo/index.html', pdf:null, video:null },
+    conversations: [
+      { event:'ETH Lima Hackathon 2026', organization:'ETH Lima', location:'Lima, Perú', date:'2026-08-06', description:'Sesión en vivo de 25 minutos para equipos participantes del hackathon.', video:null, testimonial:null }
+    ]
+  }
+];
+
+var ALL_THEMES = ['Todas','Liderazgo','Comunicación','Creatividad','Improvisación','Marca personal','Experiencias','Startups','Hackathons','Trabajo en equipo'];
+var STATUS_LABEL = { 'activa':'Activa', 'en-desarrollo':'En desarrollo', 'pausada':'Pausada' };
+var LS_KEY = 'gauf-charlas-data';
+
+/* ══════════════════════════════════════════════
+   CARGAR DATOS (localStorage tiene prioridad)
+══════════════════════════════════════════════ */
+
+function loadCharlas() {
+  try {
+    var raw = localStorage.getItem(LS_KEY);
+    if (raw) { var d = JSON.parse(raw); if (Array.isArray(d) && d.length) return d; }
+  } catch(e) {}
+  return DEFAULT_CHARLAS;
+}
+
+var CHARLAS = loadCharlas();
+
+/* ══════════════════════════════════════════════
+   GAUF SVG
+══════════════════════════════════════════════ */
+
+var GAUF = '<svg viewBox="0 0 1202 404" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-gauf"><path d="M188.856.831C222.339-3.208 268.635 7.939 297.927 24.274 350.979 53.86 380.598 93.274 397.666 150.497 367.953 152.831 327.788 150.135 296.571 150.982 283.3 129.718 266.796 114.156 243.313 104.582 216.198 93.6 185.822 93.896 158.927 105.405 132.31 116.531 111.234 137.818 100.373 164.544 89.671 190.367 89.754 219.401 100.604 245.162 112.079 271.933 133.785 293.002 160.886 303.676 187.661 314.28 221.542 314.07 247.863 302.459 277.687 289.303 293.094 268.435 304.659 239.525L200.345 239.276C199.89 217.18 199.955 195.077 200.541 172.984L252.322 172.817 402.238 172.979C404.126 207.816 403.712 239.801 403.674 274.643L403.46 403.288 310.963 403.276C311.025 392.268 310.928 381.26 310.671 370.255 281.997 388.293 255.715 399.351 221.621 402.639 165.921 408.011 114.721 391.771 71.726 356.384 31.136 322.466 5.642 273.845.827 221.17-4.035 167.739 12.692 114.585 47.275 73.567 83.262 30.012 133.018 6.061 188.856.831Z" fill="currentColor"/><path d="M555.143.41C589.756.23 622.992 13.951 647.398 38.495 663.247 54.376 675.749 75.516 680.846 97.461 684.78 114.405 683.892 134.206 683.882 151.726L683.827 207.351 683.753 403.429 586.924 403.267 586.845 320.9 565.302 320.884 522.554 320.889 522.471 403.286 425.707 403.088 425.715 212.886 425.609 155.173C425.576 138.025 424.882 119.196 428.152 102.43 432.126 82.843 440.71 64.483 453.192 48.872 476.357 19.656 508.547 5.076 544.99.821 547.689.495 552.304.412 555.143.41ZM605.687 139.241C598.77 113.33 575.248 98.823 549.498 100.446 533.952 103.006 521.77 108.569 512.352 121.72 507.775 128.165 504.652 135.529 503.2 143.301 501.141 153.991 501.822 173.502 501.895 185.029L501.957 238.213 561.767 238.216 607.503 238.219 607.701 185.962C607.791 172.585 609.049 151.832 605.687 139.241Z" fill="currentColor"/><path d="M548.405 135.923C568.471 132.36 587.615 145.773 591.118 165.85 594.62 185.927 581.15 205.03 561.062 208.473 541.061 211.9 522.056 198.499 518.568 178.508 515.08 158.516 528.424 139.471 548.405 135.923Z" fill="#27D3CC"/><path d="M848.129.712C884.208-.092 922.018.493 958.228.603V102.707L958.258 229.55C958.268 252.2 959.908 296.358 954.948 316.797 950.288 335.639 940.598 352.863 926.918 366.632 864.334 429.595 733.308 411.581 708.525 317.965 703.753 299.939 704.944 276.703 704.971 258.035L704.987 202.448 705.062.709C741.159.078 778.46.545 814.652.601L814.677 189.44 814.655 245.859C814.602 256.847 814.202 267.816 814.631 278.798 815.038 289.202 817.077 300.412 829.874 301.351 834.659 301.721 839.378 300.051 842.866 296.755 850.133 289.931 848.062 265.765 848.09 255.393L848.15 195.566 848.129.712Z" fill="currentColor"/><path d="M981.497.724C1054.52-.247 1128.82.502 1201.91.602 1202.08 67.255 1158.61 125.379 1090.61 134.825 1082.71 135.923 1075.58 136.132 1067.59 136.286L1067.39 160.293 1168.78 160.379C1168.68 195.248 1162.99 213.949 1142.79 242.352 1124.32 264.638 1104.63 276.559 1076.24 282.654L1076.16 403.299 981.397 403.42 981.497.724Z" fill="currentColor"/></svg>';
+
+/* ══════════════════════════════════════════════
+   THEME
+══════════════════════════════════════════════ */
+
+var _theme = localStorage.getItem('gauf-theme') || 'dark';
+document.documentElement.setAttribute('data-theme', _theme);
+function toggleTheme() {
+  _theme = _theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', _theme);
+  localStorage.setItem('gauf-theme', _theme);
+  var btn = document.querySelector('.theme-toggle');
+  if (btn) btn.textContent = _theme === 'dark' ? '☀' : '◑';
+}
+
+/* ══════════════════════════════════════════════
+   UTILS
+══════════════════════════════════════════════ */
+
+function fmtDate(d) {
+  if (!d || d.length===4) return d||'';
+  var p=d.split('-'); if(p.length<3) return d;
+  var mo=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  return p[2].replace(/^0/,'') + ' ' + mo[parseInt(p[1],10)-1] + ' ' + p[0];
+}
+function lastConv(convs) {
+  if (!convs||!convs.length) return null;
+  return convs.slice().sort(function(a,b){return b.date>a.date?1:-1})[0];
+}
+function stats() {
+  var c=0,h=0,o={};
+  CHARLAS.forEach(function(x){ c+=(x.conversations||[]).length; h+=x.duration; (x.conversations||[]).forEach(function(v){o[v.organization]=1}) });
+  return { charlas:CHARLAS.length, convs:c, orgs:Object.keys(o).length, hrs:Math.round(h/60*10)/10 };
+}
+function filtered() {
+  return CHARLAS.filter(function(c) {
+    if (S.filter!=='Todas' && c.themes.indexOf(S.filter)<0) return false;
+    if (!S.query) return true;
+    var q=S.query.toLowerCase();
+    return c.title.toLowerCase().indexOf(q)>=0
+      ||c.question.toLowerCase().indexOf(q)>=0
+      ||c.themes.join(' ').toLowerCase().indexOf(q)>=0
+      ||(c.conversations||[]).some(function(v){return v.event.toLowerCase().indexOf(q)>=0||v.organization.toLowerCase().indexOf(q)>=0});
+  });
+}
+function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+/* ══════════════════════════════════════════════
+   STATE
+══════════════════════════════════════════════ */
+
+var S = { view:'home', slug:null, filter:'Todas', query:'' };
+
+/* ══════════════════════════════════════════════
+   CARD
+══════════════════════════════════════════════ */
+
+function card(c) {
+  var n=( c.conversations||[]).length;
+  var lc=lastConv(c.conversations);
+  var sl=STATUS_LABEL[c.status]||c.status;
+  return '<a class="card" href="#/charla/'+c.slug+'" onclick="return nav(\'charla\',\''+c.slug+'\')">'
+    +'<div class="card-title">'+c.title+'</div>'
+    +'<div class="card-obs">'+c.observation+'</div>'
+    +'<div class="card-q">'+c.question+'</div>'
+    +'<div class="card-foot">'
+      +'<div class="meta"><b>'+c.themes[0]+'</b></div>'
+      +'<div class="meta"><b>'+c.duration+'</b> min</div>'
+      +'<div class="meta"><b>'+n+'</b> '+(n===1?'conversación':'conversaciones')+'</div>'
+      +(lc?'<div class="meta">Última <b>'+fmtDate(lc.date)+'</b></div>':'')
+      +(lc?'<div class="meta">'+lc.event+'</div>':'')
+      +'<div class="meta" style="margin-left:auto"><span class="sdot '+c.status+'"></span>'+sl+'</div>'
+    +'</div>'
+  +'</a>';
+}
+
+/* ══════════════════════════════════════════════
+   RENDER HOME
+══════════════════════════════════════════════ */
+
+function home() {
+  var st=stats(); var lc=filtered();
+  var usedThemes={};
+  CHARLAS.forEach(function(c){c.themes.forEach(function(t){usedThemes[t]=1})});
+  var chips=ALL_THEMES.filter(function(t){return t==='Todas'||usedThemes[t]}).map(function(t){
+    return '<button class="chip'+(S.filter===t?' on':'')+'" onclick="setFilter(\''+t+'\')">'+t+'</button>';
+  }).join('');
+  var grid=lc.length
+    ?'<div class="grid">'+lc.map(card).join('')+'</div>'
+    :'<div class="empty">No hay charlas que coincidan.</div>';
+  return '<header class="site-header">'
+      +GAUF
+      +'<div class="h-divider"></div>'
+      +'<div class="h-title">Charlas</div>'
+      +'<div class="h-desc">Conversaciones sobre liderazgo, creatividad, comunicación y diseño de experiencias.</div>'
+      +'<div style="flex:1"></div>'
+      +'<div class="h-stats">'
+        +'<div class="stat"><div class="stat-n">'+st.charlas+'</div><div class="stat-l">Charlas</div></div>'
+        +'<div class="stat"><div class="stat-n">'+st.convs+'</div><div class="stat-l">Conversaciones</div></div>'
+        +'<div class="stat"><div class="stat-n">'+st.orgs+'</div><div class="stat-l">Comunidades</div></div>'
+        +'<div class="stat"><div class="stat-n">'+st.hrs+'h</div><div class="stat-l">Horas</div></div>'
+      +'</div>'
+      +'<button class="theme-toggle" onclick="toggleTheme()">'+(_theme==='dark'?'☀':'◑')+'</button>'
+    +'</header>'
+    +'<div class="controls">'
+      +'<input class="search" type="search" placeholder="Buscar…" value="'+esc(S.query)+'" oninput="onSearch(this.value)">'
+      +'<div class="ctrl-sep"></div>'
+      +'<div class="filters">'+chips+'</div>'
+    +'</div>'
+    +grid
+    +'<footer class="site-footer">'
+      +'<span class="f-txt">GAUF · Charlas</span>'
+      +'<div style="display:flex;gap:clamp(12px,2vw,24px);align-items:center">'
+        +'<a class="f-link" href="admin.html">Configurador</a>'
+        +'<a class="f-link" href="https://gaufgang.com" target="_blank">gaufgang.com</a>'
+      +'</div>'
+    +'</footer>';
+}
+
+/* ══════════════════════════════════════════════
+   RENDER DETAIL
+══════════════════════════════════════════════ */
+
+function detail(slug) {
+  var c=CHARLAS.filter(function(x){return x.slug===slug})[0];
+  if (!c) return '<div class="detail"><button class="back" onclick="nav(\'home\')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>Volver</button><p style="color:var(--dim)">No encontrada.</p></div>';
+  var res=[];
+  if (c.resources&&c.resources.presentation) res.push('<a class="res-chip" href="'+c.resources.presentation+'" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="1"/><path d="M8 20h8M12 18v2"/><path d="M9 9l3 3 3-3"/></svg>Presentación</a>');
+  if (c.resources&&c.resources.pdf) res.push('<a class="res-chip" href="'+c.resources.pdf+'" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>PDF</a>');
+  if (c.resources&&c.resources.video) res.push('<a class="res-chip" href="'+c.resources.video+'" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>Video</a>');
+  var convs=(c.conversations||[]).map(function(v){
+    return '<div class="conv">'
+      +'<div>'
+        +'<div class="conv-ev">'+v.event+'</div>'
+        +'<div class="conv-org">'+v.organization+'</div>'
+        +'<div class="conv-loc">'+v.location+'</div>'
+        +(v.description?'<div class="conv-desc">'+v.description+'</div>':'')
+        +(v.testimonial?'<div class="conv-quote">"'+v.testimonial+'"</div>':'')
+        +(v.video?'<a class="conv-vlink" href="'+v.video+'" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>Ver video</a>':'')
+      +'</div>'
+      +'<div class="conv-date">'+fmtDate(v.date)+'</div>'
+    +'</div>';
+  }).join('');
+  return '<header class="site-header">'
+      +GAUF
+      +'<div class="h-divider"></div>'
+      +'<div class="h-title">Charlas</div>'
+      +'<div style="flex:1"></div>'
+      +'<button class="theme-toggle" onclick="toggleTheme()">'+(_theme==='dark'?'☀':'◑')+'</button>'
+    +'</header>'
+    +'<div class="detail">'
+      +'<button class="back" onclick="nav(\'home\')">'
+        +'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>'
+        +'Todas las charlas'
+      +'</button>'
+      +'<div class="d-eye">'+c.themes.join(' · ')+'</div>'
+      +'<h1 class="d-title">'+c.title+'</h1>'
+      +'<div class="d-idea">'+c.idea+'</div>'
+      +'<div class="d-ql">Pregunta rectora</div>'
+      +'<div class="d-q">'+c.question+'</div>'
+      +'<div class="d-meta">'
+        +'<div class="d-mi"><div class="d-ml">Duración</div><div class="d-mv">'+c.duration+' min</div></div>'
+        +'<div class="d-mi"><div class="d-ml">Estado</div><div class="d-mv"><span class="sdot '+c.status+'"></span>'+(STATUS_LABEL[c.status]||c.status)+'</div></div>'
+        +'<div class="d-mi"><div class="d-ml">Conversaciones</div><div class="d-mv">'+((c.conversations||[]).length)+'</div></div>'
+      +'</div>'
+      +'<div class="d-sec"><div class="d-sl">Resumen</div><div class="d-sum">'+c.summary+'</div></div>'
+      +(res.length?'<div class="d-sec"><div class="d-sl">Recursos disponibles</div><div class="res-list">'+res.join('')+'</div></div>':'')
+      +'<div class="d-sec"><div class="d-sl">Conversamos con</div><div class="conv-list">'+convs+'</div></div>'
+    +'</div>'
+    +'<footer class="site-footer">'
+      +'<span class="f-txt">GAUF · Charlas</span>'
+      +'<a class="f-link" href="https://gaufgang.com" target="_blank">gaufgang.com</a>'
+    +'</footer>';
+}
+
+/* ══════════════════════════════════════════════
+   ROUTER
+══════════════════════════════════════════════ */
+
+function render() {
+  var app=document.getElementById('app');
+  app.innerHTML = S.view==='charla'&&S.slug ? detail(S.slug) : home();
+  window.scrollTo(0,0);
+}
+function nav(view,slug) {
+  var app=document.getElementById('app');
+  app.classList.add('fade');
+  setTimeout(function(){
+    S.view=view; S.slug=slug||null;
+    location.hash = view==='home' ? '#/' : '#/charla/'+(slug||'');
+    render(); app.classList.remove('fade');
+  },130);
+  return false;
+}
+function setFilter(t){ S.filter=t; render(); var i=document.querySelector('.search'); if(i) i.value=S.query; }
+function onSearch(v){
+  S.query=v;
+  var lc=filtered();
+  var grid=document.querySelector('.grid');
+  var empty=document.querySelector('.empty');
+  var html=lc.map(card).join('');
+  if (grid) { if(lc.length) grid.innerHTML=html; else { grid.outerHTML='<div class="empty">No hay charlas que coincidan.</div>'; } }
+  else if (empty) { if(lc.length) empty.outerHTML='<div class="grid">'+html+'</div>'; }
+}
+window.addEventListener('hashchange',function(){
+  var h=location.hash||'#/';
+  if (h.indexOf('#/charla/')===0){ var s=h.replace('#/charla/',''); if(S.view!=='charla'||S.slug!==s) nav('charla',s); }
+  else { if(S.view!=='home') nav('home'); }
+});
+(function(){
+  var h=location.hash||'#/';
+  if (h.indexOf('#/charla/')===0){ S.view='charla'; S.slug=h.replace('#/charla/',''); }
+  render();
+})();
+</script>
+</body>
+</html>
