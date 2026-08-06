@@ -52,7 +52,7 @@ si no reconocen claridad en vuestro proyecto, acá algunos consejos.
 
 # s9
 Y dejo preguntas disparadoras para que piensen sobre sus desarrollos.
-Tomen captura
+Tomen captura de pantalla, igualmente 
 
 # s10
 que ven?
