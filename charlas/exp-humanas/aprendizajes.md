@@ -16,6 +16,8 @@ Agradecí mucho, desee suerte a todos y quedo disponible.
 
 Dos preguntaron para agendar conmigo, mientras que desde ayer ya tengo 3 agendados para mentoria corta hoy.
 
+Apunté a tardar 20 m
+
 ## Qué cambiaría
 
 —
