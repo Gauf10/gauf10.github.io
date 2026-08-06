@@ -35,13 +35,7 @@ No hay recetas, solo una especie de brújula para ver si vamos al norte, a buen 
 Planteo una especie de semáforo, luz verde si van por este camino
 
 # s5
-Que ven?
-Además de lo evidente.
-Es el equipo de trabajo, gente muy querida con quienes colaboro hace una década.
-Pensamos y cuidamos que sucede con el usuario, el fan en este caso, cuando se acerca a la experiencia.
-Tengo la suerte de trabajar con la industria del entretenimiento, los contenidos son muy queridos por la gente.
-También colaboro con otras industrias y entiendo que tiene otros desafíos, por ejemplo hablar de finanzar, jhonny puede desarrollar esto mucho mejor que yo.
-Pero acá no hablamos de producto, sino de experiencias.
+alertas si
 
 # s7
 no lo que dijiste, no lo que leyeron o vieron.
