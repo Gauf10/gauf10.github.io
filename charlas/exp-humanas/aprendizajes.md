@@ -20,7 +20,7 @@ Apunté a tardar 20 min. 30 con preguntas, y cerca de los 15 minutos ya estaba c
 
 ## Qué cambiaría
 
-Tal vez no correr tanto.
+Tal vez no correr tanto. Tomarme los 2 min
 
 ## Preguntas que aparecieron
 
