@@ -48,7 +48,7 @@ Deben haber escuchado sobre los MVPs que si no te avergüenza la primer versión
 Es más que nada la idea de no dudar, no darle vueltas al asunto y salir a testear.
 
 # s8
-si no andan 
+si no andan co
 
 # s9
 Todo comunica, la ropa de los promotores, la sonrisa, la aplicación, el video de convocatoria.
