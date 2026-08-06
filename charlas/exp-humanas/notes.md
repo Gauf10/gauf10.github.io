@@ -35,7 +35,7 @@ No hay recetas, solo una especie de brújula para ver si vamos al norte, a buen 
 Planteo una especie de semáforo, luz verde si van por este camino
 
 # s5
-alertas si para
+alertas si aparecen
 
 # s7
 no lo que dijiste, no lo que leyeron o vieron.
