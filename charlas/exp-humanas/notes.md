@@ -44,7 +44,8 @@ Si sienten que están por estos lados, replantearía los objetivos, el equipo y 
 Algo que me gusta aclarar es que siempre conviene claridad, simpleza, explicar todo en pocas líneas, con pocos elementos.
 Antes que algo perfecto, super complejo y recontra pensado.
 
-Deben haber escuchado sobre los MVPs que si no te averguenza la primer versión, lanzaste tarde. Es más que nada la idea de no dudar, no darle vueltas al asunto y salir a testear.
+Deben haber escuchado sobre los MVPs que si no te averguenza la primer versión, lanzaste tarde. 
+Es más que nada la idea de no dudar, no darle vueltas al asunto y salir a testear.
 
 # s8
 Vamos con otro caso, otra experiencia.
