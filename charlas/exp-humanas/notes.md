@@ -20,11 +20,6 @@ Medir, encuestar, consultar, y sobre todo avanzar con cautela y seguridad.
 
 Foco.
 
-# s3
-Como les decía, en tantos años involucrado en experiencias.
-Empecé a mirar, a mirarme, activar el modo observador que me trae información y sensaciones más allá de lo evidente.
-Vamos a ponerlo a prueba.
-
 # s4
 Esta será la pregunta guía de toda la charla.
 el esto puede ser lo que quieran, una foto, un momento, una reunión, un video caso, un viaje en ascensor con alguien de otra área.
