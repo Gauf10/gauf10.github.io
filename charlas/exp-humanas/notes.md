@@ -38,7 +38,7 @@ Planteo una especie de semáforo, luz verde si van por este camino
 alertas si aparecen cositas como estas
 
 # s6
-Si sienten que estáReplantearía los objetivos, el equipo y las ideas rectoras.
+Si sienten que están por Replantearía los objetivos, el equipo y las ideas rectoras.
 
 # s7
 no lo que dijiste, no lo que leyeron o vieron.
