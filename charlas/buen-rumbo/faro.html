@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>FARO — ¿Vamos bien?</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="shortcut icon" href="favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="faro.css">
+</head>
+<body>
+
+<!-- Arrows -->
+<button class="arr arr-up" onclick="Faro.prev()" aria-label="Anterior">↑</button>
+<button class="arr arr-down" onclick="Faro.next()" aria-label="Siguiente">↓</button>
+
+<!-- App -->
+<div id="app">
+  <div id="top-bar">
+    <div class="status-item" id="st-time">--:--</div>
+    <button id="help-btn" onclick="Faro.toggleHelp()" aria-label="Ayuda">ⓘ</button>
+  </div>
+  <div id="slide-current"></div>
+  <div class="divider is-draggable" id="drag-handle">
+    <div class="drag-dot"></div>
+  </div>
+  <div id="notes-section">
+    <div id="notes-label">NOTAS</div>
+    <textarea id="notes-editor" placeholder="Escribí disparadores para este slide…" spellcheck="true"></textarea>
+  </div>
+  <div class="divider"></div>
+  <div id="bottom-section">
+    <div id="next-preview">
+      <div id="next-label">SIGUIENTE</div>
+    </div>
+    <div id="status-bar">
+      <div class="status-item" id="st-elapsed">--:--</div>
+      <div class="status-item" id="st-slide-time" title="Objetivo por slide — click para configurar" onclick="Faro.setSlideTarget()">+--:--</div>
+      <div class="status-item" id="st-slide">--/--</div>
+      <button id="share-btn" aria-label="Compartir">
+        <svg class="share-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+      </button>
+      <button id="aprendizajes-btn" onclick="Faro.toggleAprendizajes()" aria-label="Aprendizajes">✦</button>
+    </div>
+  </div>
+</div>
+
+<!-- Login -->
+<div id="login">
+  <div id="login-box">
+    <div id="login-title">FARO</div>
+    <input id="login-password" type="password" placeholder="Contraseña" autocomplete="off">
+    <div id="login-error"></div>
+  </div>
+</div>
+
+<!-- Waiting -->
+<div id="waiting">
+  <div id="waiting-text">Esperando presentación...</div>
+  <button id="waiting-open" onclick="window.open('index.html','_blank')">Abrir presentación</button>
+</div>
+
+<!-- Aprendizajes -->
+<div id="aprendizajes-panel">
+  <div class="aprendizajes-header">
+    <span>APRENDIZAJES</span>
+    <button onclick="Faro.toggleAprendizajes()" aria-label="Cerrar">✕</button>
+  </div>
+  <div id="aprendizajes-fields">
+    <div class="aprendizajes-field">
+      <label class="aprendizajes-field-label">Qué funcionó</label>
+      <textarea class="aprendizajes-input" data-field="funciono" placeholder="Lo que dio resultado…" spellcheck="true"></textarea>
+    </div>
+    <div class="aprendizajes-field">
+      <label class="aprendizajes-field-label">Qué cambiaría</label>
+      <textarea class="aprendizajes-input" data-field="cambiaria" placeholder="Lo que mejoraría…" spellcheck="true"></textarea>
+    </div>
+    <div class="aprendizajes-field">
+      <label class="aprendizajes-field-label">Preguntas que aparecieron</label>
+      <textarea class="aprendizajes-input" data-field="preguntas" placeholder="Lo que preguntó la gente…" spellcheck="true"></textarea>
+    </div>
+    <div class="aprendizajes-field">
+      <label class="aprendizajes-field-label">Ideas nuevas</label>
+      <textarea class="aprendizajes-input" data-field="ideas" placeholder="Lo que me llevo…" spellcheck="true"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- Share menu -->
+<div id="share-menu" role="menu" aria-label="Compartir">
+  <div class="share-menu-title">Compartir</div>
+</div>
+
+<!-- Toast -->
+<div id="toast"></div>
+
+<!-- Help overlay -->
+<div id="help-overlay" onclick="if(event.target===this)Faro.toggleHelp()">
+  <div id="help-box">
+    <div id="help-title">Shortcuts</div>
+    <div class="help-row"><span class="help-key">← →</span><span class="help-desc">Navegar slide</span></div>
+    <div class="help-row"><span class="help-key">N</span><span class="help-desc">Mostrar / ocultar notas</span></div>
+    <div class="help-row"><span class="help-key">+ -</span><span class="help-desc">Tamaño de texto de notas</span></div>
+    <div class="help-row"><span class="help-key">F</span><span class="help-desc">Pantalla completa</span></div>
+    <div class="help-row"><span class="help-key">T</span><span class="help-desc">Reiniciar cronómetro</span></div>
+    <div class="help-row"><span class="help-key">S</span><span class="help-desc">Configurar duración total</span></div>
+    <div class="help-row"><span class="help-key">P</span><span class="help-desc">Objetivo por slide (segundos)</span></div>
+    <div class="help-row"><span class="help-key">A</span><span class="help-desc">Abrir / cerrar aprendizajes</span></div>
+    <div class="help-row"><span class="help-key">B</span><span class="help-desc">Pantalla negra (audiencia)</span></div>
+    <div class="help-row"><span class="help-key">Esc</span><span class="help-desc">Salir de ayuda / blackout</span></div>
+    <div id="help-dismiss">Click fuera para cerrar</div>
+  </div>
+</div>
+
+<script src="faro.js"></script>
+</body>
+</html>

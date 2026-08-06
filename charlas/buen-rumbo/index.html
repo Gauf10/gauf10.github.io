@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>¿Vamos bien? — Gabriel Aufgang</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="shortcut icon" href="favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-serif;background:#1a1a1a;color:#f5f2ec;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+:root{--bk:#1a1a1a;--accent:#27d3cc;--bone:#f5f2ec;--dim:rgba(245,242,236,.4);--dim2:rgba(245,242,236,.12);--pad:clamp(40px,7vw,100px)}
+
+#deck{position:fixed;inset:0;overflow:hidden;background:var(--bk)}
+.slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1;background:var(--bk);color:var(--bone);opacity:0;pointer-events:none}
+.slide.is-active{opacity:1;z-index:10;pointer-events:auto}
+.slide.is-gone{opacity:0;z-index:1}
+.slide.animating{transition:opacity .9s ease}
+
+.si{position:relative;z-index:2;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;padding:var(--pad)}
+.si-content{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative}
+.si-footer{position:absolute;bottom:clamp(16px,3vh,40px);left:0;right:0;display:flex;justify-content:center;align-items:center;padding:0 var(--pad);pointer-events:none}
+.footer-logo{height:clamp(13px,1.76vw,26px);width:auto;opacity:1}
+.footer-logo-circle{position:absolute;top:clamp(16px,3vh,40px);right:var(--pad);height:clamp(23px,2.9vw,41px);width:auto;max-width:clamp(60px,7.2vw,108px);object-fit:contain;opacity:1;z-index:3}
+
+.hero{text-align:center;max-width:88vw}
+.hero-line{font-size:clamp(18px,3.2vw,44px);font-weight:300;line-height:1.5;letter-spacing:0.04em;color:var(--bone)}
+.hero-line strong{font-weight:400}
+.accent,.hero-line.accent{color:var(--accent)}
+.hero-break{height:clamp(0px,4vh,0px)}
+.hero-break-lg{height:clamp(40px,8vh,120px)}
+
+/* Cyan slides */
+.slide-cyan{--bk:#27d3cc;background:#27d3cc;color:#1a1a1a}
+.slide-cyan .hero-line{color:#1a1a1a;font-weight:300}
+.slide-cyan .accent,.slide-cyan .hero-line.accent{color:#1a1a1a;opacity:.6}
+.slide-cyan .footer-logo{filter:brightness(0);opacity:1}
+.slide-cyan .slide-num{color:rgba(26,26,26,.35)}
+.slide-cyan .footer-logo-circle{filter:brightness(0);opacity:.7}
+
+/* Closing slide */
+.s-close-quote{max-width:80vw;text-align:center}
+.s-close-quote div{font-size:clamp(22px,3.8vw,56px);font-weight:300;line-height:1.4;letter-spacing:0.03em;color:var(--bone)}
+.s-author{font-size:clamp(11px,1vw,15px);color:var(--dim);font-weight:400;letter-spacing:.15em;text-transform:uppercase}
+
+/* Section label */
+.sec-label{font-size:clamp(10px,.9vw,14px);color:var(--dim);letter-spacing:0.12em;text-transform:uppercase;font-weight:400;margin-bottom:clamp(24px,3vh,52px)}
+
+/* Progressive reveal */
+.reveal-steps{text-align:center}
+.reveal-step{font-size:clamp(18px,3.2vw,44px);font-weight:300;line-height:1.5;letter-spacing:0.04em;color:var(--bone);opacity:0;transition:opacity 1.2s ease}
+.reveal-step.revealed{opacity:1}
+
+/* Framework arrows */
+.fw-arr{color:var(--dim);font-size:clamp(12px,1.2vw,20px);margin:clamp(4px,.6vh,12px) 0;font-weight:300}
+
+/* Navigation */
+#nd{position:fixed;right:clamp(8px,1.2vw,18px);top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;align-items:center;gap:clamp(4px,.6vh,10px)}
+.dot{width:clamp(4px,.4vw,7px);height:clamp(4px,.4vw,7px);border-radius:50%;background:var(--dim2);cursor:pointer;transition:all .5s cubic-bezier(.77,0,.175,1);border:none}
+.dot.on{background:var(--accent);transform:scale(2)}
+.arr{position:fixed;right:clamp(18px,2.4vw,32px);z-index:50;border:none;background:transparent;cursor:pointer;color:var(--dim2);font-size:clamp(10px,1vw,16px);transition:color .3s;padding:clamp(2px,.2vw,4px);line-height:1;opacity:.5}
+.arr:hover{color:var(--accent);opacity:1}
+.arr-up{bottom:calc(50% + clamp(32px,5vh,72px))}
+.arr-down{top:calc(50% + clamp(32px,5vh,72px))}
+
+@media(max-width:768px){
+  #nd,.arr{display:none!important}
+  :root{--pad:24px}
+  .footer-logo{height:10px;opacity:1}
+  .footer-logo-circle{height:17px;max-width:48px}
+}
+.slide{-webkit-user-select:text;user-select:text}
+.slide-num{position:absolute;bottom:clamp(16px,3vh,40px);left:var(--pad);font-size:clamp(8px,.7vw,11px);color:rgba(245,242,236,.25);font-weight:300;letter-spacing:.04em;pointer-events:none;z-index:3}
+
+/* Slide 2 — tipografía más pequeña */
+#s1 .reveal-step{font-size:clamp(15px,2.6vw,36px)}
+
+/* ═══ PRINT ═══ */
+@media print{
+  @page{size:auto;margin:0}
+  html,body{width:auto;height:auto;overflow:visible!important;background:#fff!important}
+  #nd,.arr,.dot{display:none!important}
+  #deck{position:static!important;overflow:visible!important;background:#fff!important}
+  .slide{
+    position:relative!important;width:100vw;height:100vh;
+    display:flex;align-items:center;justify-content:center;
+    opacity:1!important;pointer-events:none!important;z-index:auto!important;
+    background:var(--bk);color:var(--bone);
+    break-after:page;page-break-after:always;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact
+  }
+  .slide:last-child{break-after:auto;page-break-after:auto}
+  .slide.animating{transition:none!important}
+  .slide .si-content{opacity:1!important;transition:none!important}
+  .slide.is-gone,.slide.is-active{opacity:1!important;z-index:auto!important}
+  .reveal-step{opacity:1!important;transform:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- Dots -->
+<div id="nd">
+  <div class="dot on" onclick="goTo(0)"></div>
+  <div class="dot" onclick="goTo(1)"></div>
+  <div class="dot" onclick="goTo(2)"></div>
+  <div class="dot" onclick="goTo(3)"></div>
+  <div class="dot" onclick="goTo(4)"></div>
+  <div class="dot" onclick="goTo(5)"></div>
+  <div class="dot" onclick="goTo(6)"></div>
+  <div class="dot" onclick="goTo(7)"></div>
+  <div class="dot" onclick="goTo(8)"></div>
+  <div class="dot" onclick="goTo(9)"></div>
+  <div class="dot" onclick="goTo(10)"></div>
+</div>
+
+<!-- Arrows -->
+<button class="arr arr-up" onclick="prev()" aria-label="Anterior">↑</button>
+<button class="arr arr-down" onclick="next()" aria-label="Siguiente">↓</button>
+
+<!-- Deck -->
+<div id="deck">
+
+  <!-- ═══ 1 — Título ═══ -->
+  <div class="slide is-active" id="s0">
+    <div class="si">
+      <div class="si-content">
+        <div class="hero">
+          <div class="hero-line" style="font-size:clamp(32px,5.5vw,80px);font-weight:300;letter-spacing:0.02em">¿Vamos bien?</div>
+          <div class="hero-line accent" style="font-size:clamp(14px,1.8vw,26px);font-weight:300;margin-top:clamp(16px,2.5vh,36px);letter-spacing:0.04em">Cómo saber si tu proyecto tiene buen rumbo</div>
+        </div>
+      </div>
+      <img src="assets/ethhackathon-2026-blanco.svg" alt="ETH Lima" class="footer-logo-circle">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 2 — Las dudas ═══ -->
+  <div class="slide" id="s1">
+    <div class="si">
+      <div class="si-content">
+        <div class="hero reveal-steps">
+          <div class="reveal-step">¿Seguimos?</div>
+          <div class="reveal-step"><div class="fw-arr">↓</div><div>¿Y si la otra idea era mejor?</div></div>
+          <div class="reveal-step"><div class="fw-arr">↓</div><div>¿Llegamos?</div></div>
+          <div class="reveal-step"><div class="fw-arr">↓</div><div>¿Qué hacemos ahora?</div></div>
+          <div class="reveal-step"><div class="fw-arr">↓</div><div>¿Seguimos construyendo hacia el mismo destino?</div></div>
+        </div>
+      </div>
+      <img src="assets/ethhackathon-2026-blanco.svg" alt="ETH Lima" class="footer-logo-circle">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 3 — Grandes ideas / realidad ═══ -->
+  <div class="slide" id="s2">
+    <div class="si">
+      <div class="si-content">
+        <div class="hero">
+          <div class="hero-line">Está buenísimo tener grandes ideas</div>
+          <div class="hero-line" style="color:var(--dim);margin-top:clamp(12px,2vh,28px)">Solo no nos olvidemos de mirar la <span class="accent">realidad</span></div>
+        </div>
+      </div>
+      <img src="assets/ethhackathon-2026-blanco.svg" alt="ETH Lima" class="footer-logo-circle">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 4 — Las tres preguntas ═══ -->
+  <div class="slide" id="s3">
+    <div class="si">
+      <div class="si-content">
+        <div class="hero">
+          <div class="hero-line">¿Estamos resolviendo un problema <span class="accent">real</span>?</div>
+          <div class="hero-line" style="margin-top:clamp(16px,2.5vh,36px)">¿Estamos aprendiendo algo nuevo?</div>
+          <div class="hero-line" style="margin-top:clamp(16px,2.5vh,36px)">¿Estamos construyendo algo demostrable?</div>
+        </div>
+      </div>
+      <img src="assets/ethhackathon-2026-blanco.svg" alt="ETH Lima" class="footer-logo-circle">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 5 — Vamos bien si ═══ -->
+  <div class="slide" id="s4">
+    <div class="si">
+      <div class="si-content">
+        <div class="hero reveal-steps">
+          <div class="sec-label">Vamos bien si</div>
+          <div class="reveal-step">Cada decisión simplifica</div>
+          <div class="reveal-step"><div class="fw-arr">↓</div><div>Las decisiones apuntan al mismo objetivo</div></div>
+          <div class="reveal-step"><div class="fw-arr">↓</div><div>La demo es clara</div></div>
+          <div class="reveal-step"><div class="fw-arr">↓</div><div>Explicamos el proyecto en un minuto</div></div>
+        </div>
+      </div>
+      <img src="assets/ethhackathon-2026-blanco.svg" alt="ETH Lima" class="footer-logo-circle">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 6 — Señales de alerta ═══ -->
+  <div class="slide" id="s5">
+    <div class="si">
+      <div class="si-content">
+        <div class="hero reveal-steps">
+          <div class="sec-label">¿Vamos bien?</div>
+          <div class="reveal-step">Aparecen ideas constantemente</div>
+          <div class="reveal-step"><div class="fw-arr">↓</div><div>Cambiamos de <span class="accent">rumbo</span> en cada conversación</div></div>
+          <div class="reveal-step"><div class="fw-arr">↓</div><div>La explicación deja de ser clara</div></div>
+          <div class="reveal-step"><div class="fw-arr">↓</div><div>Todo queda para cuando haya <span class="accent">tiempo</span></div></div>
+        </div>
+      </div>
+      <img src="assets/ethhackathon-2026-blanco.svg" alt="ETH Lima" class="footer-logo-circle">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 7 — Perdidos ═══ -->
+  <div class="slide" id="s6">
+    <div class="si">
+      <div class="si-content">
+        <div class="hero reveal-steps">
+          <div class="sec-label">¿A dónde íbamos?</div>
+          <div class="reveal-step">Ya no recordamos por qué empezamos</div>
+          <div class="reveal-step"><div class="fw-arr">↓</div><div>Cada decisión apunta a un lugar distinto</div></div>
+          <div class="reveal-step"><div class="fw-arr">↓</div><div>La demo necesita demasiadas explicaciones</div></div>
+          <div class="reveal-step"><div class="fw-arr">↓</div><div>Estamos resolviendo problemas que nadie nos pidió</div></div>
+        </div>
+      </div>
+      <img src="assets/ethhackathon-2026-blanco.svg" alt="ETH Lima" class="footer-logo-circle">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 8 — Claridad antes de perfección [cyan] ═══ -->
+  <div class="slide slide-cyan" id="s7">
+    <div class="si">
+      <div class="si-content">
+        <div class="hero">
+          <div class="hero-line" style="font-size:clamp(28px,4.8vw,72px);font-weight:300;color:#1a1a1a;line-height:1.3;letter-spacing:0.02em">Claridad antes que perfección</div>
+        </div>
+      </div>
+      <img src="assets/ethhackathon-2026-blanco.svg" alt="ETH Lima" class="footer-logo-circle">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 9 — En caso de duda ═══ -->
+  <div class="slide" id="s8">
+    <div class="si">
+      <div class="si-content">
+        <div class="hero reveal-steps">
+          <div class="sec-label">En caso de duda</div>
+          <div class="reveal-step">Simplifica</div>
+          <div class="reveal-step"><div class="fw-arr">↓</div><div>Haz una encuesta</div></div>
+          <div class="reveal-step"><div class="fw-arr">↓</div><div>Vuelve al problema</div></div>
+        </div>
+      </div>
+      <img src="assets/ethhackathon-2026-blanco.svg" alt="ETH Lima" class="footer-logo-circle">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 10 — Cuatro preguntas ═══ -->
+  <div class="slide" id="s9">
+    <div class="si">
+      <div class="si-content">
+        <div class="hero">
+          <div class="hero-line">¿Logró <span class="accent">validar</span>?</div>
+          <div class="hero-line" style="margin-top:clamp(16px,2.5vh,36px)">¿En qué tenemos que concentrarnos?</div>
+          <div class="hero-line" style="margin-top:clamp(16px,2.5vh,36px)">¿Qué tenemos que soltar?</div>
+          <div class="hero-line" style="margin-top:clamp(16px,2.5vh,36px)">¿La demo cumple la promesa que hacemos?</div>
+        </div>
+      </div>
+      <img src="assets/ethhackathon-2026-blanco.svg" alt="ETH Lima" class="footer-logo-circle">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 11 — Cierre ═══ -->
+  <div class="slide" id="s10">
+    <div class="si">
+      <div class="si-content" style="justify-content:center;position:relative">
+        <div class="s-close-quote hero">
+          <div>Éxitos en el Demo Day</div>
+        </div>
+        <div style="position:absolute;bottom:clamp(56px,6vh,80px);left:var(--pad);right:var(--pad);display:flex;justify-content:space-between;align-items:center;z-index:3;-webkit-user-select:text;user-select:text">
+          <div class="hero-line" style="font-weight:700;font-size:clamp(20px,2.8vw,40px);letter-spacing:0.04em">GRACIAS</div>
+          <div style="text-align:right">
+            <div class="s-author" style="font-size:clamp(10px,.9vw,15px)">GABRIEL AUFGANG<br><span style="font-size:clamp(12px,1vw,17px);color:var(--accent);letter-spacing:0.02em;text-transform:none"><a href="https://gaufgang.com/" style="color:inherit;text-decoration:none">gaufgang.com</a></span></div>
+          </div>
+        </div>
+      </div>
+      <img src="assets/ethhackathon-2026-blanco.svg" alt="ETH Lima" class="footer-logo-circle">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="broadcast.js"></script>
+<script>
+var cur = 0;
+var TOTAL = 11;
+var animating = false;
+var autoTimer = null;
+var slidesHTML = [];
+var notesDB = {};
+
+function getSlide(i) { return document.querySelectorAll('.slide')[i]; }
+
+function goTo(n) {
+  if (animating || n === cur || n < 0 || n >= TOTAL) return;
+  animating = true;
+
+  for (var i = 0; i < TOTAL; i++) {
+    var s = getSlide(i);
+    s.style.transition = 'none';
+    s.style.opacity = '';
+    s.style.zIndex = '';
+  }
+
+  var cs = getSlide(cur);
+  var ts = getSlide(n);
+  var isCyan = cs.classList.contains('slide-cyan') || ts.classList.contains('slide-cyan');
+
+  var DUR = 1200; /* ms — duración única para todo */
+
+  if (isCyan) {
+    ts.style.opacity = '0';
+    ts.style.zIndex = '10';
+    cs.style.zIndex = '9';
+
+    void document.body.offsetHeight;
+
+    cs.style.transition = 'opacity ' + DUR + 'ms ease';
+    ts.style.transition = 'opacity ' + DUR + 'ms ease';
+    cs.style.opacity = '0';
+    ts.style.opacity = '1';
+
+    setTimeout(function() {
+      animating = false;
+      for (var i = 0; i < TOTAL; i++) {
+        var s = getSlide(i);
+        s.style.transition = '';
+        s.style.opacity = '';
+        s.style.zIndex = '';
+        s.classList.remove('is-active', 'is-gone');
+        if (i === n) s.classList.add('is-active');
+        else s.classList.add('is-gone');
+      }
+    }, DUR + 50);
+  } else {
+    var csC = cs.querySelector('.si-content');
+    var tsC = ts.querySelector('.si-content');
+    tsC.style.opacity = '0';
+
+    void document.body.offsetHeight;
+
+    csC.style.transition = 'opacity ' + DUR + 'ms ease';
+    csC.style.opacity = '0';
+
+    setTimeout(function() {
+      cs.classList.remove('is-active');
+      cs.classList.add('is-gone');
+      ts.classList.remove('is-gone');
+      ts.classList.add('is-active');
+      tsC.style.transition = 'opacity ' + DUR + 'ms ease';
+      tsC.style.opacity = '1';
+    }, DUR * 0.5);
+
+    setTimeout(function() {
+      animating = false;
+      csC.style.transition = '';
+      csC.style.opacity = '';
+      tsC.style.transition = '';
+      tsC.style.opacity = '';
+    }, DUR * 1.5 + 50);
+  }
+
+  cur = n;
+  updateDots();
+
+  if (autoTimer) { clearTimeout(autoTimer); autoTimer = null; }
+  var rs = getSlide(n).querySelector('.reveal-steps');
+  if (rs) {
+    var steps = rs.querySelectorAll('.reveal-step');
+    if (steps.length) {
+      /* Primer step aparece cuando el slide ya está visible (DUR * 1.2),
+         los siguientes cada DUR + 100ms — mismo ritmo que la transición */
+      var firstDelay = Math.round(DUR * 1.2);
+      var stepGap = DUR + 100;
+      (function loop(i) {
+        if (i >= steps.length) return;
+        autoTimer = setTimeout(function() {
+          steps[i].classList.add('revealed');
+          loop(i + 1);
+        }, i === 0 ? firstDelay : stepGap);
+      })(0);
+    }
+  }
+}
+
+function next() {
+  var active = document.querySelector('.slide.is-active .reveal-steps');
+  if (active) {
+    var steps = active.querySelectorAll('.reveal-step');
+    for (var i = 0; i < steps.length; i++) {
+      if (!steps[i].classList.contains('revealed')) {
+        steps[i].classList.add('revealed');
+        return;
+      }
+    }
+  }
+  goTo(cur + 1);
+}
+
+function prev() { goTo(cur - 1); }
+
+function updateDots() {
+  var dots = document.querySelectorAll('.dot');
+  for (var i = 0; i < dots.length; i++) {
+    dots[i].classList.toggle('on', i === cur);
+  }
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); next(); }
+  if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prev(); }
+  if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+  if (e.key === 'End') { e.preventDefault(); goTo(TOTAL - 1); }
+});
+
+var wheelAcc = 0, wheelDeb = false;
+document.addEventListener('wheel', function(e) {
+  if (wheelDeb) return;
+  wheelAcc += Math.abs(e.deltaY);
+  if (wheelAcc >= 60) {
+    wheelAcc = 0; wheelDeb = true;
+    if (e.deltaY > 0) next(); else prev();
+    setTimeout(function() { wheelDeb = false; }, 400);
+  }
+}, { passive: true });
+
+var touchY = 0;
+document.addEventListener('touchstart', function(e) { touchY = e.touches[0].clientY; }, { passive: true });
+document.addEventListener('touchend', function(e) {
+  var dy = e.changedTouches[0].clientY - touchY;
+  if (Math.abs(dy) > 45) { if (dy > 0) prev(); else next(); }
+}, { passive: true });
+
+document.querySelectorAll('.slide').forEach(function(s,i){var e=document.createElement('span');e.className='slide-num';e.textContent=String(i+1).padStart(2,'0');s.querySelector('.si').appendChild(e)});
+document.querySelectorAll('.slide').forEach(function(s){slidesHTML.push(s.outerHTML)});
+
+(function() {
+  var origGoTo = goTo;
+  window.goTo = function(n) {
+    if (autoTimer) { clearTimeout(autoTimer); autoTimer = null; }
+    var active = document.querySelector('.slide.is-active .reveal-steps');
+    if (active) {
+      var steps = active.querySelectorAll('.reveal-step');
+      for (var i = 0; i < steps.length; i++) steps[i].classList.remove('revealed');
+    }
+    origGoTo(n);
+    if (window.PresenterBus) PresenterBus.post('slideChanged', { current: cur });
+  };
+  document.addEventListener('click', function(e) {
+    if (animating) return;
+    var rs = e.target.closest('.reveal-steps');
+    if (rs) {
+      var steps = rs.querySelectorAll('.reveal-step');
+      for (var i = 0; i < steps.length; i++) {
+        if (!steps[i].classList.contains('revealed')) {
+          steps[i].classList.add('revealed');
+          return;
+        }
+      }
+    }
+  });
+
+  if (window.PresenterBus) {
+    PresenterBus.post('init', { slides: slidesHTML, current: cur, notes: notesDB });
+    PresenterBus.on(function(data) {
+      if (data.type === 'goto' && typeof data.index === 'number') {
+        window.goTo(data.index);
+      }
+      if (data.type === 'blackout') {
+        var el = document.getElementById('bc-blackout');
+        if (!el) {
+          el = document.createElement('div');
+          el.id = 'bc-blackout';
+          el.style.cssText = 'position:fixed;inset:0;background:#000;z-index:9999;display:none';
+          document.body.appendChild(el);
+        }
+        el.style.display = data.active ? 'block' : 'none';
+      }
+      if (data.type === 'notesUpdate' && typeof data.index === 'number' && typeof data.text === 'string') {
+        notesDB[data.index] = data.text;
+      }
+      if (data.type === 'ping') PresenterBus.post('pong', { slides: slidesHTML, current: cur, notes: notesDB });
+    });
+  }
+})();
+
+/* ═══ PRINT MODE (?print) ═══ */
+(function() {
+  if (new URLSearchParams(location.search).get('print') === null) return;
+  document.body.classList.add('print-mode');
+  document.querySelectorAll('.reveal-step').forEach(function(s) { s.classList.add('revealed'); });
+  document.querySelectorAll('.slide').forEach(function(s) {
+    s.classList.add('is-active');
+    s.classList.remove('is-gone');
+    s.style.opacity = '';
+    s.style.zIndex = '';
+    s.style.transition = 'none';
+  });
+  var origTitle = document.title;
+  document.title = '¿Vamos bien? — print';
+  setTimeout(function() {
+    window.print();
+    document.title = origTitle;
+  }, 600);
+})();
+</script>
+</body>
+</html>
