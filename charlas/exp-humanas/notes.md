@@ -25,7 +25,7 @@ Retomando, cual es el objetivo de su startup? de su emprendimiento?
 
 Contesta alguna de estas preguntas?
 
-Si es
+Si, si. Genial
 
 # s4
 Esta será la pregunta guía de toda la charla.
