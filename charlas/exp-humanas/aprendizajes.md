@@ -9,6 +9,8 @@ Recalqué la idea de equipo alineado y llevandose bien. También hablé de roadm
 ¿Como escalar en usuarios ETH, a quien contactar?
 Insistí con que no hay recetas, que depeden de la solución que están creando, que sea funcional, atractiva y mejoradora a lo actual.
 
+Les aconsejé que intent
+
 ## Qué cambiaría
 
 —
