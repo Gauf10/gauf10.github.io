@@ -6,6 +6,8 @@ Buena charla, 25 personas aprox conectadas y escuchando, ninguno prendió cámar
 ¿cómo hacer post hackathon a mediano y largo plazo?
 Recalqué la idea de equipo alineado y llevandose bien. También hablé de roadmap y de objetivos concretos que puedan realizar.
 
+¿Como escalar en usuarios ETH, a quien contactar?
+
 ## Qué cambiaría
 
 —
