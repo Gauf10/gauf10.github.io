@@ -14,7 +14,7 @@ Les aconsejé que si van a emprender, deberán sortear barreras, como la timidez
 Luego consultaron sobre el evento y Javier tomó la posta.
 Agradecí mucho, desee suerte a todos y quedo disponible.
 
-Dos preguntaron para agendar conmigo,
+Dos preguntaron para agendar conmigo, mientras que desde ayer ya tengo 3 agendados para mentoria
 
 ## Qué cambiaría
 
