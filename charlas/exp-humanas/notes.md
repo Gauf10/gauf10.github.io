@@ -29,11 +29,6 @@ Si, si. Genial. Avancen nomás.
 
 Si, no. Revisen nuevamente, evalúen las ideas descartadas tal vez.
 
-# s4
-Esta será la pregunta guía de toda la charla.
-el esto puede ser lo que quieran, una foto, un momento, una reunión, un video caso, un viaje en ascensor con alguien de otra área.
-veámoslo juntos.
-
 # s5
 Que ven?
 Además de lo evidente.
