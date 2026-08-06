@@ -18,6 +18,8 @@ Lo que más quiero subrayar hoy es la importancia de alinearse, estar de acuerdo
 Estar siempre en contacto con lo que pasa fuera de nuestra cabeza, de nuestras charlas.
 Medir, encuestar, consultar, y sobre todo avanzar con cautela y seguridad.
 
+Foco.
+
 # s3
 Como les decía, en tantos años involucrado en experiencias.
 Empecé a mirar, a mirarme, activar el modo observador que me trae información y sensaciones más allá de lo evidente.
