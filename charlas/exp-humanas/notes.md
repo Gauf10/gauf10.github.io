@@ -41,11 +41,7 @@ alertas si aparecen cositas como estas
 Si sienten que están por estos lados, replantearía los objetivos, el equipo y las ideas rectoras.
 
 # s7
-no lo que dijiste, no lo que leyeron o vieron.
-que decía el cartel con el QR? salvo quien tenga memoria fotográfica, incluso aquel.
-Lo que cuenta en una reunión de amigos, o una cena familiar, es lo que sintió, lo que vivió.
-Las experiencias son lo que nos llevamos. Si volaste o tuviste super fuerza como superman.
-Si viajaste al fondo del mar, si pudiste dejar una opinión, dar estrellas, si te sonrieron y te agradecieron. 
+Algo que me gusta
 
 # s8
 Vamos con otro caso, otra experiencia.
