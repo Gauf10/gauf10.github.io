@@ -27,7 +27,7 @@ Contesta alguna de estas preguntas?
 
 Si, si. Genial. Avancen nomás.
 
-Si, no. 
+Si, no. Revisen nuevamente, 
 
 # s4
 Esta será la pregunta guía de toda la charla.
