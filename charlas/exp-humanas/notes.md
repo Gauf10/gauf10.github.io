@@ -41,7 +41,7 @@ alertas si aparecen cositas como estas
 Si sienten que están por estos lados, replantearía los objetivos, el equipo y las ideas rectoras.
 
 # s7
-Algo que me gusta aclarar es que siempre conviene claridd
+Algo que me gusta aclarar es que siempre conviene claridad, 
 
 # s8
 Vamos con otro caso, otra experiencia.
