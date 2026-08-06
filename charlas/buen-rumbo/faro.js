@@ -72,7 +72,7 @@
       return fetch(API_BASE + '/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ charla: CHARLA_NAME, password: password }),
+        body: JSON.stringify({ charla: CHARLA_NAME, folder: 'buen-rumbo', password: password }),
       }).then(function(r) {
         if (!r.ok) throw new Error('invalid');
         return r.json();
