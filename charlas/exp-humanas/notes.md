@@ -12,7 +12,7 @@ Preguntas que pueden surgir en los primeros días, también en los últimos.
 
 Son genuinas, lo importante es no paralizarse.
 
-Lo que más quiero subrayar hoy es la importancia de alinearse, estar de acuerdo en equipo y si son solos, estar en línea con lo que se pa
+Lo que más quiero subrayar hoy es la importancia de alinearse, estar de acuerdo en equipo y si son solos, estar en línea con lo que se c
 
 # s2
 tenemos claro los productos, las marcas, las empresas y organizaciones, no voy a entrar ahí hoy.
