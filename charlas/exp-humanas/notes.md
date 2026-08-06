@@ -10,7 +10,7 @@ Participé de hackáthones, gané, perdí, aprendí.
 # s1
 Preguntas que pueden surgir en los primeros días, también en los últimos.
 
-Son genuinas, lo importante es no para
+Son genuinas, lo importante es no paraliza
 
 # s2
 tenemos claro los productos, las marcas, las empresas y organizaciones, no voy a entrar ahí hoy.
