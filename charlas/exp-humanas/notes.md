@@ -4,7 +4,9 @@ Gracias todos los que dan un ratito de su tiempo para conectarse en vivo y a qui
 Vengo a dar mi mirada, una opinión, más bien una invitación.
 
 Hace más de veinte años que trabajo creando proyectos. 
-Algunos funcionaron muy bien. Otros no tanto. También participé de hackáthones: gané, perdí y aprendí mucho.
+Algunos funcionaron muy bien. Otros no tanto. 
+
+También participé de hackáthones: gané, perdí y aprendí mucho.
 
 # s1
 Preguntas que pueden surgir en los primeros días, también en los últimos.
