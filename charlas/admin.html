@@ -164,19 +164,106 @@ select option{background:var(--bk)}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.5vw,20px)}
 @media(max-width:600px){.two-col{grid-template-columns:1fr}}
 
-/* ── THEMES CHECKBOXES ── */
+/* ── PILLS ── */
 
-.themes-grid{display:flex;flex-wrap:wrap;gap:7px}
-.theme-check{display:none}
-.theme-label{
-  padding:4px clamp(9px,1.1vw,13px);
+.pill-group{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:clamp(12px,1.8vh,18px)}
+.pill-group+.field-label{margin-top:clamp(14px,2vh,20px)}
+.pill{
+  padding:5px clamp(10px,1.2vw,15px);
   border:1px solid var(--dim2);
   font-size:clamp(9px,.65vw,11px);font-weight:400;
   letter-spacing:.09em;text-transform:uppercase;color:var(--dim);
-  cursor:pointer;transition:border-color .18s,color .18s;
-  user-select:none;
+  cursor:pointer;transition:border-color .18s,color .18s,background .18s;
+  user-select:none;background:transparent;font-family:inherit;
 }
-.theme-check:checked+.theme-label{border-color:var(--accent);color:var(--accent)}
+.pill:hover{border-color:rgba(245,242,236,.22);color:var(--bone)}
+.pill.active{border-color:var(--accent);color:var(--accent)}
+.pill.active-warn{border-color:var(--warn);color:var(--warn)}
+
+/* ── TAGS ── */
+
+.tag-wrap{position:relative}
+.tag-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;min-height:0}
+.tag-chip{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:3px 9px;border:1px solid rgba(39,211,204,.35);
+  font-size:clamp(9px,.65vw,11px);font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);
+}
+.tag-chip button{background:transparent;border:none;color:var(--accent);font-size:10px;cursor:pointer;padding:0;line-height:1}
+.tag-suggestions{
+  position:absolute;top:100%;left:0;right:0;z-index:50;
+  background:#222;border:1px solid var(--dim2);border-top:none;
+  display:none;max-height:160px;overflow-y:auto;
+}
+.tag-suggestions.open{display:block}
+.tag-sug-item{
+  padding:8px 12px;font-size:clamp(11px,.85vw,13px);font-weight:300;color:var(--dim);
+  cursor:pointer;transition:background .12s,color .12s
+}
+.tag-sug-item:hover{background:rgba(245,242,236,.06);color:var(--bone)}
+
+/* ── AUDIENCE CHIPS ── */
+
+.audience-grid{display:flex;flex-wrap:wrap;gap:7px}
+
+/* ── COVER DROP ── */
+
+.cover-drop{
+  border:1px dashed var(--dim2);
+  padding:clamp(20px,3vh,32px);
+  text-align:center;cursor:pointer;transition:border-color .18s;
+  position:relative;
+}
+.cover-drop:hover,.cover-drop.drag{border-color:var(--accent)}
+.cover-drop-label{font-size:clamp(11px,.85vw,13px);font-weight:300;color:var(--dim);margin-bottom:6px}
+.cover-drop-sub{font-size:clamp(9px,.7vw,11px);letter-spacing:.06em;text-transform:uppercase;color:rgba(245,242,236,.2)}
+.cover-preview{max-width:100%;max-height:160px;object-fit:cover;display:block;margin:0 auto 10px}
+.cover-drop input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.cover-clear{font-size:clamp(10px,.75vw,11px);letter-spacing:.08em;text-transform:uppercase;color:var(--err);margin-top:8px;padding:4px 8px;cursor:pointer;background:transparent;border:none;font-family:inherit}
+
+/* ── PRIVATE FIELD ── */
+
+.private-field .field-label{color:rgba(245,242,236,.2)}
+.private-field textarea,.private-field input{border-color:rgba(245,242,236,.04);color:rgba(245,242,236,.4)}
+.private-field textarea:focus,.private-field input:focus{border-color:rgba(245,242,236,.15);color:var(--bone)}
+.private-badge{display:inline-block;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,242,236,.2);border:1px solid rgba(245,242,236,.1);padding:2px 6px;margin-left:8px;vertical-align:middle}
+
+/* ── RESOURCES ── */
+
+.resource-row{display:grid;grid-template-columns:140px 1fr 1fr 28px;gap:8px;align-items:start;margin-bottom:10px}
+@media(max-width:640px){.resource-row{grid-template-columns:1fr;gap:6px}}
+.resource-row select{padding:clamp(8px,1.1vh,11px) clamp(10px,1.3vw,14px)}
+.resource-remove{align-self:center;padding:0;width:28px;height:28px;display:flex;align-items:center;justify-content:center;color:var(--err);border:1px solid rgba(224,82,82,.25);background:transparent;cursor:pointer;transition:background .15s;flex-shrink:0}
+.resource-remove:hover{background:rgba(224,82,82,.08)}
+.resource-remove svg{width:12px;height:12px}
+
+/* ── DATE + HOY ── */
+
+.date-wrap{display:flex;gap:6px;align-items:stretch}
+.date-wrap input{flex:1}
+.hoy-btn{
+  flex-shrink:0;padding:0 clamp(10px,1.3vw,14px);
+  border:1px solid var(--dim2);background:transparent;
+  font-size:clamp(9px,.65vw,11px);font-weight:400;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--dim);cursor:pointer;font-family:inherit;transition:border-color .18s,color .18s;white-space:nowrap;
+}
+.hoy-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ── VISIBLE TOGGLE ── */
+
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--dim2)}
+.toggle-label{font-size:clamp(12px,.95vw,14px);font-weight:300;color:var(--dim)}
+.toggle-sw{
+  position:relative;width:34px;height:18px;cursor:pointer;
+  background:var(--dim2);border-radius:9px;transition:background .2s;flex-shrink:0;
+}
+.toggle-sw.on{background:rgba(39,211,204,.35)}
+.toggle-sw::after{
+  content:'';position:absolute;top:3px;left:3px;
+  width:12px;height:12px;border-radius:50%;background:rgba(245,242,236,.3);
+  transition:left .2s,background .2s;
+}
+.toggle-sw.on::after{left:19px;background:var(--accent)}
 
 /* ── CONVERSATIONS ── */
 
@@ -308,21 +395,46 @@ select option{background:var(--bk)}
 
     <form id="edit-form" onsubmit="return false">
 
-      <!-- INFO BÁSICA -->
+      <!-- PORTADA -->
       <div class="form-section">
-        <div class="section-label">Información básica</div>
-        <div class="field"><div class="field-label">Título</div><input type="text" id="f-title" placeholder="Nombre de la charla"></div>
-        <div class="two-col">
-          <div class="field"><div class="field-label">Slug (carpeta)</div><input type="text" id="f-slug" placeholder="mi-charla"><div class="field-note">Nombre de la carpeta. Solo letras, números y guiones.</div></div>
-          <div class="field"><div class="field-label">Duración (minutos)</div><input type="number" id="f-duration" placeholder="30" min="1" max="480"></div>
+        <div class="section-label">Portada</div>
+        <div class="cover-drop" id="cover-drop">
+          <input type="file" id="f-cover-file" accept="image/*" onchange="onCoverFile(this)">
+          <img id="cover-preview" class="cover-preview" style="display:none">
+          <div id="cover-placeholder">
+            <div class="cover-drop-label">Arrastrá una imagen o hacé clic para buscar</div>
+            <div class="cover-drop-sub">1200 × 800 px recomendado · JPG o PNG</div>
+          </div>
+          <button type="button" class="cover-clear" id="cover-clear" style="display:none" onclick="clearCover(event)">Quitar imagen</button>
         </div>
-        <div class="field">
-          <div class="field-label">Estado</div>
-          <select id="f-status">
-            <option value="activa">Activa</option>
-            <option value="en-desarrollo">En desarrollo</option>
-            <option value="pausada">Pausada</option>
-          </select>
+        <input type="hidden" id="f-cover">
+      </div>
+
+      <!-- IDENTIDAD -->
+      <div class="form-section">
+        <div class="section-label">Identidad</div>
+        <div class="field"><div class="field-label">Título</div><input type="text" id="f-title" placeholder="Nombre de la charla"></div>
+        <div class="field"><div class="field-label">Slug (carpeta)</div><input type="text" id="f-slug" placeholder="mi-charla"><div class="field-note">Solo letras, números y guiones. Coincide con la carpeta en el repo.</div></div>
+        <div class="field private-field">
+          <div class="field-label">¿Por qué existe esta charla? <span class="private-badge">privado</span></div>
+          <textarea id="f-why" rows="2" placeholder="Para uso interno. Nunca visible públicamente."></textarea>
+        </div>
+      </div>
+
+      <!-- ESTADO -->
+      <div class="form-section">
+        <div class="section-label">Estado</div>
+        <div class="field-label" style="margin-bottom:10px">Editorial</div>
+        <div class="pill-group" id="pg-editorial">
+          <button type="button" class="pill" data-val="draft" onclick="setPill('editorial','draft')">Borrador</button>
+          <button type="button" class="pill" data-val="public" onclick="setPill('editorial','public')">Público</button>
+          <button type="button" class="pill" data-val="private" onclick="setPill('editorial','private')">Privado</button>
+        </div>
+        <div class="field-label" style="margin-bottom:10px">Actividad</div>
+        <div class="pill-group" id="pg-active">
+          <button type="button" class="pill" data-val="development" onclick="setPill('active','development')">En desarrollo</button>
+          <button type="button" class="pill" data-val="activa" onclick="setPill('active','activa')">Activa</button>
+          <button type="button" class="pill" data-val="pausada" onclick="setPill('active','pausada')">Pausada</button>
         </div>
       </div>
 
@@ -335,20 +447,42 @@ select option{background:var(--bk)}
         <div class="field"><div class="field-label">Resumen</div><textarea id="f-summary" rows="4" placeholder="Descripción más extensa para la página de detalle."></textarea></div>
       </div>
 
-      <!-- TEMÁTICAS -->
+      <!-- CLASIFICACIÓN -->
       <div class="form-section">
-        <div class="section-label">Temáticas</div>
-        <div class="themes-grid" id="themes-grid"></div>
+        <div class="section-label">Clasificación</div>
+
+        <div class="field">
+          <div class="field-label">Etiquetas</div>
+          <div class="tag-chips" id="tag-chips"></div>
+          <div class="tag-wrap">
+            <input type="text" id="f-tag-input" placeholder="Escribí y presioná Enter…" autocomplete="off" oninput="onTagInput()" onkeydown="onTagKey(event)">
+            <div class="tag-suggestions" id="tag-suggestions"></div>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="field-label">Audiencia</div>
+          <div class="audience-grid" id="audience-grid"></div>
+        </div>
+
+        <div class="field">
+          <div class="field-label">Duración</div>
+          <div class="pill-group" id="pg-duration">
+            <button type="button" class="pill" data-val="20" onclick="setPill('duration','20')">20 min</button>
+            <button type="button" class="pill" data-val="30" onclick="setPill('duration','30')">30 min</button>
+            <button type="button" class="pill" data-val="45" onclick="setPill('duration','45')">45 min</button>
+            <button type="button" class="pill" data-val="60" onclick="setPill('duration','60')">60 min</button>
+            <button type="button" class="pill" data-val="90" onclick="setPill('duration','90')">90 min</button>
+            <button type="button" class="pill" data-val="workshop" onclick="setPill('duration','workshop')">Workshop</button>
+          </div>
+        </div>
       </div>
 
       <!-- RECURSOS -->
       <div class="form-section">
         <div class="section-label">Recursos</div>
-        <div class="field"><div class="field-label">Presentación (ruta relativa o URL)</div><input type="text" id="f-pres" placeholder="mi-charla/index.html"></div>
-        <div class="two-col">
-          <div class="field"><div class="field-label">PDF (URL)</div><input type="url" id="f-pdf" placeholder="https://…"></div>
-          <div class="field"><div class="field-label">Video madre (URL)</div><input type="url" id="f-video" placeholder="https://…"></div>
-        </div>
+        <div id="resources-container"></div>
+        <button type="button" class="add-conv" onclick="addResource()">+ Agregar recurso</button>
       </div>
 
       <!-- CONVERSACIONES -->
@@ -362,7 +496,7 @@ select option{background:var(--bk)}
       <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;padding-top:clamp(16px,2.5vh,24px);border-top:1px solid var(--dim2)">
         <button type="button" class="btn danger" id="del-btn" onclick="deleteCharla()" style="display:none">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
-          Eliminar charla
+          Eliminar
         </button>
         <button type="button" class="btn primary" onclick="saveCharla()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
@@ -459,6 +593,22 @@ function loadData() {
       themes:['Startups','Hackathons','Creatividad'],duration:25,status:'activa',
       resources:{presentation:'buen-rumbo/index.html',pdf:null,video:null},
       conversations:[{event:'ETH Lima Hackathon 2026',organization:'ETH Lima',location:'Lima, Perú',date:'2026-08-06',description:'Sesión en vivo de 25 minutos.',video:null,testimonial:null}]
+    },
+    {
+      slug:'impro-aplicada',title:'La improvisación como forma de relacionarnos',
+      observation:'La improvisación no es una técnica teatral. Es una forma de relacionarnos con otras personas, construir confianza y crear mejores conversaciones.',
+      question:'¿Qué cambia cuando dejamos de controlar cada respuesta y empezamos a construir con lo que aparece?',
+      idea:'La improvisación no es caos. Es el arte de construir juntos, sin saber de antemano qué viene.',
+      summary:'Esta conversación explora cómo los principios de la improvisación pueden ayudarnos a colaborar mejor, escuchar con mayor atención, aceptar la incertidumbre y generar confianza.',
+      themes:['Improvisación','Comunicación','Liderazgo','Trabajo en equipo'],duration:45,status:'activa',editorialStatus:'draft',
+      audience:['startups','empresas','universidades','comunidades','educacion','tecnologia','rrhh'],
+      resources:[],
+      conversations:[
+        {event:'Actividad Impro',organization:'Fundación Cimientos',location:'Parque de Innovación, Buenos Aires',date:'2025-09-24',format:'presencial',audience_desc:'Estudiantes secundarios',description:null},
+        {event:'Nerdearla 2025',organization:'Nerdearla',location:'Ciudad Cultural Konex',date:'2025-09-27',format:'presencial',audience_desc:'Desarrolladores',description:null},
+        {event:'Conferencia Anual Reclutando Latinoamérica',organization:'Reclutando Latinoamérica',location:'Buenos Aires',date:'2025-11-13',format:'presencial',audience_desc:'Recruiters y RRHH',description:null},
+        {event:'Startup World Cup Argentina 2026',organization:'Pegasus Tech Ventures',location:'Workplace by IRSA',date:'2026-08-07',format:'presencial',audience_desc:'Founders',description:null}
+      ]
     }
   ];
 }
@@ -506,9 +656,24 @@ function doLogin() {
 
 function onLoggedIn() {
   CHARLAS = loadData();
+  /* agregar defaults que no estén en localStorage */
+  var defaults = getDefaults();
+  var changed = false;
+  defaults.forEach(function(d) {
+    if (!CHARLAS.find(function(c){ return c.slug === d.slug; })) {
+      CHARLAS.push(d); changed = true;
+    }
+  });
+  if (changed) saveData();
   renderList();
   screen('s-list');
   window.scrollTo(0, 0);
+}
+
+function getDefaults() {
+  /* copia del array de fallback en loadData */
+  try { return JSON.parse(document.getElementById('defaults-json').textContent); }
+  catch(e) { return []; }
 }
 
 /* ══════════════════════════════════════════════
@@ -538,133 +703,350 @@ function renderList() {
 }
 
 /* ══════════════════════════════════════════════
-   EDIT
+   EDIT STATE
+══════════════════════════════════════════════ */
+
+var editTags      = [];
+var editAudience  = [];
+var editResources = [];
+var pillState     = { editorial:'draft', active:'activa', duration:'45' };
+
+var ALL_AUDIENCE = ['Empresas','Startups','Universidades','Comunidades','RRHH','Líderes','Founders','Estudiantes','Docentes','Educación','Tecnología'];
+var RESOURCE_TYPES = ['Presentación','Canva','Google Slides','PDF','Video','Artículo','Documento','Otro'];
+
+/* ══════════════════════════════════════════════
+   EDIT — open / fill
 ══════════════════════════════════════════════ */
 
 function newCharla() {
-  editIdx = -1;
-  editConvs = [blankConv()];
-  fillForm({
-    slug:'',title:'',observation:'',question:'',idea:'',summary:'',
-    themes:[],duration:30,status:'activa',
-    resources:{presentation:'',pdf:'',video:''},
-    conversations:[]
-  });
+  editIdx = -1; editConvs = [blankConv()]; editResources = []; editTags = []; editAudience = [];
+  pillState = { editorial:'draft', active:'development', duration:'45' };
+  fillForm({ slug:'',title:'',observation:'',question:'',idea:'',summary:'',why:'',
+    cover:'', themes:[], tags:[], audience:[], duration:'45',
+    editorialStatus:'draft', activeStatus:'development',
+    resources:[], conversations:[] });
   document.getElementById('edit-title').textContent = 'Nueva charla';
   document.getElementById('del-btn').style.display = 'none';
-  screen('s-edit');
-  window.scrollTo(0,0);
+  screen('s-edit'); window.scrollTo(0,0);
 }
 
 function editCharla(i) {
   editIdx = i;
   var c = JSON.parse(JSON.stringify(CHARLAS[i]));
-  editConvs = c.conversations && c.conversations.length ? c.conversations : [blankConv()];
+  editConvs     = c.conversations && c.conversations.length ? c.conversations : [blankConv()];
+  editResources = Array.isArray(c.resources) ? c.resources : [];
+  editTags      = Array.isArray(c.tags) ? c.tags : (Array.isArray(c.themes) ? c.themes : []);
+  editAudience  = Array.isArray(c.audience) ? c.audience : [];
+  pillState = {
+    editorial: c.editorialStatus || 'draft',
+    active:    c.activeStatus    || c.status || 'activa',
+    duration:  String(c.duration || '45')
+  };
   fillForm(c);
   document.getElementById('edit-title').textContent = 'Editar charla';
   document.getElementById('del-btn').style.display = 'inline-flex';
   document.getElementById('edit-msg').className = 'msg hidden';
-  screen('s-edit');
-  window.scrollTo(0,0);
+  screen('s-edit'); window.scrollTo(0,0);
 }
 
 function fillForm(c) {
   document.getElementById('f-title').value    = c.title       || '';
   document.getElementById('f-slug').value     = c.slug        || '';
-  document.getElementById('f-duration').value = c.duration    || 30;
-  document.getElementById('f-status').value   = c.status      || 'activa';
   document.getElementById('f-obs').value      = c.observation || '';
   document.getElementById('f-question').value = c.question    || '';
   document.getElementById('f-idea').value     = c.idea        || '';
   document.getElementById('f-summary').value  = c.summary     || '';
-  document.getElementById('f-pres').value     = (c.resources&&c.resources.presentation) || '';
-  document.getElementById('f-pdf').value      = (c.resources&&c.resources.pdf)          || '';
-  document.getElementById('f-video').value    = (c.resources&&c.resources.video)        || '';
+  document.getElementById('f-why').value      = c.why         || '';
 
-  /* themes */
-  renderThemes(c.themes || []);
+  /* cover */
+  var cover = c.cover || '';
+  document.getElementById('f-cover').value = cover;
+  var prev = document.getElementById('cover-preview');
+  var ph   = document.getElementById('cover-placeholder');
+  var clr  = document.getElementById('cover-clear');
+  if (cover) { prev.src=cover; prev.style.display='block'; ph.style.display='none'; clr.style.display='inline-block'; }
+  else        { prev.style.display='none'; ph.style.display='block'; clr.style.display='none'; }
 
-  /* auto-slug from title */
+  /* pills */
+  syncPills();
+
+  /* tags */
+  renderTagChips();
+
+  /* audience */
+  renderAudienceGrid();
+
+  /* resources */
+  renderResources();
+
+  /* auto-slug */
   var titleEl = document.getElementById('f-title');
   var slugEl  = document.getElementById('f-slug');
-  titleEl.oninput = function() {
-    if (!slugEl.dataset.manual) slugEl.value = slugify(titleEl.value);
-  };
-  slugEl.oninput = function(){ slugEl.dataset.manual = '1' };
+  delete slugEl.dataset.manual;
+  titleEl.oninput = function(){ if (!slugEl.dataset.manual) slugEl.value = slugify(titleEl.value); };
+  slugEl.oninput  = function(){ slugEl.dataset.manual = '1'; };
+
+  /* cover drag */
+  var drop = document.getElementById('cover-drop');
+  drop.ondragover  = function(e){ e.preventDefault(); drop.classList.add('drag'); };
+  drop.ondragleave = function(){ drop.classList.remove('drag'); };
+  drop.ondrop      = function(e){ e.preventDefault(); drop.classList.remove('drag'); var f=e.dataTransfer.files[0]; if(f) loadCoverFile(f); };
 
   renderConvs();
 }
 
-function renderThemes(selected) {
-  var grid = document.getElementById('themes-grid');
-  grid.innerHTML = ALL_THEMES.map(function(t) {
-    var id = 'th-'+t.replace(/\s+/g,'-');
-    var chk = selected.indexOf(t)>=0 ? ' checked' : '';
-    return '<label><input type="checkbox" class="theme-check" id="'+id+'" value="'+t+'"'+chk+'><label class="theme-label" for="'+id+'">'+t+'</label></label>';
+/* ── PILLS ── */
+
+function setPill(group, val) {
+  pillState[group] = val;
+  syncPills();
+}
+
+function syncPills() {
+  ['editorial','active','duration'].forEach(function(g) {
+    var pgId = 'pg-' + (g==='active'?'active':g==='editorial'?'editorial':'duration');
+    var pg = document.getElementById(pgId);
+    if (!pg) return;
+    pg.querySelectorAll('.pill').forEach(function(btn) {
+      btn.classList.toggle('active', btn.dataset.val === pillState[g]);
+    });
+  });
+}
+
+/* ── COVER ── */
+
+function onCoverFile(input) { if (input.files[0]) loadCoverFile(input.files[0]); }
+
+function loadCoverFile(file) {
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var data = e.target.result;
+    document.getElementById('f-cover').value = data;
+    var prev = document.getElementById('cover-preview');
+    prev.src = data; prev.style.display = 'block';
+    document.getElementById('cover-placeholder').style.display = 'none';
+    document.getElementById('cover-clear').style.display = 'inline-block';
+  };
+  reader.readAsDataURL(file);
+}
+
+function clearCover(e) {
+  e.stopPropagation();
+  document.getElementById('f-cover').value = '';
+  document.getElementById('cover-preview').style.display = 'none';
+  document.getElementById('cover-placeholder').style.display = 'block';
+  document.getElementById('cover-clear').style.display = 'none';
+  document.getElementById('f-cover-file').value = '';
+}
+
+/* ── TAGS ── */
+
+function getAllTags() {
+  var set = {};
+  CHARLAS.forEach(function(c){
+    (c.tags||c.themes||[]).forEach(function(t){ set[t]=1; });
+  });
+  return Object.keys(set).filter(function(t){ return editTags.indexOf(t)<0; });
+}
+
+function renderTagChips() {
+  var el = document.getElementById('tag-chips');
+  el.innerHTML = editTags.map(function(t,i){
+    return '<span class="tag-chip">'+esc(t)+'<button type="button" onclick="removeTag('+i+')">✕</button></span>';
   }).join('');
 }
 
-function getSelectedThemes() {
-  return ALL_THEMES.filter(function(t){
-    var el = document.getElementById('th-'+t.replace(/\s+/g,'-'));
-    return el && el.checked;
-  });
+function removeTag(i) { editTags.splice(i,1); renderTagChips(); }
+
+function onTagInput() {
+  var val = document.getElementById('f-tag-input').value.trim().toLowerCase();
+  var sug = document.getElementById('tag-suggestions');
+  if (!val) { sug.classList.remove('open'); return; }
+  var matches = getAllTags().filter(function(t){ return t.toLowerCase().indexOf(val)>=0; });
+  if (!matches.length) { sug.classList.remove('open'); return; }
+  sug.innerHTML = matches.slice(0,8).map(function(t){
+    return '<div class="tag-sug-item" onclick="addTagFromSug(\''+esc(t)+'\')">'+esc(t)+'</div>';
+  }).join('');
+  sug.classList.add('open');
+}
+
+function addTagFromSug(t) {
+  if (editTags.indexOf(t)<0) editTags.push(t);
+  document.getElementById('f-tag-input').value = '';
+  document.getElementById('tag-suggestions').classList.remove('open');
+  renderTagChips();
+}
+
+function onTagKey(e) {
+  if (e.key === 'Enter' || e.key === ',') {
+    e.preventDefault();
+    var val = document.getElementById('f-tag-input').value.trim().replace(/,$/,'');
+    if (val && editTags.indexOf(val)<0) { editTags.push(val); renderTagChips(); }
+    document.getElementById('f-tag-input').value = '';
+    document.getElementById('tag-suggestions').classList.remove('open');
+  }
+  if (e.key === 'Escape') document.getElementById('tag-suggestions').classList.remove('open');
+}
+
+document.addEventListener('click', function(e){
+  if (!e.target.closest('.tag-wrap')) document.getElementById('tag-suggestions').classList.remove('open');
+});
+
+/* ── AUDIENCE ── */
+
+function renderAudienceGrid() {
+  var el = document.getElementById('audience-grid');
+  el.innerHTML = ALL_AUDIENCE.map(function(a){
+    var key = a.toLowerCase().replace(/\s+/g,'-');
+    var on  = editAudience.indexOf(key)>=0 || editAudience.indexOf(a)>=0;
+    return '<button type="button" class="pill'+(on?' active':'')+'" data-aud="'+key+'" onclick="toggleAudience(this,\''+key+'\')">'+ a +'</button>';
+  }).join('');
+}
+
+function toggleAudience(btn, key) {
+  var idx = editAudience.indexOf(key);
+  if (idx>=0) { editAudience.splice(idx,1); btn.classList.remove('active'); }
+  else         { editAudience.push(key);     btn.classList.add('active'); }
+}
+
+/* ── RESOURCES ── */
+
+function blankResource() { return { type:'Presentación', title:'', url:'' }; }
+
+function addResource() {
+  editResources.push(blankResource());
+  renderResources();
+}
+
+function removeResource(i) { editResources.splice(i,1); renderResources(); }
+
+function renderResources() {
+  var ct = document.getElementById('resources-container');
+  if (!editResources.length) { ct.innerHTML = ''; return; }
+  ct.innerHTML = editResources.map(function(r,i){
+    var opts = RESOURCE_TYPES.map(function(t){
+      return '<option value="'+t+'"'+(r.type===t?' selected':'')+'>'+t+'</option>';
+    }).join('');
+    return '<div class="resource-row">'
+      +'<select onchange="editResources['+i+'].type=this.value">'+opts+'</select>'
+      +'<input type="text" value="'+esc(r.title||'')+'" placeholder="Título" oninput="editResources['+i+'].title=this.value">'
+      +'<input type="url"  value="'+esc(r.url||'')+'"   placeholder="https://…" oninput="editResources['+i+'].url=this.value">'
+      +'<button type="button" class="resource-remove" onclick="removeResource('+i+')">'
+        +'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'
+      +'</button>'
+    +'</div>';
+  }).join('');
 }
 
 /* ── CONVERSATIONS ── */
 
 function blankConv() {
-  return { event:'', organization:'', location:'', date:'', description:'', video:'', testimonial:'' };
+  return { event:'', organization:'', location:'', date:'', format:'presencial',
+           audience_desc:'', audience_count:'', context:'', visible:true, photos:[] };
+}
+
+function todayStr() {
+  var d = new Date(); var m = String(d.getMonth()+1).padStart(2,'0'); var day = String(d.getDate()).padStart(2,'0');
+  return d.getFullYear()+'-'+m+'-'+day;
 }
 
 function renderConvs() {
   var ct = document.getElementById('convs-container');
   ct.innerHTML = editConvs.map(function(v,i){
-    var label = v.event || ('Conversación ' + (i+1));
+    var label = v.event || ('Conversación '+(i+1));
+    var fmt   = v.format || 'presencial';
+    var vis   = v.visible !== false;
     return '<div class="conv-card open" id="conv-card-'+i+'">'
       +'<div class="conv-card-header" onclick="toggleConv('+i+')">'
-        +'<span id="conv-label-'+i+'">'+label+'</span>'
+        +'<span id="conv-label-'+i+'">'+esc(label)+'</span>'
         +'<div style="display:flex;gap:10px;align-items:center">'
           +(editConvs.length>1?'<button type="button" onclick="removeConv(event,'+i+')" style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--err);padding:2px 4px">Quitar</button>':'')
           +'<span class="conv-toggle">▾</span>'
         +'</div>'
       +'</div>'
       +'<div class="conv-card-body">'
-        +'<div class="field"><div class="field-label">Evento</div><input type="text" value="'+esc(v.event||'')+'" oninput="editConvs['+i+'].event=this.value;document.getElementById(\'conv-label-'+i+'\').textContent=this.value||\'Conversación '+(i+1)+'\'" placeholder="Nombre del evento"></div>'
-        +'<div class="two-col">'
-          +'<div class="field"><div class="field-label">Organización</div><input type="text" value="'+esc(v.organization||'')+'" oninput="editConvs['+i+'].organization=this.value" placeholder="Nombre de la org."></div>'
-          +'<div class="field"><div class="field-label">Fecha</div><input type="text" value="'+esc(v.date||'')+'" oninput="editConvs['+i+'].date=this.value" placeholder="2025-09-15 o 2025"></div>'
+        /* evento */
+        +'<div class="field"><div class="field-label">Evento</div>'
+          +'<input type="text" value="'+esc(v.event||'')+'" placeholder="Nombre del evento" oninput="editConvs['+i+'].event=this.value;document.getElementById(\'conv-label-'+i+'\').textContent=this.value||\'Conversación '+(i+1)+'\'">'
         +'</div>'
-        +'<div class="field"><div class="field-label">Lugar</div><input type="text" value="'+esc(v.location||'')+'" oninput="editConvs['+i+'].location=this.value" placeholder="Ciudad, País"></div>'
-        +'<div class="field"><div class="field-label">Descripción (opcional)</div><textarea oninput="editConvs['+i+'].description=this.value" rows="2">'+esc(v.description||'')+'</textarea></div>'
+        /* org + fecha */
         +'<div class="two-col">'
-          +'<div class="field"><div class="field-label">Video (URL, opcional)</div><input type="url" value="'+esc(v.video||'')+'" oninput="editConvs['+i+'].video=this.value" placeholder="https://…"></div>'
-          +'<div class="field"><div class="field-label">Testimonio (opcional)</div><input type="text" value="'+esc(v.testimonial||'')+'" oninput="editConvs['+i+'].testimonial=this.value" placeholder="Frase de alguien"></div>'
+          +'<div class="field"><div class="field-label">Organización</div>'
+            +'<input type="text" value="'+esc(v.organization||'')+'" placeholder="Org." oninput="editConvs['+i+'].organization=this.value">'
+          +'</div>'
+          +'<div class="field"><div class="field-label">Fecha</div>'
+            +'<div class="date-wrap">'
+              +'<input type="date" value="'+esc(v.date||'')+'" oninput="editConvs['+i+'].date=this.value" id="conv-date-'+i+'">'
+              +'<button type="button" class="hoy-btn" onclick="setToday('+i+')">Hoy</button>'
+            +'</div>'
+          +'</div>'
+        +'</div>'
+        /* lugar + formato */
+        +'<div class="two-col">'
+          +'<div class="field"><div class="field-label">Lugar</div>'
+            +'<input type="text" value="'+esc(v.location||'')+'" placeholder="Ciudad, País" oninput="editConvs['+i+'].location=this.value">'
+          +'</div>'
+          +'<div class="field"><div class="field-label">Formato</div>'
+            +'<select onchange="editConvs['+i+'].format=this.value">'
+              +'<option value="presencial"'+(fmt==='presencial'?' selected':'')+'>Presencial</option>'
+              +'<option value="virtual"'+(fmt==='virtual'?' selected':'')+'>Virtual</option>'
+              +'<option value="hibrido"'+(fmt==='hibrido'?' selected':'')+'>Híbrido</option>'
+            +'</select>'
+          +'</div>'
+        +'</div>'
+        /* audiencia desc + count */
+        +'<div class="two-col">'
+          +'<div class="field"><div class="field-label">Audiencia</div>'
+            +'<input type="text" value="'+esc(v.audience_desc||'')+'" placeholder="Ej: Estudiantes, Founders…" oninput="editConvs['+i+'].audience_desc=this.value">'
+          +'</div>'
+          +'<div class="field"><div class="field-label">Aprox. personas</div>'
+            +'<input type="number" value="'+esc(String(v.audience_count||''))+'" placeholder="150" min="0" oninput="editConvs['+i+'].audience_count=this.value">'
+          +'</div>'
+        +'</div>'
+        /* contexto */
+        +'<div class="field"><div class="field-label">Contexto (opcional)</div>'
+          +'<textarea rows="2" placeholder="Descripción del contexto…" oninput="editConvs['+i+'].context=this.value">'+esc(v.context||v.description||'')+'</textarea>'
+        +'</div>'
+        /* visible toggle */
+        +'<div class="toggle-row">'
+          +'<span class="toggle-label">Visible públicamente</span>'
+          +'<div class="toggle-sw'+(vis?' on':'')+'" id="vis-sw-'+i+'" onclick="toggleVis('+i+')"></div>'
         +'</div>'
       +'</div>'
     +'</div>';
   }).join('');
 }
 
-function toggleConv(i) {
-  document.getElementById('conv-card-'+i).classList.toggle('open');
+function setToday(i) {
+  var s = todayStr();
+  editConvs[i].date = s;
+  var el = document.getElementById('conv-date-'+i);
+  if (el) el.value = s;
 }
+
+function toggleVis(i) {
+  editConvs[i].visible = !editConvs[i].visible;
+  var sw = document.getElementById('vis-sw-'+i);
+  if (sw) sw.classList.toggle('on', editConvs[i].visible);
+}
+
+function toggleConv(i) { document.getElementById('conv-card-'+i).classList.toggle('open'); }
 
 function addConv() {
   editConvs.push(blankConv());
   renderConvs();
   var last = document.getElementById('conv-card-'+(editConvs.length-1));
-  if (last) last.scrollIntoView({behavior:'smooth',block:'nearest'});
+  if (last) last.scrollIntoView({ behavior:'smooth', block:'nearest' });
 }
 
 function removeConv(e, i) {
   e.stopPropagation();
-  if (editConvs.length<=1) return;
-  editConvs.splice(i,1);
+  if (editConvs.length <= 1) return;
+  editConvs.splice(i, 1);
   renderConvs();
 }
 
-function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') }
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
 /* ── SAVE / DELETE ── */
 
@@ -674,91 +1056,99 @@ function saveCharla() {
   if (!title) { showMsg('edit-msg','El título es obligatorio.','err'); return; }
   if (!slug)  { showMsg('edit-msg','El slug es obligatorio.','err'); return; }
 
-  var themes = getSelectedThemes();
-  var pres   = document.getElementById('f-pres').value.trim();
-  var pdf    = document.getElementById('f-pdf').value.trim();
-  var video  = document.getElementById('f-video').value.trim();
-
-  /* limpiar conversaciones vacías */
-  var convs = editConvs.filter(function(v){ return v.event && v.event.trim() }).map(function(v){
+  var convs = editConvs.filter(function(v){ return v.event && v.event.trim(); }).map(function(v){
     return {
-      event:        v.event        || '',
-      organization: v.organization || '',
-      location:     v.location     || '',
-      date:         v.date         || '',
-      description:  v.description  ? v.description.trim()  : null,
-      video:        v.video        ? v.video.trim()        : null,
-      testimonial:  v.testimonial  ? v.testimonial.trim()  : null
+      event:          v.event         || '',
+      organization:   v.organization  || '',
+      location:       v.location      || '',
+      date:           v.date          || '',
+      format:         v.format        || 'presencial',
+      audience_desc:  v.audience_desc || '',
+      audience_count: v.audience_count ? parseInt(v.audience_count,10) : null,
+      context:        v.context       ? v.context.trim() : null,
+      visible:        v.visible !== false,
+      photos:         v.photos        || []
     };
   });
 
+  var res = editResources.filter(function(r){ return r.url && r.url.trim(); });
+
+  var cover = document.getElementById('f-cover').value;
+
   var charla = {
-    slug:        slug,
-    title:       title,
-    observation: document.getElementById('f-obs').value.trim(),
-    question:    document.getElementById('f-question').value.trim(),
-    idea:        document.getElementById('f-idea').value.trim(),
-    summary:     document.getElementById('f-summary').value.trim(),
-    themes:      themes.length ? themes : ['Sin clasificar'],
-    duration:    parseInt(document.getElementById('f-duration').value,10)||30,
-    status:      document.getElementById('f-status').value,
-    resources: {
-      presentation: pres  || null,
-      pdf:          pdf   || null,
-      video:        video || null
-    },
-    conversations: convs
+    slug:            slug,
+    title:           title,
+    cover:           cover  || null,
+    why:             document.getElementById('f-why').value.trim()      || null,
+    observation:     document.getElementById('f-obs').value.trim(),
+    question:        document.getElementById('f-question').value.trim(),
+    idea:            document.getElementById('f-idea').value.trim(),
+    summary:         document.getElementById('f-summary').value.trim(),
+    editorialStatus: pillState.editorial,
+    activeStatus:    pillState.active,
+    status:          pillState.active,
+    tags:            editTags,
+    themes:          editTags,
+    audience:        editAudience,
+    duration:        pillState.duration,
+    resources:       res,
+    conversations:   convs
   };
 
+  /* upload cover if base64 */
+  if (cover && cover.startsWith('data:') && authToken) {
+    var mime     = cover.split(';')[0].split(':')[1];
+    var ext      = mime === 'image/png' ? '.png' : '.jpg';
+    var filename = slug + '-cover' + ext;
+    var b64      = cover.split(',')[1];
+    fetch(API_BASE + '/api/upload', {
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},
+      body: JSON.stringify({ filename: filename, data: b64, mime: mime })
+    }).then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+      if (d && d.url) charla.cover = d.url;
+      commitSave(charla);
+    }).catch(function(){ commitSave(charla); });
+  } else {
+    commitSave(charla);
+  }
+}
+
+function commitSave(charla) {
   if (editIdx >= 0) CHARLAS[editIdx] = charla;
   else CHARLAS.push(charla);
-
   saveData();
-  showToast(editIdx>=0 ? 'Charla guardada.' : 'Charla creada.');
+  showToast(editIdx >= 0 ? 'Charla guardada.' : 'Charla creada.');
   goList();
 }
 
 function deleteCharla() {
   if (!confirm('¿Eliminar esta charla? No se puede deshacer.')) return;
-  CHARLAS.splice(editIdx,1);
+  CHARLAS.splice(editIdx, 1);
   saveData();
   showToast('Charla eliminada.');
   goList();
 }
 
 function goList() {
-  CHARLAS = loadData(); /* refrescar */
+  CHARLAS = loadData();
   renderList();
   screen('s-list');
-  window.scrollTo(0,0);
-}
-
-/* ── EXPORT ── */
-
-function toggleExport() {
-  var p = document.getElementById('export-panel');
-  if (p.classList.toggle('on')) {
-    document.getElementById('export-text').value = JSON.stringify(CHARLAS, null, 2);
-  }
-}
-
-function copyExport() {
-  var ta = document.getElementById('export-text');
-  ta.select();
-  try { document.execCommand('copy'); showToast('¡Copiado al portapapeles!'); }
-  catch(e) { showToast('Seleccioná el texto y copiá manualmente.'); }
+  window.scrollTo(0, 0);
 }
 
 /* ══════════════════════════════════════════════
    INIT — verificar si ya hay sesión activa
 ══════════════════════════════════════════════ */
 
-if (authToken) {
-  CHARLAS = loadData();
-  renderList();
-  screen('s-list');
-}
+if (authToken) { onLoggedIn(); }
 
 </script>
+
+<script type="application/json" id="defaults-json">[
+  {"slug":"exp-humanas","title":"Diseñar desde la experiencia humana","observation":"Diseñamos para personas. Primero hay que entenderlas.","question":"¿Cómo tomamos mejores decisiones cuando diseñamos con y para otras personas?","idea":"Las mejores decisiones nacen cuando una idea se encuentra con la realidad de las personas.","summary":"Una exploración sobre cómo el diseño centrado en la experiencia humana transforma la manera en que creamos productos, servicios y conversaciones.","tags":["Experiencias","Liderazgo","Comunicación"],"themes":["Experiencias","Liderazgo","Comunicación"],"duration":"45","status":"activa","activeStatus":"activa","editorialStatus":"public","resources":[],"conversations":[{"event":"Sesión en vivo","organization":"Comunidad GAUF","location":"Buenos Aires, Argentina","date":"2024","format":"presencial","visible":true}]},
+  {"slug":"buen-rumbo","title":"¿Vamos bien?","observation":"Cambiar de rumbo no es fracaso. Insistir en una dirección equivocada sí puede serlo.","question":"¿Cómo saber si tu proyecto está avanzando en la dirección correcta?","idea":"No hay recetas. Solo algunas señales que, como una brújula, indican si vamos a buen rumbo y buen ritmo.","summary":"Una charla para equipos en etapa de desarrollo que necesitan herramientas simples para evaluar si sus decisiones apuntan en la dirección correcta.","tags":["Startups","Hackathons","Creatividad"],"themes":["Startups","Hackathons","Creatividad"],"duration":"25","status":"activa","activeStatus":"activa","editorialStatus":"public","resources":[{"type":"Presentación","title":"Presentación interactiva","url":"buen-rumbo/index.html"}],"conversations":[{"event":"ETH Lima Hackathon 2026","organization":"ETH Lima","location":"Lima, Perú","date":"2026-08-06","format":"presencial","audience_desc":"Equipos de hackathon","visible":true}]},
+  {"slug":"impro-aplicada","title":"La improvisación como forma de relacionarnos","observation":"La improvisación no es una técnica teatral. Es una forma de relacionarnos con otras personas, construir confianza y crear mejores conversaciones.","question":"¿Qué cambia cuando dejamos de controlar cada respuesta y empezamos a construir con lo que aparece?","idea":"La improvisación no es caos. Es el arte de construir juntos, sin saber de antemano qué viene.","summary":"Esta conversación explora cómo los principios de la improvisación pueden ayudarnos a colaborar mejor, escuchar con mayor atención, aceptar la incertidumbre y generar confianza.","tags":["Improvisación","Comunicación","Liderazgo","Trabajo en equipo"],"themes":["Improvisación","Comunicación","Liderazgo","Trabajo en equipo"],"duration":"45","status":"activa","activeStatus":"activa","editorialStatus":"draft","audience":["startups","empresas","universidades","comunidades","educación","tecnología","rrhh"],"resources":[],"conversations":[{"event":"Actividad Impro","organization":"Fundación Cimientos","location":"Parque de Innovación, Buenos Aires","date":"2025-09-24","format":"presencial","audience_desc":"Estudiantes secundarios","visible":true},{"event":"Nerdearla 2025","organization":"Nerdearla","location":"Ciudad Cultural Konex","date":"2025-09-27","format":"presencial","audience_desc":"Desarrolladores","visible":true},{"event":"Conferencia Anual Reclutando Latinoamérica","organization":"Reclutando Latinoamérica","location":"Buenos Aires","date":"2025-11-13","format":"presencial","audience_desc":"Recruiters y RRHH","visible":true},{"event":"Startup World Cup Argentina 2026","organization":"Pegasus Tech Ventures","location":"Workplace by IRSA","date":"2026-08-07","format":"presencial","audience_desc":"Founders","visible":true}]}
+]</script>
 </body>
 </html>
