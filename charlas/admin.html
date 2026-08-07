@@ -942,7 +942,7 @@ function renderResources() {
 
 function blankConv() {
   return { event:'', organization:'', location:'', date:'', format:'presencial',
-           audience_desc:'', audience_count:'', context:'', visible:true, photos:[] };
+           audience_desc:'', audience_count:'', context:'', visible:true, resources:[] };
 }
 
 function todayStr() {
@@ -1007,14 +1007,52 @@ function renderConvs() {
         +'<div class="field"><div class="field-label">Contexto (opcional)</div>'
           +'<textarea rows="2" placeholder="Descripción del contexto…" oninput="editConvs['+i+'].context=this.value">'+esc(v.context||v.description||'')+'</textarea>'
         +'</div>'
+        /* recursos de la edición */
+        +'<div style="margin-top:clamp(12px,1.8vh,18px)">'
+          +'<div class="field-label" style="margin-bottom:8px">Recursos de esta edición</div>'
+          +'<div id="conv-res-'+i+'"></div>'
+          +'<button type="button" class="add-conv" style="margin-top:6px" onclick="addConvResource('+i+')">+ Agregar recurso</button>'
+        +'</div>'
         /* visible toggle */
-        +'<div class="toggle-row">'
+        +'<div class="toggle-row" style="margin-top:clamp(12px,1.8vh,18px)">'
           +'<span class="toggle-label">Visible públicamente</span>'
           +'<div class="toggle-sw'+(vis?' on':'')+'" id="vis-sw-'+i+'" onclick="toggleVis('+i+')"></div>'
         +'</div>'
       +'</div>'
     +'</div>';
   }).join('');
+  setTimeout(function(){ editConvs.forEach(function(_,i){ renderConvResources(i); }); }, 0);
+}
+
+function renderConvResources(i) {
+  var ct = document.getElementById('conv-res-'+i);
+  if (!ct) return;
+  var res = editConvs[i].resources || [];
+  if (!res.length) { ct.innerHTML = ''; return; }
+  ct.innerHTML = res.map(function(r,j){
+    var opts = RESOURCE_TYPES.map(function(t){
+      return '<option value="'+t+'"'+(r.type===t?' selected':'')+'>'+t+'</option>';
+    }).join('');
+    return '<div class="resource-row">'
+      +'<select onchange="editConvs['+i+'].resources['+j+'].type=this.value">'+opts+'</select>'
+      +'<input type="text" value="'+esc(r.title||'')+'" placeholder="Título" oninput="editConvs['+i+'].resources['+j+'].title=this.value">'
+      +'<input type="url"  value="'+esc(r.url||'')+'"   placeholder="https://…" oninput="editConvs['+i+'].resources['+j+'].url=this.value">'
+      +'<button type="button" class="resource-remove" onclick="removeConvResource('+i+','+j+')">'
+        +'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'
+      +'</button>'
+    +'</div>';
+  }).join('');
+}
+
+function addConvResource(i) {
+  if (!editConvs[i].resources) editConvs[i].resources = [];
+  editConvs[i].resources.push({ type:'Presentación', title:'', url:'' });
+  renderConvResources(i);
+}
+
+function removeConvResource(i, j) {
+  editConvs[i].resources.splice(j, 1);
+  renderConvResources(i);
 }
 
 function setToday(i) {
