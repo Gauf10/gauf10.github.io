@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Configurador — Charlas GAUF</title>
+<title>Biblioteca — Charlas GAUF</title>
+<link rel="icon" type="image/x-icon" href="exp-humanas/favicon.ico">
+<link rel="shortcut icon" href="exp-humanas/favicon.ico">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 
@@ -46,7 +48,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:transparent}
 /* ── LOGIN ── */
 
 #s-login{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  flex-direction:column;align-items:center;justify-content:center;
   min-height:calc(100vh - 60px);padding:40px var(--pad);
 }
 #s-login.on{display:flex}
@@ -221,6 +223,7 @@ select option{background:var(--bk)}
 /* ── EXPORT PANEL ── */
 
 .export-panel{
+  display:none !important;
   background:rgba(39,211,204,.04);
   border:1px solid rgba(39,211,204,.15);
   padding:clamp(16px,2.5vh,24px);
@@ -281,10 +284,6 @@ select option{background:var(--bk)}
     <div id="charla-list"></div>
     <div class="list-footer">
       <div style="font-size:clamp(10px,.78vw,12px);font-weight:300;color:var(--dim)" id="save-status"></div>
-      <button class="btn" onclick="toggleExport()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Exportar JSON
-      </button>
     </div>
     <div class="export-panel" id="export-panel">
       <div class="export-label">JSON para pegar en index.html → DEFAULT_CHARLAS</div>
@@ -509,6 +508,7 @@ function onLoggedIn() {
   CHARLAS = loadData();
   renderList();
   screen('s-list');
+  window.scrollTo(0, 0);
 }
 
 /* ══════════════════════════════════════════════
