@@ -71,7 +71,8 @@ Antes de armar su pitch, su comunicación, preguntense:
 ¿Sabemos qué cambia gracias a nuestra propuesta?
 
 ## Pregunta al grupo
-¿Sabemos para quién? ¿Sabemos qué necesita? ¿Sabemos qué cambia? Si la respuesta es sí, avancen. Si la respuesta es no, vuelvan un paso atrás. No se apuren a contar algo que todavía no tienen claro.
+¿Sabemos para quién? ¿Sabemos qué necesita? ¿Sabemos qué cambia? Si la respuesta es sí, avancen. 
+Si la respuesta es no, vuelvan un paso atrás. No se apuren a contar algo que todavía no tienen claro.
 ## Conexión con clases anteriores
 Un pitch claro nace de un proyecto que también tiene cierta claridad. Si tienen dudas sobre para quién es, o qué problema resuelven, o qué cambia, el pitch les va a salir forzado. Primero la claridad, después el relato.
 ## Transición
