@@ -28,7 +28,7 @@ Pero ahora tienen que lograr que todo eso se entienda. Que otra persona pueda en
 La pregunta de hoy es: ¿cómo hago para que alguien que no conoce mi proyecto pueda entenderlo, interesarse y querer saber más?
 
 Para empezar, necesitamos entender algo básico: no es lo mismo contar que explicar.
----
+
 
 # s2
 ## Explicación
