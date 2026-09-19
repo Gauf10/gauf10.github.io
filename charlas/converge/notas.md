@@ -16,7 +16,6 @@ validar con personas reales, empezar una demo con IA.
 Hoy vamos a trabajar sobre algo diferente: cómo hacer que otra persona pueda entender su proyecto a través de lo que ustedes cuentan.
 
 Es una clase sobre cómo pensar antes de hablar y cómo hablar con claridad para que el otro entienda. Arrancamos.
----
 
 # s1
 ## Explicación
