@@ -58,7 +58,7 @@ Esto es lo mismo pero visto desde otro ángulo. Mismas piezas, otra forma de arm
 
 ## Pregunta al grupo
 Piensen en su proyecto. ¿Qué hace? ¿Qué consigue quien la utiliza? ¿Por qué eso importa? 
-Si no pueden responder las tres, todavía necesitan pensar un poco más .
+Si no pueden responder las tres, todavía necesitan pensar un poco más en su pr.
 
 ## Transición
 Y antes de seguir, hagamos una pausa. Usemos una herramienta que ya conocemos.
