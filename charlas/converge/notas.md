@@ -34,7 +34,8 @@ Para empezar, necesitamos entender algo básico: no es lo mismo contar que expli
 Contar es tirar información, hablar por hablar. 
 Explicar es ayudar al otro a entender. Son cosas distintas.
 Piensen en la última vez que alguien les contó un proyecto, un tema de una materia, una noticia...
-y ustedes no entendieron nada. Probablemente pasó porque la persona estaba tan metida en su idea que olvidó que el otro no sabe lo que ella sabe.
+y ustedes no entendieron nada. 
+Probablemente pasó porque la persona estaba tan metida en su idea que olvidó que el otro no sabe lo que ella sabe.
 ## Pregunta al grupo
 ¿Les pasó? ¿Alguna vez les contaron algo y no entendieron ni de qué iba?
 ## Transición
