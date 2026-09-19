@@ -76,7 +76,8 @@ Si la respuesta es no, vuelvan un paso atrás. No se apuren a contar algo que to
 Si no está tan claro, revisen. 
 
 ## Conexión con clases anteriores
-Un pitch claro nace de un proyecto que también tiene cierta claridad. Si tienen dudas sobre para quién es, o qué problema resuelven, o qué cambia, el pitch les va a salir forzado. Primero la claridad, después el relato.
+Un pitch claro nace de un proyecto que también tiene cierta claridad. 
+Si tienen dudas sobre para quién es, o qué problema resuelven, o qué cambia, el pitch les va a salir forzado. Primero la claridad, después el relato.
 ## Transición
 Bien. Ahora vamos a practicar. Necesito voluntarios.
 ---
