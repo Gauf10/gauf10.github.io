@@ -29,7 +29,6 @@ La pregunta de hoy es: ¿cómo hago para que alguien que no conoce mi proyecto p
 
 Para empezar, necesitamos entender algo básico: no es lo mismo contar que explicar.
 
-
 # s2
 ## Explicación
 Contar es tirar información. Explicar es ayudar al otro a entender. Son cosas distintas.
