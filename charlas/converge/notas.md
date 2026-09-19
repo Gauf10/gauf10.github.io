@@ -92,7 +92,7 @@ Pero la persona que escucha todavía puede no entender: ¿qué oportunidad está
 
 En hackathons y proyectos tecnológicos esto pasa todo el tiempo. Uno empieza a tirar funcionalidades, y la otra persona todavía no entendió por qué existe el proyecto.
 La clave es ayudar al otro a entender: ¿qué vieron y qué están haciendo con eso? Hablen de oportunidad, no solo de problema.
-Muchas veces escucho a founders ocupar su tiempo de pitch contando el problema, lo claro que lo tienen, lo doloroso o complejo que es... no hace falta eso, tiene que ser 10 segundos d
+Muchas veces escucho a founders ocupar su tiempo de pitch contando el problema, lo claro que lo tienen, lo doloroso o complejo que es... no hace falta eso, tiene que ser 10 segundos del problema, 
 ## Transición
 ¿Ven? No es fácil, ¿no? Por eso necesitamos una estructura. Algo que les ayude a ordenar el pensamiento.
 ---
