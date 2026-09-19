@@ -1,6 +1,6 @@
 # s0
 ## Presentación
-Bienvenidos. Soy Gabriel Aufgang. Director y socio fundador de la agencia5SEIS. Más de veinte años trabajando en creatividad, comunicación y experiencias. Emprendedor, mentor, speaker. También soy actor de improvisación, y eso me ayuda a escuchar y a responder sobre la marcha.
+Bienvenidos. Soy Gabriel Aufgang. Director y socio fundador de la agencia 5SEIS. Más de veinte años trabajando en creatividad, comunicación y experiencias. Emprendedor, mentor, speaker. También soy actor de improvisación, y eso me ayuda a escuchar y a responder sobre la marcha.
 Hablo de esto porque me gusta acompañar equipos y proyectos. Y porque aprendí que una buena idea necesita encontrar la forma de llegar a otra persona.
 ## Conexión con clases anteriores
 Esta clase es el paso siguiente. Ya tuvieron tres clases donde trabajaron: observar problemas y convertirlos en oportunidades, identificar personas y situaciones concretas, definir resultados esperados, armar un Business Model Canvas, validar con personas reales, empezar una demo con IA.
