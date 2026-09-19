@@ -26,7 +26,7 @@ Pero ahora tienen que lograr que todo eso se entienda. Que otra persona pueda en
 
 ## Pregunta al grupo
 La pregunta es: ¿cómo hago para que alguien que no conoce mi proyecto pueda entenderlo, interesarse y querer saber más?
-de hoy.
+.
 
 ## Transición
 Para empezar, necesitamos entender algo básico: no es lo mismo contar que explicar.
