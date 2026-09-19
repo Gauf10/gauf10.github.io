@@ -48,7 +48,7 @@ Hoy vamos a aprender a ponernos del otro lado. Y para eso, necesitamos una herra
 Esto es clave. Muchas veces contamos funciones porque son fáciles de explicar. "Hacemos una app que hace tal cosa." 
 Pero la persona que escucha necesita entender: ¿qué consigue con eso? ¿Por qué eso importa?
 
-Miren: una cosa es decir "nuestra app saca fotos y las organiza". Otra es decir "ya no tenés que buscar tus apuntes, la app los organiza sola y los tenés listos para estudiar".
+Miren: una cosa es decir "nuestra app saca fotos y las organiza". Otra es decir "ya no tenés que buscar tus apuntes, la app los organiza sola y los tenés listos para estudiar ".
 La función es lo que hace. El beneficio es lo que la persona consigue. El valor es por qué eso importa.
 ## Conexión con clases anteriores
 En la clase anterior vimos Persona + Situación + Resultado. Cuando la persona está en tal situación y necesita tal resultado. Esto es lo mismo pero visto desde otro ángulo. Mismas piezas, otra forma de armar el rompecabezas.
