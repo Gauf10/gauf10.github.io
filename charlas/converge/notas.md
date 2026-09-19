@@ -86,7 +86,7 @@ Bien. Ahora vamos a practicar. Necesito voluntarios.
 ## Dinámica — Elevator pitch
 **Paso 1:** Preguntar: "¿Quién quiere contarme su proyecto en 30/60 segundos?"
 **Paso 2:** Si nadie se ofrece de inmediato, bajar la presión con humor: "Bueno, yo arranco contando el mío y después van ustedes." 
-
+Soy Gabriel, 
 
 O: "No se preocupen si no sale perfecto, el objetivo es practicar."
 **Paso 3:** Escuchar uno o dos proyectos.
