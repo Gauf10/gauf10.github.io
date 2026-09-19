@@ -60,7 +60,7 @@ Esto es lo mismo pero visto desde otro ángulo. Mismas piezas, otra forma de arm
 Piensen en su proyecto. ¿Qué hace? ¿Qué consigue quien la utiliza? ¿Por qué eso importa? 
 Si no pueden responder las tres, todavía necesitan pensar un poco más en su idea.
 
-Antes de seguir, hagamos una pausa. Usemos una herramienta que ya conocemos.
+Vamos a bucear ahí.
 
 # s4
 ## Explicación
