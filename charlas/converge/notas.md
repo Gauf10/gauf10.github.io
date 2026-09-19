@@ -25,7 +25,7 @@ Eso es mucho.
 Pero ahora tienen que lograr que todo eso se entienda. Que otra persona pueda entrar en ese proyecto a través de lo que ustedes cuentan.
 
 ## Pregunta al grupo
-La pregunta es: ¿cómo hago para que alguien que no conoce mi proyecto pueda entenderlo, interesarse y querer saber más?
+La pregunta de hoy es: ¿cómo hago para que alguien que no conoce mi proyecto pueda entenderlo, interesarse y querer saber más?
 .
 
 ## Transición
