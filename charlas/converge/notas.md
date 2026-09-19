@@ -71,7 +71,8 @@ Antes de armar su pitch, su comunicación, preguntense:
 ¿Sabemos qué cambia gracias a nuestra propuesta?
 
 ## Pregunta al grupo
-¿Sabemos para quién? ¿Sabemos qué necesita? ¿Sabemos qué cambia? Si la respuesta es sí, avancen. 
+¿Sabemos para quién? ¿Sabemos qué necesita? ¿Sabemos qué cambia? Si la respuesta es sí, avancen.
+Si no está tan 
 Si la respuesta es no, vuelvan un paso atrás. No se apuren a contar algo que todavía no tienen claro.
 
 ## Conexión con clases anteriores
