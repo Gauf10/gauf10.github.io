@@ -20,7 +20,9 @@ Es una clase sobre cómo pensar antes de hablar y cómo hablar con claridad para
 # s1
 ## Explicación
 Miren todo lo que ya hicieron. Tienen un problema. Identificaron personas. Armaron una propuesta. Llenaron un Canvas. Hablaron con gente real. Empezaron a construir una demo con IA.
-Eso es mucho.0 Pero ahora tienen que lograr que todo eso se entienda. Que otra persona pueda entrar en ese proyecto a través de lo que ustedes cuentan.
+Eso es mucho. 
+
+Pero ahora tienen que lograr que todo eso se entienda. Que otra persona pueda entrar en ese proyecto a través de lo que ustedes cuentan.
 ## Pregunta al grupo
 La pregunta es: ¿cómo hago para que alguien que no conoce mi proyecto pueda entenderlo, interesarse y querer saber más?
 Esa es la pregunta de hoy.
