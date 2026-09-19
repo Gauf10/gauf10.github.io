@@ -89,7 +89,7 @@ Bien. Ahora vamos a practicar. Necesito voluntarios.
 
 ---
 
-# s5 — Contalo en 30"
+# s5 — Contalo en 60"
 
 ## Dinámica — Elevator pitch
 **Paso 1:** Preguntar: "¿Quién quiere contarme su proyecto en 60 segundos?"
@@ -110,12 +110,12 @@ La clave es ayudar al otro a entender: ¿qué vieron y qué están haciendo con 
 
 ---
 
-# s6 — Estructura del pitch
+# s6 — La estructura
 
 ## Explicación
 Hay una estructura simple. No es una receta obligatoria. Son preguntas que el otro necesita poder responder después de escucharnos.
 
-Son siete. Voy a ir una por una. Las pueden copiar, sacar foto, grabar. Pero lo importante es que entiendan por qué cada una existe.
+Son seis: Oportunidad → Persona → Idea → Demo → Nosotros → Cierre. Voy a ir una por una. Las pueden copiar, sacar foto, grabar. Pero lo importante es que entiendan por qué cada una existe.
 
 ## Transición
 Arrancamos con la primera.
@@ -190,39 +190,25 @@ En la clase anterior empezaron a construir una demo con IA. Ya tienen algo para 
 La demo acompaña al pitch. No lo reemplaza.
 
 ## Transición
-Ya sabemos cómo funciona. Ahora: ¿por qué esta idea y no otra?
+Ya sabemos cómo funciona. Ahora: ¿por qué esta idea y no otra? Y por qué ustedes y no otros.
 
 ---
 
-# s11 — Diferencial
+# s11 — ¿Por qué ustedes?
 
 ## Explicación
-Quinta pregunta: ¿por qué esta idea?
+Quinta pregunta: ¿por qué esta idea? ¿Qué tienen ustedes que otros no tienen? ¿Qué los hace diferentes? No es solo la tecnología. Es la mirada, la experiencia, el conocimiento del problema, la conexión con la persona.
 
-¿Qué tienen ustedes que otros no tienen? ¿Qué los hace diferentes? No es solo la tecnología. Es la mirada, la experiencia, el conocimiento del problema, la conexión con la persona.
+Sexta pregunta: ¿por qué nosotros? Esto es personal. ¿Por qué ustedes y no otros? Puede haber una experiencia personal. Algo que conocen muy bien. Una historia. Una habilidad. Una mirada particular.
 
-Pueden mejorar algo que ya existe. No necesitan inventar algo de cero. La innovación muchas veces está en hacerlo mejor, más simple, más accesible, para un grupo específico.
+## Ejemplo — Celina
+Celina no inventó la mochila. Hizo una mochila para varones con diseño de varón. No era algo de cero. Era algo que ya existía pero que no estaba bien hecho para ese público. Ella y su pareja trabajaban desde casa, y necesitaban una mochila que sirva para los dos. No había. Entonces la diseñó. Eso es una historia personal. Eso conecta.
 
-## Ejemplo
-Celina no inventó la mochila. Hizo una mochila para varones con diseño de varón. No era algo de cero. Era algo que ya existía pero que no estaba bien hecho para ese público.
-
-## Transición
-Ya sabemos qué los hace diferentes. Ahora: ¿por qué ustedes y no otros?
-
----
-
-# s12 — Nosotros
-
-## Explicación
-Sexta pregunta: ¿por qué nosotros?
-
-Esto es personal. ¿Por qué ustedes y no otros? Puede haber una experiencia personal. Algo que conocen muy bien. Una historia. Una habilidad. Una mirada particular.
+## Ejemplo — Hackathon
+Fede contó que participó en una hackathon sin tener idea de qué hacer. Llegaron sin ideas. Después de muchas vueltas, encontraron un problema que les pasó a ellos mismos: gastaron todos los tokens de una sesión de IA en una búsqueda de mercado. Y dijeron: "¿Por qué no solucionamos esto que nos pasó a nosotros?" De ahí salió un producto ganador.
 
 ## Dinámica — Hablar en primera persona
 Recomendación: hablen en primera persona. "Nosotros vimos...", "A nosotros nos pasó...", "Conocemos...", "Queremos resolver...".
-
-## Ejemplo
-Celina contó que le pasó que no encontraba una mochila de maternidad con diseño de varón. No empezó con "mi propuesta de valor es...". Empezó con una historia personal. Eso la conectó con el problema.
 
 La persona que escucha conecta con personas, no con empresas. No suenen como una empresa. Suénen como personas que tienen una razón para hacer esto.
 
@@ -231,7 +217,7 @@ Ya tenemos casi todo. Nos falta una cosa: ¿qué quiero que recuerden?
 
 ---
 
-# s13 — Cierre
+# s12 — Cierre
 
 ## Explicación
 Séptima pregunta: ¿qué quiero que recuerden?
@@ -250,31 +236,14 @@ Bien. Ya tenemos la estructura. Ahora vamos a hablar de algo que puede hacer la 
 
 ---
 
-# s14 — Hablá en primera persona
-
-## Explicación
-Cuando un proyecto tiene una dimensión personal, el pitch se vuelve más creíble. No suenan como una empresa. Suenan como personas.
-
-## Ejemplo — Celina
-Celina contó que le pasó que no encontraba una mochila de maternidad con diseño de varón. Ella y su pareja trabajaban desde casa, y necesitaban una mochila que sirva para los dos. No había. Entonces la diseñó. Eso es una historia personal. Eso conecta.
-
-## Ejemplo — Hackathon
-Fede contó que participó en una hackathon sin tener idea de qué hacer. Llegaron sin ideas. Después de muchas vueltas, encontraron un problema que les pasó a ellos mismos: gastaron todos los tokens de una sesión de IA en una búsqueda de mercado. Y dijeron: "¿Por qué no solucionamos esto que nos pasó a nosotros?" De ahí salió un producto ganador.
-
-## Comentario de Gabriel
-La persona detrás de la idea también es parte del proyecto. Si ustedes tienen una historia personal con el problema, cuéntenla. Eso les va a dar credibilidad.
-
-## Transición
-Ahora hablemos de la herramienta visual.
-
----
-
-# s15 — El deck acompaña
+# s13 — El deck acompaña
 
 ## Explicación
 El deck es un apoyo visual. No debería competir con quien habla. Cada slide tiene que ayudar a contar una parte de la historia.
 
 Una idea por slide. Poco texto. Mucho espacio vacío. Si el deck tiene más texto que el que habla, algo está mal.
+
+Vos explicas y conectás. El deck acompaña.
 
 ## Pregunta al grupo
 ¿Cuántas veces vieron presentaciones donde el que habla lee la slide? ¿Se acuerdan de algo? Probablemente no. El foco está en la conversación, no en la pantalla.
@@ -284,7 +253,7 @@ Bien. Ya sabemos cómo contarla. Ahora vamos a ver cómo se conecta con la demo.
 
 ---
 
-# s16 — Pitch + Demo
+# s14 — Pitch + Demo
 
 ## Dinámica — Pitch + Demo
 **Paso 1:** Un equipo presenta su pitch (60 segundos).
@@ -301,7 +270,7 @@ La demo no es un recorrido por funcionalidades. Es una prueba de que la idea fun
 
 ---
 
-# s17 — ¿Se entendió?
+# s15 — ¿Se entendió?
 
 ## Explicación
 Después de escuchar un pitch, pregunten: ¿se entiende? No es una pregunta retórica. Es una pregunta real.
@@ -324,7 +293,7 @@ Ahora viene la parte difícil. El público va a preguntar cosas que no esperamos
 
 ---
 
-# s18 — Preguntas
+# s16 — Preguntas
 
 ## Explicación
 Un pitch se prepara. Una conversación se improvisa. El público puede preguntar cualquier cosa. No hay forma de preparar todas las preguntas posibles.
@@ -353,7 +322,7 @@ Y ahora, algo que me sirve mucho a mí.
 
 ---
 
-# s19 — Espontáneo
+# s17 — Espontáneo
 
 ## Explicación
 La improvisación puede ayudar a responder preguntas y conversaciones. No es algo mágico. Es una habilidad que se entrena.
@@ -380,7 +349,7 @@ Bien. Ya casi terminamos. Solo nos falta cerrar.
 
 ---
 
-# s20 — Cierre final
+# s18 — Cierre final
 
 ## Recapitulación
 Volvemos al principio. Tenés una idea. Ahora contala.
