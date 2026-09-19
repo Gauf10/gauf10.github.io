@@ -87,7 +87,8 @@ Bien. Ahora vamos a practicar. Necesito voluntarios.
 **Paso 1:** Preguntar: "¿Quién quiere contarme su proyecto en 30/60 segundos?"
 **Paso 2:** Si nadie se ofrece de inmediato, bajar la presión con humor: "Bueno, yo arranco contando el mío y después van ustedes." O: "No se preocupen si no sale perfecto, el objetivo es practicar."
 **Paso 3:** Escuchar uno o dos proyectos.
-**Paso 4:** Después de escuchar, detectar algo que pasa siempre: aparecen rápidamente muchas funcionalidades, herramientas, tecnología, features, detalles de cómo funciona. Pero la persona que escucha todavía puede no entender: ¿qué oportunidad están aprovechando?
+**Paso 4:** Después de escuchar, detectar algo que pasa siempre: aparecen rápidamente muchas funcionalidades, herramientas, tecnología, features, detalles de cómo funciona. 
+Pero la persona que escucha todavía puede no entender: ¿qué oportunidad están aprovechando?
 ## Comentario de Gabriel
 En hackathons y proyectos tecnológicos esto pasa todo el tiempo. Uno empieza a tirar funcionalidades, y la otra persona todavía no entendió por qué existe el proyecto.
 La clave es ayudar al otro a entender: ¿qué vieron y qué están haciendo con eso? Hablen de oportunidad, no solo de problema.
