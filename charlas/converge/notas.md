@@ -65,7 +65,7 @@ Vamos a bucear ahí.
 # s4
 ## Explicación
  "¿Vamos bien?", Me gusta esto como herramienta de revisión. Es una especie de brújula.
-Antes de armar su pitch, su comu, pregunten: ¿sabemos para quién estamos construyendo? ¿Sabemos qué necesita? ¿Sabemos qué cambia gracias a nuestra propuesta?
+Antes de armar su pitch, su comunicación, pregunten: ¿sabemos para quién estamos construyendo? ¿Sabemos qué necesita? ¿Sabemos qué cambia gracias a nuestra propuesta?
 ## Pregunta al grupo
 ¿Sabemos para quién? ¿Sabemos qué necesita? ¿Sabemos qué cambia? Si la respuesta es sí, avancen. Si la respuesta es no, vuelvan un paso atrás. No se apuren a contar algo que todavía no tienen claro.
 ## Conexión con clases anteriores
