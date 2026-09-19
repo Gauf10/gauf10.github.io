@@ -95,7 +95,6 @@ La clave es ayudar al otro a entender: ¿qué vieron y qué están haciendo con 
 Muchas veces escucho a founders ocupar su tiempo de pitch contando el problema, lo claro que lo tienen, lo doloroso o complejo que es... no hace falta eso, tiene que ser 10 segundos del problema, y mucho más de la solución.
 
 No es fácil, ¿no? Por eso traigo una estructura. Algo que les ayude a ordenar el pensamiento.
----
 
 # s6
 ## Explicación
