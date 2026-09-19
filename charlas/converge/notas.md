@@ -72,7 +72,6 @@ Antes de armar su pitch, su comunicación, preguntense:
 
 ## Pregunta al grupo
 ¿Sabemos para quién? ¿Sabemos qué necesita? ¿Sabemos qué cambia? Si la respuesta es sí, avancen.
-
 Si la respuesta es no, vuelvan un paso atrás. No se apuren a contar algo que todavía no tienen claro.
 
 ## Conexión con clases anteriores
