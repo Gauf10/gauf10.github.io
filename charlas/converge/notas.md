@@ -89,7 +89,8 @@ Bien. Ahora vamos a practicar. Necesito voluntarios.
 Soy Gabo, director creativo, diseñador de experiencias y mentor.
 
 Hace dos décadas que trabajo en creatividad y comunicación, lidero y emprendo. 
-Fundé y dirijo 5SEIS, una agencia donde diseñamos experiencias para marcas. Y hace algunos años empecé a llevar ese recorrido a otros lugares: trabajo con emprendedores, equipos y profesionales a través de mentorías, charlas y talleres, incorporando también herramientas de la improvisación teatral.
+Fundé y dirijo 5SEIS, una agencia donde diseñamos experiencias para marcas. 
+Y hace algunos años empecé a llevar ese recorrido a otros lugares: trabajo con emprendedores, equipos y profesionales a través de mentorías, charlas y talleres, incorporando también herramientas de la improvisación teatral.
 
 Acompaño a personas y equipos que están atravesando cambios y necesitan comunicarse mejor, construir con otros, desarrollar su creatividad y encontrar nuevas formas de avanzar.
 
