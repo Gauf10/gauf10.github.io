@@ -14,7 +14,11 @@
 
   var API_BASE = 'https://faro-api.gauf10.workers.dev';
 var CHARLA_NAME = 'Tenés una idea. Ahora contala.';
-var TOTAL_SLIDES = 21;
+var TOTAL_SLIDES = 19;
+var CHARLA_FOLDER = (function() {
+  var m = location.pathname.match(/charlas\/([^/]+)\//);
+  return m ? m[1] : '';
+})();
 
   /* ──────────────────────────────────────────────
    *  STATE
@@ -72,7 +76,7 @@ var TOTAL_SLIDES = 21;
       return fetch(API_BASE + '/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ charla: CHARLA_NAME, folder: 'converge', password: password }),
+        body: JSON.stringify({ charla: CHARLA_NAME, folder: CHARLA_FOLDER, password: password }),
       }).then(function(r) {
         if (!r.ok) throw new Error('invalid');
         return r.json();
