@@ -105,7 +105,7 @@ No se preocupen si no sale perfecto, el objetivo es practicar."
 Detecto algo que pasa siempre: aparecen rápidamente muchas funcionalidades, herramientas, tecnología, features, detalles de cómo funciona. 
 Pero la persona que escucha todavía puede no entender: ¿qué oportunidad están aprovechando?
 
-En hackathones y proyectos tecnológicos esto pasa todo el tiempo. El orador empieza a tirar funcionalidades magistrales, y la otra persona todavía no entendió por qué existe el proyecto.
+En hackathones y proyectos tecnológicos esto pasa todo el tiempo. El orador empieza a tirar funcionalidades magistrales, y la otra persona todavía no entendió por qué y para que existe el proyecto.
 La clave es ayudar al otro a entender: ¿qué vieron y qué están haciendo con eso? Hablen de oportunidad, no solo de problema.
 ## Transición
 ¿Ven? No es fácil, ¿no? Por eso necesitamos una estructura. Algo que les ayude a ordenar el pensamiento.
