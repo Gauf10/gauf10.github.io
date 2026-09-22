@@ -106,7 +106,7 @@ Trabajamos con empresas valientes que quieren conectar con las personas y que la
 Después juntamos estrategia, creatividad, diseño y tecnología para convertir esa idea en una experiencia.
 
 En más de 15 años de vida, aprendimos que una buena idea puede cambiar muchísimo cuando escuchas a las personas para las que estás diseñando.
-Y eso es, en definitiva, lo que buscamos: crear experiencias que hagan que alguien diga “esto estuvo buenísimo” y que, al mismo tiempo, ayuden a una marca a lograr lo que se propuso.
+Buscamos: crear experiencias que hagan que alguien diga “esto estuvo buenísimo” y que, al mismo tiempo, ayuden a una marca a lograr lo que se propuso.
 
 ---
 No se preocupen si no sale perfecto, el objetivo es practicar.
