@@ -129,7 +129,6 @@ Son seis: Oportunidad → Persona → Idea → Demo → Nosotros → Cierre.
 Pueden estar en distinto orden, solo que conviene que estén todas presente.
 Voy a ir una por una. Las pueden copiar, sacar foto, grabar. Pero lo importante es que entiendan por qué cada una existe.
 
-## Transición
 Arrancamos con la primera.
 ---
 
