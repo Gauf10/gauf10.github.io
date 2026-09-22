@@ -238,7 +238,7 @@ Vos explicas y conectás. El deck acompaña.
 
 ## Pregunta al grupo
 ¿Cuántas veces vieron presentaciones donde el que habla lee la slide? ¿Se acuerdan de algo? Probablemente no. El foco está en la conversación, no en la pantalla.
-## Transición
+
 Bien. Ya sabemos cómo contarla. Ahora vamos a ver cómo se conecta con la demo.
 ---
 
