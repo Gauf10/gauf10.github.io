@@ -329,4 +329,4 @@ Ahora contale tu proyecto a alguien que nunca escuchó hablar de él. Y después
 Si la persona no entendió, no es culpa de ella. Vuelvan a intentarlo. El pitch se mejora con práctica.
 
 ## Cierre
-Gracias a Fede, a Celina, a la organización de Converge. Y recordarles que pueden encontrarme en gaufgang.com si quieren seguir conversando.
+Gracias a Martín y Fede, a Celina, a la organización de Converge. Y recordarles que pueden encontrarme en gaufgang.com si quieren seguir conversando.
