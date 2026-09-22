@@ -227,7 +227,6 @@ La última frase debería ayudar a recordar la idea.
 
 Recuerdan lo que dije de 5SEIS?
 
-## Transición
 Bien. Ya tenemos la estructura. Ahora vamos a hablar de algo que puede hacer la diferencia.
 ---
 
