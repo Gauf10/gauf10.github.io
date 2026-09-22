@@ -79,7 +79,7 @@ Un pitch claro nace de un proyecto que también tiene cierta claridad.
 Si tienen dudas sobre para quién es, qué problema resuelven, o qué aporte traen; el pitch les va a salir forzado. 
 Primero la claridad, después el relato.
 
-Bien. Ahora vamos a practicar. algún voluntario.
+Bien. Ahora vamos a practicar. algún voluntario?
 ---
 
 # s5
