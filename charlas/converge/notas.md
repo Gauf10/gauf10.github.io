@@ -217,7 +217,6 @@ Ya tenemos casi todo. Nos falta una cosa: ¿qué quiero que recuerden?
 ---
 
 # s12
-## Explicación
 Séptima pregunta: ¿qué quiero que recuerden?
 El final del pitch también es parte. No terminen con "bueno, eso sería todo". Busquen una última idea que quede resonando. Puede ser una frase, una promesa, una visión, un tagline.
 Si el proyecto tiene un nombre potente, retómalo. "NOMBRE existe para..."
