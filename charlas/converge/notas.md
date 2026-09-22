@@ -224,6 +224,7 @@ La última frase debería ayudar a recordar la idea.
 
 ## Pregunta al grupo
 ¿Qué es lo que quieren que la persona se lleve después de escucharlos? Si no lo tienen claro, el cierre les va a salir débil.
+
 ## Transición
 Bien. Ya tenemos la estructura. Ahora vamos a hablar de algo que puede hacer la diferencia.
 ---
