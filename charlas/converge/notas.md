@@ -98,7 +98,7 @@ Trabajo combinando herramientas sobre liderazgo humano, creatividad, comunicaci�
 
 Hoy estoy explorando cómo llevar esa combinación de mundos cada vez más lejos: ayudar a más personas a encontrar su propia vos y tomar mejores decisiones. 
 
-o Somos 5SEIS, una agencia que diseña experiencias para marcas.
+o HSomos 5SEIS, una agencia que diseña experiencias para marcas.
 
 Trabajamos con empresas que quieren hacer algo que las personas recuerden: desde una activación en un evento hasta una experiencia digital, una instalación o una acción que conecte una marca con su público.
 
@@ -107,7 +107,6 @@ Trabajamos con empresas que quieren hacer algo que las personas recuerden: desde
 En estos años aprendimos que una buena idea puede cambiar muchísimo cuando empezás a escuchar a las personas para las que estás diseñando.
 
 Y eso es, en definitiva, lo que buscamos: crear experiencias que hagan que alguien diga “esto estuvo buenísimo” y que, al mismo tiempo, ayuden a una marca a lograr lo que se propuso.
-
 
 ---
 No se preocupen si no sale perfecto, el objetivo es practicar.
