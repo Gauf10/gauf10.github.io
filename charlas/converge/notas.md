@@ -251,7 +251,7 @@ Fede si gustas mostrar tu producto.
 **Paso 3:** Pregunto al grupo: ¿la demo ayudó a entender lo que acabamos de escuchar? ¿Qué parte de la demo fue realmente necesaria?
 ## Explicación
 La demo no es un recorrido por funcionalidades. Es una prueba de que la idea funciona. Si la demo no conecta con lo que se contó, algo falló en la historia o en la demo.
-## Transición
+
 ¿Se entendió? Hagamos una pausa y preguntemos.
 ---
 
