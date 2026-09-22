@@ -156,7 +156,7 @@ Si digo "es para estudiantes", no es lo mismo que "es para estudiantes de secund
 ## Conexión con clases anteriores
 En clases anteriores vimos un poco cómo segmentar. Cómo entender al cliente. Mismas preguntas, ahora las usamos para contar.
 
-Se llama User persona, usuario modelo, y demás nombres, es muy necesario para 
+Se llama User persona, usuario modelo, y demás nombres, es muy necesario para ayudarnos a contar la idea y luego a 
 Perfecto. Ya sabemos la oportunidad, sabemos la persona. Ahora: ¿qué les proponemos?
 ---
 
