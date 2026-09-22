@@ -170,7 +170,7 @@ Piensen en una frase. Si no pueden decirlo en una frase, probablemente necesitan
 
 en mi ejemplo:
 Gabo
-“Mis mejores ideas aparecen cuando conecto cosas que antes parecían no tener relación.”
+“Las mejores ideas aparecen cuando conecto cosas que antes parecían no tener relación.”
 
 5SEIS
 
