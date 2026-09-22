@@ -105,7 +105,7 @@ Trabajamos con empresas valientes que quieren conectar con las personas y que la
 ¿Cómo lo hacemos? Primero tratamos de entender qué quiere lograr la marca y, sobre todo, qué le interesa a su público. 
 Después juntamos estrategia, creatividad, diseño y tecnología para convertir esa idea en una experiencia.
 
-En más de 15 años de vida, aprendimos que una buena idea puede cambiar muchísimo cuando escuchar a las personas para las que estás diseñando.
+En más de 15 años de vida, aprendimos que una buena idea puede cambiar muchísimo cuando escuchas a las personas para las que estás diseñando.
 
 Y eso es, en definitiva, lo que buscamos: crear experiencias que hagan que alguien diga “esto estuvo buenísimo” y que, al mismo tiempo, ayuden a una marca a lograr lo que se propuso.
 
