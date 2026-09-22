@@ -275,6 +275,7 @@ Ahora viene la parte difícil. El público va a preguntar cosas que no esperamos
 # s16
 Un pitch se prepara. Una conversación se improvisa. El público puede preguntar cualquier cosa. No hay forma de preparar todas las preguntas posibles.
 Sí podemos prepararnos para escuchar y pensar.
+
 ## Tipos de preguntas
 Trabajen con estos tipos:
 - ¿Por qué?
@@ -286,6 +287,7 @@ Trabajen con estos tipos:
 - ¿Qué descubrieron hablando con personas?
 - ¿Qué falta probar?
 - ¿Qué harían después?
+
 ## Conexión con clases anteriores
 En la clase anterior vimos SABEMOS / SUPONEMOS / PRÓXIMO PASO. No hace falta tener respuesta para todo. También podemos decir: "Esto todavía no lo sabemos." "Esto es una hipótesis." "Esto es lo próximo que queremos probar."
 Reconocer lo que todavía no sabemos también transmite claridad y confianza.
