@@ -201,8 +201,10 @@ Quinta pregunta: ¿por qué esta idea? ¿Qué tienen ustedes que otros no tienen
 No es solo la tecnología, menos que menos hoy en día. Es la mirada, la experiencia, el conocimiento del problema, la conexión con la persona.
 ¿por qué nosotros? Esto es personal. ¿Por qué ustedes y no otros? Puede haber una experiencia personal. 
 Algo que conocen muy bien. Una historia. Una habilidad. Una mirada particular.
+
 ## Ejemplo — Celina
 Celina no inventó la mochila. Hizo una mochila para varones con diseño de varón. No era algo de cero. Era algo que ya existía pero que no estaba bien hecho para ese público. Ella y su pareja trabajaban desde casa, y necesitaban una mochila que sirva para los dos. No había. Entonces la diseñó. Eso es una historia personal. Eso conecta.
+
 ## Ejemplo — Hackathon
 Fede contó que participó en una hackathon sin tener idea de qué hacer. Llegaron sin ideas. Después de muchas vueltas, encontraron un problema que les pasó a ellos mismos: gastaron todos los tokens de una sesión de IA en una búsqueda de mercado. Y dijeron: "¿Por qué no solucionamos esto que nos pasó a nosotros?" De ahí salió un producto ganador.
 ## Dinámica — Hablar en primera persona
