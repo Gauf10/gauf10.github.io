@@ -137,7 +137,8 @@ La primera pregunta: ¿qué vimos? ¿Qué oportunidad identificaron? ¿qué hall
 No es lo mismo que "¿qué problema hay?". Una oportunidad puede nacer de un problema, pero también de una necesidad, de una tendencia, de algo que hoy se resuelve mal o que no se resuelve para nada.
 
 ## Ejemplo
-Celina, la instructora de una de las clases anteriores, contó que salió a buscar una mochila de maternidad y no había ninguna con diseño de varón. No era un "problema grave". Era una oportunidad: había algo que no existía y que mucha gente necesitaba.
+Celina, la instructora de una de las clases anteriores, contó que salió a buscar una mochila de maternidad y no había ninguna con diseño de varón. 
+No era un "problema grave". Era una oportunidad: había algo que no existía y que mucha gente necesitaba.
 ## Pregunta al grupo
 ¿Qué les llamó la atención? ¿Qué vieron que otros no están viendo? ¿Qué está pasando que ustedes pueden aprovechar?
 ## Transición
