@@ -173,7 +173,7 @@ Gabo
 “Las mejores ideas y decisiones aparecen cuando conectamos puntos que antes parecían no tener relación.”
 
 5SEIS
-“Reailzamos las mejores experiencias conectamos lo que una marca quiere decir con lo que las personas quieren vivir.”
+“Reailzamos las mejores experiencias, conecta lo que una marca quiere decir con lo que las personas quieren vivir.”
 
 ## Pregunta al grupo
 ¿Pueden decir su idea en una sola frase? Si no pueden, es una señal de que todavía necesitan clarificar.
