@@ -188,6 +188,7 @@ Pero ojo: una demo no necesita mostrar todo. Necesita mostrar lo suficiente para
 
 ## Pregunta al grupo
 ¿Qué parte de mi proyecto tengo que mostrar para que se entienda la propuesta? No muestren un recorrido interminable por funcionalidades. Muestren lo que conecta con la historia que acaban de contar.
+
 ## Conexión con clases anteriores
 En la clase anterior empezaron a construir una demo con IA. Ya tienen algo para mostrar. Ahora la pregunta es: ¿qué parte muestro y qué parte dejo para después?
 La demo acompaña al pitch. No lo reemplaza.
