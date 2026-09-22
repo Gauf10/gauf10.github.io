@@ -46,7 +46,8 @@ Hoy vamos a aprender a ponernos del otro lado. Y para eso, podemos apoyarnos en 
 
 # s3
 ## Explicación
-Algunas palabras clave. Muchas veces contamos funciones porque son fáciles de explicar. "Hacemos una app que hace tal cosa." Pero la persona que escucha necesita entender: ¿qué consigue con eso? ¿Por qué eso importa?
+Algunas palabras clave. 
+Muchas veces contamos funciones porque son fáciles de explicar. "Hacemos una app que hace tal cosa." Pero la persona que escucha necesita entender: ¿qué consigue con eso? ¿Por qué eso importa?
 Miren: una cosa es decir "nuestra app saca fotos y las organiza". Otra es decir "ya no tenés que buscar tus apuntes, la app los organiza sola y los tenés listos para estudiar".
 La función es lo que hace. El beneficio es lo que la persona consigue. El valor es por qué eso importa.
 ## Conexión con clases anteriores
