@@ -90,6 +90,15 @@ Te cruzas con BIll Gates, bueno... con Mark o Elon... bueno con Duki, en un asce
 
 ¿Quién quiere contarme su proyecto en 60 segundos?
 ¿ Nadie ? Bueno, yo arranco contando el mío y después van ustedes.
+Soy Gabo, director creativo, diseñador de experiencias y mentor.
+
+Hace dos décadas que trabajo en creatividad y comunicación, lidero y emprendo. Fundé y dirijo 5SEIS, una agencia donde diseñamos experiencias para marcas. Y en paralelo fui sumando otros caminos: el trabajo con emprendedores y equipos, las mentorías, las charlas y la improvisación teatral.
+
+Hoy acompaño a personas y equipos que están atravesando cambios y necesitan comunicarse, construir y avanzar mejor. Trabajo sobre liderazgo humano, creatividad, comunicación y colaboración, combinando herramientas de esos mundos.
+
+Algo que fui aprendiendo es que muchas veces nuestro diferencial aparece justamente en la combinación de cosas que fuimos haciendo y aprendiendo en el camino.
+
+Y hoy estoy explorando cómo llevar esa combinación cada vez más lejos: ayudar a más personas a encontrar la propia y ponerla en juego.
 
 
 " O: "No se preocupen si no sale perfecto, el objetivo es practicar."
