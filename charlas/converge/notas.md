@@ -168,6 +168,7 @@ Digan la idea central. ¿Qué es lo que están haciendo? ¿Qué problema están 
 
 Piensen en una frase. Si no pueden decirlo en una frase, probablemente necesitan simplificar.
 
+en mi ejemplo
 
 ## Pregunta al grupo
 ¿Pueden decir su idea en una sola frase? Si no pueden, es una señal de que todavía necesitan clarificar.
