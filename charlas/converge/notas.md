@@ -21,7 +21,8 @@ Es una clase sobre cómo pensar antes de hablar y cómo hablar para que el otro 
 # s1
 Miren todo lo que ya hicieron. Identificaron un problema o necesidad. Identificaron personas a las que les sucede. Armaron una propuesta. Completaron un Canvas. Hablaron con gente real (deberían hacerlo sino, incluso encuestas por redes sociales sirven para validar ideas). Empezaron a construir una demo con IA.
 Eso es mucho. 
-Pero ahora tienen que lograr que todo eso se entienda. Que otra persona pueda entrar en ese proyecto a través de lo que ustedes cuentan.
+Pero ahora tienen que lograr que todo eso se entienda. 
+Que otra persona pueda entrar en ese proyecto a través de lo que ustedes cuentan.
 ## Pregunta al grupo
 La pregunta es: ¿cómo hago para que alguien que no conoce mi proyecto pueda entenderlo, interesarse y querer saber más?
 Esa es la pregunta de hoy.
