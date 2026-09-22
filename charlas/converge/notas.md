@@ -109,7 +109,7 @@ En hackathones y proyectos tecnológicos esto pasa todo el tiempo. El orador emp
 La clave es ayudar al otro a entender: ¿cual es su visión (qué vieron a solucionar) y qué están haciendo con eso (cual es su propuesta de valor)? 
 Hablen de oportunidad, no solo de problema.
 
-¿Ven? No es fácil, ¿no? Por eso necesitamos una estructura. Algo que les ayude a ordenar el pensamiento.
+No es fácil, ¿no? Por eso necesitamos una estructura. Algo que les ayude a ordenar el pensamiento.
 ---
 
 # s6
