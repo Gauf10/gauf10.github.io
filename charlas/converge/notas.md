@@ -170,7 +170,7 @@ Piensen en una frase. Si no pueden decirlo en una frase, probablemente necesitan
 
 en mi ejemplo:
 Gabo
-“Las mejores ideas y deciciones aparecen cuando conectamos puntos que antes parecían no tener relación.”
+“Las mejores ideas y decisiones aparecen cuando conectamos puntos que antes parecían no tener relación.”
 
 5SEIS
 
