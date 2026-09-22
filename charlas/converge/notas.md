@@ -273,7 +273,6 @@ Ahora viene la parte difícil. El público va a preguntar cosas que no esperamos
 ---
 
 # s16
-## Explicación
 Un pitch se prepara. Una conversación se improvisa. El público puede preguntar cualquier cosa. No hay forma de preparar todas las preguntas posibles.
 Sí podemos prepararnos para escuchar y pensar.
 ## Tipos de preguntas
