@@ -193,6 +193,7 @@ Pero ojo: una demo no necesita mostrar todo. Necesita mostrar lo suficiente para
 En la clase anterior empezaron a construir una demo con IA. Ya tienen algo para mostrar. Ahora la pregunta es: ¿qué parte muestro y qué parte dejo para después?
 La demo o el deck (la presentación), acompañan al pitch. No lo reemplaza.
 
+
 ## Transición
 Ya sabemos cómo funciona. Ahora: ¿por qué esta idea y no otra? Y por qué ustedes y no otros.
 ---
