@@ -304,7 +304,9 @@ Cuatro cosas que la improvisación nos enseña:
 - **Claridad:** responder lo que realmente preguntaron.
 - **Confianza:** animarse a responder aunque no tengamos una frase perfecta preparada.
 
-Espontáneo antes que ingenioso. El objetivo no es encontrar una respuesta brillante. El objetivo es estar presente, escuchar y responder.
+Espontáneo antes que ingenioso. 
+
+El objetivo no es encontrar una respuesta brillante. El objetivo es estar presente, escuchar y responder.
 ## Dinámica — Improvisación breve
 **Paso 1:** Un estudiante hace un pitch (60 segundos).
 **Paso 2:** Otra persona hace una pregunta inesperada.
