@@ -11,6 +11,7 @@ Hoy vamos a trabajar sobre algo nuevo: cómo hacer que otra persona pueda entend
 
 No es una clase de PowerPoint, de hecho les presento en web, ja.
 Es concisa la info en pantalla, asi que les pido atención y me interrumpen cualquier duda o suguerencia. 
+
 Es una clase sobre cómo pensar antes de hablar y cómo hablar para que el otro entienda. Arrancamos.
 ---
 
