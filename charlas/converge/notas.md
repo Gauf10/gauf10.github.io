@@ -80,7 +80,7 @@ Si tienen dudas sobre para quién es, qué problema resuelven, o qué aporte tra
 Primero la claridad, después el relato.
 
 Bien. Ahora vamos a practicar. 
-¡algún voluntario?
+¿algún voluntario?
 ---
 
 # s5
