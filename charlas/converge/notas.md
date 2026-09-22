@@ -91,6 +91,7 @@ Te cruzas con BIll Gates, bueno... con Mark o Elon... bueno con Duki, en un asce
 ¿Quién quiere contarme su proyecto en 60 segundos?
 ¿ Nadie ? Bueno, yo arranco contando el mío y después van ustedes.
 
+
 " O: "No se preocupen si no sale perfecto, el objetivo es practicar."
 **Paso 3:** Escuchar uno o dos proyectos.
 **Paso 4:** Después de escuchar, detectar algo que pasa siempre: aparecen rápidamente muchas funcionalidades, herramientas, tecnología, features, detalles de cómo funciona. Pero la persona que escucha todavía puede no entender: ¿qué oportunidad están aprovechando?
