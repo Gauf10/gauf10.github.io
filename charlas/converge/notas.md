@@ -321,7 +321,7 @@ Bien. Ya casi terminamos. Solo nos falta cerrar.
 ## Recapitulación
 Volvemos al principio. Tenés una idea. Ahora contala.
 Recapitulamos: entender qué oportunidad vimos. Ordenar qué necesita entender otra persona. Contar cómo construimos el relato. Mostrar qué parte de la demo ayuda a entender. Cerrar qué queremos que recuerden.
-## Comentario de Gabriel
+
 Una buena idea necesita encontrar la forma de llegar a otra persona. No sirve de nada tener la mejor idea del mundo si no pueden comunicarla.
 ## Desafío
 Ahora contale tu proyecto a alguien que nunca escuchó hablar de él. Y después preguntarle: ¿qué entendió? ¿Qué recordó?
