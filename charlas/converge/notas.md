@@ -183,7 +183,8 @@ Ya tenemos la idea. Ahora necesitamos mostrar que funciona.
 
 # s10
 Cuarta pregunta: ¿cómo funciona?
-Acá viene la demo, o pantallas que grafican al menos. Pero ojo: una demo no necesita mostrar todo. Necesita mostrar lo suficiente para que se entienda la promesa.
+Acá viene la demo, o pantallas que grafican al menos. 
+Pero ojo: una demo no necesita mostrar todo. Necesita mostrar lo suficiente para que se entienda la promesa.
 ## Pregunta al grupo
 ¿Qué parte de mi proyecto tengo que mostrar para que se entienda la propuesta? No muestren un recorrido interminable por funcionalidades. Muestren lo que conecta con la historia que acaban de contar.
 ## Conexión con clases anteriores
