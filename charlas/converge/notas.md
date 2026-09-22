@@ -133,7 +133,7 @@ Arrancamos con la primera.
 ---
 
 # s7
-La primera pregunta: ¿qué vimos? ¿Qué oportunidad identificaron?
+La primera pregunta: ¿qué vimos? ¿Qué oportunidad identificaron? 
 No es lo mismo que "¿qué problema hay?". Una oportunidad puede nacer de un problema, pero también de una necesidad, de una tendencia, de algo que hoy se resuelve mal o que no se resuelve para nada.
 ## Ejemplo
 Celina, la instructora de la clase anterior, contó que salió a buscar una mochila de maternidad y no había ninguna con diseño de varón. No era un "problema grave". Era una oportunidad: había algo que no existía y que mucha gente necesitaba.
