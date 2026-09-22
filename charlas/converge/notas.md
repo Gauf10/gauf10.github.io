@@ -291,7 +291,7 @@ Trabajen con estos tipos:
 ## Conexión con clases anteriores
 En la clase anterior vimos SABEMOS / SUPONEMOS / PRÓXIMO PASO. No hace falta tener respuesta para todo. También podemos decir: "Esto todavía no lo sabemos." "Esto es una hipótesis." "Esto es lo próximo que queremos probar."
 Reconocer lo que todavía no sabemos también transmite claridad y confianza.
-## Transición
+
 Y ahora, algo que me sirve mucho a mí.
 ---
 
