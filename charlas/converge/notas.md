@@ -182,7 +182,6 @@ Ya tenemos la idea. Ahora necesitamos mostrar que funciona.
 ---
 
 # s10
-## Explicación
 Cuarta pregunta: ¿cómo funciona?
 Acá viene la demo. Pero ojo: una demo no necesita mostrar todo. Necesita mostrar lo suficiente para que se entienda la promesa.
 ## Pregunta al grupo
