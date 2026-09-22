@@ -96,9 +96,7 @@ Fundé y dirijo 5SEIS, una agencia donde diseñamos experiencias para marcas. Y 
 Hoy acompaño a personas y equipos que están atravesando cambios y necesitan comunicarse, construir y avanzar mejor. 
 Trabajo combinando herramientas sobre liderazgo humano, creatividad, comunicación y colaboración.
 
-Algo que fui aprendiendo es que muchas veces nuestro diferencial aparece justamente en la combinación de cosas que fuimos haciendo y aprendiendo en el camino.
-
-Y hoy estoy explorando cómo llevar esa combinación cada vez más lejos: ayudar a más personas a encontrar la propia y ponerla en juego.
+hoy estoy explorando cómo llevar esa combinación cada vez más lejos: ayudar a más personas a encontrar la propia y ponerla en juego.
 
 
 " O: "No se preocupen si no sale perfecto, el objetivo es practicar."
