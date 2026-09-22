@@ -258,6 +258,7 @@ La demo no es un recorrido por funcionalidades. Es una prueba de que la idea fun
 # s15
 Después de escuchar un pitch, pregunten: ¿se entiende? No es una pregunta retórica. Es una pregunta real.
 Si algo no se entendió, no es culpa de quien escucha. Es culpa de quien cuenta. Y está bien, porque se puede mejorar.
+
 ## Dinámica — Análisis grupal
 Preguntar al grupo:
 - ¿Qué entendimos del proyecto?
