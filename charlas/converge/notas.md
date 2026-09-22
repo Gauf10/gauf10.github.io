@@ -41,7 +41,7 @@ Probablemente pasó porque la persona estaba tan metida en su idea que olvidó q
 ## Pregunta al grupo
 ¿Les pasó? ¿Alguna vez les contaron algo y no entendieron ni de qué iba?
 
-Hoy vamos a aprender a ponernos del otro lado. Y para eso, podemos apoyatr herramientas.
+Hoy vamos a aprender a ponernos del otro lado. Y para eso, podemos apoyarnos en herramientas.
 ---
 
 # s3
