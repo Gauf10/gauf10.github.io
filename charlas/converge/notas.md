@@ -72,7 +72,7 @@ Antes de explicar ideas a alguien, preguntensen: ¿sabemos para quién estamos c
 
 ## Pregunta al grupo
 Sobre su proyecto, ustedes ¿Saben para quién es? ¿Saben qué necesita? ¿Saben qué les modifica? 
-Si la respuesta es sí, avancen. Si la respuesta es no, vuelvan un paso atrás. No se apuren a contar algo que todavía no tienen claro.
+Si la respuesta es sí, avancen. Si la respuesta es no, vuelvan un paso atrás. No se apuren a comunicar algo que todavía no tienen claro.
 ## Conexión con clases anteriores
 Un pitch claro nace de un proyecto que también tiene cierta claridad. Si tienen dudas sobre para quién es, o qué problema resuelven, o qué cambia, el pitch les va a salir forzado. Primero la claridad, después el relato.
 ## Transición
