@@ -173,7 +173,6 @@ Gabo
 “Las mejores ideas y decisiones aparecen cuando conectamos puntos que antes parecían no tener relación.”
 
 5SEIS
-
 “Las mejores experiencias aparecen cuando conectamos lo que una marca quiere decir con lo que las personas quieren vivir.”
 
 ## Pregunta al grupo
