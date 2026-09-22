@@ -268,7 +268,7 @@ Preguntar al grupo:
 - ¿En qué momento nos perdimos?
 - ¿Qué parte fue más clara?
 El objetivo no es criticar. Es observar cómo funciona un pitch cuando lo escucha alguien que no conoce el proyecto.
-## Transición
+
 Ahora viene la parte difícil. El público va a preguntar cosas que no esperamos.
 ---
 
