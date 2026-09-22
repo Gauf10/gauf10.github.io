@@ -168,7 +168,14 @@ Digan la idea central. ¿Qué es lo que están haciendo? ¿Qué problema están 
 
 Piensen en una frase. Si no pueden decirlo en una frase, probablemente necesitan simplificar.
 
-en mi ejemplo
+en mi ejemplo:
+Gabo
+
+“Mis mejores ideas aparecen cuando conecto cosas que antes parecían no tener relación.”
+
+5SEIS
+
+“Las mejores experiencias aparecen cuando conectamos lo que una marca quiere decir con lo que las personas quieren vivir.”
 
 ## Pregunta al grupo
 ¿Pueden decir su idea en una sola frase? Si no pueden, es una señal de que todavía necesitan clarificar.
