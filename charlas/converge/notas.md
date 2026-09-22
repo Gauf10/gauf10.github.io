@@ -2,7 +2,7 @@
 ## Presentación
 Bienvenidos. Soy Gabriel Aufgang. Director y socio fundador de 5SEIS. Más de veinte años trabajando en creatividad, comunicación y experiencias. Emprendedor, mentor, speaker. También soy actor de improvisación, y eso me ayuda a escuchar y a responder en presente.
 Les estoy hablando hoy porque me gusta acompañar equipos y proyectos. 
-Y porque aprendí que una buena idea necesita buenas  forma de llegar a otra persona.
+Y porque aprendí que una buena idea necesita buenas formas de llegar a otra persona.
 ## Conexión con clases anteriores
 Esta clase es el paso siguiente. Ya tuvieron tres clases donde trabajaron: observar problemas y convertirlos en oportunidades, identificar personas y situaciones concretas, definir resultados esperados, armar un Business Model Canvas, validar con personas reales, empezar una demo con IA.
 Hoy vamos a trabajar sobre algo diferente: cómo hacer que otra persona pueda entender su proyecto a través de lo que ustedes cuentan.
