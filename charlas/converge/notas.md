@@ -13,7 +13,7 @@ No es una clase de PowerPoint, de hecho les presento en web, ja.
 Es concisa la info en pantalla, asi que les pido atención y me interrumpen cualquier duda o suguerencia. 
 
 Es una clase sobre cómo pensar antes de hablar y cómo hablar para que el otro entienda. 
-Arrancamos.
+Arrancamos?
 ---
 
 # s1
