@@ -9,7 +9,6 @@ Esta clase es el paso siguiente a lo que ya tuvieron viendo, las tres clases pas
 
 Hoy vamos a trabajar sobre algo nuevo: cómo hacer que otra persona pueda entender su proyecto a través de lo que ustedes cuentan.
 
-## Transición
 No es una clase de PowerPoint. Es una clase sobre cómo pensar antes de hablar y cómo hablar para que el otro entienda. Arrancamos.
 ---
 
