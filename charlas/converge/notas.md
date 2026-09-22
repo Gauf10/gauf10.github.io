@@ -211,7 +211,7 @@ Fede contó que participó en una hackathon sin tener idea de qué hacer. Llegar
 ## Dinámica — Hablar en primera persona
 Recomendación: hablen en primera persona. "Nosotros vimos...", "A nosotros nos pasó...", "Conocemos...", "Queremos resolver...".
 La persona que escucha conecta con personas, no con empresas. No suenen como una empresa. Suénen como personas que tienen una razón para hacer esto.
-## Transición
+
 Ya tenemos casi todo. Nos falta una cosa: ¿qué quiero que recuerden?
 ---
 
