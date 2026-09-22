@@ -27,7 +27,7 @@ Que otra persona pueda entrar en ese proyecto a través de lo que ustedes cuenta
 ## Pregunta al grupo
 ¿Cómo hago para que alguien que no conoce mi proyecto pueda entenderlo, interesarse y quiera saber más?
 
-Para empezar, vamos a entender algo básico: no es lo mismo contar que explicar.
+Para empezar, vamos a entender algo simple: no es lo mismo contar que explicar.
 ---
 
 # s2
