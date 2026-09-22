@@ -40,7 +40,7 @@ Probablemente pasó porque la persona estaba tan metida en su idea que olvidó q
 
 ## Pregunta al grupo
 ¿Les pasó? ¿Alguna vez les contaron algo y no entendieron ni de qué iba?
-## Transición
+
 Hoy vamos a aprender a ponernos del otro lado. Y para eso, necesitamos una herramienta.
 ---
 
