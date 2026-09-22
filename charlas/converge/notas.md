@@ -99,6 +99,7 @@ Trabajo combinando herramientas sobre liderazgo humano, creatividad, comunicaci�
 Hoy estoy explorando cómo llevar esa combinación de mundos cada vez más lejos: ayudar a más personas a encontrar su propia vos y tomar mejores decisiones. 
 
 No se preocupen si no sale perfecto, el objetivo es practicar."
+
 Alguno quiere Escuchar uno o dos proyectos.
 **Paso 4:** Después de escuchar, detectar algo que pasa siempre: aparecen rápidamente muchas funcionalidades, herramientas, tecnología, features, detalles de cómo funciona. Pero la persona que escucha todavía puede no entender: ¿qué oportunidad están aprovechando?
 ## Comentario de Gabriel
