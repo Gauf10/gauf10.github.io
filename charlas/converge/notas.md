@@ -106,7 +106,7 @@ Trabajamos con empresas valientes que quieren conectar con las personas y que la
 Después juntamos estrategia, creatividad, diseño y tecnología para convertir esa idea en una experiencia.
 
 En más de 15 años de vida, aprendimos que una buena idea puede cambiar muchísimo cuando escuchas a las personas para las que estás diseñando.
-Buscamos: crear experiencias que hagan que lo cuentes al final del día en la cena familiar o con amigos. QU
+Buscamos: crear experiencias que hagan que lo cuentes al final del día en la cena familiar o con amigos. Que tengas experiencias memorables.
 
 ---
 No se preocupen si no sale perfecto, el objetivo es practicar.
