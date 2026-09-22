@@ -143,7 +143,6 @@ No era un "problema grave". Era una oportunidad: había algo que no existía y q
 ## Pregunta al grupo
 En sus proyectos, ¿Qué les llamó la atención? ¿Qué vieron que otros no están viendo? ¿Qué está pasando que ustedes pueden aprovechar?
 
-## Transición
 Una vez que tenemos la oportunidad, necesitamos saber: ¿a quién le pasa?
 ---
 
