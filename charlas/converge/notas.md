@@ -197,7 +197,6 @@ Ya sabemos cómo funciona. Ahora: ¿por qué esta idea y no otra? Y por qué ust
 ---
 
 # s11
-## Explicación
 Quinta pregunta: ¿por qué esta idea? ¿Qué tienen ustedes que otros no tienen? ¿Qué los hace diferentes? No es solo la tecnología. Es la mirada, la experiencia, el conocimiento del problema, la conexión con la persona.
 Sexta pregunta: ¿por qué nosotros? Esto es personal. ¿Por qué ustedes y no otros? Puede haber una experiencia personal. Algo que conocen muy bien. Una historia. Una habilidad. Una mirada particular.
 ## Ejemplo — Celina
