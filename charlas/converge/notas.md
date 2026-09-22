@@ -323,6 +323,7 @@ Volvemos al principio. Tenés una idea. Ahora contala.
 Recapitulamos: entender qué oportunidad vimos. Ordenar qué necesita entender otra persona. Contar cómo construimos el relato. Mostrar qué parte de la demo ayuda a entender. Cerrar qué queremos que recuerden.
 
 Una buena idea necesita encontrar la forma de llegar a otra persona. No sirve de nada tener la mejor idea del mundo si no pueden comunicarla.
+
 ## Desafío
 Ahora contale tu proyecto a alguien que nunca escuchó hablar de él. Y después preguntarle: ¿qué entendió? ¿Qué recordó?
 Si la persona no entendió, no es culpa de ella. Vuelvan a intentarlo. El pitch se mejora con práctica.
