@@ -91,7 +91,7 @@ Te cruzas con BIll Gates, bueno... con Mark o Elon... bueno con Duki, en un asce
 ¿Quién quiere contarme su proyecto en 60 segundos?
 ¿ Nadie ? Bueno, yo arranco contando el mío y después van ustedes.
 Hola, soy Gabo, hace dos décadas que trabajo en creatividad y comunicación, lidero y emprendo. 
-Fundé y dirijo 5SEIS, una agencia donde diseñamos experiencias para marcas. Y trabajo con emprendedores y equipos, con mentorías, las charlas y la improvisación teatral.
+Fundé y dirijo 5SEIS, una agencia donde diseñamos experiencias para marcas. Y trabajo con emprendedores y equipos, con mentorías, charlas e improvisación teatral.
 
 Hoy acompaño a personas y equipos que están atravesando cambios y necesitan comunicarse, construir y avanzar mejor. Trabajo sobre liderazgo humano, creatividad, comunicación y colaboración, combinando herramientas de esos mundos.
 
