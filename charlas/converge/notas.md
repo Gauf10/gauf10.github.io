@@ -147,7 +147,7 @@ Una vez que tenemos la oportunidad, necesitamos saber: ¿a quién le pasa?
 ---
 
 # s8
-## Explicación
+
 Segunda pregunta: ¿a quién le pasa?
 No es "¿para quién es?" como si fuera para todo el mundo. Es: ¿quién es la persona concreta que tiene esta situación? ¿Cuántos años tiene? ¿Qué hace? ¿Dónde está? ¿Cómo se siente?
 Mientras más específicos sean, más fácil va a ser contar la historia. Si digo "es para estudiantes", no es lo mismo que "es para estudiantes de secundaria de 16 a 18 años que están en la escuela técnica y necesitan organizar sus apuntes".
