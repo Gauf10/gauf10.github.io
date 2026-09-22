@@ -126,7 +126,7 @@ No es fácil, ¿no? Por eso necesitamos una estructura. Algo que les ayude a ord
 # s6
 Hay una estructura simple. No es una receta obligatoria. Son preguntas que el otro necesita poder responder al escucharnos.
 Son seis: Oportunidad → Persona → Idea → Demo → Nosotros → Cierre. 
-Pueden iVoy a ir una por una. Las pueden copiar, sacar foto, grabar. Pero lo importante es que entiendan por qué cada una existe.
+Pueden estar en Voy a ir una por una. Las pueden copiar, sacar foto, grabar. Pero lo importante es que entiendan por qué cada una existe.
 ## Transición
 Arrancamos con la primera.
 ---
