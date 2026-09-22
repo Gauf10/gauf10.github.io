@@ -170,7 +170,7 @@ Piensen en una frase. Si no pueden decirlo en una frase, probablemente necesitan
 
 ## Pregunta al grupo
 ¿Pueden decir su idea en una sola frase? Si no pueden, es una señal de que todavía necesitan clarificar.
-## Transición
+
 Ya tenemos la idea. Ahora necesitamos mostrar que funciona.
 ---
 
