@@ -313,7 +313,7 @@ El objetivo no es encontrar una respuesta brillante. El objetivo es estar presen
 **Paso 2:** Otra persona hace una pregunta inesperada.
 **Paso 3:** El estudiante tiene unos segundos para pensar y responder.
 **Paso 4:** Analizamos qué funcionó. ¿Escuchó bien la pregunta? ¿Estuvo presente? ¿Respondió lo que le preguntaron?
-## Transición
+
 Bien. Ya casi terminamos. Solo nos falta cerrar.
 ---
 
