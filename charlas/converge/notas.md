@@ -50,6 +50,7 @@ Algunas palabras clave.
 Muchas veces contamos funciones porque son fáciles de explicar. "Hacemos una app que hace tal cosa." "Nuestra solución te permite tal otra cosa."
 
 Pero la persona que escucha necesita entender, antes de saber que funciones copadas tiene: ¿qué consigo con este producto? ¿Por qué me debería importar?
+
 Miren: una cosa es decir "nuestra app saca fotos y las organiza". Otra es decir "ya no tenés que buscar tus apuntes, la app los organiza sola y los tenés listos para estudiar".
 La función es lo que hace. El beneficio es lo que la persona consigue. El valor es por qué eso importa.
 ## Conexión con clases anteriores
