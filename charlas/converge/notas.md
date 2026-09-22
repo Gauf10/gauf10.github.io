@@ -10,7 +10,7 @@ Esta clase es el paso siguiente a lo que ya tuvieron viendo, las tres clases pas
 Hoy vamos a trabajar sobre algo nuevo: cómo hacer que otra persona pueda entender su proyecto a través de lo que ustedes cuentan.
 
 No es una clase de PowerPoint, de hecho les presento en web, ja.
-Es concisa la info en pantalla, asi que les pido atención y me interru. Es una clase sobre cómo pensar antes de hablar y cómo hablar para que el otro entienda. Arrancamos.
+Es concisa la info en pantalla, asi que les pido atención y me interrumpen. Es una clase sobre cómo pensar antes de hablar y cómo hablar para que el otro entienda. Arrancamos.
 ---
 
 # s1
