@@ -154,7 +154,7 @@ Mientras más específicos sean, más fácil va a ser contar la historia.
 Si digo "es para estudiantes", no es lo mismo que "es para estudiantes de secundaria de 16 a 18 años que están en la escuela técnica y necesitan organizar sus apuntes".
 
 ## Conexión con clases anteriores
-En clase anterior vimos cómo segmentar. Cómo entender al cliente. Mismas preguntas, ahora las usamos para contar.
+En clases anteriores vimos cómo segmentar. Cómo entender al cliente. Mismas preguntas, ahora las usamos para contar.
 ## Transición
 Perfecto. Ya sabemos la oportunidad, sabemos la persona. Ahora: ¿qué les proponemos?
 ---
