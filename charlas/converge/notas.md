@@ -85,7 +85,7 @@ Bien. Ahora vamos a practicar.
 
 # s5
 ## Dinámica — Elevator pitch
-Te cruzas con BIll Gates, 
+Te cruzas con BIll Gates, bueno... con Mark o Elon... 
 **Paso 1:** Preguntar: "¿Quién quiere contarme su proyecto en 60 segundos?"
 **Paso 2:** Si nadie se ofrece de inmediato, bajar la presión con humor: "Bueno, yo arranco contando el mío y después van ustedes." O: "No se preocupen si no sale perfecto, el objetivo es practicar."
 **Paso 3:** Escuchar uno o dos proyectos.
