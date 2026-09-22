@@ -296,7 +296,6 @@ Y ahora, algo que me sirve mucho a mí.
 ---
 
 # s17
-## Explicación
 La improvisación puede ayudar a responder preguntas y conversaciones. No es algo mágico. Es una habilidad que se entrena.
 Cuatro cosas que la improvisación nos enseña:
 - **Escucha:** realmente escuchar lo que la otra persona está preguntando.
