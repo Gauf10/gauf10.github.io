@@ -102,7 +102,7 @@ o Hola soy Gabo, director creativo de 5SEIS, una agencia que diseña experiencia
 
 Trabajamos con empresas valientes que quieren conectar con las personas y que las recuerden: En activaciones, eventos y hasta experiencias digitales.
 
-¿Cómo lo hacemos? Primero tratamos de entender qué quiere lograr la marca y, sobre todo, qué le puede resultar interesante a la gente. Después juntamos estrategia, creatividad, diseño y tecnología para convertir esa idea en una experiencia.
+¿Cómo lo hacemos? Primero tratamos de entender qué quiere lograr la marca y, sobre todo, qué le interesante a la gente. Después juntamos estrategia, creatividad, diseño y tecnología para convertir esa idea en una experiencia.
 
 En estos años aprendimos que una buena idea puede cambiar muchísimo cuando empezás a escuchar a las personas para las que estás diseñando.
 
