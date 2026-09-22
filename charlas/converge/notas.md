@@ -32,7 +32,7 @@ Para empezar, vamos a entender algo simple: no es lo mismo contar que explicar.
 
 # s2
 ## Explicación
-
+Queremos que lo 
 Contar es tirar información. Explicar es ayudar al otro a entender. Son cosas distintas.
 Piensen en la última vez que alguien les contó un proyecto y ustedes no entendieron nada. Probablemente pasó porque la persona estaba tan metida en su idea que olvidó que el otro no sabe lo que ella sabe.
 ## Pregunta al grupo
