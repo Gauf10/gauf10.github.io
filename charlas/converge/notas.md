@@ -55,7 +55,8 @@ Una cosa es decir "nuestra app saca fotos y las organiza". Otra es decir "ya no 
 La función es lo que hace. El beneficio es lo que la persona consigue. El valor es por qué eso importa.
 
 ## Conexión con clases anteriores
-En la clase anterior vimos Persona + Situación + Resultado. Cuando la persona está en tal situación y necesita tal resultado. Esto es lo mismo pero visto desde otro ángulo. Mismas piezas, otra forma de armar el rompecabezas.
+En la clase anterior vimos Persona + Situación + Resultado. Cuando la persona está en tal situación y necesita tal resultado. 
+Esto es lo mismo pero visto desde otro ángulo. Mismas piezas, otra forma de armar el rompecabezas.
 ## Pregunta al grupo
 Piensen en su proyecto. ¿Qué hace? ¿Qué consigue la persona? ¿Por qué eso importa? Si no pueden responder las tres, todavía necesitan pensar un poco más.
 ## Transición
