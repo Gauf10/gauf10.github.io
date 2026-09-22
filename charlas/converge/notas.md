@@ -244,7 +244,7 @@ Bien. Ya sabemos cómo contarla. Ahora vamos a ver cómo se conecta con la demo.
 
 # s14
 ## Dinámica — Pitch + Demo
-
+Fede si gustas mostra
 **Paso 1:** Un equipo presenta su pitch (60 segundos).
 **Paso 2:** Después muestra su demo (1 minuto).
 **Paso 3:** Pregunto al grupo: ¿la demo ayudó a entender lo que acabamos de escuchar? ¿Qué parte de la demo fue realmente necesaria?
