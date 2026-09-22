@@ -235,6 +235,7 @@ Bien. Ya tenemos la estructura. Ahora vamos a hablar de algo que puede hacer la 
 El deck es un apoyo visual. No debería competir con quien habla. Cada slide tiene que ayudar a contar una parte de la historia.
 Una idea por slide. Poco texto. Mucho espacio vacío. Si el deck tiene más texto que el que habla, algo está mal.
 Vos explicas y conectás. El deck acompaña.
+
 ## Pregunta al grupo
 ¿Cuántas veces vieron presentaciones donde el que habla lee la slide? ¿Se acuerdan de algo? Probablemente no. El foco está en la conversación, no en la pantalla.
 ## Transición
