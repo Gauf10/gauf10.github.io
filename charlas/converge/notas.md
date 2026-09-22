@@ -94,7 +94,7 @@ Hola, soy Gabo, hace dos décadas que trabajo en creatividad y comunicación, li
 Fundé y dirijo 5SEIS, una agencia donde diseñamos experiencias para marcas. Y trabajo con emprendedores y equipos, con mentorías, charlas e improvisación teatral.
 
 Hoy acompaño a personas y equipos que están atravesando cambios y necesitan comunicarse, construir y avanzar mejor. 
-Trabajo sobre liderazgo humano, creatividad, comunicación y colaboración, de esos mundos.
+Trabajo combinando herramientas sobre liderazgo humano, creatividad, comunicación y colaboración.
 
 Algo que fui aprendiendo es que muchas veces nuestro diferencial aparece justamente en la combinación de cosas que fuimos haciendo y aprendiendo en el camino.
 
