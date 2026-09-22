@@ -1,5 +1,6 @@
 # s0
 ## Presentación
+Buenas, gracias
 Bienvenidos. Soy Gabriel Aufgang. Director y socio fundador de 5SEIS. Más de veinte años trabajando en creatividad, comunicación y experiencias. Emprendedor, mentor, speaker. También soy actor de improvisación, y eso me ayuda a escuchar y a responder en presente.
 Les estoy hablando hoy porque me gusta acompañar equipos y proyectos. 
 Y porque aprendí que una buena idea necesita buenas formas de llegar a otras personas.
@@ -13,7 +14,7 @@ No es una clase de PowerPoint, de hecho les presento en web, ja.
 Es concisa la info en pantalla, asi que les pido atención y me interrumpen cualquier duda o suguerencia. 
 
 Es una clase sobre cómo pensar antes de hablar y cómo hablar para que el otro entienda. 
-Arrancamos?
+¿Arrancamos?
 ---
 
 # s1
