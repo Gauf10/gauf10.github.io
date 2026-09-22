@@ -98,7 +98,7 @@ Trabajo combinando herramientas sobre liderazgo humano, creatividad, comunicaci�
 
 Hoy estoy explorando cómo llevar esa combinación de mundos cada vez más lejos: ayudar a más personas a encontrar su propia vos y tomar mejores decisiones. 
 
-o Hola soy Gabo, directorSomos 5SEIS, una agencia que diseña experiencias para marcas.
+o Hola soy Gabo, director creativo de la agenciaSomos 5SEIS, una agencia que diseña experiencias para marcas.
 
 Trabajamos con empresas que quieren hacer algo que las personas recuerden: desde una activación en un evento hasta una experiencia digital, una instalación o una acción que conecte una marca con su público.
 
