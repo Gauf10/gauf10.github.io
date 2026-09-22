@@ -27,8 +27,7 @@ Que otra persona pueda entrar en ese proyecto a través de lo que ustedes cuenta
 ## Pregunta al grupo
 ¿Cómo hago para que alguien que no conoce mi proyecto pueda entenderlo, interesarse y quiera saber más?
 
-## Transición
-Para empezar, necesitamos entender algo básico: no es lo mismo contar que explicar.
+Para empezar, vamoentender algo básico: no es lo mismo contar que explicar.
 ---
 
 # s2
