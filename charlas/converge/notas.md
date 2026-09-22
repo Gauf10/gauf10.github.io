@@ -163,7 +163,7 @@ Perfecto. Ya sabemos la oportunidad, sabemos la persona. Ahora: ¿qué les propo
 
 # s9
 Tercera pregunta: ¿qué proponemos?
-Acá no se pongan a listar features. Digan la idea central. ¿Qué es lo que están haciendo? ¿Qué problema están resolviendo? ¿Qué cambio proponen?
+Acá no se pongan a listar caracte. Digan la idea central. ¿Qué es lo que están haciendo? ¿Qué problema están resolviendo? ¿Qué cambio proponen?
 Piensen en una frase. Si no pueden decirlo en una frase, probablemente necesitan simplificar.
 ## Pregunta al grupo
 ¿Pueden decir su idea en una sola frase? Si no pueden, es una señal de que todavía necesitan clarificar.
