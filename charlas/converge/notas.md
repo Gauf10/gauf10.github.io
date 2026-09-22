@@ -98,7 +98,7 @@ Trabajo combinando herramientas sobre liderazgo humano, creatividad, comunicaci�
 
 Hoy estoy explorando cómo llevar esa combinación de mundos cada vez más lejos: ayudar a más personas a encontrar su propia vos y tomar mejores decisiones. 
 
-No se preocupen si no sale perfecto, el objetivo es practicar."
+No se preocupen si no sale perfecto, el objetivo es practicar.
 
 ¿Alguno quiere contar su proyecto?
 
