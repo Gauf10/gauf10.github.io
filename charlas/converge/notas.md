@@ -6,6 +6,7 @@ Y porque aprendí que una buena idea necesita buenas formas de llegar a otras pe
 
 ## Conexión con clases anteriores
 Esta clase es el paso siguiente a lo que ya tuvieron viendo, las tres clases pasadas trabajaron: sobre observar problemas y convertirlos en oportunidades, identificar personas y situaciones concretas, definir resultados esperados, armar un Business Model Canvas, validar con personas reales, empezar una demo con IA.
+
 Hoy vamos a trabajar sobre algo diferente: cómo hacer que otra persona pueda entender su proyecto a través de lo que ustedes cuentan.
 ## Transición
 No es una clase de PowerPoint. Es una clase sobre cómo pensar antes de hablar y cómo hablar para que el otro entienda. Arrancamos.
