@@ -207,6 +207,7 @@ Celina no inventó la mochila. Hizo una mochila para varones con diseño de var�
 
 ## Ejemplo — Hackathon
 Fede contó que participó en una hackathon sin tener idea de qué hacer. Llegaron sin ideas. Después de muchas vueltas, encontraron un problema que les pasó a ellos mismos: gastaron todos los tokens de una sesión de IA en una búsqueda de mercado. Y dijeron: "¿Por qué no solucionamos esto que nos pasó a nosotros?" De ahí salió un producto ganador.
+
 ## Dinámica — Hablar en primera persona
 Recomendación: hablen en primera persona. "Nosotros vimos...", "A nosotros nos pasó...", "Conocemos...", "Queremos resolver...".
 La persona que escucha conecta con personas, no con empresas. No suenen como una empresa. Suénen como personas que tienen una razón para hacer esto.
