@@ -16,7 +16,7 @@ que cambiaría: alguito más en los slides para poder improvisar sin leer notas 
 
 ## Preguntas que aparecieron
 
-me preguntaron sobre leer notas en vivo, sobre B2B2C, sobre a quien hablar y como, sobre cuanta carga visual conviene en slides, sobre demos.
+Preme preguntaron sobre leer notas en vivo, sobre B2B2C, sobre a quien hablar y como, sobre cuanta carga visual conviene en slides, sobre demos.
 
 ## Ideas nuevas
 
