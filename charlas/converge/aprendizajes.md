@@ -22,3 +22,7 @@ Preme preguntaron sobre leer notas en vivo, sobre B2B2C, sobre a quien hablar y 
 
 BootCamp Emprendedores | Trama ITBA
 hackathon https://hack.platan.us/
+
+---
+
+Ante todo en nombre de la Fundación CIPE que impulsa este Bootcamp Converge y también de manera personal quería agradecerte por tu charla para los chicos. Para nosotros de verdad fué lujo haberte tenido. Así que también un gracias gigante a Fede que siempre tiende puentes. Aprovecho para mandarte el video editado y cargado en este drive :
