@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>Todo conecta — Gabriel Aufgang</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="shortcut icon" href="favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-serif;background:#1a1a1a;color:#f5f2ec;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+:root{--bk:#1a1a1a;--accent:#27d3cc;--bone:#f5f2ec;--dim:rgba(245,242,236,.4);--dim2:rgba(245,242,236,.12);--pad:clamp(40px,7vw,100px)}
+
+#deck{position:fixed;inset:0;overflow:hidden;background:var(--bk)}
+.slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1;background:var(--bk);color:var(--bone);opacity:0;pointer-events:none}
+.slide.is-active{opacity:1;z-index:10;pointer-events:auto}
+.slide.is-gone{opacity:0;z-index:1}
+
+.si{position:relative;z-index:2;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;padding:var(--pad)}
+.si-content{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative}
+.si-footer{position:absolute;bottom:clamp(16px,3vh,40px);left:0;right:0;display:flex;justify-content:center;align-items:center;padding:0 var(--pad);pointer-events:none}
+.footer-logo{height:clamp(13px,1.76vw,26px);width:auto;opacity:1}
+
+/* Corner logo — Glaux (top right) */
+.corner-logo{position:absolute;top:clamp(16px,3vh,40px);right:var(--pad);height:clamp(22px,2.8vw,40px);width:auto;max-width:clamp(70px,9vw,130px);object-fit:contain;z-index:3}
+
+/* Cyan slides */
+.slide-cyan{--bk:#27d3cc;background:#27d3cc;color:#1a1a1a}
+.slide-cyan .hero-line{color:#1a1a1a;font-weight:300}
+.slide-cyan .accent,.slide-cyan .hero-line.accent{color:#1a1a1a;opacity:.6}
+.slide-cyan .footer-logo{filter:brightness(0);opacity:1}
+.slide-cyan .slide-num{color:rgba(26,26,26,.35)}
+.slide-cyan .sub-text{color:rgba(26,26,26,.5)}
+
+/* Hero / type */
+.hero{text-align:center;max-width:88vw}
+.hero-line{font-size:clamp(18px,3.2vw,44px);font-weight:300;line-height:1.5;letter-spacing:0.04em;color:var(--bone)}
+.accent,.hero-line.accent{color:var(--accent)}
+.hero-break-lg{height:clamp(32px,6vh,96px)}
+
+/* Subtitle */
+.sub-text{font-size:clamp(13px,1.5vw,22px);font-weight:300;color:var(--dim);letter-spacing:0.04em;margin-top:clamp(12px,2vh,24px)}
+
+/* Section label */
+.sec-label{font-size:clamp(10px,.9vw,14px);color:var(--dim);letter-spacing:0.14em;text-transform:uppercase;font-weight:400;margin-bottom:clamp(20px,2.8vh,44px)}
+
+/* Progressive reveal — exp-humanas style */
+.reveal-steps{text-align:center}
+.reveal-step{opacity:0;transition:opacity .8s ease,transform .8s ease;transform:translateY(8px)}
+.reveal-step.revealed{opacity:1;transform:translateY(0)}
+
+/* Big idea slides */
+.idea-wrap{text-align:center;max-width:84vw}
+.idea-text{font-size:clamp(18px,3.2vw,44px);font-weight:300;line-height:1.5;letter-spacing:0.04em}
+
+/* Subtitle */
+.sub-text{font-size:clamp(14px,1.8vw,26px);font-weight:300;color:var(--dim);letter-spacing:0.04em;margin-top:clamp(12px,2vh,24px)}
+
+/* Video slides */
+.img-wrap{display:flex;justify-content:center;align-items:center;width:100%;height:70vh}
+.img-wrap video{max-width:90%;max-height:100%;object-fit:contain;border-radius:clamp(10px,1.4vw,20px);box-shadow:0 4px 48px rgba(0,0,0,.7)}
+
+/* Photo slides */
+.slide-photo .si{padding:0}
+.slide-photo .si-content{padding:0;overflow:hidden}
+.photo-img{width:100%;height:100%;object-fit:cover;opacity:.82;display:block}
+.photo-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(26,26,26,.48);padding:var(--pad)}
+.photo-caption{position:absolute;bottom:clamp(52px,8vh,96px);left:0;right:0;text-align:center;font-size:clamp(12px,1.2vw,18px);font-weight:300;letter-spacing:0.08em;color:var(--dim)}
+
+/* 5SEIS logo on slide */
+.logo-5seis{height:clamp(60px,9.5vw,136px);display:block;margin:0 auto clamp(16px,2.4vh,32px)}
+
+/* Navigation */
+#nd{position:fixed;right:clamp(8px,1.2vw,18px);top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;align-items:center;gap:clamp(4px,.6vh,10px)}
+.dot{width:clamp(4px,.4vw,7px);height:clamp(4px,.4vw,7px);border-radius:50%;background:var(--dim2);cursor:pointer;transition:all .5s cubic-bezier(.77,0,.175,1);border:none}
+.dot.on{background:var(--accent);transform:scale(2)}
+.arr{position:fixed;right:clamp(18px,2.4vw,32px);z-index:50;border:none;background:transparent;cursor:pointer;color:var(--dim2);font-size:clamp(10px,1vw,16px);transition:color .3s;padding:clamp(2px,.2vw,4px);line-height:1;opacity:.5}
+.arr:hover{color:var(--accent);opacity:1}
+.arr-up{bottom:calc(50% + clamp(32px,5vh,72px))}
+.arr-down{top:calc(50% + clamp(32px,5vh,72px))}
+
+@media(max-width:768px){
+  #nd,.arr{display:none!important}
+  :root{--pad:24px}
+  .footer-logo{height:10px}
+  .corner-logo{height:18px;max-width:56px}
+  .img-wrap{height:55vh}
+}
+
+.slide{-webkit-user-select:text;user-select:text}
+.slide-num{position:absolute;bottom:clamp(16px,3vh,40px);left:var(--pad);font-size:clamp(8px,.7vw,11px);color:rgba(245,242,236,.25);font-weight:300;letter-spacing:.04em;pointer-events:none;z-index:3}
+
+/* Marquee carousel — s7 */
+.equipo-wrap-outer{width:100%;overflow:hidden;cursor:grab}
+.equipo-wrap-outer:active{cursor:grabbing}
+.equipo-track-eq{display:inline-flex;gap:12px;padding:0 8px;animation:marquee-eq 40s linear infinite;width:max-content;user-select:none;flex-shrink:0}
+.equipo-track-eq.dragging{animation-play-state:paused}
+.equipo-photo-eq{width:clamp(120px,14vw,200px);height:clamp(96px,11.2vw,160px);border-radius:8px;overflow:hidden;flex-shrink:0;opacity:.65;transition:opacity .3s;filter:grayscale(15%);pointer-events:none}
+.equipo-wrap-outer:hover .equipo-photo-eq{opacity:.8}
+.equipo-photo-eq img{width:100%;height:100%;object-fit:cover;display:block}
+@keyframes marquee-eq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ═══ PRINT ═══ */
+@media print{
+  @page{size:auto;margin:0}
+  html,body{width:auto;height:auto;overflow:visible!important;background:#fff!important}
+  #nd,.arr,.dot{display:none!important}
+  #deck{position:static!important;overflow:visible!important;background:#fff!important}
+  .slide{position:relative!important;width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;opacity:1!important;pointer-events:none!important;z-index:auto!important;background:var(--bk);color:var(--bone);break-after:page;page-break-after:always;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .slide:last-child{break-after:auto;page-break-after:auto}
+  .slide.is-gone,.slide.is-active{opacity:1!important;z-index:auto!important}
+  .reveal-step{opacity:1!important;transform:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- Dots -->
+<div id="nd">
+  <div class="dot on" onclick="goTo(0)"></div>
+  <div class="dot" onclick="goTo(1)"></div>
+  <div class="dot" onclick="goTo(2)"></div>
+  <div class="dot" onclick="goTo(3)"></div>
+  <div class="dot" onclick="goTo(4)"></div>
+  <div class="dot" onclick="goTo(5)"></div>
+  <div class="dot" onclick="goTo(6)"></div>
+  <div class="dot" onclick="goTo(7)"></div>
+  <div class="dot" onclick="goTo(8)"></div>
+  <div class="dot" onclick="goTo(9)"></div>
+  <div class="dot" onclick="goTo(10)"></div>
+  <div class="dot" onclick="goTo(11)"></div>
+  <div class="dot" onclick="goTo(12)"></div>
+</div>
+
+<!-- Arrows -->
+<button class="arr arr-up" onclick="prev()" aria-label="Anterior">↑</button>
+<button class="arr arr-down" onclick="next()" aria-label="Siguiente">↓</button>
+
+<!-- Deck -->
+<div id="deck">
+
+  <!-- ═══ 1 — ¿Y ahora qué? ═══ -->
+  <div class="slide is-active" id="s0">
+    <div class="si">
+      <div class="si-content">
+        <div class="hero">
+          <div class="hero-line">¿Y ahora qué?</div>
+          <div class="sub-text">Egresar en 2000</div>
+        </div>
+      </div>
+      <img src="assets/Glaux1.png" alt="Glaux" class="corner-logo">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 2 — Reel 5SEIS ═══ -->
+  <!-- subir el video como assets/reel.mp4 -->
+  <div class="slide" id="s1">
+    <div class="si">
+      <div class="si-content">
+        <div class="img-wrap">
+          <video src="assets/reel.mp4" autoplay loop playsinline controls></video>
+        </div>
+      </div>
+      <img src="assets/Glaux1.png" alt="Glaux" class="corner-logo">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 3 — Probar ═══ -->
+  <div class="slide" id="s2">
+    <div class="si">
+      <div class="si-content">
+        <div class="hero">
+          <div class="hero-line">Probar</div>
+          <div class="sub-text">Encontrar el ovillo</div>
+        </div>
+      </div>
+      <img src="assets/Glaux1.png" alt="Glaux" class="corner-logo">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 4 — Música y sonido ═══ -->
+  <div class="slide" id="s3">
+    <div class="si">
+      <div class="si-content">
+        <div class="hero">
+          <div class="hero-line">Música y sonido</div>
+          <div class="sub-text reveal-steps">
+            <div class="reveal-step">Producción en EMBA</div>
+          </div>
+        </div>
+      </div>
+      <img src="assets/Glaux1.png" alt="Glaux" class="corner-logo">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 5 — Liderar ═══ -->
+  <div class="slide" id="s4">
+    <div class="si">
+      <div class="si-content">
+        <div class="hero">
+          <div class="hero-line">Liderar</div>
+          <div class="sub-text reveal-steps">
+            <div class="reveal-step">Educación no formal</div>
+          </div>
+        </div>
+      </div>
+      <img src="assets/Glaux1.png" alt="Glaux" class="corner-logo">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 6 — Diseño de Imagen y Sonido ═══ -->
+  <div class="slide" id="s5">
+    <div class="si">
+      <div class="si-content">
+        <div class="hero">
+          <div class="hero-line">Diseño de Imagen y Sonido</div>
+          <div class="sub-text reveal-steps">
+            <div class="reveal-step">Carrera de grado en FADU - UBA</div>
+          </div>
+        </div>
+      </div>
+      <img src="assets/Glaux1.png" alt="Glaux" class="corner-logo">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 7 — La fantástica historia de Venti ═══ -->
+  <!-- subir el video como assets/venti.mp4 -->
+  <div class="slide" id="s6">
+    <div class="si">
+      <div class="si-content">
+        <div class="img-wrap">
+          <video src="assets/venti.mp4" autoplay loop playsinline controls></video>
+        </div>
+      </div>
+      <img src="assets/Glaux1.png" alt="Glaux" class="corner-logo">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 8 — 5SEIS + carousel ═══ -->
+  <div class="slide" id="s7">
+    <div class="si">
+      <div class="si-content" style="flex-direction:column;justify-content:center;align-items:center;gap:clamp(20px,3.5vh,48px)">
+        <div class="hero">
+          <div class="hero-line">Hacer algo propio</div>
+          <div class="sub-text">5SEIS · experiencias innovadoras</div>
+        </div>
+        <div class="equipo-wrap-outer" id="equipo-wrap-s7">
+          <div class="equipo-track-eq" id="equipo-track-s7">
+            <div class="equipo-photo-eq"><img src="../../gauf10.github.io-main/images/equipo/eq1.jpg" alt=""></div>
+            <div class="equipo-photo-eq"><img src="../../gauf10.github.io-main/images/equipo/eq2.jpg" alt=""></div>
+            <div class="equipo-photo-eq"><img src="../../gauf10.github.io-main/images/equipo/eq3.jpg" alt=""></div>
+            <div class="equipo-photo-eq"><img src="../../gauf10.github.io-main/images/equipo/eq4.jpg" alt=""></div>
+            <div class="equipo-photo-eq"><img src="../../gauf10.github.io-main/images/equipo/eq5.jpg" alt=""></div>
+            <div class="equipo-photo-eq"><img src="../../gauf10.github.io-main/images/equipo/eq6.jpg" alt=""></div>
+            <div class="equipo-photo-eq"><img src="../../gauf10.github.io-main/images/equipo/eq7.jpg" alt=""></div>
+            <div class="equipo-photo-eq"><img src="../../gauf10.github.io-main/images/equipo/eq8.jpg" alt=""></div>
+            <div class="equipo-photo-eq"><img src="../../gauf10.github.io-main/images/equipo/eq9.jpg" alt=""></div>
+            <div class="equipo-photo-eq"><img src="../../gauf10.github.io-main/images/equipo/eq1b.jpg" alt=""></div>
+            <div class="equipo-photo-eq"><img src="../../gauf10.github.io-main/images/equipo/eq2b.jpg" alt=""></div>
+            <div class="equipo-photo-eq"><img src="../../gauf10.github.io-main/images/equipo/eq3b.jpg" alt=""></div>
+            <!-- duplicates for seamless loop -->
+            <div class="equipo-photo-eq"><img src="../../gauf10.github.io-main/images/equipo/eq1.jpg" alt=""></div>
+            <div class="equipo-photo-eq"><img src="../../gauf10.github.io-main/images/equipo/eq2.jpg" alt=""></div>
+            <div class="equipo-photo-eq"><img src="../../gauf10.github.io-main/images/equipo/eq3.jpg" alt=""></div>
+            <div class="equipo-photo-eq"><img src="../../gauf10.github.io-main/images/equipo/eq4.jpg" alt=""></div>
+            <div class="equipo-photo-eq"><img src="../../gauf10.github.io-main/images/equipo/eq5.jpg" alt=""></div>
+            <div class="equipo-photo-eq"><img src="../../gauf10.github.io-main/images/equipo/eq6.jpg" alt=""></div>
+            <div class="equipo-photo-eq"><img src="../../gauf10.github.io-main/images/equipo/eq7.jpg" alt=""></div>
+            <div class="equipo-photo-eq"><img src="../../gauf10.github.io-main/images/equipo/eq8.jpg" alt=""></div>
+            <div class="equipo-photo-eq"><img src="../../gauf10.github.io-main/images/equipo/eq9.jpg" alt=""></div>
+            <div class="equipo-photo-eq"><img src="../../gauf10.github.io-main/images/equipo/eq1b.jpg" alt=""></div>
+            <div class="equipo-photo-eq"><img src="../../gauf10.github.io-main/images/equipo/eq2b.jpg" alt=""></div>
+            <div class="equipo-photo-eq"><img src="../../gauf10.github.io-main/images/equipo/eq3b.jpg" alt=""></div>
+          </div>
+        </div>
+      </div>
+      <img src="assets/Glaux1.png" alt="Glaux" class="corner-logo">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 9 — Las decisiones de hoy no definen tu siempre ═══ -->
+  <div class="slide slide-cyan" id="s8">
+    <div class="si">
+      <div class="si-content">
+        <div class="idea-wrap">
+          <div class="idea-text" style="color:#1a1a1a;max-width:720px;line-height:1.5">Las decisiones de hoy<br>no te definen para siempre</div>
+        </div>
+      </div>
+      <img src="assets/Glaux2.png" alt="Glaux" class="corner-logo">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 10 — Todo se conecta ═══ -->
+  <div class="slide" id="s9">
+    <div class="si">
+      <div class="si-content">
+        <div class="hero">
+          <div class="hero-line">Todo se conecta</div>
+          <div class="sub-text reveal-steps">
+            <div class="reveal-step">exploración personal: Impro teatral + clown</div>
+          </div>
+        </div>
+      </div>
+      <img src="assets/Glaux1.png" alt="Glaux" class="corner-logo">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 11 — Mentor y Speaker ═══ -->
+  <!-- subir foto como assets/mentor.jpg -->
+  <div class="slide" id="s10">
+    <div class="si">
+      <div class="si-content" style="gap:clamp(16px,2.5vh,32px)">
+        <div class="img-wrap" style="height:50vh">
+          <img src="assets/mentor.jpg" alt="" style="max-width:90%;max-height:100%;object-fit:contain;border-radius:clamp(8px,1.2vw,16px)">
+        </div>
+        <div class="hero">
+          <div class="hero-line">Seguir explorando</div>
+          <div class="sub-text">Mentor · Speaker · Creative Director</div>
+        </div>
+      </div>
+      <img src="assets/Glaux1.png" alt="Glaux" class="corner-logo">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 12 — Encuentro mi pasión buscándola ═══ -->
+  <div class="slide" id="s11">
+    <div class="si">
+      <div class="si-content">
+        <div class="idea-wrap">
+          <div class="idea-text">Encontrar tu pasión<br><span class="accent">buscándola</span></div>
+        </div>
+      </div>
+      <img src="assets/Glaux1.png" alt="Glaux" class="corner-logo">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 13 — ¿Qué vas a probar vos? ═══ -->
+  <div class="slide slide-cyan" id="s12">
+    <div class="si">
+      <div class="si-content">
+        <div class="idea-wrap">
+          <div class="idea-text" style="color:#1a1a1a;max-width:720px;line-height:1.5">¿Qué hilos vas a explorar vos?</div>
+        </div>
+      </div>
+      <img src="assets/Glaux2.png" alt="Glaux" class="corner-logo">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="broadcast.js"></script>
+<script>
+var cur = 0;
+var TOTAL = 13;
+var animating = false;
+var autoTimer = null;
+var slidesHTML = [];
+var notesDB = {};
+
+function getSlide(i) { return document.querySelectorAll('.slide')[i]; }
+
+function goTo(n) {
+  if (animating || n === cur || n < 0 || n >= TOTAL) return;
+  animating = true;
+
+  for (var i = 0; i < TOTAL; i++) {
+    var s = getSlide(i);
+    s.style.transition = 'none';
+    s.style.opacity = '';
+    s.style.zIndex = '';
+  }
+
+  var cs = getSlide(cur);
+  var ts = getSlide(n);
+  var isCyan = cs.classList.contains('slide-cyan') || ts.classList.contains('slide-cyan');
+
+  /* pause video when leaving a video slide */
+  cs.querySelectorAll('video').forEach(function(v) { v.pause(); });
+
+  if (isCyan) {
+    ts.style.opacity = '0';
+    ts.style.zIndex = '10';
+    cs.style.zIndex = '9';
+
+    void document.body.offsetHeight;
+
+    cs.style.transition = 'opacity .9s ease';
+    cs.style.opacity = '0';
+
+    setTimeout(function() {
+      ts.style.transition = 'opacity .9s ease';
+      ts.style.opacity = '1';
+    }, 900);
+
+    setTimeout(function() {
+      animating = false;
+      for (var i = 0; i < TOTAL; i++) {
+        var s = getSlide(i);
+        s.style.transition = '';
+        s.style.opacity = '';
+        s.style.zIndex = '';
+        s.classList.remove('is-active', 'is-gone');
+        if (i === n) s.classList.add('is-active');
+        else s.classList.add('is-gone');
+      }
+    }, 1800);
+  } else {
+    var csC = cs.querySelector('.si-content');
+    var tsC = ts.querySelector('.si-content');
+    tsC.style.opacity = '0';
+
+    void document.body.offsetHeight;
+
+    csC.style.transition = 'opacity .9s ease';
+    csC.style.opacity = '0';
+
+    setTimeout(function() {
+      cs.classList.remove('is-active');
+      cs.classList.add('is-gone');
+      ts.classList.remove('is-gone');
+      ts.classList.add('is-active');
+      tsC.style.transition = 'opacity .9s ease';
+      tsC.style.opacity = '1';
+    }, 900);
+
+    setTimeout(function() {
+      animating = false;
+      csC.style.transition = '';
+      csC.style.opacity = '';
+      tsC.style.transition = '';
+      tsC.style.opacity = '';
+    }, 1800);
+  }
+
+  cur = n;
+  updateDots();
+
+  if (autoTimer) { clearTimeout(autoTimer); autoTimer = null; }
+  var rs = getSlide(n).querySelector('.reveal-steps');
+  if (rs) {
+    var steps = rs.querySelectorAll('.reveal-step');
+    if (steps.length) {
+      var delay = 2400 / steps.length;
+      (function loop(i) {
+        if (i >= steps.length) return;
+        autoTimer = setTimeout(function() {
+          steps[i].classList.add('revealed');
+          loop(i + 1);
+        }, delay);
+      })(0);
+    }
+  }
+}
+
+function next() {
+  var active = document.querySelector('.slide.is-active .reveal-steps');
+  if (active) {
+    var steps = active.querySelectorAll('.reveal-step');
+    for (var i = 0; i < steps.length; i++) {
+      if (!steps[i].classList.contains('revealed')) {
+        steps[i].classList.add('revealed');
+        return;
+      }
+    }
+  }
+  goTo(cur + 1);
+}
+
+function prev() { goTo(cur - 1); }
+
+function updateDots() {
+  var dots = document.querySelectorAll('.dot');
+  for (var i = 0; i < dots.length; i++) {
+    dots[i].classList.toggle('on', i === cur);
+  }
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); next(); }
+  if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prev(); }
+  if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+  if (e.key === 'End') { e.preventDefault(); goTo(TOTAL - 1); }
+});
+
+var wheelAcc = 0, wheelDeb = false;
+document.addEventListener('wheel', function(e) {
+  if (wheelDeb) return;
+  wheelAcc += Math.abs(e.deltaY);
+  if (wheelAcc >= 60) {
+    wheelAcc = 0; wheelDeb = true;
+    if (e.deltaY > 0) next(); else prev();
+    setTimeout(function() { wheelDeb = false; }, 400);
+  }
+}, { passive: true });
+
+var touchY = 0;
+document.addEventListener('touchstart', function(e) { touchY = e.touches[0].clientY; }, { passive: true });
+document.addEventListener('touchend', function(e) {
+  var dy = e.changedTouches[0].clientY - touchY;
+  if (Math.abs(dy) > 45) { if (dy > 0) prev(); else next(); }
+}, { passive: true });
+
+document.querySelectorAll('.slide').forEach(function(s,i){var e=document.createElement('span');e.className='slide-num';e.textContent=String(i+1).padStart(2,'0');s.querySelector('.si').appendChild(e)});
+document.querySelectorAll('.slide').forEach(function(s){slidesHTML.push(s.outerHTML)});
+
+(function() {
+  var origGoTo = goTo;
+  window.goTo = function(n) {
+    if (autoTimer) { clearTimeout(autoTimer); autoTimer = null; }
+    var active = document.querySelector('.slide.is-active .reveal-steps');
+    if (active) {
+      active.querySelectorAll('.reveal-step').forEach(function(s){s.classList.remove('revealed')});
+    }
+    origGoTo(n);
+    if (window.PresenterBus) PresenterBus.post('slideChanged', { current: cur });
+  };
+  document.addEventListener('click', function(e) {
+    if (animating) return;
+    var rs = e.target.closest('.reveal-steps');
+    if (rs) {
+      var steps = rs.querySelectorAll('.reveal-step');
+      for (var i = 0; i < steps.length; i++) {
+        if (!steps[i].classList.contains('revealed')) { steps[i].classList.add('revealed'); return; }
+      }
+    }
+  });
+
+  if (window.PresenterBus) {
+    PresenterBus.post('init', { slides: slidesHTML, current: cur, notes: notesDB });
+    PresenterBus.on(function(data) {
+      if (data.type === 'goto' && typeof data.index === 'number') window.goTo(data.index);
+      if (data.type === 'blackout') {
+        var el = document.getElementById('bc-blackout');
+        if (!el) { el = document.createElement('div'); el.id = 'bc-blackout'; el.style.cssText = 'position:fixed;inset:0;background:#000;z-index:9999;display:none'; document.body.appendChild(el); }
+        el.style.display = data.active ? 'block' : 'none';
+      }
+      if (data.type === 'notesUpdate' && typeof data.index === 'number' && typeof data.text === 'string') notesDB[data.index] = data.text;
+      if (data.type === 'ping') PresenterBus.post('pong', { slides: slidesHTML, current: cur, notes: notesDB });
+    });
+  }
+})();
+
+/* ═══ CAROUSEL DRAG — s7 ═══ */
+(function() {
+  var wrap = document.getElementById('equipo-wrap-s7');
+  if (!wrap) return;
+  var track = document.getElementById('equipo-track-s7');
+  var eq_dragging = false, eq_startX = 0, eq_scrollX = 0, eq_offset = 0;
+  wrap.addEventListener('mousedown', function(e) {
+    eq_dragging = true; track.classList.add('dragging');
+    eq_startX = e.clientX; eq_scrollX = eq_offset;
+  });
+  wrap.addEventListener('touchstart', function(e) {
+    eq_dragging = true; track.classList.add('dragging');
+    eq_startX = e.touches[0].clientX; eq_scrollX = eq_offset;
+  }, { passive: true });
+  window.addEventListener('mousemove', function(e) {
+    if (!eq_dragging) return;
+    eq_offset = eq_scrollX - (e.clientX - eq_startX);
+    track.style.transform = 'translateX(-' + Math.max(0, eq_offset) + 'px)';
+  });
+  window.addEventListener('touchmove', function(e) {
+    if (!eq_dragging) return;
+    eq_offset = eq_scrollX - (e.touches[0].clientX - eq_startX);
+    track.style.transform = 'translateX(-' + Math.max(0, eq_offset) + 'px)';
+  }, { passive: true });
+  window.addEventListener('mouseup', function() { eq_dragging = false; track.classList.remove('dragging'); });
+  window.addEventListener('touchend', function() { eq_dragging = false; track.classList.remove('dragging'); });
+})();
+
+/* ═══ PRINT MODE (?print) ═══ */
+(function() {
+  if (new URLSearchParams(location.search).get('print') === null) return;
+  document.querySelectorAll('.reveal-step').forEach(function(s) { s.classList.add('revealed'); });
+  document.querySelectorAll('.slide').forEach(function(s) {
+    s.classList.add('is-active'); s.classList.remove('is-gone');
+    s.style.opacity = ''; s.style.zIndex = ''; s.style.transition = 'none';
+  });
+  var origTitle = document.title;
+  document.title = 'Todo conecta — print';
+  setTimeout(function() { window.print(); document.title = origTitle; }, 600);
+})();
+</script>
+</body>
+</html>
