@@ -65,7 +65,7 @@ PLAN B (audiencia pasiva o formato técnico limitado): "Pensá en la última con
 Lo que aparece al ver las charlas que tenemos, cuando damos espacio, es algo que no estaba en ninguno de nosotros por separado.
 No era una suma de partes. Era algo nuevo.
 Estamos co-creando, construyendo con distintas opiniones, direcciones y propuestas. Es algo habitual en las tormentas de ideas creativas "brainstorming", puede ser habitual en todos tus encuentros de ahora en más.
-Así las ideas cambian, nuestro enfoque de los problema cambia. También cambia algo en cómo nos relacionamos con las personas con quienes construimos.
+Así las ideas cambian, nuestro enfoque de los problemas cambia. También cambia algo en cómo nos relacionamos con las personas con quienes construimos.
 
 # s9
 Crear con otros implica dar lugar a lo que aparece.
