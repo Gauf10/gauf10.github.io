@@ -54,6 +54,8 @@ Transformación: en el proceso, la idea inicial cambia. También nuestra compren
 
 Ahí se da la oportunidad a estar disponibles, a recibir, y crear con el otro. Dar lugar, validar, tomarlo como obsequio. 
 
+Incluso más, si 
+
 Si da, plan b: "Vamos a construir algo juntos. Cada uno va a agregar una palabra. Solo una. Y la siguiente persona toma lo que está y agrega la suya. Sin plan, sin saber adónde va. Empiezo yo."
 FACILITACIÓN:
 - Decir una palabra en voz alta (ej: "Silencio")
