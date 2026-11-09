@@ -79,6 +79,8 @@ Cuidarlo. No desenterrar las semillas para ver si están germinando.
 Algunas ideas necesitan tiempo. Algunos vínculos necesitan tiempo. Algunos proyectos necesitan tiempo.
 Reservar espacio para que crezca lo que plantamos juntos.
 
+La co
+
 # s10
 [Pausa larga antes de hablar]
 La llave no está en tener la mejor idea.
