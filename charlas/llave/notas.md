@@ -17,7 +17,7 @@ Me preparé. Invité a familia y amigos.
 Subí al escenario y la experiencia me encantó. Me divertí, conecté con mi equipo y con el público. Ganamos el match —quizás solo porque teníamos más hinchada.
 Pero lo que más me llamó la atención no fue la competencia ni la hinchada ni ganar. Fue que las escenas salían mejor que en las clases. 
 Había una energía diferente. Un nivel de conexión que no había experimentado antes.
-El descubrimiento fue más simple y más interesante: cuando confiás y entrás en la escena con otros, aparecen cosas que no sabías que podían pasar.
+El descubrimiento fue más simple y más interesante que superar un miedo: cuando confiás y entrás en la escena con otros, aparecen cosas que no sabías que podían pasar.
 ¿Qué puede aparecer cuando nos animamos a entrar en una escena, aunque todavía no sepamos qué va a pasar?
 
 # s3
