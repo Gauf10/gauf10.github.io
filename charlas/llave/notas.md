@@ -32,7 +32,7 @@ A veces llegamos a una conversación con la idea tan cerrada que no dejamos espa
 [Primer reveal] Estar disponibles para lo que aparece.
 [Segundo reveal] Estar disponibles para lo que aportan los demás.
 Nadie dice estar pasivos, resignados, sino como elección activa, observar antes de intervenir. Escuchar antes de resolver.
-En 2010, el primer año de 5SEIS, mi agencia de marketing, teníamos un solo cliente. Carlos nos propuso el lanzamiento del Motorola i1 con Nextel. Propusimos instalar un teléfono gigante que funcionara de verdad. No sabíamos exactamente cómo. Exploramos, encontramos una solución con un emulador de Android en una PC. Funcionó. La experiencia fue un éxito — no porque teníamos todo resuelto de antemano, sino porque nos animamos a proponer y después buscamos cómo hacerlo posible.
+En 2010, el primer año de 5SEIS, mi agencia de marketing, teníamos un solo cliente. Carlos nos convoca para el lanzamiento del Motorola i1 con Nextel. Propusimos instalar un teléfono gigante que funcionara de verdad. No sabíamos exactamente cómo. Exploramos, encontramos una solución con un emulador de Android en una PC. Funcionó. La experiencia fue un éxito — no porque teníamos todo resuelto de antemano, sino porque nos animamos a proponer y después buscamos cómo hacerlo posible.
 
 # s5
 Validar una propuesta no significa estar de acuerdo ni prometer que la vas a implementar.
