@@ -67,6 +67,9 @@ var CHARLA_FOLDER = (function() {
     '.slide{-webkit-user-select:text;user-select:text}' +
     '.slide-num{position:absolute;bottom:clamp(16px,3vh,40px);left:var(--pad);font-size:clamp(8px,.7vw,11px);color:rgba(245,242,236,.25);font-weight:300;letter-spacing:.04em;pointer-events:none;z-index:3}';
 
+  /* En FARO el slide va dentro de un rectángulo más chico: achicamos el padding */
+  var FARO_PAD_CSS = ':host{--pad:clamp(14px,2.2vw,40px)!important}';
+
   /* ──────────────────────────────────────────────
    *  AUTH MANAGER
    * ────────────────────────────────────────────── */
@@ -221,7 +224,7 @@ var CHARLA_FOLDER = (function() {
       host.style.cssText = 'width:100%;height:100%;display:block;';
       el.appendChild(host);
     }
-    mountShadow(host, html, '');
+    mountShadow(host, html, FARO_PAD_CSS);
   }
 
   function renderNext(index) {
@@ -247,7 +250,7 @@ var CHARLA_FOLDER = (function() {
       host.style.cssText = 'width:100%;height:100%;pointer-events:none;';
       el.appendChild(host);
     }
-    mountShadow(host, html, '');
+    mountShadow(host, html, FARO_PAD_CSS);
   }
 
   /* ──────────────────────────────────────────────
@@ -517,26 +520,44 @@ var CHARLA_FOLDER = (function() {
    * ────────────────────────────────────────────── */
 
   function loadRatio() {
-    var r = parseFloat(localStorage.getItem('faro-layout-ratio'));
-    if (r > 0 && r < 1) layoutRatio = r;
+    var r = parseFloat(localStorage.getItem('faro-notes-ratio'));
+    if (r > 0.05 && r < 0.7) layoutRatio = r;
+    else layoutRatio = 0.22;
   }
 
   function saveRatio(r) {
-    layoutRatio = Math.max(.2, Math.min(.9, r));
-    localStorage.setItem('faro-layout-ratio', layoutRatio);
+    layoutRatio = Math.max(.08, Math.min(.65, r));
+    localStorage.setItem('faro-notes-ratio', layoutRatio);
     applyRatio();
+  }
+
+  function applySlideSize() {
+    var stage = document.getElementById('slide-stage');
+    var box = document.getElementById('slide-current');
+    if (!stage || !box) return;
+    var w = stage.clientWidth;
+    var h = stage.clientHeight;
+    if (!w || !h) return;
+    var ar = 16 / 9;
+    var sw = w;
+    var sh = w / ar;
+    if (sh > h) { sh = h; sw = h * ar; }
+    box.style.width = Math.floor(sw) + 'px';
+    box.style.height = Math.floor(sh) + 'px';
   }
 
   function applyRatio() {
     var notes = document.getElementById('notes-section');
     var bottom = document.getElementById('bottom-section');
+    var stage = document.getElementById('slide-stage');
+    var topBar = document.getElementById('top-bar');
     var app = document.getElementById('app');
-    if (!notes || !bottom || !app) return;
-    var avail = app.clientHeight
-      - document.getElementById('top-bar').offsetHeight
-      - bottom.offsetHeight
-      - 16;
-    notes.style.height = Math.round(avail * layoutRatio) + 'px';
+    if (!notes || !bottom || !stage || !topBar || !app) return;
+    var avail = app.clientHeight - topBar.offsetHeight - bottom.offsetHeight - 28;
+    if (avail < 140) return;
+    var h = Math.max(48, Math.round(avail * layoutRatio));
+    notes.style.height = h + 'px';
+    applySlideSize();
   }
 
   function initDrag() {
@@ -549,7 +570,7 @@ var CHARLA_FOLDER = (function() {
       var bottom = document.getElementById('bottom-section');
       var topBar = document.getElementById('top-bar');
       var app = document.getElementById('app');
-      var avail = app.clientHeight - topBar.offsetHeight - bottom.offsetHeight - 16;
+      var avail = app.clientHeight - topBar.offsetHeight - bottom.offsetHeight - 28;
       var dy = (e.touches ? e.touches[0].clientY : e.clientY) - startY;
       saveRatio(startRatio + (dy / avail));
     }
@@ -777,7 +798,6 @@ var CHARLA_FOLDER = (function() {
     }).catch(function() {});
 
     window.addEventListener('resize', applyRatio);
-
     setInterval(function() {
       fetch(API_BASE + '/api/notes', {
         headers: { 'Authorization': 'Bearer ' + Auth.getToken() },
