@@ -1,6 +1,6 @@
 # s0
 Respirar. Mirar a la audiencia antes de hablar.
-Soy lidero 
+Soy Gabolidero 
 "Voy a contarles algo que me pasó en un escenario. Y después vamos a hacer algo juntos."
 No dar contexto todavía. Entrar directo a la historia.
 
