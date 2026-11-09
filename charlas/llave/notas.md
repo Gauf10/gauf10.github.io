@@ -50,7 +50,7 @@ Construcción: hacer algo con lo que aparece. Escuchar, conectar, aportar, proba
 Transformación: en el proceso, la idea inicial cambia. También nuestra comprensión del problema. El resultado puede ser algo que ninguno habría imaginado por separado.
 
 # s7
-CONSIGNA EXACTA: "Vamos a construir algo juntos. Cada uno va a agregar una palabra. Solo una. Y la siguiente persona toma lo que está y agrega la suya. Sin plan, sin saber adónde va. Empiezo yo."
+: "Vamos a construir algo juntos. Cada uno va a agregar una palabra. Solo una. Y la siguiente persona toma lo que está y agrega la suya. Sin plan, sin saber adónde va. Empiezo yo."
 FACILITACIÓN:
 - Decir una palabra en voz alta (ej: "Silencio")
 - Señalar a alguien de la audiencia para que agregue la siguiente
