@@ -64,7 +64,7 @@ PLAN B (audiencia pasiva o formato técnico limitado): "Pensá en la última con
 [Reflexión post-ejercicio]
 Lo que aparece al ver las charlas que tenemos, cuando damos espacio, es algo que no estaba en ninguno de nosotros por separado.
 No era una suma de partes. Era algo nuevo.
-Estamos co-creando, construyendo con distintas opiniones, direcciones y propuestas. Es algo habilt
+Estamos co-creando, construyendo con distintas opiniones, direcciones y propuestas. Es algo habitual en los 
 Y en ese proceso, algo cambia. La idea cambia. Nuestra comprensión del problema cambia. También cambia algo en cómo nos relacionamos con las personas con quienes construimos.
 
 # s9
