@@ -9,8 +9,7 @@ Hasta que Lucho, mi profesor, anunció una muestra abierta — un match de impro
 Yo no había ido a hacer teatro. Había ido a jugar con otros adultos, a llevarme algunas herramientas. A vivenciar que de la impro, enseña de la vida.
 Le dije a Lucho, en una conversación aparte, que no me interesaba exponerme. Que varios iban a casting y demás, no era mi búsqueda. A mi me intresan las escenas de la vida.
 Él le quitó peso a la situación. Me dijo algo como: "Tranquilo, probalo nomás."
-[Pausa]
-El cambio fue confiar.
+[Pausa] El cambio fue confiar.
 
 # s2
 [Mostrar la foto]
