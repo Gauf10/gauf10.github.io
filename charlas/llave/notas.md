@@ -58,7 +58,7 @@ FACILITACIÓN:
 - Leer en voz alta la frase completa al final
 QUÉ OBSERVAR: quién bloquea cambiando el rumbo, quién valida y construye, qué tensión aparece cuando la frase va hacia un lugar inesperado.
 CONEXIÓN: "Lo que acaban de hacer es disponibilidad, validación y construcción en tiempo real. Y la frase que apareció no la escribió ninguno de ustedes — la escribimos entre todos."
-PLAN B (audiencia pasiva o formato técnico limitado): "Pensá en la última conversación donde alguien te trajo una idea que no esperabas. ¿Qué hiciste con esa idea? ¿La recibiste, la ignoraste, la transformaste?" Breve intercambio en chat o en voz alta con quien quiera responder.
+PLAN B
 
 # s8
 [Reflexión post-ejercicio]
