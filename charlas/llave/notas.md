@@ -1,6 +1,6 @@
 # s0
 Respirar. Mirar a la audiencia antes de hablar.
-Soy Gabo, lidero equipos hace dos décadas y hoy voy a contarles algo que me pasó en un escenario. Y después vamos a llevarlo a ustedes.
+Voy a contarles algo que me pasó en un escenario. Y después vamos a llevarlo a ustedes.
 Vamos directo a la historia.
 
 # s1
