@@ -244,7 +244,7 @@ var CHARLA_FOLDER = (function() {
     if (!host) {
       host = document.createElement('div');
       host.className = 'shadow-host';
-      host.style.cssText = 'position:absolute;inset:0;pointer-events:none;';
+      host.style.cssText = 'width:100%;height:100%;pointer-events:none;';
       el.appendChild(host);
     }
     mountShadow(host, html, '');
@@ -528,15 +528,15 @@ var CHARLA_FOLDER = (function() {
   }
 
   function applyRatio() {
-    var top = document.getElementById('slide-current');
     var notes = document.getElementById('notes-section');
     var bottom = document.getElementById('bottom-section');
-    if (!top || !notes || !bottom) return;
-    var avail = document.getElementById('app').clientHeight
+    var app = document.getElementById('app');
+    if (!notes || !bottom || !app) return;
+    var avail = app.clientHeight
       - document.getElementById('top-bar').offsetHeight
       - bottom.offsetHeight
       - 16;
-    top.style.height = Math.round(avail * layoutRatio) + 'px';
+    notes.style.height = Math.round(avail * layoutRatio) + 'px';
   }
 
   function initDrag() {
