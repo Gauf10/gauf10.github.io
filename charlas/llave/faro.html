@@ -21,7 +21,7 @@
     <div class="status-item" id="st-time">--:--</div>
     <button id="help-btn" onclick="Faro.toggleHelp()" aria-label="Ayuda">ⓘ</button>
   </div>
-  <div id="slide-wrap" style="display:flex;justify-content:center;flex:0 0 auto;min-height:clamp(200px,35vh,500px)">
+  <div id="slide-wrap" style="width:clamp(400px,65vw,900px);aspect-ratio:16/9;margin:0 auto;position:relative;flex:0 0 auto">
     <div id="slide-current"></div>
   </div>
   <div class="divider is-draggable" id="drag-handle">
@@ -33,7 +33,7 @@
   </div>
   <div class="divider"></div>
   <div id="bottom-section">
-    <div id="next-wrap" style="display:flex;justify-content:center;flex:0 0 auto;min-height:clamp(100px,15vh,250px)">
+    <div id="next-wrap" style="width:clamp(200px,25vw,400px);aspect-ratio:16/9;margin:0 auto;flex:0 0 auto">
       <div id="next-preview">
         <div id="next-label">SIGUIENTE</div>
       </div>
@@ -123,6 +123,6 @@
   </div>
 </div>
 
-<script src="faro.js?v=6"></script>
+<script src="faro.js?v=7"></script>
 </body>
 </html>
