@@ -87,6 +87,6 @@ La llave no está en tener la mejor idea.
 Está en cómo construimos con los demás.
 
 Te invito a que en tu próxima conversación, tu próxima reunión, tu próximo proyecto, te des la oportunidad de elegir: construir, validar, y crear con otros.
-Así habilitas nuevas manera de cambia lo que es posible.
+Así habilitas nuevas manera de lo que es posible.
 [QR — recurso o contacto — agregar cuando esté disponible]
 Gracias.
