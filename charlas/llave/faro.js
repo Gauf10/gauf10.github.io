@@ -61,7 +61,7 @@ var CHARLA_FOLDER = (function() {
     '.s-author{font-size:clamp(11px,1vw,15px);color:var(--dim);font-weight:400;letter-spacing:.15em;text-transform:uppercase}' +
     '.sec-label{font-size:clamp(10px,.9vw,14px);color:var(--dim);letter-spacing:0.12em;text-transform:uppercase;font-weight:400;margin-bottom:clamp(24px,3vh,52px)}' +
     '.reveal-steps{text-align:center}' +
-    '.reveal-step{font-size:clamp(18px,3.2vw,44px);font-weight:300;line-height:1.5;letter-spacing:0.04em;color:var(--bone);opacity:0;transition:opacity .8s ease,transform .8s ease;transform:translateY(8px)}' +
+    '.reveal-step{font-size:clamp(18px,3.2vw,44px);font-weight:300;line-height:1.5;letter-spacing:0.04em;color:var(--bone);opacity:1!important;transition:none!important;transform:none!important}' +
     '.reveal-step.revealed{opacity:1;transform:translateY(0)}' +
     '.fw-arr{color:var(--dim);font-size:clamp(12px,1.2vw,20px);margin:clamp(4px,.6vh,12px) 0;font-weight:300}' +
     '.slide{-webkit-user-select:text;user-select:text}' +
@@ -191,7 +191,8 @@ var CHARLA_FOLDER = (function() {
   function slideInnerHTML(index) {
     var s = slides[index];
     if (!s) return '';
-    s = s.replace(/class="reveal-step"/g, 'class="reveal-step revealed"');
+    /* En FARO todos los pasos se ven de inmediato: agrega 'revealed' a cualquier reveal-step */
+    s = s.replace(/class="([^"]*\breveal-step\b[^"]*)"/g, 'class="$1 revealed"');
     return s;
   }
 
