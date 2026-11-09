@@ -811,6 +811,18 @@ var CHARLA_FOLDER = (function() {
       label: 'Abrir presentación pública',
       icon: '<path d="M13 5h6v6"/><path d="M19 5l-8 8"/><path d="M10 5H7a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-3"/>',
       run: openPresentation
+    },
+    {
+      id: 'export',
+      label: 'Exportar notas (.md)',
+      icon: '<path d="M8 7H3a2 2 0 00-2 2v12a2 2 0 002 2h7v-8.586L13.172 12l2 2z"/><path d="M12 7V2L19 7l-7 7z"/>',
+      run: exportNotes
+    },
+    {
+      id: 'import',
+      label: 'Importar notas (.md)',
+      icon: '<path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>',
+      run: importNotes
     }
   ];
 
