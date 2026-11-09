@@ -1,7 +1,7 @@
 # s0
 Respirar. Mirar a la audiencia antes de hablar.
 Buenas como andan? que jornada espectacular. Ahora voy a contarles algo que me pasó en un escenario, como la confianza me llevó a lugares nuevos. 
-Después vamos a llevarlo a ustedes.
+
 Vamos directo a la historia.
 
 # s1
