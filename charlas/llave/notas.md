@@ -86,7 +86,7 @@ La co-creación es un momento del acá y ahora y también requiere confianza y a
 La llave no está en tener la mejor idea.
 Está en cómo construimos con los demás.
 
-Te invito a que en tu próxima conversación, la próxima reunión, el próximo proyecto — van a tener la oportunidad de elegir: bloquear o construir, ignorar o validar, trabajar solos o crear con otros.
+Te invito a que en tu próxima conversación, tu a próxima reunión, el próximo proyecto — van a tener la oportunidad de elegir: bloquear o construir, ignorar o validar, trabajar solos o crear con otros.
 Esa elección cambia lo que es posible.
 [QR — recurso o contacto — agregar cuando esté disponible]
 Gracias.
