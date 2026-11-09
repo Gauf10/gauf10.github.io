@@ -31,7 +31,7 @@ No lo digo como metáfora decorativa. Lo digo porque en todos los casos lo que i
 A veces llegamos a una conversación con la idea tan cerrada que no dejamos espacio para descubrir otra posibilidad.
 [Primer reveal] Estar disponibles para lo que aparece.
 [Segundo reveal] Estar disponibles para lo que aportan los demás.
-No es pasividad. Es una elección activa. Observar antes de intervenir. Escuchar antes de resolver.
+Nadie dice estar pasividad. Es una elección activa. Observar antes de intervenir. Escuchar antes de resolver.
 En 2010, el primer año de 5SEIS, teníamos un solo cliente. Nos propuso el lanzamiento del Motorola i1 con Nextel. Propusimos instalar un teléfono gigante que funcionara de verdad. No sabíamos exactamente cómo. Exploramos, encontramos una solución con un emulador de Android en una PC. Funcionó. La experiencia fue un éxito — no porque teníamos todo resuelto de antemano, sino porque nos animamos a proponer y después buscamos cómo hacerlo posible.
 
 # s5
