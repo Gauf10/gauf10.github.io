@@ -1,7 +1,7 @@
 # s0
 Respirar. Mirar a la audiencia antes de hablar.
-Soy Gabo, lidero equipos hace dos decadas y hoy voy a contarles algo que me pasó en un escenario. Y después vamos a llevarlo a ustedes.
-Vadirecto a la historia.
+Soy Gabo, lidero equipos hace dos décadas y hoy voy a contarles algo que me pasó en un escenario. Y después vamos a llevarlo a ustedes.
+Vamos directo a la historia.
 
 # s1
 Estaba yendo a clases de improvisación. Las disfrutaba un montón. Jugar, crear escenas, aprender con otros.
