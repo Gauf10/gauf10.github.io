@@ -62,7 +62,7 @@ PLAN B (audiencia pasiva o formato técnico limitado): "Pensá en la última con
 
 # s8
 [Reflexión post-ejercicio]
-Lo que surgió en el ejercicio no estaba en ninguno de nosotros por separado.
+Lo que ano estaba en ninguno de nosotros por separado.
 No era una suma de partes. Era algo nuevo.
 Eso es la co-creación: no sumar opiniones sin dirección, sino construir a partir de ellas.
 Y en ese proceso, algo cambia. La idea cambia. Nuestra comprensión del problema cambia. También cambia algo en cómo nos relacionamos con las personas con quienes construimos.
