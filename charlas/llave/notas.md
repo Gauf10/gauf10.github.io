@@ -4,9 +4,9 @@ Soy Gabo, lidero equipos hace dos décadas y hoy voy a contarles algo que me pas
 Vamos directo a la historia.
 
 # s1
-Hace algunos años estaba yendo a clases de improvisación teatral. Las disfrutaba un montón. Jugar, crear escenas, aprender con otros. Cagarme de re
+Hace algunos años estaba yendo a clases de improvisación teatral. Las disfrutaba un montón. Jugar, crear escenas, aprender con otros. Cagarme de risa.
 Hasta que Lucho, mi profesor, anunció una muestra abierta — un match de improvisación por equipos, con público.
-Yo no había ido a hacer teatro. Había ido a jugar con otros adultos, a llevarme algunas herramientas. A vivenciar que de la impro, enseña de la vida.
+Yo no había ido a hacer teatro. Ivaa jugar con otros adultos, a llevarme algunas herramientas. A vivenciar que de la impro, enseña de la vida.
 Le dije a Lucho, en una conversación aparte, que no me interesaba exponerme. Que varios iban a casting y demás, no era mi búsqueda. A mi me intresan las escenas de la vida.
 Él le quitó peso a la situación. Me dijo algo como: "Tranquilo, probalo nomás."
 [Pausa] El cambio fue confiar.
