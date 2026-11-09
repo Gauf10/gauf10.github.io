@@ -36,7 +36,7 @@ En 2010, el primer año de 5SEIS, mi agencia de marketing, teníamos un solo cli
 El famoso Si, dale.
 
 # s5
-Validar una propuesta no significa estar de acuerdo ni prometer que la vas a tomar.
+Validar una propuesta no significa estar de acuerdo ni prometer que la vas a tomar tal cual.
 Significa reconocer que existe. Darle espacio para desarrollarse.
 La idea del otro puede ser un regalo: algo que podés explorar y transformar junto con esa persona.
 En improvisación hay una regla que se llama "sí, y..." — no como fórmula, sino como actitud. Recibir lo que el otro trae y agregar algo. No bloquear, no ignorar, no reemplazar. Construir desde ahí.
