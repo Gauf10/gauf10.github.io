@@ -43,7 +43,7 @@ En improvisación hay una regla que se llama "sí, y..." — no como fórmula, s
 
 # s6
 [Dejar que los pasos aparezcan uno a uno]
-Este es el recorrido que propongo. No como metodología científica — como marco práctico que surgió de mi experiencia.
+Este es el recorrido que propongo. No como metodología rígida, solo como marco práctico que surgió de mi experiencia.
 Disponibilidad: elegir estar presente y abierto a lo que aparece.
 Validación: reconocer las propuestas de los demás y darles lugar.
 Construcción: hacer algo con lo que aparece. Escuchar, conectar, aportar, probar.
