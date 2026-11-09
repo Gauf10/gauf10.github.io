@@ -67,9 +67,6 @@ var CHARLA_FOLDER = (function() {
     '.slide{-webkit-user-select:text;user-select:text}' +
     '.slide-num{position:absolute;bottom:clamp(16px,3vh,40px);left:var(--pad);font-size:clamp(8px,.7vw,11px);color:rgba(245,242,236,.25);font-weight:300;letter-spacing:.04em;pointer-events:none;z-index:3}';
 
-  /* En FARO el slide va dentro de un rectángulo más chico: achicamos el padding */
-  var FARO_PAD_CSS = ':host{--pad:clamp(14px,2.2vw,40px)!important}';
-
   /* ──────────────────────────────────────────────
    *  AUTH MANAGER
    * ────────────────────────────────────────────── */
@@ -221,10 +218,11 @@ var CHARLA_FOLDER = (function() {
       el.innerHTML = '';
       host = document.createElement('div');
       host.className = 'shadow-host';
-      host.style.cssText = 'width:100%;height:100%;display:block;';
+      host.style.cssText = 'position:absolute;top:0;left:0;display:block;transform-origin:top left;';
       el.appendChild(host);
     }
-    mountShadow(host, html, FARO_PAD_CSS);
+    mountShadow(host, html, '');
+    fitShadowHost(el);
   }
 
   function renderNext(index) {
@@ -247,10 +245,29 @@ var CHARLA_FOLDER = (function() {
     if (!host) {
       host = document.createElement('div');
       host.className = 'shadow-host';
-      host.style.cssText = 'width:100%;height:100%;pointer-events:none;';
+      host.style.cssText = 'position:absolute;top:0;left:0;pointer-events:none;transform-origin:top left;';
       el.appendChild(host);
     }
-    mountShadow(host, html, FARO_PAD_CSS);
+    mountShadow(host, html, '');
+    fitShadowHost(el);
+  }
+
+  /* Renderiza el slide a tamaño viewport real y lo escala para que entre
+     completo y proporcional dentro de la caja indicada. */
+  function fitShadowHost(box) {
+    var host = box.querySelector('.shadow-host');
+    if (!host) return;
+    var bw = box.clientWidth;
+    var bh = box.clientHeight;
+    var vw = window.innerWidth;
+    var vh = window.innerHeight;
+    if (!bw || !bh || !vw || !vh) return;
+    var k = Math.min(bw / vw, bh / vh);
+    host.style.width = vw + 'px';
+    host.style.height = vh + 'px';
+    host.style.transform = 'scale(' + k + ')';
+    host.style.left = Math.round((bw - vw * k) / 2) + 'px';
+    host.style.top = Math.round((bh - vh * k) / 2) + 'px';
   }
 
   /* ──────────────────────────────────────────────
@@ -538,12 +555,15 @@ var CHARLA_FOLDER = (function() {
     var w = stage.clientWidth;
     var h = stage.clientHeight;
     if (!w || !h) return;
-    var ar = 16 / 9;
+    var ar = window.innerWidth / window.innerHeight;
     var sw = w;
     var sh = w / ar;
     if (sh > h) { sh = h; sw = h * ar; }
     box.style.width = Math.floor(sw) + 'px';
     box.style.height = Math.floor(sh) + 'px';
+    fitShadowHost(box);
+    var next = document.getElementById('next-preview');
+    if (next) fitShadowHost(next);
   }
 
   function applyRatio() {
