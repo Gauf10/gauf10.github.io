@@ -25,7 +25,7 @@ El descubrimiento fue más simple y más interesante que superar un miedo: cuand
 Cada conversación es una escena.
 Cada reunión es una improvisación.
 Cada proyecto es una oportunidad de creación colectiva.
-No lo digo como metáfora decorativa. Lo digo porque en ambos casos lo que importa es lo mismo: cómo escuchamos, cómo recibimos lo que trae el otro, qué hacemos con eso.
+No lo digo como metáfora decorativa. Lo digo porque en todos los casos lo que importa es lo mismo: cómo escuchamos, cómo recibimos lo que trae el otro, qué hacemos con eso.
 
 # s4
 A veces llegamos a una conversación con la idea tan cerrada que no dejamos espacio para descubrir otra posibilidad.
