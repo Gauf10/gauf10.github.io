@@ -50,7 +50,7 @@ Construcción: hacer algo con lo que aparece. Escuchar, conectar, aportar, proba
 Transformación: en el proceso, la idea inicial cambia. También nuestra comprensión del problema. El resultado puede ser algo que ninguno habría imaginado por separado.
 
 # s7
- (audiencia pasiva o formato técnico limitado): "Pensá en la última conversación donde alguien te trajo una idea que no esperabas. ¿Qué hiciste con esa idea? ¿La recibiste, la ignoraste, la transformaste?" Breve intercambio en chat o en voz alta con quien quiera responder. Puede ser por whatsapp, por mensaje directo, en un encuentro c
+ (audiencia pasiva o formato técnico limitado): "Pensá en la última conversación donde alguien te trajo una idea que no esperabas. ¿Qué hiciste con esa idea? ¿La recibiste, la ignoraste, la transformaste?" Breve intercambio en chat o en voz alta con quien quiera responder. Puede ser por whatsapp, por mensaje directo, en un encuentro cara a cara, puede ser laboral o p
 
 Si da, plan b: "Vamos a construir algo juntos. Cada uno va a agregar una palabra. Solo una. Y la siguiente persona toma lo que está y agrega la suya. Sin plan, sin saber adónde va. Empiezo yo."
 FACILITACIÓN:
