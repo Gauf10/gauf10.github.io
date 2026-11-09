@@ -6,7 +6,7 @@ No dar contexto todavía. Entrar directo a la historia.
 # s1
 Estaba yendo a clases de improvisación. Las disfrutaba un montón. Jugar, crear escenas, aprender con otros.
 Hasta que Lucho, mi profesor, anunció una muestra abierta — un match de improvisación por equipos, con público.
-Yo no había ido a hacer teatro. Había ido a jugar con otros adultos, a llevarme algunas herramientas. A vivenciar que la impro te enseña de la vida.
+Yo no había ido a hacer teatro. Había ido a jugar con otros adultos, a llevarme algunas herramientas. A vivenciar que de la impro te enseña de la vida.
 Le dije a Lucho, en una conversación aparte, que no me interesaba exponerme. Que iba a jugar y a llevarme herramientas para las escenas de la vida.
 Él le quitó peso a la situación. Me dijo algo como: "Tranquilo, probalo nomás."
 [Pausa]
