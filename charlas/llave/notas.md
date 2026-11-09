@@ -54,7 +54,7 @@ Transformación: en el proceso, la idea inicial cambia. También nuestra compren
 
 Ahí se da la oportunidad a estar disponibles, a recibir, y crear con el otro. Dar lugar, validar, tomarlo como obsequio. 
 
-Incluso más, si ustedes son quien lleva una propuesta y es negada, tomar eso como impulso, que me pasa con el rechazo? que me pasa con que mi idea no sea escuchada siquiera? Insisto, 
+Incluso más, si ustedes son quien lleva una propuesta y es negada, tomar eso como impulso, que me pasa con el rechazo? que me pasa con que mi idea no sea escuchada siquiera? Insisto? me vuelvo creativo y la traigo de nuevo desde otro enfoque? me voy a otro lado? a donde me impulsa la 
 
 Si da, plan b: "Vamos a construir algo juntos. Cada uno va a agregar una palabra. Solo una. Y la siguiente persona toma lo que está y agrega la suya. Sin plan, sin saber adónde va. Empiezo yo."
 FACILITACIÓN:
