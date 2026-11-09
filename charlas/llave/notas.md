@@ -50,7 +50,14 @@ Construcción: hacer algo con lo que aparece. Escuchar, conectar, aportar, proba
 Transformación: en el proceso, la idea inicial cambia. También nuestra comprensión del problema. El resultado puede ser algo que ninguno habría imaginado por separado.
 
 # s7
-CONSIGNA EXACTA: "Vamos a construir algo juntos. Cada uno va a agregar una palabra. Solo una. Y la siguiente persona toma lo que está y agrega la suya. Sin plan, sin saber adónde va. Empiezo yo."
+ (audiencia pasiva o formato técnico limitado): "Pensá en la última conversación donde alguien te trajo una idea que no esperabas. ¿Qué hiciste con esa idea? ¿La recibiste, la ignoraste, la transformaste?" Breve intercambio en chat o en voz alta con quien quiera responder. Puede ser por whatsapp, por mensaje directo, en un encuentro cara a cara, puede ser laboral, personal. Revisá como contestaste vos. No importan tanto que propuesta era, lo tomaste como regalo o lo negaste como primera reacción? 
+
+Ahí se da la oportunidad a estar disponibles, a recibir, y crear con el otro. Dar lugar, validar, tomarlo como obsequio. 
+
+Incluso más, si ustedes son quien lleva una propuesta y es negada, tomar eso como impulso, que me pasa con el rechazo? que me pasa con que mi idea no sea escuchada siquiera? Insisto? Intento convencer? me entristezco y le digo que siempre me rechazan todo? me vuelvo creativo y la traigo de nuevo desde otro enfoque más creativo? me voy a otro lado a proponer lo mismo? 
+A donde me impulsa la respuesta del otro? que me pasa a mi con eso?
+
+Si da, plan b: "Vamos a construir algo juntos. Cada uno va a agregar una palabra. Solo una. Y la siguiente persona toma lo que está y agrega la suya. Sin plan, sin saber adónde va. Empiezo yo."
 FACILITACIÓN:
 - Decir una palabra en voz alta (ej: "Silencio")
 - Señalar a alguien de la audiencia para que agregue la siguiente
@@ -58,14 +65,13 @@ FACILITACIÓN:
 - Leer en voz alta la frase completa al final
 QUÉ OBSERVAR: quién bloquea cambiando el rumbo, quién valida y construye, qué tensión aparece cuando la frase va hacia un lugar inesperado.
 CONEXIÓN: "Lo que acaban de hacer es disponibilidad, validación y construcción en tiempo real. Y la frase que apareció no la escribió ninguno de ustedes — la escribimos entre todos."
-PLAN B (audiencia pasiva o formato técnico limitado): "Pensá en la última conversación donde alguien te trajo una idea que no esperabas. ¿Qué hiciste con esa idea? ¿La recibiste, la ignoraste, la transformaste?" Breve intercambio en chat o en voz alta con quien quiera responder.
 
 # s8
 [Reflexión post-ejercicio]
-Lo que surgió en el ejercicio no estaba en ninguno de nosotros por separado.
+Lo que aparece al ver las charlas que tenemos, cuando damos espacio, es algo que no estaba en ninguno de nosotros por separado.
 No era una suma de partes. Era algo nuevo.
-Eso es la co-creación: no sumar opiniones sin dirección, sino construir a partir de ellas.
-Y en ese proceso, algo cambia. La idea cambia. Nuestra comprensión del problema cambia. También cambia algo en cómo nos relacionamos con las personas con quienes construimos.
+Estamos co-creando, construyendo con distintas opiniones, direcciones y propuestas. Es algo habitual en las tormentas de ideas creativas "brainstorming", puede ser habitual en todos tus encuentros de ahora en más.
+Así las ideas cambian, nuestro enfoque de los problemas cambia. También cambia cómo nos relacionamos con las personas con quienes compartimos.
 
 # s9
 Crear con otros implica dar lugar a lo que aparece.
@@ -73,11 +79,15 @@ Cuidarlo. No desenterrar las semillas para ver si están germinando.
 Algunas ideas necesitan tiempo. Algunos vínculos necesitan tiempo. Algunos proyectos necesitan tiempo.
 Reservar espacio para que crezca lo que plantamos juntos.
 
+La co-creación es un momento del acá y ahora y también requiere confianza y aceptación total que se va ganando con el tiempo, con los encuentros, con mostrarse permeable cada vez más.
+
 # s10
 [Pausa larga antes de hablar]
 La llave no está en tener la mejor idea.
 Está en cómo construimos con los demás.
-En la próxima conversación, la próxima reunión, el próximo proyecto — van a tener la oportunidad de elegir: bloquear o construir, ignorar o validar, trabajar solos o crear con otros.
-Esa elección cambia lo que es posible.
-[QR — recurso o contacto — agregar cuando esté disponible]
+
+Te invito a que en tu próxima conversación, tu próxima reunión, tu próximo proyecto, te des la oportunidad de elegir: construir, validar, y crear con otros.
+Así habilitas nuevas manera de lo que es posible.
 Gracias.
+
+Me contac
