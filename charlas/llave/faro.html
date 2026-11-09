@@ -42,6 +42,9 @@
         <svg class="share-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
       </button>
       <button id="aprendizajes-btn" onclick="Faro.toggleAprendizajes()" aria-label="Aprendizajes">✦</button>
+      <button id="export-notes-btn" onclick="Faro.exportNotes()" aria-label="Exportar notas">⬇</button>
+      <input id="import-notes-input" type="file" accept=".md" style="display:none">
+      <button onclick="Faro.importNotes()" aria-label="Importar notas">📤</button>
     </div>
   </div>
 </div>

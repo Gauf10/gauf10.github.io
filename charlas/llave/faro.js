@@ -47,6 +47,7 @@ var CHARLA_FOLDER = (function() {
     '.si-footer{position:absolute;bottom:clamp(16px,3vh,40px);left:0;right:0;display:flex;justify-content:center;align-items:center;padding:0 var(--pad);pointer-events:none}' +
     '.footer-logo{height:clamp(13px,1.76vw,26px);width:auto;opacity:1}' +
     '.footer-logo-circle{position:absolute;top:clamp(16px,3vh,40px);right:var(--pad);height:clamp(39px,4.8vw,68px);width:auto;max-width:clamp(100px,12vw,180px);object-fit:contain;opacity:1;z-index:3}' +
+    '.corner-logo{position:absolute;top:clamp(16px,3vh,40px);right:var(--pad);height:clamp(39px,4.8vw,68px);width:auto;max-width:clamp(100px,12vw,180px);object-fit:contain;opacity:1;z-index:3}' +
     '.hero{text-align:center;max-width:88vw}' +
     '.hero-line{font-size:clamp(18px,3.2vw,44px);font-weight:300;line-height:1.5;letter-spacing:0.04em;color:var(--bone)}' +
     '.accent,.hero-line.accent{color:var(--accent)}' +
@@ -54,6 +55,7 @@ var CHARLA_FOLDER = (function() {
     '.slide-cyan .hero-line{color:#1a1a1a;font-weight:300}' +
     '.slide-cyan .footer-logo{filter:brightness(0);opacity:1}' +
     '.slide-cyan .footer-logo-circle{filter:brightness(0);opacity:.7}' +
+    '.slide-cyan .corner-logo{filter:brightness(0);opacity:.7}' +
     '.s-close-quote{max-width:80vw;text-align:center}' +
     '.s-close-quote div{font-size:clamp(22px,3.8vw,56px);font-weight:300;line-height:1.4;letter-spacing:0.03em;color:var(--bone)}' +
     '.s-author{font-size:clamp(11px,1vw,15px);color:var(--dim);font-weight:400;letter-spacing:.15em;text-transform:uppercase}' +
@@ -291,6 +293,48 @@ var CHARLA_FOLDER = (function() {
       }
     }
     return md.trim();
+  }
+
+  /* ──────────────────────────────────────────────
+   *  NOTAS — EXPORT / IMPORT
+   * ────────────────────────────────────────────── */
+
+  function exportNotes() {
+    var ta = document.getElementById('notes-editor');
+    if (!ta) return;
+    var content = ta.value;
+    var blob = new Blob([content], { type: 'text/markdown;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    var safeName = CHARLA_NAME.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+    a.download = safeName + '-notas.md';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast('Notas exportadas.');
+  }
+
+  function importNotes() {
+    var input = document.getElementById('import-notes-input');
+    if (!input) return;
+    input.click();
+    input.addEventListener('change', function(e) {
+      var file = e.target.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function() {
+        var ta = document.getElementById('notes-editor');
+        ta.value = reader.result;
+        notesCache['s' + cur] = reader.result;
+        var md = buildNotesMD();
+        Api.saveNotes(md).catch(function() {});
+        showToast('Notas importadas.');
+      };
+      reader.readAsText(file);
+      input.value = '';
+    }, { once: true });
   }
 
   /* ──────────────────────────────────────────────
@@ -800,7 +844,7 @@ var CHARLA_FOLDER = (function() {
   function copyLink() {
     var url = location.origin + location.pathname.replace(/[^/]*$/, '') + 'index.html';
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(url).then(showToast).catch(function() { fallbackCopy(url); });
+      navigator.clipboard.writeText(url).then(function(){ showToast('Enlace copiado.'); }).catch(function() { fallbackCopy(url); });
     } else {
       fallbackCopy(url);
     }
@@ -813,7 +857,7 @@ var CHARLA_FOLDER = (function() {
     ta.style.opacity = '0';
     document.body.appendChild(ta);
     ta.select();
-    try { document.execCommand('copy'); showToast(); } catch (err) {}
+    try { document.execCommand('copy'); showToast('Enlace copiado.'); } catch (err) {}
     document.body.removeChild(ta);
   }
 
@@ -821,9 +865,9 @@ var CHARLA_FOLDER = (function() {
     window.open('index.html', '_blank');
   }
 
-  function showToast() {
+  function showToast(msg) {
     var el = document.getElementById('toast');
-    el.textContent = 'Enlace copiado.';
+    el.textContent = msg || 'Enlace copiado.';
     el.classList.add('show');
     clearTimeout(toastTimer);
     toastTimer = setTimeout(function() { el.classList.remove('show'); }, 1600);
@@ -883,5 +927,7 @@ var CHARLA_FOLDER = (function() {
     toggleHelp: toggleHelp,
     toggleAprendizajes: toggleAprendizajes,
     setSlideTarget: setSlideTarget,
+    exportNotes: exportNotes,
+    importNotes: importNotes,
   };
 })();
