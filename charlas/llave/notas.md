@@ -79,7 +79,7 @@ Cuidarlo. No desenterrar las semillas para ver si están germinando.
 Algunas ideas necesitan tiempo. Algunos vínculos necesitan tiempo. Algunos proyectos necesitan tiempo.
 Reservar espacio para que crezca lo que plantamos juntos.
 
-La co-creación es un momento de
+La co-creación es un momento del acá y ahora y también 
 
 # s10
 [Pausa larga antes de hablar]
