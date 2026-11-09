@@ -51,11 +51,28 @@ var CHARLA_FOLDER = (function() {
     '.hero{text-align:center;max-width:88vw}' +
     '.hero-line{font-size:clamp(18px,3.2vw,44px);font-weight:300;line-height:1.5;letter-spacing:0.04em;color:var(--bone)}' +
     '.accent,.hero-line.accent{color:var(--accent)}' +
+    '.hero-break-lg{height:clamp(32px,6vh,96px)}' +
+    '.sub-text{font-size:clamp(13px,1.5vw,22px);font-weight:300;color:var(--dim);letter-spacing:0.04em;margin-top:clamp(12px,2vh,24px)}' +
+    '.idea-wrap{text-align:center;max-width:84vw}' +
+    '.idea-text{font-size:clamp(18px,3.2vw,44px);font-weight:300;line-height:1.5;letter-spacing:0.04em;color:var(--bone)}' +
+    '.framework{text-align:center;display:flex;flex-direction:column;align-items:center;gap:clamp(10px,1.6vh,20px)}' +
+    '.fw-step{font-size:clamp(18px,3.2vw,44px);font-weight:300;letter-spacing:0.04em;color:var(--bone);line-height:1.3}' +
+    '.fw-step.accent{color:var(--accent)}' +
+    '.fw-sep{font-size:clamp(12px,1.2vw,18px);color:var(--dim2);line-height:1;opacity:1!important;transition:none!important;transform:none!important}' +
+    '.fw-sep.revealed{opacity:1}' +
+    '.img-wrap{display:flex;justify-content:center;align-items:center;width:100%;height:50vh}' +
+    '.img-wrap img{max-width:90%;max-height:100%;object-fit:contain;border-radius:clamp(8px,1.2vw,16px);box-shadow:0 4px 48px rgba(0,0,0,.7)}' +
+    '.qr-placeholder{width:clamp(100px,14vw,160px);height:clamp(100px,14vw,160px);border:2px dashed rgba(26,26,26,.35);border-radius:8px;display:flex;align-items:center;justify-content:center;margin:clamp(16px,2.5vh,32px) auto 0;font-size:clamp(9px,.8vw,12px);letter-spacing:.14em;text-transform:uppercase;color:rgba(26,26,26,.35)}' +
     '.slide-cyan{--bk:#27d3cc;background:#27d3cc;color:#1a1a1a}' +
     '.slide-cyan .hero-line{color:#1a1a1a;font-weight:300}' +
+    '.slide-cyan .accent,.slide-cyan .hero-line.accent{color:#1a1a1a;opacity:.6}' +
+    '.slide-cyan .idea-text{color:#1a1a1a}' +
+    '.slide-cyan .sub-text{color:rgba(26,26,26,.5)}' +
+    '.slide-cyan .reveal-step{color:#1a1a1a}' +
     '.slide-cyan .footer-logo{filter:brightness(0);opacity:1}' +
     '.slide-cyan .footer-logo-circle{filter:brightness(0);opacity:.7}' +
     '.slide-cyan .corner-logo{filter:brightness(0);opacity:.7}' +
+    '.slide-cyan .slide-num{color:rgba(26,26,26,.25)}' +
     '.s-close-quote{max-width:80vw;text-align:center}' +
     '.s-close-quote div{font-size:clamp(22px,3.8vw,56px);font-weight:300;line-height:1.4;letter-spacing:0.03em;color:var(--bone)}' +
     '.s-author{font-size:clamp(11px,1vw,15px);color:var(--dim);font-weight:400;letter-spacing:.15em;text-transform:uppercase}' +
