@@ -420,16 +420,6 @@ function goTo(n) {
 }
 
 function next() {
-  var active = document.querySelector('.slide.is-active .reveal-steps');
-  if (active) {
-    var steps = active.querySelectorAll('.reveal-step');
-    for (var i = 0; i < steps.length; i++) {
-      if (!steps[i].classList.contains('revealed')) {
-        steps[i].classList.add('revealed');
-        return;
-      }
-    }
-  }
   goTo(cur + 1);
 }
 
@@ -481,17 +471,6 @@ document.querySelectorAll('.slide').forEach(function(s){slidesHTML.push(s.outerH
     origGoTo(n);
     if (window.PresenterBus) PresenterBus.post('slideChanged', { current: cur });
   };
-  document.addEventListener('click', function(e) {
-    if (animating) return;
-    var rs = e.target.closest('.reveal-steps');
-    if (rs) {
-      var steps = rs.querySelectorAll('.reveal-step');
-      for (var i = 0; i < steps.length; i++) {
-        if (!steps[i].classList.contains('revealed')) { steps[i].classList.add('revealed'); return; }
-      }
-    }
-  });
-
   if (window.PresenterBus) {
     PresenterBus.post('init', { slides: slidesHTML, current: cur, notes: notesDB });
     PresenterBus.on(function(data) {
