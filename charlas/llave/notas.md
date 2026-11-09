@@ -7,7 +7,7 @@ Vamos directo a la historia.
 Hace algunos años estaba yendo a clases de improvisación teatral. Las disfrutaba un montón. Jugar, crear escenas, aprender con otros. Cagarme de risa.
 Hasta que Lucho, mi profesor, anunció una muestra abierta — un match de improvisación por equipos, con público.
 Yo no había ido a hacer teatro. Iba a jugar con otros adultos, a llevarme algunas herramientas. A vivenciar qué de la impro, enseña de la vida.
-Le dije a Lucho, en una conversación aparte, que no me interesaba exponerme. Que varios iban a casting y demás, no era mi búsqueda. A mi me intresan las escenas de la vida.
+Le dije a Lucho, en una conversación aparte, que no me interesaba exponerme. Que varios iban a casting y demás, no era mi búsqueda. A mi me interesan las escenas de la vida.
 Él le quitó peso a la situación. Me dijo algo como: "Tranquilo, probalo nomás."
 [Pausa] El cambio fue confiar.
 
