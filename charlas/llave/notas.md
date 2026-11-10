@@ -75,7 +75,8 @@ Reservar espacio para que crezca lo que plantamos juntos.
 La co-creación es un momento del acá y ahora y también requiere confianza y aceptación total que se va ganando con el tiempo, con los encuentros, con mostrarse permeable cada vez más.
 
 # s10
-Acá atención, como todo hay que dar lugar, hay que cuidar y hay que dejar crecer. La energía es finita. Eh, no se puede estar por ahí siendo expansivo a cada momento y a cada rato, sino que también se necesita tiempo.
+Acá atención, como todo hay que dar lugar, hay que cuidar y hay que dejar crecer. La energía es finita. 
+Es complejo estar puede estar por ahí siendo expansivo a cada momento y a cada rato, sino que también se necesita tiempo.
 
 
 00:12:29
