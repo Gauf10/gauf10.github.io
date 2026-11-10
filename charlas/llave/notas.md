@@ -79,7 +79,7 @@ Acá atención, como todo hay que dar lugar, hay que cuidar y hay que dejar crec
 Es complejo estar en modo expansivo a cada momento y a cada rato, sino que también se necesita tiempo. Introspección.
 
 Las semillas tardan en germinar, Alguno tiene huerta?
-Igual lo saber que no es instantáneo los procesos. Entonces, ténganse paciencia, eh, con pasitos chiquitos cada día y encontrar los lugares donde más fluya, va a ser mejor. Eh, incluso los vínculos necesitan tiempo, los proyectos necesitan tiempo. Hay que reservar espacio para que crezca lo que vamos plantando juntos.
+Igual lo saben que no es instantáneo los procesos. Entonces, ténganse paciencia, eh, con pasitos chiquitos cada día y encontrar los lugares donde más fluya, va a ser mejor. Eh, incluso los vínculos necesitan tiempo, los proyectos necesitan tiempo. Hay que reservar espacio para que crezca lo que vamos plantando juntos.
 
 
 # s11
