@@ -63,6 +63,7 @@ var CHARLA_FOLDER = (function() {
     '.img-wrap{display:flex;justify-content:center;align-items:center;width:100%;height:50vh}' +
     '.img-wrap img{max-width:90%;max-height:100%;object-fit:contain;border-radius:clamp(8px,1.2vw,16px);box-shadow:0 4px 48px rgba(0,0,0,.7)}' +
     '.qr-placeholder{width:clamp(100px,14vw,160px);height:clamp(100px,14vw,160px);border:2px dashed rgba(26,26,26,.35);border-radius:8px;display:flex;align-items:center;justify-content:center;margin:clamp(16px,2.5vh,32px) auto 0;font-size:clamp(9px,.8vw,12px);letter-spacing:.14em;text-transform:uppercase;color:rgba(26,26,26,.35)}' +
+    '.qr-img{display:block;width:clamp(110px,15vw,180px);height:auto;margin:clamp(16px,2.5vh,32px) auto 0;border-radius:6px;background:#fff;padding:clamp(4px,.5vw,8px);box-shadow:0 4px 24px rgba(0,0,0,.18)}' +
     '.slide-cyan{--bk:#27d3cc;background:#27d3cc;color:#1a1a1a}' +
     '.slide-cyan .hero-line{color:#1a1a1a;font-weight:300}' +
     '.slide-cyan .accent,.slide-cyan .hero-line.accent{color:#1a1a1a;opacity:.6}' +
