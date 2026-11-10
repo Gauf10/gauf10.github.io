@@ -14,7 +14,7 @@ Le dije a Lucho, en una conversación aparte, que no me interesaba exponerme. Qu
 # s2
 [Mostrar la foto]
 Me preparé. Invité a familia y amigos.
-Subí al escenario y la experiencia me encantó. Me divertí, conecté con mi equipo y con el público. Ganamos el match —quizás solo porque teníamos más hinchada.
+Subí al escenario y la experiencia me encantó. Me divertí, conecté con mi equipo y con el público. Ganamos el match —quizás solo porque teníamos más hinchada. O porque estábamos de rojo on fire?
 Pero lo que más me llamó la atención no fue la competencia ni la hinchada ni ganar. Fue que las escenas salían mejor que en las clases. 
 Había una energía diferente. Un nivel de conexión que no había experimentado antes.
 El descubrimiento fue más simple y más interesante que superar un miedo: cuando confiás y entrás en la escena con otros, aparecen cosas que no sabías que podían pasar.
@@ -54,14 +54,9 @@ Transformación: en el proceso, la idea inicial cambia. También nuestra compren
 Ahí se da la oportunidad a estar disponibles, a recibir, y crear con el otro. Dar lugar, validar, tomarlo como obsequio. 
 Incluso más, si ustedes son quien lleva una propuesta y es negada, tomar eso como impulso, que me pasa con el rechazo? que me pasa con que mi idea no sea escuchada siquiera? Insisto? Intento convencer? me entristezco y le digo que siempre me rechazan todo? me vuelvo creativo y la traigo de nuevo desde otro enfoque más creativo? me voy a otro lado a proponer lo mismo? 
 A donde me impulsa la respuesta del otro? que me pasa a mi con eso?
-Si da, plan b: "Vamos a construir algo juntos. Cada uno va a agregar una palabra. Solo una. Y la siguiente persona toma lo que está y agrega la suya. Sin plan, sin saber adónde va. Empiezo yo."
-FACILITACIÓN:
-- Decir una palabra en voz alta (ej: "Silencio")
-- Señalar a alguien de la audiencia para que agregue la siguiente
-- Continuar de persona en persona 6-8 rondas
-- Leer en voz alta la frase completa al final
-QUÉ OBSERVAR: quién bloquea cambiando el rumbo, quién valida y construye, qué tensión aparece cuando la frase va hacia un lugar inesperado.
-CONEXIÓN: "Lo que acaban de hacer es disponibilidad, validación y construcción en tiempo real. Y la frase que apareció no la escribió ninguno de ustedes — la escribimos entre todos."
+
+Les dejo un ejercicio para que hagan en casa con alguien que tengan cerca, más tarde.
+Uno dice una acción: ejemplo vamos al parque, el otro contesta sin pensar, si y llevamos un mantel a cuadros, vuelve el primero, si vamos al parque con un mantel a cuadros y montamos un elefante, lo que sea, no hace falta que sea realistas, se rien y todo, solo que no niegan nada. Sigan así hasta tener unas 20 propuestas. Incluso una práctica interesante es hacerlo subiendo y bajando el brazo, al mismo tiempo, cuando la mano está arriba dicen la frase, eso les da ritmo y sobre todo evita que sobre piensen. La primer idea es la que vale. No negar al otro es muy importante y también es muy importante no negarse a uno mismo, esa locura que te aparece, es recontra válida, decila, no te censures. 
 
 # s8
 [Reflexión post-ejercicio]
@@ -84,4 +79,6 @@ Está en cómo construimos con los demás.
 Te invito a que en tu próxima conversación, tu próxima reunión, tu próximo proyecto, te des la oportunidad de elegir: construir, validar, y crear con otros.
 Así habilitas nuevas manera de lo que es posible.
 Gracias.
-Me contac
+En el QR acceden a una mini guía gratuita con mucho de lo que dije en esta charla, también tienen formas de contactame y agendar una charla conmigo sin compromiso para poder conectar.
+Muchas gracias Mich y todo el equipazo que hace posible estos eventos fabulosos y muy necesarios.
+Todos pueden sacar su voz y contar al mundo lo que tienen para decir, nuestro paso por este mundo es muy importante. Somos valiosos.

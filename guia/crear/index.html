@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>GAUF · CREAR POSIBILIDADES</title>
+<meta name="description" content="Una guía para conectar con otros y lograr nuevos caminos. Cinco prácticas para llevar la mirada de las posibilidades a conversaciones, equipos y proyectos.">
+<meta name="author" content="Gabriel Aufgang">
+<meta property="og:title" content="GAUF · CREAR POSIBILIDADES">
+<meta property="og:description" content="Una guía para conectar con otros y lograr nuevos caminos.">
+<meta property="og:type" content="article">
+<meta name="theme-color" content="#27D3CC">
+<link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+<link rel="shortcut icon" href="../images/favicon.ico">
+<link rel="apple-touch-icon" href="../images/favicon.ico">
+<style>
+/* ── Fuente ─────────────────────────────────────────────── */
+@font-face{
+  font-family:'Inter';
+  font-style:normal;
+  font-weight:400;
+  font-display:block;
+  src:url('../assets/fonts/inter-400.woff2') format('woff2');
+}
+@font-face{
+  font-family:'Inter';
+  font-style:normal;
+  font-weight:700;
+  font-display:block;
+  src:url('../assets/fonts/inter-700.woff2') format('woff2');
+}
+
+/* ── Tokens ─────────────────────────────────────────────── */
+:root{
+  --bone:#F5F2EC;
+  --bone-2:#E8E4DC;
+  --cyan:#27D3CC;
+  --ink:#1A1A1A;
+  --muted:#66645F;
+  --pl:68.4pt;   /* margen izquierdo de contenido */
+  --pr:63.8pt;   /* margen derecho de contenido  */
+  --pm:51pt;     /* margen de header / footer    */
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  font-synthesis-weight:none;
+  color:var(--ink);
+  background:#DDD8CF;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  font-feature-settings:'kern' 1,'liga' 1;
+}
+
+/* ── Página ─────────────────────────────────────────────── */
+.page{
+  position:relative;
+  width:210mm;
+  height:297mm;
+  overflow:hidden;
+  background:var(--bone);
+  color:var(--ink);
+  -webkit-print-color-adjust:exact;
+  print-color-adjust:exact;
+  break-after:page;
+  page-break-after:always;
+}
+.page:last-child{break-after:auto;page-break-after:auto}
+.page--cyan{background:var(--cyan)}
+
+/* ── Logo ───────────────────────────────────────────────── */
+.logo{display:block;color:var(--ink);--gauf-accent:var(--cyan)}
+.logo--black{color:var(--ink);--gauf-accent:var(--ink)}
+
+/* ── Cabecera interior ──────────────────────────────────── */
+.ph{padding:47.05pt 0 0 var(--pm)}
+.ph-rule{display:block;width:28.35pt;height:3.97pt;background:var(--cyan)}
+.ph-kicker{
+  display:block;
+  margin-top:12.4pt;
+  font-size:8pt;
+  font-weight:700;
+  line-height:1;
+  letter-spacing:.02em;
+  color:var(--muted);
+}
+
+/* ── Contenido interior ─────────────────────────────────── */
+.pc{padding:0 var(--pr) 0 var(--pl)}
+.pc > .first{margin-top:28.9pt}
+
+h1{
+  font-size:25pt;
+  line-height:29pt;
+  font-weight:700;
+  letter-spacing:-.012em;
+  margin:0 0 13pt;
+}
+h2{
+  font-size:25pt;
+  line-height:29pt;
+  font-weight:700;
+  letter-spacing:-.012em;
+  margin:18pt 0 13pt;
+}
+h2.first{margin-top:28.9pt}
+h2 .num{color:var(--cyan);margin-right:.04em}
+
+p{font-size:10.5pt;line-height:15.5pt;margin:0 0 8pt}
+p:last-child{margin-bottom:0}
+
+h3{
+  font-size:14pt;
+  line-height:19pt;
+  font-weight:700;
+  letter-spacing:-.008em;
+  margin:26pt 0 8pt;
+}
+.h-sub{
+  font-size:12.5pt;
+  line-height:19pt;
+  font-weight:700;
+  letter-spacing:-.005em;
+  margin:0 0 7pt;
+}
+
+/* ── Recuadros ──────────────────────────────────────────── */
+.callout{
+  background:var(--bone-2);
+  border-left:3pt solid var(--cyan);
+  padding:8.2pt 12pt 8pt 9pt;
+  margin:14pt 0 14pt -4.62pt;
+}
+.callout-title{
+  font-size:10pt;
+  font-weight:700;
+  line-height:14pt;
+  letter-spacing:.005em;
+  margin:0 0 5.4pt;
+}
+.callout p{margin:0}
+.callout p + p{margin-top:6pt}
+
+/* Cita destacada */
+.pull{
+  font-size:17pt;
+  line-height:23pt;
+  font-weight:700;
+  letter-spacing:-.014em;
+  margin:22pt 0;
+  padding-left:8pt;
+}
+.pull:last-child{margin-bottom:0}
+
+/* Recuadro de cierre (pág. 4) */
+.quote-box{
+  background:var(--bone-2);
+  border-left:3pt solid var(--cyan);
+  padding:18pt 20pt 19pt;
+  margin:24pt 0 0 0;
+}
+.quote-box p{
+  font-size:18pt;
+  line-height:24pt;
+  font-weight:700;
+  letter-spacing:-.014em;
+  margin:0;
+}
+
+/* Listas */
+ul{margin:0 0 8pt;padding:0;list-style:none}
+li{
+  font-size:10.5pt;
+  line-height:15.5pt;
+  padding-left:11pt;
+  position:relative;
+}
+li::before{content:'•';position:absolute;left:0;top:0}
+ul:last-child{margin-bottom:0}
+
+a{color:inherit;text-decoration:underline;text-underline-offset:2pt;text-decoration-thickness:.6pt}
+a:hover{color:var(--muted)}
+
+/* ── Pie ────────────────────────────────────────────────── */
+.pf{
+  position:absolute;
+  left:var(--pm);
+  right:var(--pm);
+  bottom:34.1pt;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.pf-tag{
+  font-size:7.5pt;
+  line-height:1;
+  color:var(--muted);
+  letter-spacing:.005em;
+}
+.pf-num{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:8pt;
+  line-height:1;
+  color:var(--muted);
+}
+.pf-logo{height:8pt;width:auto}
+.page--cyan .pf-tag{color:rgba(26,26,26,.62)}
+
+/* ── Portada ────────────────────────────────────────────── */
+.cover{padding:0}
+.cover-logo{position:absolute;left:var(--pl);top:108pt;height:12pt;width:auto}
+.cover-body{padding:0 var(--pr) 0 var(--pl)}
+.cover-kicker{
+  display:block;
+  font-size:9pt;
+  font-weight:700;
+  line-height:1;
+  letter-spacing:.02em;
+  margin-top:173.7pt;
+  color:var(--ink);
+}
+.cover-title{
+  font-size:42pt;
+  line-height:44pt;
+  font-weight:700;
+  letter-spacing:-.004em;
+  margin:14pt 0 0;
+}
+.cover-sub{
+  font-size:16pt;
+  line-height:22pt;
+  font-weight:400;
+  letter-spacing:-.004em;
+  margin:10.4pt 0 0;
+  max-width:300pt;
+}
+.cover-intro{
+  font-size:11.5pt;
+  line-height:17pt;
+  margin:0;
+  position:absolute;
+  left:var(--pl);
+  right:var(--pr);
+  top:520pt;
+  max-width:463pt;
+}
+.cover-sign{
+  font-size:8.5pt;
+  line-height:12pt;
+  color:var(--ink);
+  margin:0;
+  position:absolute;
+  left:var(--pl);
+  top:587.4pt;
+}
+.page--cyan .cover-sign{color:rgba(26,26,26,.72)}
+
+/* ── Contraportada ──────────────────────────────────────── */
+.back{display:flex;align-items:center;justify-content:center}
+.back-word{
+  font-size:42pt;
+  line-height:1.2;
+  font-weight:700;
+  letter-spacing:-.01em;
+  margin:0;
+}
+.pf-url{
+  font-size:8pt;
+  line-height:1;
+  color:var(--ink);
+  text-decoration:none;
+  border-bottom:.6pt solid rgba(26,26,26,.45);
+  padding-bottom:1.5pt;
+}
+.pf-url:hover{color:var(--ink);border-bottom-color:var(--ink)}
+
+/* ── Pantalla ───────────────────────────────────────────── */
+@media screen{
+  body{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:22px;
+    padding:22px 0 40px;
+  }
+  .page{box-shadow:0 2px 6px rgba(26,26,26,.10),0 18px 46px rgba(26,26,26,.13)}
+}
+@media screen and (max-width:880px){
+  body{
+    display:block;
+    padding:0;
+    gap:0;
+    background:var(--bone);
+  }
+  /* La página A4 se vuelve un bloque fluido */
+  .page{
+    width:auto;
+    height:auto;
+    min-height:0;
+    overflow:visible;
+    box-shadow:none;
+    padding:0 24px 44px;
+  }
+  .ph{padding:40px 0 0}
+  .ph-rule{width:24pt;height:3.4pt}
+  .ph-kicker{margin-top:10pt;font-size:8pt}
+  .pc{padding:0}
+  .pc > .first,h2.first{margin-top:26pt}
+  h1,h2{font-size:23pt;line-height:27pt;margin-bottom:11pt}
+  h2{margin-top:16pt}
+  .callout{margin-left:0}
+  .pull{padding-left:0;font-size:15pt;line-height:21pt;margin:20pt 0}
+  .quote-box{padding:15pt 16pt 16pt;margin-top:20pt}
+  .quote-box p{font-size:16pt;line-height:22pt}
+
+  /* Pie: pasa a ser el cierre de cada bloque */
+  .pf{
+    position:static;
+    left:auto;right:auto;bottom:auto;
+    margin-top:34pt;
+    padding-top:10pt;
+    border-top:.5pt solid rgba(26,26,26,.16);
+  }
+  .pf-num{display:none}
+
+  /* Portada */
+  .cover{padding:0 24px 44px}
+  .cover-body{padding:0}
+  .cover-logo{position:static;margin:40px 0 0;height:13pt}
+  .cover-kicker{margin-top:34pt}
+  .cover-title{font-size:clamp(22pt,9vw,32pt);line-height:1.1}
+  .cover-sub{font-size:14pt;line-height:19pt;max-width:none;margin-top:12pt}
+  .cover-intro,.cover-sign{position:static;top:auto;left:auto;right:auto}
+  .cover-intro{margin-top:32pt;font-size:11pt;line-height:16pt}
+  .cover-sign{margin-top:16pt}
+
+  /* Contraportada */
+  .back{display:block;padding:64px 24px 44px;text-align:center}
+  .back-word{font-size:32pt}
+}
+
+/* ── Impresión ──────────────────────────────────────────── */
+@media print{
+  @page{size:A4;margin:0}
+  html,body{background:#fff;margin:0;padding:0;display:block;gap:0}
+  .page{box-shadow:none;margin:0}
+}
+</style>
+</head>
+<body>
+
+<!-- Logo oficial GAUF (SVG original, recoloreable vía currentColor) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="gauf" viewBox="0 0 1202 404">
+    <g clip-path="url(#gauf-clip)">
+      <path d="M188.856 0.830895C222.339 -3.20811 268.635 7.93889 297.927 24.2739C350.979 53.8599 380.598 93.2739 397.666 150.497C367.953 152.831 327.788 150.135 296.571 150.982C283.3 129.718 266.796 114.156 243.313 104.582C216.198 93.5999 185.822 93.8959 158.927 105.405C132.31 116.531 111.234 137.818 100.373 164.544C89.6706 190.367 89.7536 219.401 100.604 245.162C112.079 271.933 133.785 293.002 160.886 303.676C187.661 314.28 221.542 314.07 247.863 302.459C277.687 289.303 293.094 268.435 304.659 239.525L200.345 239.276C199.89 217.18 199.955 195.077 200.541 172.984L252.322 172.817L402.238 172.979C404.126 207.816 403.712 239.801 403.674 274.643L403.46 403.288L310.963 403.276C311.025 392.268 310.928 381.26 310.671 370.255C281.997 388.293 255.715 399.351 221.621 402.639C165.921 408.011 114.721 391.771 71.7256 356.384C31.1356 322.466 5.64163 273.845 0.826628 221.17C-4.03537 167.739 12.6916 114.585 47.2746 73.5669C83.2616 30.0119 133.018 6.06089 188.856 0.830895Z" fill="currentColor"/>
+      <path d="M555.143 0.409952C589.756 0.229952 622.992 13.9509 647.398 38.4949C663.247 54.3759 675.749 75.5158 680.846 97.4607C684.78 114.405 683.892 134.206 683.882 151.726L683.827 207.351L683.753 403.429L586.924 403.267L586.845 320.9L565.302 320.884L522.554 320.889L522.471 403.286L425.707 403.088L425.715 212.886L425.609 155.173C425.576 138.025 424.882 119.196 428.152 102.43C432.126 82.8426 440.71 64.4828 453.192 48.8719C476.357 19.656 508.547 5.07614 544.99 0.821085C547.689 0.495085 552.304 0.411952 555.143 0.409952ZM605.687 139.241C598.77 113.33 575.248 98.8233 549.498 100.446C533.952 103.006 521.77 108.569 512.352 121.72C507.775 128.165 504.652 135.529 503.2 143.301C501.141 153.991 501.822 173.502 501.895 185.029L501.957 238.213L561.767 238.216L607.503 238.219L607.701 185.962C607.791 172.585 609.049 151.832 605.687 139.241Z" fill="currentColor"/>
+      <path d="M548.405 135.923C568.471 132.36 587.615 145.773 591.118 165.85C594.62 185.927 581.15 205.03 561.062 208.473C541.061 211.9 522.056 198.499 518.568 178.508C515.08 158.516 528.424 139.471 548.405 135.923Z" fill="var(--gauf-accent, #27D3CC)"/>
+      <path d="M848.129 0.711906C884.208 -0.0920946 922.018 0.492897 958.228 0.602897V102.707L958.258 229.55C958.268 252.2 959.908 296.358 954.948 316.797C950.288 335.639 940.598 352.863 926.918 366.632C864.334 429.595 733.308 411.581 708.525 317.965C703.753 299.939 704.944 276.703 704.971 258.035L704.987 202.448L705.062 0.708884C741.159 0.0778842 778.46 0.544883 814.652 0.600883L814.677 189.44L814.655 245.859C814.602 256.847 814.202 267.816 814.631 278.798C815.038 289.202 817.077 300.412 829.874 301.351C834.659 301.721 839.378 300.051 842.866 296.755C850.133 289.931 848.062 265.765 848.09 255.393L848.15 195.566L848.129 0.711906Z" fill="currentColor"/>
+      <path d="M981.497 0.723796C1054.52 -0.247204 1128.82 0.501787 1201.91 0.601787C1202.08 67.2548 1158.61 125.379 1090.61 134.825C1082.71 135.923 1075.58 136.132 1067.59 136.286L1067.39 160.293L1168.78 160.379C1168.68 195.248 1162.99 213.949 1142.79 242.352C1124.32 264.638 1104.63 276.559 1076.24 282.654L1076.16 403.299L981.397 403.42L981.497 0.723796Z" fill="currentColor"/>
+    </g>
+    <defs>
+      <clipPath id="gauf-clip"><rect width="1202" height="404" fill="white"/></clipPath>
+    </defs>
+  </symbol>
+</svg>
+
+
+<!-- ═══════════════ 1 · PORTADA ═══════════════ -->
+<section class="page page--cyan cover">
+  <svg class="logo logo--black cover-logo" viewBox="0 0 1202 404" aria-label="GAUF"><use href="#gauf"/></svg>
+
+  <div class="cover-body">
+    <span class="cover-kicker">GUÍA PRÁCTICA</span>
+    <h1 class="cover-title">CREAR<br>POSIBILIDADES</h1>
+    <p class="cover-sub">Una guía para conectar con otros y lograr nuevos caminos</p>
+  </div>
+
+  <p class="cover-intro">Una invitación a mirar lo que sucede, estar disponibles para otras ideas y descubrir qué podemos construir cuando hacemos lugar a los demás.</p>
+
+  <p class="cover-sign">Gabriel Aufgang: mentor, speaker y director creativo</p>
+</section>
+
+
+<!-- ═══════════════ 2 · INTRODUCCIÓN Y PRIMER PRINCIPIO ═══════════════ -->
+<section class="page">
+  <div class="ph">
+    <span class="ph-rule"></span>
+    <span class="ph-kicker">CREAR POSIBILIDADES</span>
+  </div>
+
+  <div class="pc">
+    <h1 class="first">Las posibilidades aparecen en relación con otros</h1>
+
+    <p>En el trabajo y en la vida cotidiana solemos poner mucha energía en encontrar la respuesta correcta, defender una idea o lograr que las cosas sucedan como las imaginamos.</p>
+    <p>Sin embargo, una parte importante de lo que podemos crear aparece cuando prestamos atención a lo que efectivamente está pasando y a lo que otras personas traen a la escena.</p>
+    <p>Crear posibilidades requiere algo más que tener buenas ideas. Requiere disponibilidad para escuchar, permiso para probar, confianza para construir y capacidad para transformar lo que aparece en algo compartido.</p>
+    <p>Esta guía reúne cinco prácticas para llevar esa mirada a conversaciones, equipos y proyectos. No es un método cerrado: es una invitación a experimentar.</p>
+
+    <div class="callout">
+      <p class="callout-title">IDEA PARA LLEVAR</p>
+      <p>Una propuesta de otra persona no tiene por qué ser una amenaza para la propia. Puede ser el comienzo de algo que todavía no imaginamos.</p>
+    </div>
+
+    <h2><span class="num">01</span> Observar lo que sucede</h2>
+
+    <p>Antes de cambiar una situación, conviene verla con un poco más de detenimiento. A veces reaccionamos a lo que creemos que está pasando, a lo que tememos que pase o a lo que esperábamos que pasara. Esa interpretación puede ocupar todo el espacio.</p>
+    <p>Observar es hacer una pausa: distinguir hechos de supuestos, reconocer qué nos pasa y registrar qué información nueva está ofreciendo la situación. Aceptar que algo está ocurriendo no significa estar de acuerdo ni resignarse. Significa partir de la escena real para elegir cómo responder.</p>
+
+    <div class="callout">
+      <p class="callout-title">PARA PROBAR</p>
+      <p>Pensá en una situación que hoy te genere resistencia. Anotá: ¿qué pasó concretamente?, ¿qué estoy suponiendo?, ¿qué parte sí puedo elegir o modificar?</p>
+    </div>
+  </div>
+
+  <div class="pf">
+    <span class="pf-tag">Una guía para conectar con otros y lograr nuevos caminos</span>
+    <span class="pf-num">2</span>
+    <svg class="logo pf-logo" viewBox="0 0 1202 404" aria-label="GAUF"><use href="#gauf"/></svg>
+  </div>
+</section>
+
+
+<!-- ═══════════════ 3 · SEGUNDO PRINCIPIO ═══════════════ -->
+<section class="page">
+  <div class="ph">
+    <span class="ph-rule"></span>
+    <span class="ph-kicker">CREAR POSIBILIDADES</span>
+  </div>
+
+  <div class="pc">
+    <h2 class="first"><span class="num">02</span> Escuchar de verdad</h2>
+
+    <p>Escuchar no es esperar el turno para responder. Tampoco es estar de acuerdo con todo. Es darle lugar a la propuesta del otro el tiempo suficiente para entender qué trae, qué necesita y qué posibilidad contiene.</p>
+    <p>En una conversación, muchas veces estamos preparando nuestra respuesta mientras la otra persona todavía habla. La disponibilidad cambia ese movimiento: en lugar de cerrar rápido, preguntamos; en lugar de completar la idea, dejamos que se despliegue.</p>
+    <p>Validar que una propuesta existe no obliga a aceptarla. Podemos reconocerla, explorarla y después decidir qué hacer con ella. Esa diferencia permite cuidar el vínculo sin renunciar al criterio propio.</p>
+
+    <div class="callout">
+      <p class="callout-title">PRÁCTICA DE ESCUCHA</p>
+      <p>En tu próxima conversación, probá hacer una pregunta más antes de dar tu opinión. Después, devolvé en tus palabras lo que entendiste y preguntá si captaste bien.</p>
+    </div>
+
+    <h3>Preguntas que abren espacio</h3>
+    <ul>
+      <li>¿Qué es lo más importante para vos de esto?</li>
+      <li>¿Qué estoy pasando por alto?</li>
+      <li>¿Qué posibilidad aparece si miro el tema desde tu perspectiva?</li>
+    </ul>
+
+    <div class="callout">
+      <p class="callout-title">UNA IDEA CLAVE</p>
+      <p>La confianza no depende solamente del tiempo que llevamos con alguien. También se construye en cómo nos relacionamos en cada interacción.</p>
+    </div>
+  </div>
+
+  <div class="pf">
+    <span class="pf-tag">Una guía para conectar con otros y lograr nuevos caminos</span>
+    <span class="pf-num">3</span>
+    <svg class="logo pf-logo" viewBox="0 0 1202 404" aria-label="GAUF"><use href="#gauf"/></svg>
+  </div>
+</section>
+
+
+<!-- ═══════════════ 4 · TERCER PRINCIPIO ═══════════════ -->
+<section class="page">
+  <div class="ph">
+    <span class="ph-rule"></span>
+    <span class="ph-kicker">CREAR POSIBILIDADES</span>
+  </div>
+
+  <div class="pc">
+    <h2 class="first"><span class="num">03</span> Animarse a jugar</h2>
+
+    <p>Jugar es explorar sin tener todo resuelto de antemano. En la improvisación, una escena avanza cuando dejamos de buscar la ocurrencia perfecta y empezamos a estar disponibles para lo que aparece.</p>
+    <p>En equipos y proyectos pasa algo parecido. Si cada intervención intenta demostrar quién tiene razón, las ideas se endurecen. Si existe permiso para probar, equivocarse y cambiar de dirección, aparece más espacio para aprender.</p>
+    <p>El error también puede ser información. Tal vez todavía no sabemos para qué sirve una idea que no funcionó. En vez de descartarla de inmediato, podemos observar qué revela y qué nos permite ajustar.</p>
+
+    <div class="callout">
+      <p class="callout-title">EJERCICIO · SÍ, Y…</p>
+      <p>En pareja, una persona propone una idea para un proyecto imaginario. La otra responde comenzando con «Sí, y…», agregando algo que haga crecer la propuesta. Alternen durante dos minutos. No busquen la idea más ingeniosa: intenten construir sobre lo que aparece.</p>
+      <p>Sumar, no negar, ni siquiera evaluar si las ideas son factibles: Recordá que es un juego.</p>
+    </div>
+
+    <p>Al terminar, conversen: ¿qué cambió cuando dejaron de evaluar cada aporte? ¿Qué apareció que no estaba en la propuesta inicial? ¿Cómo podrían llevar esa actitud a una reunión real?</p>
+
+    <div class="quote-box">
+      <p>Espontáneo antes que ingenioso</p>
+    </div>
+  </div>
+
+  <div class="pf">
+    <span class="pf-tag">Una guía para conectar con otros y lograr nuevos caminos</span>
+    <span class="pf-num">4</span>
+    <svg class="logo pf-logo" viewBox="0 0 1202 404" aria-label="GAUF"><use href="#gauf"/></svg>
+  </div>
+</section>
+
+
+<!-- ═══════════════ 5 · CUARTO Y QUINTO PRINCIPIO ═══════════════ -->
+<section class="page">
+  <div class="ph">
+    <span class="ph-rule"></span>
+    <span class="ph-kicker">CREAR POSIBILIDADES</span>
+  </div>
+
+  <div class="pc">
+    <h2 class="first"><span class="num">04</span> Construir con otros</h2>
+
+    <p>Una propuesta sola puede ser un buen comienzo. Lo interesante ocurre cuando alguien la toma, agrega una perspectiva y la transforma. No es una suma mecánica de aportes: es la posibilidad de que aparezca algo que ninguna persona tenía por separado.</p>
+    <p>En una reunión, un equipo o un proyecto, podemos elegir entre defender nuestra idea o ayudar a que la idea compartida crezca. Esa elección modifica la calidad de la conversación y también el resultado al que llegamos. No hay nada para tomárselo personal. Siempre se habla sobre las ideas y de los roles.</p>
+
+    <div class="callout">
+      <p class="callout-title">DINÁMICA PARA EQUIPOS</p>
+      <p>Elegí un desafío concreto. Cada persona aporta una posibilidad sin discutirla todavía. Luego, cada participante toma una idea de otra persona y la desarrolla. Al final, identifiquen qué propuesta nueva apareció al combinar perspectivas.</p>
+    </div>
+
+    <h2><span class="num">05</span> Elegir dónde poner la energía</h2>
+
+    <p>Estar disponibles para lo que sucede no significa decir que sí a todo. También implica elegir.</p>
+    <p>Nuestra energía es limitada. Los proyectos y las relaciones necesitan atención, tiempo y cuidado para crecer.</p>
+    <p>Una forma simple de revisar una situación es distinguir qué quiero sostener, qué necesito explorar, qué puedo delegar y qué conviene soltar. No hace falta resolver todo hoy: alcanza con identificar un próximo paso que tenga sentido.</p>
+
+    <div class="callout">
+      <p class="callout-title">EJERCICIO · CUATRO DECISIONES</p>
+      <p>Pensá en un proyecto o desafío actual. Escribí pequeñas tareas en cada espacio: SOSTENER · EXPLORAR · DELEGAR · SOLTAR.</p>
+      <p>Elegí de las primeras dos categorías, con cuáles avanzar esta semana.</p>
+    </div>
+  </div>
+
+  <div class="pf">
+    <span class="pf-tag">Una guía para conectar con otros y lograr nuevos caminos</span>
+    <span class="pf-num">5</span>
+    <svg class="logo pf-logo" viewBox="0 0 1202 404" aria-label="GAUF"><use href="#gauf"/></svg>
+  </div>
+</section>
+
+
+<!-- ═══════════════ 6 · CIERRE Y PRESENTACIÓN ═══════════════ -->
+<section class="page">
+  <div class="ph">
+    <span class="ph-rule"></span>
+    <span class="ph-kicker">CREAR POSIBILIDADES</span>
+  </div>
+
+  <div class="pc">
+    <h1 class="first">Una posibilidad nueva</h1>
+
+    <p>Crear posibilidades es una práctica cotidiana. Aparece cuando hacemos una pausa para mirar mejor, cuando escuchamos sin preparar inmediatamente una respuesta, cuando nos damos permiso para jugar y cuando construimos sobre las ideas de otras personas.</p>
+    <p>No siempre vamos a estar de acuerdo. No todas las propuestas van a funcionar. Y no todo depende de nosotros. Lo que sí podemos elegir es cómo participar de cada escena de la vida y qué hacemos con lo que aparece.</p>
+    <p>En tus próximas conversaciones, preparate para lo inesperado y probá cambiar el enfoque: de «¿qué me parece a mí?» a «¿qué podemos construir a partir de todo esto?».</p>
+
+    <p class="pull">Las organizaciones no se transforman porque aparezcan mejores ideas. Se transforman cuando las personas aprenden a construir sobre las ideas de los demás.</p>
+
+    <h3>SOBRE GAUF</h3>
+    <p>Soy Gabriel Aufgang, director creativo, mentor y speaker. Trabajo en la intersección entre liderazgo humano, comunicación, creatividad y diseño de experiencias. Desde hace más de veinte años exploro cómo las personas se vinculan, aprenden y construyen juntas. Integro herramientas del diseño, la improvisación y la mentoría para abrir conversaciones y experiencias que ayuden a decidir mejor y crear nuevas posibilidades.</p>
+
+    <p><strong>Sigamos la conversación.</strong><br>
+    Encontrá más ideas, recursos y propuestas en <a href="https://gaufgang.com">gaufgang.com</a>. También podés agendar una primera conversación de presentación sin cargo desde la web.</p>
+
+    <div class="callout">
+      <p class="callout-title">PARA SEGUIR EXPLORANDO</p>
+      <p>¿Qué conversación podrías tener esta semana para que una idea crezca más allá de quien la propuso?</p>
+    </div>
+  </div>
+
+  <div class="pf">
+    <span class="pf-tag">Una guía para conectar con otros y lograr nuevos caminos</span>
+    <span class="pf-num">6</span>
+    <svg class="logo pf-logo" viewBox="0 0 1202 404" aria-label="GAUF"><use href="#gauf"/></svg>
+  </div>
+</section>
+
+
+<!-- ═══════════════ 7 · CONTRAPORTADA ═══════════════ -->
+<section class="page page--cyan back">
+  <p class="back-word">Gracias</p>
+
+  <div class="pf">
+    <a class="pf-url" href="https://gaufgang.com">gaufgang.com</a>
+    <svg class="logo logo--black pf-logo" viewBox="0 0 1202 404" aria-label="GAUF"><use href="#gauf"/></svg>
+  </div>
+</section>
+
+</body>
+</html>
