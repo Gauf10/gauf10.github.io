@@ -68,11 +68,18 @@ Estamos co-creando, construyendo con distintas opiniones, direcciones y propuest
 Así las ideas cambian, nuestro enfoque de los problemas cambia. También cambia cómo nos relacionamos con las personas con quienes compartimos.
 
 # s9
-Crear con otros implica dar lugar a lo que aparece.
-Cuidarlo. No desenterrar las semillas para ver si están germinando.
-Algunas ideas necesitan tiempo. Algunos vínculos necesitan tiempo. Algunos proyectos necesitan tiempo.
-Reservar espacio para que crezca lo que plantamos juntos.
-La co-creación es un momento del acá y ahora y también requiere confianza y aceptación total que se va ganando con el tiempo, con los encuentros, con mostrarse permeable cada vez más.
+sale de cocrear.
+
+
+00:11:09
+
+se construye con distintas opiniones, direcciones, propuestas, estados, barajes y demás. Esto es algo muy habitual en las tormentas de ideas creativas. Yo vengo del del mundo de agencia y y en general cuando empiezan los proyectos hay mucho de esto, pero incluso lo pueden tomar en cualquier instancia de su día a día, jugando con familiares e tratando con un colega, con un cliente, con quien sea, no hace falta que sea delirante, sino esta invitación a estar abiertos y que sea algo habitual en cada encuentro, si las ideas cambian,
+
+
+00:11:54
+
+cambiando incluso nuestros enfoques a los problemas van a cambiar y por qué no cambiar también cómo nos relacionamos con las personas con quienes compartimos.
+
 
 # s10
 Acá atención, como todo hay que dar lugar, hay que cuidar y hay que dejar crecer. La energía es finita. 
