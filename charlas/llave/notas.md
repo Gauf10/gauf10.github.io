@@ -32,14 +32,11 @@ A veces llegamos a una conversación con la idea tan cerrada que no dejamos espa
 [Primer reveal] Estar disponibles para lo que aparece.
 [Segundo reveal] Estar disponibles para lo que aportan los demás.
 Nadie dice estar pasivos, resignados, sino como elección activa, observar antes de intervenir. Escuchar antes de resolver.
-En 2010, el primer año de 5SEIS, mi agencia de marketing, teníamos un solo cliente. Carlos nos convoca para el lanzamiento del Motorola i1 con Nextel. Propusimos instalar un teléfono gigante que funcionara de verdad. Hace 16 años fue! no habia IA, no había tantos recursos tecnológicos como los hay hoy. No teníamos ni idea cómo resolverlo. Aprobaron. Exploramos, encontramos una solución con un emulador del sistema Android en una compu. Funcionó. La experiencia fue un éxito — no porque teníamos todo resuelto de antemano, sino porque nos animamos a proponer y después buscamos cómo hacerlo posible.
-El famoso Si, dale.
+
 
 # s5
-Validar una propuesta no significa estar de acuerdo ni prometer que la vas a tomar tal cual.
-Significa reconocer que existe. Darle espacio para desarrollarse.
-La idea del otro puede verse como un regalo: algo que podés que te llega, que podes explorar y transformar junto a esa persona.
-En improvisación hay una regla que se llama "sí, y..." — no como fórmula, sino como actitud. Recibir lo que el otro trae y agregar algo. No bloquear, no ignorar, no reemplazar. Construir desde ahí.
+En 2010, el primer año de 5SEIS, mi agencia de marketing, teníamos un solo cliente. Carlos nos convoca para el lanzamiento del Motorola i1 con Nextel. Propusimos instalar un teléfono gigante que funcionara de verdad. Hace 16 años fue! no habia IA, no había tantos recursos tecnológicos como los hay hoy. No teníamos ni idea cómo resolverlo. Aprobaron. Exploramos, encontramos una solución con un emulador del sistema Android en una compu. Funcionó. La experiencia fue un éxito — no porque teníamos todo resuelto de antemano, sino porque nos animamos a proponer y después buscamos cómo hacerlo posible.
+El famoso Si, dale.
 
 # s6
 [Dejar que los pasos aparezcan uno a uno]
@@ -81,3 +78,9 @@ Gracias.
 En el QR acceden a una mini guía gratuita con mucho de lo que dije en esta charla, también tienen formas de contactame y agendar una charla conmigo sin compromiso para poder conectar.
 Muchas gracias Mich y todo el equipazo que hace posible estos eventos fabulosos y muy necesarios.
 Todos pueden sacar su voz y contar al mundo lo que tienen para decir, nuestro paso por este mundo es muy importante. Somos valiosos.
+
+# s11
+Validar una propuesta no significa estar de acuerdo ni prometer que la vas a tomar tal cual.
+Significa reconocer que existe. Darle espacio para desarrollarse.
+La idea del otro puede verse como un regalo: algo que podés que te llega, que podes explorar y transformar junto a esa persona.
+En improvisación hay una regla que se llama "sí, y..." — no como fórmula, sino como actitud. Recibir lo que el otro trae y agregar algo. No bloquear, no ignorar, no reemplazar. Construir desde ahí.
