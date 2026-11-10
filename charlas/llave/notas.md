@@ -55,7 +55,7 @@ Ahí se da la oportunidad a estar disponibles, a recibir, y crear con el otro. D
 Incluso más, si ustedes son quien lleva una propuesta y es negada, tomar eso como impulso, que me pasa con el rechazo? que me pasa con que mi idea no sea escuchada siquiera? Insisto? Intento convencer? me entristezco y le digo que siempre me rechazan todo? me vuelvo creativo y la traigo de nuevo desde otro enfoque más creativo? me voy a otro lado a proponer lo mismo? 
 A donde me impulsa la respuesta del otro? que me pasa a mi con eso?
 
-Les dejo un ejercicio para que hagan en casa con alguie
+Les dejo un ejercicio para que hagan en casa con alguien que tengan cerca
 
 # s8
 [Reflexión post-ejercicio]
