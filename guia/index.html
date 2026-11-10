@@ -129,10 +129,9 @@
     h1{font-size:clamp(26px,7.8cqw,64px)}
   }
   .bajada{
-    font-size:clamp(17px,1.6vw,20px);
+    font-size:clamp(15px,1.3vw,19px);
     line-height:1.5;
     color:rgba(26,26,26,.7);
-    max-width:34ch;
   }
 
   .letter{max-width:56ch}
@@ -179,6 +178,10 @@
     margin-top:.4rem;
   }
   .field.invalid .field-error{display:block}
+
+  /* Trampa antispam: fuera de pantalla, sin display:none
+     (algunos bots ignoran los campos ocultos con display:none). */
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 
   .consent{display:flex;gap:.7rem;align-items:flex-start;margin:1.5rem 0 1.75rem}
   .consent input{
@@ -227,16 +230,23 @@
   /* ── Sobre mí ─────────────────────────────────────────── */
   .about{
     border-top:1px solid var(--border);
-    padding:clamp(2.5rem,6vw,4.5rem) var(--pad) clamp(3.5rem,7vw,6rem);
+    padding:clamp(2.5rem,5vw,4rem) 0 clamp(3.5rem,7vw,6rem);
   }
-  .about-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:clamp(1.5rem,5vw,5rem);align-items:start}
+  /* Mismo ancho y mismo margen interno que .hero, para que las dos
+     secciones arranquen en la misma vertical. */
+  .about-inner{
+    max-width:1240px;margin:0 auto;padding:0 var(--pad);
+    display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.9fr);
+    gap:clamp(1.5rem,4vw,3.5rem);align-items:start;
+  }
   .about h2{
     font-family:var(--serif);
-    font-size:clamp(24px,3vw,34px);
-    line-height:1.1;letter-spacing:-.02em;
+    font-size:clamp(22px,2.4vw,30px);
+    line-height:1.15;letter-spacing:-.02em;
+    margin-top:.1em;
   }
-  .about p{color:rgba(26,26,26,.78);margin-bottom:1em;max-width:52ch}
-  .about p:last-of-type{margin-bottom:1.5rem}
+  .about-body p{color:rgba(26,26,26,.78);margin-bottom:1em;max-width:60ch}
+  .about-body p:last-of-type{margin-bottom:1.6rem}
   .about-link{
     display:inline-block;
     font-size:14px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;
@@ -323,7 +333,13 @@
 
           <div class="consent">
             <input type="checkbox" id="newsletter" name="newsletter">
-            <label for="newsletter">También quiero recibir <em>Ideas para llevar</em>: reflexiones, recursos y herramientas sobre liderazgo humano, creatividad, comunicación y tecnología. Podés darte de baja cuando quieras.</label>
+            <label for="newsletter">Quiero recibir <em>Trama invisible</em>, envío quincenal con reflexiones, lecturas, conexiones inesperadas y ejercicios para llevar a la práctica. Podés darte de baja cuando quieras.</label>
+          </div>
+
+          <!-- Trampa antispam: invisible para personas, tentadora para bots -->
+          <div class="hp" aria-hidden="true">
+            <label for="website">No completar este campo</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
           </div>
 
           <button class="btn" type="submit" id="btn-enviar">Quiero recibir la guía</button>
@@ -354,10 +370,10 @@
 
   <section class="about">
     <div class="about-inner">
-      <h2>Soy Gauf.</h2>
-      <div>
+      <h2>Sobre GAUF</h2>
+      <div class="about-body">
         <p>Acompaño a personas y equipos a liderar con más claridad, humanidad y confianza. Trabajo en la intersección entre creatividad, comunicación, experiencias y aprendizaje.</p>
-        <p>Creo en las buenas conversaciones como punto de partida para crear posibilidades.</p>
+        <p>Aporto mirada estratégica, preguntas valiosas y foco a largo plazo.</p>
         <a class="about-link" href="https://gaufgang.com/">Más sobre mí →</a>
       </div>
     </div>
@@ -391,32 +407,24 @@
   }
 
   /* ═══════════════════════════════════════════════════════════
-     INTEGRACIÓN PENDIENTE — MAILERLITE
+     REGISTRO — SUPABASE EDGE FUNCTION
      ───────────────────────────────────────────────────────────
-     Para activar el registro, completá estas dos claves:
+     El formulario manda todo a la función "guide-download".
+     Esa función:
+       1. valida los datos,
+       2. guarda el registro en la tabla privada guide_downloads,
+       3. si la persona tildó el newsletter, la da de alta en
+          MailerLite con la clave secreta, que vive solo del lado
+          del servidor.
 
-       1. Entrá a MailerLite → tu cuenta → pestaña "Forms".
-       2. Abrí el formulario que quieras usar y copiá:
-          · el ID de cuenta  (en la URL del panel o en el embed)
-          · el ID de formulario
+     Acá no hay ninguna credencial: solo la URL pública de la
+     función. El código de la función está en /supabase/.
 
-     Mientras estén vacías, el formulario NO registra a nadie
-     y NO simula un envío exitoso: muestra un aviso honesto con
-     la descarga directa.
-
-     OPCIONAL — grupo de newsletter:
-       Si creás un grupo aparte para "Ideas para llevar", pegá su
-       ID en newsletterGroupId. Solo se usa cuando la persona
-       marca la casilla de consentimiento.
-
-     Los campos personalizados utm_source, utm_medium, utm_campaign,
-     origen, fuente, consentimiento y fecha_consentimiento tienen
-     que existir en MailerLite (Subscribers → Custom fields).
+     Si el endpoint queda vacío, el formulario no registra a nadie
+     pero igual entrega el PDF y lo avisa.
      ═══════════════════════════════════════════════════════════ */
   var CONFIG = {
-    accountId: '',
-    formId: '',
-    newsletterGroupId: '',
+    endpoint: 'https://qjahvfyixsuljtxqipbs.supabase.co/functions/v1/guide-download',
     guideUrl: 'https://gaufgang.com/guia/gauf_guia_para_crear_posibilidades.pdf',
     fallbackEmail: 'hablemos@gaufgang.com',
     origin: 'guia_crear_posibilidades'
@@ -434,9 +442,11 @@
   var inputNombre = document.getElementById('nombre');
   var inputEmail = document.getElementById('email');
   var inputNews = document.getElementById('newsletter');
+  var inputHoney = document.getElementById('website');
 
   var enviando = false;
   var listo = false;
+  var abiertoEn = Date.now();   /* para descartar envíos instantáneos de bots */
 
   document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -543,7 +553,6 @@
     formView.classList.add('is-off');
     success.classList.add('is-on');
     success.focus();
-    descargar('automatica');
   }
 
   var linkDescarga = document.getElementById('btn-descargar');
@@ -555,55 +564,46 @@
 
   /* ── Registro ───────────────────────────────────────── */
   function integracionLista() {
-    return !!(CONFIG.accountId && CONFIG.formId);
+    return !!CONFIG.endpoint;
   }
 
   function registrar(datos) {
-    return new Promise(function (resolve, reject) {
-      var cb = 'gaufCb' + Date.now();
-      var base = 'https://assets.mailerlite.com/jsonp/' + CONFIG.accountId + '/forms/' + CONFIG.formId + '/subscribe';
-      var p = new URLSearchParams();
+    var cuerpo = {
+      name: datos.nombre,
+      email: datos.email,
+      resource: CONFIG.origin,
+      newsletter_consent: datos.consentimiento,
+      consent_at: datos.consentimiento ? new Date().toISOString() : null,
+      utm_source: UTMS.utm_source || null,
+      utm_medium: UTMS.utm_medium || null,
+      utm_campaign: UTMS.utm_campaign || null,
+      source: datos.fuente,
+      referrer: document.referrer ? document.referrer.slice(0, 300) : null,
+      /* antispam */
+      honey: inputHoney ? inputHoney.value : '',
+      elapsed_ms: Date.now() - abiertoEn
+    };
 
-      p.set('fields[name]', datos.nombre);
-      p.set('fields[email]', datos.email);
-      p.set('fields[origen]', CONFIG.origin);
-      p.set('fields[fuente]', datos.fuente);
-      p.set('fields[consentimiento]', datos.consentimiento ? 'si' : 'no');
-      if (datos.consentimiento) p.set('fields[fecha_consentimiento]', datos.fechaConsentimiento);
-      UTM_KEYS.forEach(function (k) {
-        if (UTMS[k]) p.set('fields[' + k + ']', UTMS[k]);
+    var control = null;
+    try { control = new AbortController(); } catch (e) {}
+    var temporizador = control ? setTimeout(function () { control.abort(); }, 12000) : null;
+
+    return fetch(CONFIG.endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(cuerpo),
+      signal: control ? control.signal : undefined
+    }).then(function (res) {
+      if (temporizador) clearTimeout(temporizador);
+      return res.json().catch(function () { return {}; }).then(function (json) {
+        if (!res.ok || json.ok === false) {
+          throw new Error(json.error || ('http_' + res.status));
+        }
+        return json;
       });
-      if (datos.consentimiento && CONFIG.newsletterGroupId) {
-        p.set('groups[]', CONFIG.newsletterGroupId);
-      }
-      p.set('callback', cb);
-
-      var script = document.createElement('script');
-      var cerrado = false;
-
-      function limpiar() {
-        try { delete window[cb]; } catch (e) { window[cb] = undefined; }
-        if (script.parentNode) script.parentNode.removeChild(script);
-      }
-      function fallar(codigo) {
-        if (cerrado) return;
-        cerrado = true;
-        limpiar();
-        reject(new Error(codigo));
-      }
-
-      window[cb] = function (res) {
-        if (cerrado) return;
-        cerrado = true;
-        limpiar();
-        resolve(res);
-      };
-
-      script.src = base + '?' + p.toString();
-      script.onerror = function () { fallar('network'); };
-      document.head.appendChild(script);
-
-      setTimeout(function () { fallar('timeout'); }, 15000);
+    }, function (err) {
+      if (temporizador) clearTimeout(temporizador);
+      throw err;
     });
   }
 
@@ -630,13 +630,15 @@
       fechaConsentimiento: consentimiento ? new Date().toISOString() : ''
     };
 
-    /* Integración todavía sin configurar: no se simula el alta,
-       pero la guía se entrega igual. */
+    /* La descarga va primero y dentro del gesto del usuario: así el
+       navegador no la bloquea y el PDF llega aunque el registro falle. */
+    descargar('automatica');
+
+    /* Integración sin configurar: no se simula el alta. */
     if (!integracionLista()) {
-      console.warn('[GAUF] MailerLite sin configurar. Completá CONFIG.accountId y CONFIG.formId en guia/index.html.');
-      descargar('sin_integracion');
+      console.warn('[GAUF] Falta CONFIG.endpoint en guia/index.html.');
       mensaje(
-        'El formulario todavía no está conectado, así que no quedaste registrado. ' +
+        'Todavía no activamos el registro, así que no quedaste anotado. ' +
         'La guía ya se está descargando; si no aparece, abrila desde ' +
         '<a href="' + CONFIG.guideUrl + '" target="_blank" rel="noopener">este enlace</a>.',
         false
@@ -648,8 +650,7 @@
     mensaje('');
 
     registrar(datos).then(function (res) {
-      var ok = res && (res.success === true || res.success === 'true');
-      if (ok) {
+      if (res && res.ok !== false) {
         ocupado(false);
         track('generate_lead', {
           origen: CONFIG.origin,
@@ -662,13 +663,13 @@
       } else {
         ocupado(false);
         track('form_error', { origen: CONFIG.origin, motivo: 'rechazado' });
-        mensaje('No pudimos registrarte. Revisá el email y volvé a intentar, o escribime a ' +
+        mensaje('No pudimos guardar tu registro. La guía ya se descargó; volvé a intentar en un momento o escribime a ' +
           '<a href="mailto:' + CONFIG.fallbackEmail + '">' + CONFIG.fallbackEmail + '</a>.', true);
       }
     }).catch(function () {
       ocupado(false);
       track('form_error', { origen: CONFIG.origin, motivo: 'conexion' });
-      mensaje('Hubo un problema de conexión. Volvé a intentar en unos segundos.', true);
+      mensaje('No pudimos guardar tu registro por un problema de conexión. La guía ya se descargó; volvé a intentar en unos segundos.', true);
     });
   });
 })();
