@@ -39,7 +39,14 @@ En 2010, el primer año de 5SEIS, mi agencia de marketing, teníamos un solo cli
 El famoso Si, dale.
 
 # s7
- (audiencia pasiva o formato técnico limitado): "Pensá en la última conversación donde alguien te trajo una idea que no esperabas. ¿Qué hiciste con esa idea? ¿La recibiste, la ignoraste, la transformaste?" Breve intercambio en chat o en voz alta con quien quiera responder. Puede ser por whatsapp, por mensaje directo, en un encuentro cara a cara, puede ser laboral, personal. Revisá como contestaste vos. No importan tanto que propuesta era, lo tomaste como regalo o lo negaste como primera reacción? 
+ [Dejar que los pasos aparezcan uno a uno]
+Este es el recorrido que propongo. No como metodología rígida, solo como marco práctico que surgió de mi experiencia.
+Disponibilidad: elegir estar presente y abierto a lo que aparece.
+Validación: reconocer las propuestas de los demás y darles lugar.
+Construcción: hacer algo con lo que aparece. Escuchar, conectar, aportar, probar.
+Transformación: en el proceso, la idea inicial cambia. También nuestra comprensión del problema. El resultado puede ser algo que ninguno habría imaginado por separado.
+
+(audiencia pasiva o formato técnico limitado): "Pensá en la última conversación donde alguien te trajo una idea que no esperabas. ¿Qué hiciste con esa idea? ¿La recibiste, la ignoraste, la transformaste?" Breve intercambio en chat o en voz alta con quien quiera responder. Puede ser por whatsapp, por mensaje directo, en un encuentro cara a cara, puede ser laboral, personal. Revisá como contestaste vos. No importan tanto que propuesta era, lo tomaste como regalo o lo negaste como primera reacción? 
 Ahí se da la oportunidad a estar disponibles, a recibir, y crear con el otro. Dar lugar, validar, tomarlo como obsequio. 
 Incluso más, si ustedes son quien lleva una propuesta y es negada, tomar eso como impulso, que me pasa con el rechazo? que me pasa con que mi idea no sea escuchada siquiera? Insisto? Intento convencer? me entristezco y le digo que siempre me rechazan todo? me vuelvo creativo y la traigo de nuevo desde otro enfoque más creativo? me voy a otro lado a proponer lo mismo? 
 A donde me impulsa la respuesta del otro? que me pasa a mi con eso?
