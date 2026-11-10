@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Crear posibilidades | Una guía gratuita de Gauf</title>
+<meta name="description" content="Una guía para conectar con otros y lograr nuevos caminos. Ideas y ejercicios sobre creatividad, comunicación, liderazgo humano e improvisación.">
+<link rel="canonical" href="https://gaufgang.com/guia/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Gauf">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://gaufgang.com/guia/">
+<meta property="og:title" content="Crear posibilidades | Una guía gratuita de Gauf">
+<meta property="og:description" content="Una guía para conectar con otros y lograr nuevos caminos. Ideas y ejercicios sobre creatividad, comunicación, liderazgo humano e improvisación.">
+<meta property="og:image" content="https://gaufgang.com/guia/og_guia.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Crear posibilidades | Una guía gratuita de Gauf">
+<meta name="twitter:description" content="Una guía para conectar con otros y lograr nuevos caminos.">
+<meta name="twitter:image" content="https://gaufgang.com/guia/og_guia.png">
+<meta name="theme-color" content="#27D3CC">
+
+<!-- Google Analytics 4 · mismo Measurement ID que el resto del sitio -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NF0X4QWTN6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NF0X4QWTN6', { send_page_view: true });
+</script>
+
+<link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+<link rel="shortcut icon" href="../images/favicon.ico">
+<link rel="apple-touch-icon" href="../images/favicon.ico">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ── Base ─────────────────────────────────────────────── */
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#f5f2ec;
+    --ink:#1a1a1a;
+    --muted:#6b6b6b;
+    --accent:#27D3CC;
+    --border:rgba(26,26,26,.14);
+    --error:#a3241b;
+    --nav-h:54px;
+    --serif:'Archivo Black',sans-serif;
+    --body:'Archivo',sans-serif;
+    --pad:clamp(1.5rem,4vw,4rem);
+  }
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:var(--body);
+    font-size:17px;
+    line-height:1.7;
+    background:var(--bg);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+  a{color:inherit}
+  img{max-width:100%;height:auto;display:block}
+  :focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:2px}
+
+  .skip{
+    position:absolute;left:-9999px;top:0;z-index:100;
+    background:var(--ink);color:var(--bg);padding:.75rem 1.25rem;
+    font-size:14px;text-decoration:none;border-radius:0 0 4px 0;
+  }
+  .skip:focus{left:0}
+
+  /* ── Nav ──────────────────────────────────────────────── */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    height:var(--nav-h);
+    display:flex;align-items:center;justify-content:space-between;
+    gap:1.5rem;
+    padding:0 var(--pad);
+    background:var(--accent);
+    border-bottom:1px solid rgba(26,26,26,.1);
+  }
+  .brand img{height:26px;width:auto}
+  .nav-back{
+    font-size:13px;font-weight:500;letter-spacing:.03em;
+    color:var(--ink);text-decoration:none;opacity:.7;
+    transition:opacity .2s;white-space:nowrap;
+  }
+  .nav-back:hover{opacity:1}
+
+  /* ── Hero ─────────────────────────────────────────────── */
+  .hero{
+    max-width:1240px;margin:0 auto;
+    padding:clamp(2.5rem,6vw,5rem) var(--pad) clamp(3rem,7vw,6rem);
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(320px,390px);
+    column-gap:clamp(3rem,7vw,7rem);
+    row-gap:clamp(2rem,4vw,3rem);
+    align-items:start;
+  }
+  .hero-intro{grid-column:1;grid-row:1;container-type:inline-size}
+  .hero-form{grid-column:2;grid-row:1 / span 2;align-self:start;position:sticky;top:calc(var(--nav-h) + 2.5rem)}
+  .hero-letter{grid-column:1;grid-row:2}
+
+  .pill{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--accent);color:var(--ink);
+    font-size:11px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;
+    padding:6px 14px;border-radius:100px;
+    margin-bottom:clamp(1.25rem,3vw,2rem);
+  }
+  .pill::before{content:'';width:6px;height:6px;background:var(--ink);border-radius:50%}
+
+  h1{
+    font-family:var(--serif);
+    font-size:clamp(28px,8.5vw,72px);
+    line-height:1.02;
+    letter-spacing:-.02em;
+    margin-bottom:clamp(1rem,2.5vw,1.5rem);
+  }
+  /* El titular se ata al ancho real de su columna, no al viewport */
+  @supports (container-type:inline-size){
+    h1{font-size:clamp(26px,7.8cqw,64px)}
+  }
+  .bajada{
+    font-size:clamp(17px,1.6vw,20px);
+    line-height:1.5;
+    color:rgba(26,26,26,.7);
+    max-width:34ch;
+  }
+
+  .letter{max-width:56ch}
+  .letter p{margin-bottom:1.15em;text-wrap:pretty}
+  .letter p:last-child{margin-bottom:0}
+
+  /* ── Formulario ───────────────────────────────────────── */
+  .form-block h2{
+    font-family:var(--serif);
+    font-size:clamp(21px,2.2vw,26px);
+    line-height:1.15;
+    letter-spacing:-.01em;
+    margin-bottom:clamp(1.25rem,3vw,1.75rem);
+  }
+  .field{margin-bottom:1.35rem}
+  .field label{
+    display:block;
+    font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:.45rem;
+  }
+  .field input{
+    width:100%;
+    font-family:var(--body);
+    font-size:16px;
+    line-height:1.4;
+    color:var(--ink);
+    background:transparent;
+    border:0;
+    border-bottom:1px solid var(--border);
+    border-radius:0;
+    padding:.55rem 0;
+    transition:border-color .2s;
+  }
+  .field input::placeholder{color:rgba(26,26,26,.38)}
+  .field input:hover{border-bottom-color:rgba(26,26,26,.3)}
+  .field input:focus{outline:none;border-bottom:2px solid var(--ink);padding-bottom:calc(.55rem - 1px)}
+  .field.invalid input{border-bottom-color:var(--error)}
+  .field.invalid input:focus{border-bottom-color:var(--error)}
+
+  .field-error{
+    display:none;
+    font-size:13px;line-height:1.5;color:var(--error);
+    margin-top:.4rem;
+  }
+  .field.invalid .field-error{display:block}
+
+  .consent{display:flex;gap:.7rem;align-items:flex-start;margin:1.5rem 0 1.75rem}
+  .consent input{
+    flex:none;width:18px;height:18px;margin-top:.3rem;
+    accent-color:var(--ink);cursor:pointer;
+  }
+  .consent label{
+    font-size:13.5px;line-height:1.6;color:var(--muted);cursor:pointer;
+  }
+  .consent em{font-style:normal;color:var(--ink)}
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    width:100%;
+    background:var(--ink);color:var(--bg);
+    font-family:var(--body);font-size:15px;font-weight:500;
+    padding:16px 32px;border:0;border-radius:100px;
+    text-decoration:none;cursor:pointer;
+    transition:background .2s,color .2s;
+  }
+  .btn:hover{background:var(--accent);color:var(--ink)}
+  .btn:disabled{opacity:.55;cursor:default}
+  .btn:disabled:hover{background:var(--ink);color:var(--bg)}
+
+  .status{
+    margin-top:1.1rem;
+    font-size:14px;line-height:1.6;
+    color:var(--ink);
+  }
+  .status:empty{display:none}
+  .status a{text-decoration:underline;text-underline-offset:2px}
+  .status.is-error{color:var(--error)}
+
+  /* ── Confirmación ─────────────────────────────────────── */
+  .success{display:none}
+  .success.is-on{display:block}
+  .form-view.is-off{display:none}
+  .success h2{
+    font-family:var(--serif);
+    font-size:clamp(21px,2.2vw,26px);
+    line-height:1.15;letter-spacing:-.01em;
+    margin-bottom:.85rem;
+  }
+  .success p{font-size:16px;line-height:1.65;color:var(--muted);margin-bottom:1.6rem}
+
+  /* ── Sobre mí ─────────────────────────────────────────── */
+  .about{
+    border-top:1px solid var(--border);
+    padding:clamp(2.5rem,6vw,4.5rem) var(--pad) clamp(3.5rem,7vw,6rem);
+  }
+  .about-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:clamp(1.5rem,5vw,5rem);align-items:start}
+  .about h2{
+    font-family:var(--serif);
+    font-size:clamp(24px,3vw,34px);
+    line-height:1.1;letter-spacing:-.02em;
+  }
+  .about p{color:rgba(26,26,26,.78);margin-bottom:1em;max-width:52ch}
+  .about p:last-of-type{margin-bottom:1.5rem}
+  .about-link{
+    display:inline-block;
+    font-size:14px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;
+    text-decoration:none;
+    border-bottom:1.5px solid var(--accent);
+    padding-bottom:3px;
+    transition:border-color .2s;
+  }
+  .about-link:hover{border-bottom-color:var(--ink)}
+
+  /* ── Footer ───────────────────────────────────────────── */
+  footer{
+    background:var(--ink);
+    color:rgba(245,242,236,.58);
+    padding:2.5rem var(--pad);
+    display:flex;flex-direction:column;align-items:center;gap:1rem;
+    font-size:12px;
+  }
+  .footer-logo img{height:30px;filter:brightness(0) invert(1);opacity:.9}
+  .footer-name{color:rgba(245,242,236,.6);font-size:12px;letter-spacing:.04em}
+  .footer-links{display:flex;gap:1.5rem}
+  .footer-links a{color:rgba(245,242,236,.58);text-decoration:none;transition:color .2s;font-size:13px}
+  .footer-links a:hover{color:var(--accent)}
+
+  /* ── Responsive ───────────────────────────────────────── */
+  @media (max-width:980px){
+    .hero{display:block}
+    .hero-intro{margin-bottom:2.25rem}
+    .hero-form{position:static;margin-bottom:2.75rem}
+    .about-inner{display:block}
+    .about h2{margin-bottom:1.25rem}
+  }
+  @media (max-width:600px){
+    body{font-size:16px}
+    .nav{padding:0 1.5rem}
+    .brand img{height:22px}
+    .nav-back{font-size:12px}
+    .btn{padding:15px 24px}
+    footer{padding:2rem 1.5rem}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important}
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#recibir">Ir al formulario</a>
+
+<header class="nav">
+  <a class="brand" href="https://gaufgang.com/" aria-label="Gauf — inicio">
+    <img src="../images/logo_negro.svg" alt="Gauf" width="1202" height="404">
+  </a>
+  <a class="nav-back" href="https://gaufgang.com/">Volver al sitio</a>
+</header>
+
+<main>
+
+  <section class="hero">
+
+    <div class="hero-intro">
+      <p class="pill">Guía gratuita</p>
+      <h1>CREAR<br>POSIBILIDADES</h1>
+      <p class="bajada">Una guía para conectar con otros y lograr nuevos caminos.</p>
+    </div>
+
+    <div class="hero-form form-block" id="recibir">
+
+      <div class="form-view" id="form-view">
+        <h2>Recibí la guía</h2>
+
+        <form id="form-guia" novalidate>
+          <div class="field" id="field-nombre">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" autocomplete="given-name" placeholder="Tu nombre" required aria-describedby="error-nombre">
+            <p class="field-error" id="error-nombre">Escribí tu nombre para poder saludarte.</p>
+          </div>
+
+          <div class="field" id="field-email">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder="vos@email.com" required aria-describedby="error-email">
+            <p class="field-error" id="error-email">Revisá el email: parece que falta algo.</p>
+          </div>
+
+          <div class="consent">
+            <input type="checkbox" id="newsletter" name="newsletter">
+            <label for="newsletter">También quiero recibir <em>Ideas para llevar</em>: reflexiones, recursos y herramientas sobre liderazgo humano, creatividad, comunicación y tecnología. Podés darte de baja cuando quieras.</label>
+          </div>
+
+          <button class="btn" type="submit" id="btn-enviar">Quiero recibir la guía</button>
+
+          <p class="status" id="status" role="status" aria-live="polite"></p>
+        </form>
+
+        <noscript>
+          <p class="status">Necesitás activar JavaScript en tu navegador para completar el formulario.</p>
+        </noscript>
+      </div>
+
+      <div class="success" id="confirmacion" tabindex="-1" aria-live="polite">
+        <h2>¡Gracias! Ya tenés tu guía.</h2>
+        <p>Podés descargarla desde acá y volver a ella cuando quieras.</p>
+        <a class="btn" id="btn-descargar" href="https://gaufgang.com/guia/gauf_guia_para_crear_posibilidades.pdf" target="_blank" rel="noopener">Descargar CREAR POSIBILIDADES</a>
+      </div>
+
+    </div>
+
+    <div class="hero-letter letter">
+      <p>A veces, para encontrar nuevas posibilidades, alcanza con cambiar la manera en que miramos lo que sucede, escuchamos a los demás y nos animamos a hacer algo diferente.</p>
+      <p>Preparé esta guía con ideas y ejercicios que fui explorando a lo largo de mi experiencia en creatividad, liderazgo, comunicación e improvisación.</p>
+      <p>Ojalá te resulte útil para llevar alguna de estas ideas a tu día a día. Gracias.</p>
+    </div>
+
+  </section>
+
+  <section class="about">
+    <div class="about-inner">
+      <h2>Soy Gauf.</h2>
+      <div>
+        <p>Acompaño a personas y equipos a liderar con más claridad, humanidad y confianza. Trabajo en la intersección entre creatividad, comunicación, experiencias y aprendizaje.</p>
+        <p>Creo en las buenas conversaciones como punto de partida para crear posibilidades.</p>
+        <a class="about-link" href="https://gaufgang.com/">Más sobre mí →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-logo"><img src="../images/logo_negro.svg" alt="Gauf" width="1202" height="404"></div>
+  <p class="footer-name">Gabriel Aufgang · <span id="year">2026</span></p>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/gaufgang/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://www.instagram.com/gaufgang/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://x.com/gaufgang" target="_blank" rel="noopener">X</a>
+  </div>
+</footer>
+
+<!-- Eventos del sitio: scroll, links externos, redes, tiempo en página -->
+<script src="../analytics.js"></script>
+
+<script>
+(function () {
+  'use strict';
+
+  /* Envía un evento a GA4 si analytics.js cargó; si no, cae a gtag. */
+  function track(evento, params) {
+    try {
+      if (typeof gta === 'function') { gta(evento, params); return; }
+      if (typeof gtag === 'function') { gtag('event', evento, params || {}); }
+    } catch (e) { /* analytics bloqueado: no rompemos el formulario */ }
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     INTEGRACIÓN PENDIENTE — MAILERLITE
+     ───────────────────────────────────────────────────────────
+     Para activar el registro, completá estas dos claves:
+
+       1. Entrá a MailerLite → tu cuenta → pestaña "Forms".
+       2. Abrí el formulario que quieras usar y copiá:
+          · el ID de cuenta  (en la URL del panel o en el embed)
+          · el ID de formulario
+
+     Mientras estén vacías, el formulario NO registra a nadie
+     y NO simula un envío exitoso: muestra un aviso honesto con
+     la descarga directa.
+
+     OPCIONAL — grupo de newsletter:
+       Si creás un grupo aparte para "Ideas para llevar", pegá su
+       ID en newsletterGroupId. Solo se usa cuando la persona
+       marca la casilla de consentimiento.
+
+     Los campos personalizados utm_source, utm_medium, utm_campaign,
+     origen, fuente, consentimiento y fecha_consentimiento tienen
+     que existir en MailerLite (Subscribers → Custom fields).
+     ═══════════════════════════════════════════════════════════ */
+  var CONFIG = {
+    accountId: '',
+    formId: '',
+    newsletterGroupId: '',
+    guideUrl: 'https://gaufgang.com/guia/gauf_guia_para_crear_posibilidades.pdf',
+    fallbackEmail: 'hablemos@gaufgang.com',
+    origin: 'guia_crear_posibilidades'
+  };
+
+  var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+
+  var form = document.getElementById('form-guia');
+  var btn = document.getElementById('btn-enviar');
+  var status = document.getElementById('status');
+  var formView = document.getElementById('form-view');
+  var success = document.getElementById('confirmacion');
+  var fieldNombre = document.getElementById('field-nombre');
+  var fieldEmail = document.getElementById('field-email');
+  var inputNombre = document.getElementById('nombre');
+  var inputEmail = document.getElementById('email');
+  var inputNews = document.getElementById('newsletter');
+
+  var enviando = false;
+  var listo = false;
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ── UTM ────────────────────────────────────────────────
+     Se leen de la URL y se conservan en sessionStorage para
+     que no se pierdan si la persona navega y vuelve.        */
+  function leerUtms() {
+    var actuales = {};
+    var params = new URLSearchParams(window.location.search);
+    var hay = false;
+
+    UTM_KEYS.forEach(function (k) {
+      var v = params.get(k);
+      if (v) { actuales[k] = v.slice(0, 120); hay = true; }
+    });
+
+    if (hay) {
+      try { sessionStorage.setItem('gauf_utm', JSON.stringify(actuales)); } catch (e) {}
+      return actuales;
+    }
+
+    try {
+      var guardados = JSON.parse(sessionStorage.getItem('gauf_utm') || '{}');
+      if (guardados && typeof guardados === 'object') return guardados;
+    } catch (e) {}
+
+    return {};
+  }
+
+  var UTMS = leerUtms();
+
+  /* Fuente de tráfico: referrer externo, si existe. */
+  function fuenteDeTrafico() {
+    var ref = document.referrer || '';
+    if (!ref) return 'directo';
+    try {
+      var host = new URL(ref).hostname.replace(/^www\./, '');
+      if (host === window.location.hostname.replace(/^www\./, '')) return 'interno';
+      return host.slice(0, 120);
+    } catch (e) {
+      return 'desconocida';
+    }
+  }
+
+  /* ── Validación ─────────────────────────────────────── */
+  function emailValido(v) {
+    return /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v);
+  }
+
+  function validarNombre() {
+    var ok = inputNombre.value.trim().length >= 2;
+    fieldNombre.classList.toggle('invalid', !ok);
+    inputNombre.setAttribute('aria-invalid', ok ? 'false' : 'true');
+    return ok;
+  }
+
+  function validarEmail() {
+    var ok = emailValido(inputEmail.value.trim());
+    fieldEmail.classList.toggle('invalid', !ok);
+    inputEmail.setAttribute('aria-invalid', ok ? 'false' : 'true');
+    return ok;
+  }
+
+  inputNombre.addEventListener('blur', function () {
+    if (inputNombre.value.trim() !== '') validarNombre();
+  });
+  inputEmail.addEventListener('blur', function () {
+    if (inputEmail.value.trim() !== '') validarEmail();
+  });
+  inputNombre.addEventListener('input', function () {
+    if (fieldNombre.classList.contains('invalid')) validarNombre();
+  });
+  inputEmail.addEventListener('input', function () {
+    if (fieldEmail.classList.contains('invalid')) validarEmail();
+  });
+
+  /* ── Estados de la interfaz ─────────────────────────── */
+  function mensaje(texto, esError) {
+    status.innerHTML = texto;
+    status.classList.toggle('is-error', !!esError);
+  }
+
+  function ocupado(on) {
+    enviando = on;
+    btn.disabled = on;
+    btn.textContent = on ? 'Enviando…' : 'Quiero recibir la guía';
+  }
+
+  /* Abre el PDF en una pestaña nueva. Si el navegador lo bloquea,
+     el botón de descarga queda a la vista en la confirmación. */
+  function descargar(ubicacion) {
+    var a = document.createElement('a');
+    a.href = CONFIG.guideUrl;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    document.body.appendChild(a);
+    try { a.click(); } catch (e) {}
+    document.body.removeChild(a);
+    track('guide_download', { origen: CONFIG.origin, ubicacion: ubicacion || 'confirmacion' });
+  }
+
+  function mostrarConfirmacion() {
+    listo = true;
+    formView.classList.add('is-off');
+    success.classList.add('is-on');
+    success.focus();
+    descargar('automatica');
+  }
+
+  var linkDescarga = document.getElementById('btn-descargar');
+  if (linkDescarga) {
+    linkDescarga.addEventListener('click', function () {
+      track('guide_download', { origen: CONFIG.origin, ubicacion: 'boton_confirmacion' });
+    });
+  }
+
+  /* ── Registro ───────────────────────────────────────── */
+  function integracionLista() {
+    return !!(CONFIG.accountId && CONFIG.formId);
+  }
+
+  function registrar(datos) {
+    return new Promise(function (resolve, reject) {
+      var cb = 'gaufCb' + Date.now();
+      var base = 'https://assets.mailerlite.com/jsonp/' + CONFIG.accountId + '/forms/' + CONFIG.formId + '/subscribe';
+      var p = new URLSearchParams();
+
+      p.set('fields[name]', datos.nombre);
+      p.set('fields[email]', datos.email);
+      p.set('fields[origen]', CONFIG.origin);
+      p.set('fields[fuente]', datos.fuente);
+      p.set('fields[consentimiento]', datos.consentimiento ? 'si' : 'no');
+      if (datos.consentimiento) p.set('fields[fecha_consentimiento]', datos.fechaConsentimiento);
+      UTM_KEYS.forEach(function (k) {
+        if (UTMS[k]) p.set('fields[' + k + ']', UTMS[k]);
+      });
+      if (datos.consentimiento && CONFIG.newsletterGroupId) {
+        p.set('groups[]', CONFIG.newsletterGroupId);
+      }
+      p.set('callback', cb);
+
+      var script = document.createElement('script');
+      var cerrado = false;
+
+      function limpiar() {
+        try { delete window[cb]; } catch (e) { window[cb] = undefined; }
+        if (script.parentNode) script.parentNode.removeChild(script);
+      }
+      function fallar(codigo) {
+        if (cerrado) return;
+        cerrado = true;
+        limpiar();
+        reject(new Error(codigo));
+      }
+
+      window[cb] = function (res) {
+        if (cerrado) return;
+        cerrado = true;
+        limpiar();
+        resolve(res);
+      };
+
+      script.src = base + '?' + p.toString();
+      script.onerror = function () { fallar('network'); };
+      document.head.appendChild(script);
+
+      setTimeout(function () { fallar('timeout'); }, 15000);
+    });
+  }
+
+  /* ── Envío ──────────────────────────────────────────── */
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (enviando || listo) return;
+
+    var nombreOk = validarNombre();
+    var emailOk = validarEmail();
+
+    if (!nombreOk || !emailOk) {
+      mensaje('Revisá los campos marcados y volvé a intentar.', true);
+      (!nombreOk ? inputNombre : inputEmail).focus();
+      return;
+    }
+
+    var consentimiento = !!inputNews.checked;
+    var datos = {
+      nombre: inputNombre.value.trim().slice(0, 120),
+      email: inputEmail.value.trim().slice(0, 160),
+      fuente: fuenteDeTrafico(),
+      consentimiento: consentimiento,
+      fechaConsentimiento: consentimiento ? new Date().toISOString() : ''
+    };
+
+    /* Integración todavía sin configurar: no se simula el alta,
+       pero la guía se entrega igual. */
+    if (!integracionLista()) {
+      console.warn('[GAUF] MailerLite sin configurar. Completá CONFIG.accountId y CONFIG.formId en guia/index.html.');
+      descargar('sin_integracion');
+      mensaje(
+        'El formulario todavía no está conectado, así que no quedaste registrado. ' +
+        'La guía ya se está descargando; si no aparece, abrila desde ' +
+        '<a href="' + CONFIG.guideUrl + '" target="_blank" rel="noopener">este enlace</a>.',
+        false
+      );
+      return;
+    }
+
+    ocupado(true);
+    mensaje('');
+
+    registrar(datos).then(function (res) {
+      var ok = res && (res.success === true || res.success === 'true');
+      if (ok) {
+        ocupado(false);
+        track('generate_lead', {
+          origen: CONFIG.origin,
+          consentimiento: consentimiento ? 'si' : 'no',
+          utm_source: UTMS.utm_source || '',
+          utm_medium: UTMS.utm_medium || '',
+          utm_campaign: UTMS.utm_campaign || ''
+        });
+        mostrarConfirmacion();
+      } else {
+        ocupado(false);
+        track('form_error', { origen: CONFIG.origin, motivo: 'rechazado' });
+        mensaje('No pudimos registrarte. Revisá el email y volvé a intentar, o escribime a ' +
+          '<a href="mailto:' + CONFIG.fallbackEmail + '">' + CONFIG.fallbackEmail + '</a>.', true);
+      }
+    }).catch(function () {
+      ocupado(false);
+      track('form_error', { origen: CONFIG.origin, motivo: 'conexion' });
+      mensaje('Hubo un problema de conexión. Volvé a intentar en unos segundos.', true);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
