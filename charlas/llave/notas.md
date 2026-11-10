@@ -70,7 +70,7 @@ Así las ideas cambian, nuestro enfoque de los problemas cambia. También cambia
 # s9
 Cuando co-creas, aparecen opciones que no existían antes. 
 Se construye con distintas opiniones, direcciones, propuestas, estados. 
-Esto es algo muy habitual en las tormentas de ideas creativas. Yo vengo del del mundo de agencia y y en general cuando empiezan los proyectos hay mucho de esto, pero incluso lo pueden tomar en cualquier instancia de su día a día, jugando con familiares, tratando con un colega, con un cliente, con quien sea, no hace falta que sea delirante, sino esta invitación a estar abiertos y que sea algo habitual en cada encuentro, si las ideas cambian cambiando incluso nuestros enfoques a los problemas van a cambiar y por qué no cambiar también cómo nos relacionamos con las personas con quienes compartimos.
+Esto es algo muy habitual en las tormentas de ideas creativas. Yo vengo del del mundo de agencia y y en general cuando empiezan los proyectos hay mucho de esto, pero incluso lo pueden tomar en cualquier instancia de su día a día, jugando con familiares, tratando con un colega, con un cliente, con quien sea, no hace falta que sea delirante, sino esta invitación a estar abiertos y que sea algo habitual en cada encuentro, si las ideas cambiando incluso nuestros enfoques a los problemas van a cambiar y por qué no cambiar también cómo nos relacionamos con las personas con quienes compartimos.
 
 
 # s10
