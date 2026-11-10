@@ -84,4 +84,4 @@ Está en cómo construimos con los demás.
 Te invito a que en tu próxima conversación, tu próxima reunión, tu próximo proyecto, te des la oportunidad de elegir: construir, validar, y crear con otros.
 Así habilitas nuevas manera de lo que es posible.
 Gracias.
-Me contact
+E
