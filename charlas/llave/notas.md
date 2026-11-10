@@ -14,7 +14,7 @@ Le dije a Lucho, en una conversación aparte, que no me interesaba exponerme. Qu
 # s2
 [Mostrar la foto]
 Me preparé. Invité a familia y amigos.
-Subí al escenario y la experiencia me encantó. Me divertí, conecté con mi equipo y con el público. Ganamos el match —quizás solo porque teníamos más hinchada.
+Subí al escenario y la experiencia me encantó. Me divertí, conecté con mi equipo y con el público. Ganamos el match —quizás solo porque teníamos más hinchada. O porque estabamos de 
 Pero lo que más me llamó la atención no fue la competencia ni la hinchada ni ganar. Fue que las escenas salían mejor que en las clases. 
 Había una energía diferente. Un nivel de conexión que no había experimentado antes.
 El descubrimiento fue más simple y más interesante que superar un miedo: cuando confiás y entrás en la escena con otros, aparecen cosas que no sabías que podían pasar.
