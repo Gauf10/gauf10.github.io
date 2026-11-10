@@ -73,7 +73,6 @@ Se construye con distintas opiniones, direcciones, propuestas, estados.
 Esto es algo muy habitual en las tormentas de ideas creativas. Yo vengo del del mundo de agencia y y en general cuando empiezan los proyectos hay mucho de esto, pero incluso lo pueden tomar en cualquier instancia de su día a día, jugando con familiares, tratando con un colega, con un cliente, con quien sea, no hace falta que sea delirante, sino esta invitación a estar abiertos y que sea algo habitual en cada encuentro.
 Las ideas cambian, incluso nuestros enfoques a los problemas van a cambiar; y por qué no cambiar también cómo nos relacionamos con las personas con quienes compartimos.
 
-
 # s10
 Acá atención, como todo hay que dar lugar, hay que cuidar y hay que dejar crecer. La energía es finita. 
 Es complejo estar en modo expansivo a cada momento y a cada rato, sino que también se necesita tiempo. Introspección.
