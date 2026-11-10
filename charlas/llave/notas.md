@@ -33,7 +33,6 @@ A veces llegamos a una conversación con la idea tan cerrada que no dejamos espa
 [Segundo reveal] Estar disponibles para lo que aportan los demás.
 Nadie dice estar pasivos, resignados, sino como elección activa, observar antes de intervenir. Escuchar antes de resolver.
 
-
 # s5
 En 2010, el primer año de 5SEIS, mi agencia de marketing, teníamos un solo cliente. Carlos nos convoca para el lanzamiento del Motorola i1 con Nextel. Propusimos instalar un teléfono gigante que funcionara de verdad. Hace 16 años fue! no habia IA, no había tantos recursos tecnológicos como los hay hoy. No teníamos ni idea cómo resolverlo. Aprobaron. Exploramos, encontramos una solución con un emulador del sistema Android en una compu. Funcionó. La experiencia fue un éxito — no porque teníamos todo resuelto de antemano, sino porque nos animamos a proponer y después buscamos cómo hacerlo posible.
 El famoso Si, dale.
