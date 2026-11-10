@@ -29,7 +29,7 @@ No lo digo como metáfora decorativa. Lo digo porque en todos los casos lo que i
 
 # s4
 A veces llegamos a una conversación con la idea tan cerrada que no dejamos espacio para descubrir otra posibilidad.
-Cuantas veces estamos pensando que contestar a mitad de la frase del otro?
+¿Cuantas veces estamos pensando que contestar a mitad de la frase del otro?
 [Primer reveal] Estar disponibles para lo que aparece.
 [Segundo reveal] Estar disponibles para lo que aportan los demás.
 Nadie dice estar pasivos, resignados, sino como elección activa, observar antes de intervenir. Escuchar antes de resolver.
