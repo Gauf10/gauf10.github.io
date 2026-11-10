@@ -56,7 +56,7 @@ Incluso más, si ustedes son quien lleva una propuesta y es negada, tomar eso co
 A donde me impulsa la respuesta del otro? que me pasa a mi con eso?
 
 Les dejo un ejercicio para que hagan en casa con alguien que tengan cerca, más tarde.
-Uno dice una acción: ejem
+Uno dice una acción: ejemplo plopl
 
 # s8
 [Reflexión post-ejercicio]
