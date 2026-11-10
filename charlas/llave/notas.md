@@ -69,7 +69,15 @@ Reservar espacio para que crezca lo que plantamos juntos.
 La co-creación es un momento del acá y ahora y también requiere confianza y aceptación total que se va ganando con el tiempo, con los encuentros, con mostrarse permeable cada vez más.
 
 # s11
-Validar una propuesta no significa estar de acuerdo ni prometer que la vas a tomar tal cual.
+[Pausa larga antes de hablar]
+La llave no está en tener la mejor idea.
+Está en cómo construimos con los demás.
+Te invito a que en tu próxima conversación, tu próxima reunión, tu próximo proyecto, te des la oportunidad de elegir: construir, validar, y crear con otros.
+Así habilitas nuevas manera de lo que es posible.
+Gracias.
+En el QR acceden a una mini guía gratuita con mucho de lo que dije en esta charla, también tienen formas de contactame y agendar una charla conmigo sin compromiso para poder conectar.
+Muchas gracias Mich y todo el equipazo que hace posible estos eventos fabulosos y muy necesarios.
+Todos pueden sacar su voz y contar al mundo lo que tienen para decir, nuestro paso por este mundo es muy importante. Somos valiosos.Validar una propuesta no significa estar de acuerdo ni prometer que la vas a tomar tal cual.
 Significa reconocer que existe. Darle espacio para desarrollarse.
 La idea del otro puede verse como un regalo: algo que podés que te llega, que podes explorar y transformar junto a esa persona.
 En improvisación hay una regla que se llama "sí, y..." — no como fórmula, sino como actitud. Recibir lo que el otro trae y agregar algo. No bloquear, no ignorar, no reemplazar. Construir desde ahí.
