@@ -38,14 +38,6 @@ Nadie dice estar pasivos, resignados, sino como elección activa, observar antes
 En 2010, el primer año de 5SEIS, mi agencia de marketing, teníamos un solo cliente. Carlos nos convoca para el lanzamiento del Motorola i1 con Nextel. Propusimos instalar un teléfono gigante que funcionara de verdad. Hace 16 años fue! no habia IA, no había tantos recursos tecnológicos como los hay hoy. No teníamos ni idea cómo resolverlo. Aprobaron. Exploramos, encontramos una solución con un emulador del sistema Android en una compu. Funcionó. La experiencia fue un éxito — no porque teníamos todo resuelto de antemano, sino porque nos animamos a proponer y después buscamos cómo hacerlo posible.
 El famoso Si, dale.
 
-# s6
-[Dejar que los pasos aparezcan uno a uno]
-Este es el recorrido que propongo. No como metodología rígida, solo como marco práctico que surgió de mi experiencia.
-Disponibilidad: elegir estar presente y abierto a lo que aparece.
-Validación: reconocer las propuestas de los demás y darles lugar.
-Construcción: hacer algo con lo que aparece. Escuchar, conectar, aportar, probar.
-Transformación: en el proceso, la idea inicial cambia. También nuestra comprensión del problema. El resultado puede ser algo que ninguno habría imaginado por separado.
-
 # s7
  (audiencia pasiva o formato técnico limitado): "Pensá en la última conversación donde alguien te trajo una idea que no esperabas. ¿Qué hiciste con esa idea? ¿La recibiste, la ignoraste, la transformaste?" Breve intercambio en chat o en voz alta con quien quiera responder. Puede ser por whatsapp, por mensaje directo, en un encuentro cara a cara, puede ser laboral, personal. Revisá como contestaste vos. No importan tanto que propuesta era, lo tomaste como regalo o lo negaste como primera reacción? 
 Ahí se da la oportunidad a estar disponibles, a recibir, y crear con el otro. Dar lugar, validar, tomarlo como obsequio. 
