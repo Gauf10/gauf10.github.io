@@ -35,7 +35,8 @@ Nadie dice estar pasivos, resignados, sino como elección activa, observar antes
 
 
 # s5
-Validar una propuesta no significa estar de acuerdo ni prometer que la vas a tomar tal cual.
+En 2010, el primer año de 5SEIS, mi agencia de marketing, teníamos un solo cliente. Carlos nos convoca para el lanzamiento del Motorola i1 con Nextel. Propusimos instalar un teléfono gigante que funcionara de verdad. Hace 16 años fue! no habia IA, no había tantos recursos tecnológicos como los hay hoy. No teníamos ni idea cómo resolverlo. Aprobaron. Exploramos, encontramos una solución con un emulador del sistema Android en una compu. Funcionó. La experiencia fue un éxito — no porque teníamos todo resuelto de antemano, sino porque nos animamos a proponer y después buscamos cómo hacerlo posible.
+El famoso Si, dale.Validar una propuesta no significa estar de acuerdo ni prometer que la vas a tomar tal cual.
 Significa reconocer que existe. Darle espacio para desarrollarse.
 La idea del otro puede verse como un regalo: algo que podés que te llega, que podes explorar y transformar junto a esa persona.
 En improvisación hay una regla que se llama "sí, y..." — no como fórmula, sino como actitud. Recibir lo que el otro trae y agregar algo. No bloquear, no ignorar, no reemplazar. Construir desde ahí.
