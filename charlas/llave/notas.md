@@ -68,13 +68,11 @@ Estamos co-creando, construyendo con distintas opiniones, direcciones y propuest
 Así las ideas cambian, nuestro enfoque de los problemas cambia. También cambia cómo nos relacionamos con las personas con quienes compartimos.
 
 # s9
-Acá un alerta con esto que que como todo hay que dar lugar, hay que cuidar y hay que dejar crecer. La energía es finita. Eh, no se puede estar por ahí siendo expansivo a cada momento y a cada rato, sino que también se necesita tiempo.
-
-
-00:12:29
-
-Las semillas tardan en germinar, eh, no sé si alguna se huerta, pero lo puede saber que no es instantáneo los procesos. Entonces, ténganse paciencia, eh, con pasitos chiquitos cada día y encontrar los lugares donde más fluya, va a ser mejor. Eh, incluso los vínculos necesitan tiempo, los proyectos necesitan tiempo. Hay que reservar espacio para que crezca lo que vamos plantando juntos.
-
+Crear con otros implica dar lugar a lo que aparece.
+Cuidarlo. No desenterrar las semillas para ver si están germinando.
+Algunas ideas necesitan tiempo. Algunos vínculos necesitan tiempo. Algunos proyectos necesitan tiempo.
+Reservar espacio para que crezca lo que plantamos juntos.
+La co-creación es un momento del acá y ahora y también requiere confianza y aceptación total que se va ganando con el tiempo, con los encuentros, con mostrarse permeable cada vez más.
 
 # s11
 [Pausa larga antes de hablar]
