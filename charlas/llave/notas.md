@@ -78,3 +78,9 @@ Gracias.
 En el QR acceden a una mini guía gratuita con mucho de lo que dije en esta charla, también tienen formas de contactame y agendar una charla conmigo sin compromiso para poder conectar.
 Muchas gracias Mich y todo el equipazo que hace posible estos eventos fabulosos y muy necesarios.
 Todos pueden sacar su voz y contar al mundo lo que tienen para decir, nuestro paso por este mundo es muy importante. Somos valiosos.
+
+# s11
+Validar una propuesta no significa estar de acuerdo ni prometer que la vas a tomar tal cual.
+Significa reconocer que existe. Darle espacio para desarrollarse.
+La idea del otro puede verse como un regalo: algo que podés que te llega, que podes explorar y transformar junto a esa persona.
+En improvisación hay una regla que se llama "sí, y..." — no como fórmula, sino como actitud. Recibir lo que el otro trae y agregar algo. No bloquear, no ignorar, no reemplazar. Construir desde ahí.
