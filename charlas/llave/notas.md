@@ -68,8 +68,7 @@ Estamos co-creando, construyendo con distintas opiniones, direcciones y propuest
 Así las ideas cambian, nuestro enfoque de los problemas cambia. También cambia cómo nos relacionamos con las personas con quienes compartimos.
 
 # s9
-Cuando co-creas, 
-se construye con distintas opiniones, direcciones, propuestas, estados, barajes y demás. Esto es algo muy habitual en las tormentas de ideas creativas. Yo vengo del del mundo de agencia y y en general cuando empiezan los proyectos hay mucho de esto, pero incluso lo pueden tomar en cualquier instancia de su día a día, jugando con familiares e tratando con un colega, con un cliente, con quien sea, no hace falta que sea delirante, sino esta invitación a estar abiertos y que sea algo habitual en cada encuentro, si las ideas cambian,
+Cuando co-creas, aparecese construye con distintas opiniones, direcciones, propuestas, estados, barajes y demás. Esto es algo muy habitual en las tormentas de ideas creativas. Yo vengo del del mundo de agencia y y en general cuando empiezan los proyectos hay mucho de esto, pero incluso lo pueden tomar en cualquier instancia de su día a día, jugando con familiares e tratando con un colega, con un cliente, con quien sea, no hace falta que sea delirante, sino esta invitación a estar abiertos y que sea algo habitual en cada encuentro, si las ideas cambian,
 
 
 00:11:54
