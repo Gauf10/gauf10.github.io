@@ -333,7 +333,7 @@
 
           <div class="consent">
             <input type="checkbox" id="newsletter" name="newsletter">
-            <label for="newsletter">Quiero recibir <em>Trama invisible</em>, envío quincenal con reflexiones, lecturas, conexiones inesperadas y ejercicios para llevar a la práctica. Podés darte de baja cuando quieras.</label>
+            <label for="newsletter">También quiero recibir <em>TRAMA INVISIBLE</em>: ideas y experiencias que conectan mundos y abren posibilidades. Podés darte de baja cuando quieras.</label>
           </div>
 
           <!-- Trampa antispam: invisible para personas, tentadora para bots -->
@@ -407,28 +407,29 @@
   }
 
   /* ═══════════════════════════════════════════════════════════
-     REGISTRO — SUPABASE EDGE FUNCTION
+     REGISTRO — SUPABASE EDGE FUNCTION "registrar-descarga"
      ───────────────────────────────────────────────────────────
-     El formulario manda todo a la función "guide-download".
-     Esa función:
-       1. valida los datos,
-       2. guarda el registro en la tabla privada guide_downloads,
-       3. si la persona tildó el newsletter, la da de alta en
-          MailerLite con la clave secreta, que vive solo del lado
-          del servidor.
+     La función (ya desplegada y probada) se encarga de:
+       1. validar nombre y email,
+       2. guardar el registro en public.guide_downloads,
+       3. si newsletter_consent === true, dar de alta en
+          MailerLite (grupo TRAMA INVISIBLE).
 
      Acá no hay ninguna credencial: solo la URL pública de la
-     función. El código de la función está en /supabase/.
+     función. No se usa la anon key ni la service_role.
 
-     Si el endpoint queda vacío, el formulario no registra a nadie
-     pero igual entrega el PDF y lo avisa.
+     Respuesta esperada:
+       { ok: true, download_id: "uuid", newsletter_synced: bool }
      ═══════════════════════════════════════════════════════════ */
   var CONFIG = {
-    endpoint: 'https://qjahvfyixsuljtxqipbs.supabase.co/functions/v1/guide-download',
+    endpoint: 'https://qjahvfyixsuljtxqipbs.supabase.co/functions/v1/registrar-descarga',
     guideUrl: 'https://gaufgang.com/guia/gauf_guia_para_crear_posibilidades.pdf',
-    fallbackEmail: 'hablemos@gaufgang.com',
-    origin: 'guia_crear_posibilidades'
+    fallbackEmail: 'hablemos@gaufgang.com'
   };
+
+  /* Reintentos: si falla, no se puede volver a enviar antes de esto. */
+  var ESPERA_REINTENTO_MS = 60 * 1000;
+  var CLAVE_ENVIO = 'gauf_guia_envio';
 
   var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
 
@@ -446,7 +447,35 @@
 
   var enviando = false;
   var listo = false;
-  var abiertoEn = Date.now();   /* para descartar envíos instantáneos de bots */
+
+  /* Clave de idempotencia del envío en curso. Se genera una vez y se
+     reutiliza en los reintentos: si el servidor guardó la fila pero la
+     respuesta se perdió, el reintento devuelve la original en lugar de
+     duplicarla. Se renueva recién después de un envío exitoso. */
+  var eventIdActual = null;
+
+  function nuevoEventId() {
+    try {
+      if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+        return window.crypto.randomUUID();
+      }
+    } catch (e) { /* sigue con getRandomValues */ }
+
+    /* Fallback sin Math.random: bytes del CSPRNG del navegador. */
+    try {
+      var b = new Uint8Array(16);
+      window.crypto.getRandomValues(b);
+      b[6] = (b[6] & 0x0f) | 0x40;   // versión 4
+      b[8] = (b[8] & 0x3f) | 0x80;   // variante RFC 4122
+      var hex = [];
+      for (var i = 0; i < 16; i++) hex.push(('0' + b[i].toString(16)).slice(-2));
+      return hex.slice(0, 4).join('') + '-' + hex.slice(4, 6).join('') + '-' +
+             hex.slice(6, 8).join('') + '-' + hex.slice(8, 10).join('') + '-' +
+             hex.slice(10, 16).join('');
+    } catch (e) {
+      return null;   // sin CSPRNG no hay idempotencia; el servidor acepta null
+    }
+  }
 
   document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -477,19 +506,6 @@
   }
 
   var UTMS = leerUtms();
-
-  /* Fuente de tráfico: referrer externo, si existe. */
-  function fuenteDeTrafico() {
-    var ref = document.referrer || '';
-    if (!ref) return 'directo';
-    try {
-      var host = new URL(ref).hostname.replace(/^www\./, '');
-      if (host === window.location.hostname.replace(/^www\./, '')) return 'interno';
-      return host.slice(0, 120);
-    } catch (e) {
-      return 'desconocida';
-    }
-  }
 
   /* ── Validación ─────────────────────────────────────── */
   function emailValido(v) {
@@ -545,7 +561,7 @@
     document.body.appendChild(a);
     try { a.click(); } catch (e) {}
     document.body.removeChild(a);
-    track('guide_download', { origen: CONFIG.origin, ubicacion: ubicacion || 'confirmacion' });
+    track('guide_download', { origen: 'guia_crear_posibilidades', ubicacion: ubicacion || 'confirmacion' });
   }
 
   function mostrarConfirmacion() {
@@ -558,7 +574,7 @@
   var linkDescarga = document.getElementById('btn-descargar');
   if (linkDescarga) {
     linkDescarga.addEventListener('click', function () {
-      track('guide_download', { origen: CONFIG.origin, ubicacion: 'boton_confirmacion' });
+      track('guide_download', { origen: 'guia_crear_posibilidades', ubicacion: 'boton_confirmacion' });
     });
   }
 
@@ -567,37 +583,39 @@
     return !!CONFIG.endpoint;
   }
 
-  function registrar(datos) {
-    var cuerpo = {
+  /* Payload exacto que espera la Edge Function. */
+  function armarPayload(datos) {
+    return {
       name: datos.nombre,
       email: datos.email,
-      resource: CONFIG.origin,
-      newsletter_consent: datos.consentimiento,
-      consent_at: datos.consentimiento ? new Date().toISOString() : null,
+      newsletter_consent: datos.consentimiento === true,
       utm_source: UTMS.utm_source || null,
       utm_medium: UTMS.utm_medium || null,
       utm_campaign: UTMS.utm_campaign || null,
-      source: datos.fuente,
-      referrer: document.referrer ? document.referrer.slice(0, 300) : null,
-      /* antispam */
-      honey: inputHoney ? inputHoney.value : '',
-      elapsed_ms: Date.now() - abiertoEn
+      /* campo trampa: siempre vacío si es una persona */
+      website: inputHoney ? inputHoney.value : '',
+      /* misma clave en todos los reintentos de este envío */
+      event_id: eventIdActual
     };
+  }
 
+  function registrar(datos) {
     var control = null;
     try { control = new AbortController(); } catch (e) {}
-    var temporizador = control ? setTimeout(function () { control.abort(); }, 12000) : null;
+    var temporizador = control ? setTimeout(function () { control.abort(); }, 15000) : null;
 
     return fetch(CONFIG.endpoint, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(cuerpo),
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(armarPayload(datos)),
       signal: control ? control.signal : undefined
     }).then(function (res) {
       if (temporizador) clearTimeout(temporizador);
-      return res.json().catch(function () { return {}; }).then(function (json) {
-        if (!res.ok || json.ok === false) {
-          throw new Error(json.error || ('http_' + res.status));
+      return res.text().then(function (texto) {
+        var json = {};
+        try { json = texto ? JSON.parse(texto) : {}; } catch (e) { json = {}; }
+        if (!res.ok || json.ok !== true) {
+          throw new Error('registro_rechazado');
         }
         return json;
       });
@@ -605,6 +623,25 @@
       if (temporizador) clearTimeout(temporizador);
       throw err;
     });
+  }
+
+  /* ── Control de envíos repetidos ────────────────────────
+     Si alguien recarga y vuelve a enviar el mismo email en
+     menos de un minuto, no se manda de nuevo.                */
+  function envioReciente(email) {
+    try {
+      var g = JSON.parse(localStorage.getItem(CLAVE_ENVIO) || 'null');
+      if (!g || g.email !== email) return false;
+      return (Date.now() - g.ts) < ESPERA_REINTENTO_MS;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function marcarEnvio(email) {
+    try {
+      localStorage.setItem(CLAVE_ENVIO, JSON.stringify({ email: email, ts: Date.now() }));
+    } catch (e) {}
   }
 
   /* ── Envío ──────────────────────────────────────────── */
@@ -621,55 +658,70 @@
       return;
     }
 
-    var consentimiento = !!inputNews.checked;
+    var consentimiento = inputNews.checked === true;
+    var email = inputEmail.value.trim().toLowerCase().slice(0, 160);
+
     var datos = {
       nombre: inputNombre.value.trim().slice(0, 120),
-      email: inputEmail.value.trim().slice(0, 160),
-      fuente: fuenteDeTrafico(),
-      consentimiento: consentimiento,
-      fechaConsentimiento: consentimiento ? new Date().toISOString() : ''
+      email: email,
+      consentimiento: consentimiento
     };
 
-    /* La descarga va primero y dentro del gesto del usuario: así el
-       navegador no la bloquea y el PDF llega aunque el registro falle. */
-    descargar('automatica');
-
-    /* Integración sin configurar: no se simula el alta. */
+    /* Sin integración no se finge un alta. */
     if (!integracionLista()) {
       console.warn('[GAUF] Falta CONFIG.endpoint en guia/index.html.');
       mensaje(
         'Todavía no activamos el registro, así que no quedaste anotado. ' +
-        'La guía ya se está descargando; si no aparece, abrila desde ' +
+        'Podés descargar la guía igual desde ' +
         '<a href="' + CONFIG.guideUrl + '" target="_blank" rel="noopener">este enlace</a>.',
         false
       );
       return;
     }
 
+    /* Ya se envió lo mismo hace un momento: no se duplica. */
+    if (envioReciente(email)) {
+      mensaje('Ya recibimos tu pedido recién. Si no se descargó la guía, abrila desde ' +
+        '<a href="' + CONFIG.guideUrl + '" target="_blank" rel="noopener">acá</a>.', false);
+      return;
+    }
+
+    /* Misma clave si esto es un reintento; nueva si es un envío distinto. */
+    if (!eventIdActual) eventIdActual = nuevoEventId();
+
     ocupado(true);
-    mensaje('');
+    mensaje('Guardando…');
 
     registrar(datos).then(function (res) {
-      if (res && res.ok !== false) {
-        ocupado(false);
-        track('generate_lead', {
-          origen: CONFIG.origin,
-          consentimiento: consentimiento ? 'si' : 'no',
-          utm_source: UTMS.utm_source || '',
-          utm_medium: UTMS.utm_medium || '',
-          utm_campaign: UTMS.utm_campaign || ''
-        });
-        mostrarConfirmacion();
-      } else {
-        ocupado(false);
-        track('form_error', { origen: CONFIG.origin, motivo: 'rechazado' });
-        mensaje('No pudimos guardar tu registro. La guía ya se descargó; volvé a intentar en un momento o escribime a ' +
-          '<a href="mailto:' + CONFIG.fallbackEmail + '">' + CONFIG.fallbackEmail + '</a>.', true);
-      }
+      ocupado(false);
+      marcarEnvio(email);
+
+      /* Envío cerrado: el próximo arranca con una clave nueva. */
+      eventIdActual = null;
+
+      track('generate_lead', {
+        origen: 'guia_crear_posibilidades',
+        consentimiento: consentimiento ? 'si' : 'no',
+        newsletter: res && res.newsletter_synced === true ? 'synced' : 'no_synced',
+        utm_source: UTMS.utm_source || '',
+        utm_medium: UTMS.utm_medium || '',
+        utm_campaign: UTMS.utm_campaign || ''
+      });
+
+      mostrarConfirmacion();
+      descargar('post_registro');
+
     }).catch(function () {
       ocupado(false);
-      track('form_error', { origen: CONFIG.origin, motivo: 'conexion' });
-      mensaje('No pudimos guardar tu registro por un problema de conexión. La guía ya se descargó; volvé a intentar en unos segundos.', true);
+      track('form_error', { origen: 'guia_crear_posibilidades', motivo: 'envio' });
+
+      mensaje(
+        'No pudimos guardar tu registro. Probá de nuevo en un momento. ' +
+        'Si preferís, descargá la guía igual desde ' +
+        '<a href="' + CONFIG.guideUrl + '" target="_blank" rel="noopener">este enlace</a> ' +
+        'o escribime a <a href="mailto:' + CONFIG.fallbackEmail + '">' + CONFIG.fallbackEmail + '</a>.',
+        true
+      );
     });
   });
 })();

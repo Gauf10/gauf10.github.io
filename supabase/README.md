@@ -3,140 +3,146 @@
 Backend del formulario de `/guia/`.
 
 ```
-Landing  →  Edge Function "guide-download"  →  Supabase (guide_downloads)
-                                           └→  MailerLite (solo si tildó)
+Landing  →  Edge Function registrar-descarga  →  guide_downloads (Supabase)
+                                              └→  MailerLite (solo si tildó)
 ```
 
-La descarga del PDF **no pasa por acá**: se dispara en el navegador y no depende de nadie.
+La descarga del PDF **no pasa por acá**: se dispara en el navegador y no depende de nada de esto.
 
 ---
 
-## Qué guarda
+## Archivos
 
-Tabla `guide_downloads`: una fila por cada envío del formulario, tilde o no el newsletter.
+```
+supabase/
+├── config.toml
+├── functions/registrar-descarga/index.ts
+└── migrations/
+    ├── 20261110120000_consent_version.sql
+    └── 20261110120100_event_id.sql
+```
 
-| Campo | Para qué |
+---
+
+## Consentimiento
+
+| Concepto | Dónde se resuelve |
 |---|---|
-| `id` | Identificador único |
-| `name` | Nombre |
-| `email` | Email |
-| `resource` | Recurso descargado |
-| `created_at` | Fecha y hora |
-| `newsletter_consent` | Aceptó: sí/no |
-| `consent_at` | Fecha y hora de aceptación |
-| `utm_source` | Origen |
-| `utm_medium` | Medio |
-| `utm_campaign` | Campaña |
-| `newsletter_sync` | Resultado del alta en MailerLite |
-| `newsletter_error` | Detalle si falló |
+| `consent_at` | **Siempre servidor**. `new Date()` dentro de la función. El navegador no lo envía. Sólo se llena si `newsletter_consent === true`. |
+| `consent_text_version` | Constante `CONSENT_VERSION` en la función: `trama-invisible-2026-11-10` |
 
-`newsletter_sync` y `newsletter_error` los agregué para poder ver desde la base si un alta a MailerLite falló. Sin eso, un error de MailerLite quedaba invisible.
+Si cambia el texto visible del checkbox, **hay que cambiar `CONSENT_VERSION`** en el mismo commit. Los registros viejos quedan con `trama-invisible-v1` y no se tocan.
 
-Valores de `newsletter_sync`:
+Hash del texto actual, por si hace falta respaldo probatorio:
 
-- `skipped` — no tildó, no se tocó MailerLite
-- `synced` — alta correcta
-- `unsubscribed` — ya estaba de baja; **no se reactiva**
-- `error` — falló la llamada
+```
+sha256(139 caracteres) = 4b2cc5b29c42af57fc15464dbf334529e7fd0fb5fcb7128644e12cd661a819e5
+```
+
+---
+
+## Protección de bajas en MailerLite
+
+Antes de escribir, la función consulta `GET /api/subscribers/{email}`.
+
+| Estado actual | Qué hace |
+|---|---|
+| 404 (no existe) | Crea. Sin `status` salvo que `MAILERLITE_STATUS` lo indique. |
+| `active` | Actualiza campos y grupo. **Sin** `status`. |
+| `unconfirmed` | **No hace nada.** Confirmarlo por API fabricaría un consentimiento que no dio. |
+| `unsubscribed`, `bounced`, `junk` | **No hace nada.** |
+| La consulta falla | **No escribe nada.** Mejor no sincronizar que arriesgar el estado. |
+
+Nunca se envía `resubscribe`. Nunca se fuerza `status: "active"` sobre un contacto existente.
+
+> Comportamiento documentado por MailerLite: `POST /api/subscribers` sólo reactiva a un dado de baja si se manda `resubscribe: true`. `PUT` directamente no puede reactivar contactos `unsubscribed`, `bounced` o `junk` por protección antiabuso.
+
+### Doble opt-in
+
+Si la cuenta usa doble opt-in y querés que el alta dispare el mail de confirmación:
+
+```
+MAILERLITE_STATUS = unconfirmed
+```
+
+Si lo dejás vacío, no se envía `status` y MailerLite aplica el default de la cuenta.
+
+---
+
+## Resultado de la sincronización
+
+La respuesta trae un objeto `newsletter` con el estado:
+
+| `estado` | Significado |
+|---|---|
+| `sin_consentimiento` | No tildó. No se tocó MailerLite. |
+| `sincronizado` | Alta o actualización correcta. |
+| `omitido_baja` | Estaba `unsubscribed`, `bounced` o `junk`. No se tocó. |
+| `omitido_no_confirmado` | Doble opt-in pendiente. No se forzó. |
+| `error_configuracion` | Falta `MAILERLITE_API_KEY`. |
+| `error_api` | Falló la API. El detalle queda en el log. |
+
+```json
+{
+  "ok": true,
+  "download_id": "…",
+  "duplicate": false,
+  "newsletter_synced": true,
+  "newsletter": { "estado": "sincronizado", "detalle": "creado" }
+}
+```
+
+**Un fallo de MailerLite nunca invalida la descarga.** La fila ya está guardada cuando se intenta la sincronización, y el `catch` lo garantiza.
+
+No se agregaron columnas para esto: el estado viaja en la respuesta y queda en los logs de la función. Si más adelante querés consultarlo desde SQL, la columna mínima sería `newsletter_sync text`, con su migración aparte.
+
+---
+
+## Idempotencia
+
+El navegador genera un `event_id` (UUID v4) al primer envío y **lo conserva en los reintentos**. La tabla tiene un índice único parcial sobre esa columna.
+
+**Qué pasa si se pierde la respuesta:**
+
+1. El servidor inserta la fila con `event_id = A`.
+2. La respuesta no llega (corte, timeout, pestaña cerrada).
+3. La persona reintenta: mismo `A`.
+4. El `INSERT` choca con el índice único → la función busca la fila original y devuelve **ese** `download_id`, con `duplicate: true`.
+5. No se duplica nada y **no se vuelve a sincronizar** MailerLite.
+
+El índice es parcial (`where event_id is not null`) para que las filas históricas, que no tienen el campo, no choquen entre sí.
 
 ---
 
 ## Puesta en marcha
 
-### 1. Crear la tabla
-
-Supabase → **SQL Editor** → pegá y ejecutá el contenido de
-`migrations/20261109120000_guide_downloads.sql`.
-
-Queda con RLS activo y sin políticas: nadie con la anon key puede leer ni escribir. Solo la service role, que usa la función.
-
-### 2. Cargar los secretos
-
-Supabase → **Edge Functions → Secrets** (o `supabase secrets set`):
-
-| Secreto | Valor |
-|---|---|
-| `MAILERLITE_API_KEY` | MailerLite → Integrations → API → generar token |
-| `MAILERLITE_GROUP_ID` | ID del grupo "Trama invisible" |
-| `MAILERLITE_STATUS` | `active`, o `unconfirmed` si usás doble opt-in |
-| `ALLOWED_ORIGINS` | `https://gaufgang.com,https://www.gaufgang.com` |
-
-`SUPABASE_URL` y `SUPABASE_SERVICE_ROLE_KEY` las inyecta Supabase sola. No hay que cargarlas.
-
-Para sacar el ID del grupo: MailerLite → **Subscribers → Groups** → abrí "Trama invisible" y copiá el número de la URL.
-
-### 3. Desplegar la función
-
-Con la CLI de Supabase instalada y logueada:
-
-```bash
-supabase link --project-ref qjahvfyixsuljtxqipbs
-supabase db push          # aplica la migración
-supabase functions deploy guide-download
-```
-
-O sin CLI: **Edge Functions → Deploy a new function**, pegando el contenido de `functions/guide-download/index.ts` y agregando los secretos a mano.
-
-### 4. Probar
-
-Llená el formulario en `/guia/`. Tiene que:
-
-1. Abrir el PDF al instante.
-2. Mostrar "¡Gracias! Ya tenés tu guía."
-3. Aparecer una fila nueva en `guide_downloads`.
-
-Si tildaste el newsletter, además tiene que aparecer el contacto en MailerLite con `newsletter_sync = 'synced'`.
-
----
-
-## Cómo se comporta
-
-| Acción | Supabase | MailerLite | Descarga |
-|---|---|---|---|
-| Completa sin tildar | Sí | No | Sí |
-| Completa y tilda | Sí | Alta voluntaria | Sí |
-| Se da de baja después | Conserva el registro | Actualiza su estado | Ya descargó |
-
-MailerLite manda sobre el estado actual de la suscripción. Supabase conserva la evidencia del consentimiento original.
-
-**Si MailerLite ya la tiene como `unsubscribed`, la función no la reactiva.** Devuelve `newsletter_sync = 'unsubscribed'` y no toca nada.
-
----
-
-## Antispam
-
-Tres capas, sin captcha:
-
-1. **Campo trampa** (`website`): invisible para personas, los bots lo completan. Si viene con algo, se responde `ok` y no se guarda nada.
-2. **Tiempo mínimo**: menos de 1,2 s entre cargar la página y enviar es un bot.
-3. **Validación de formato** en el cliente y en el servidor.
-
-Si en algún momento entra basura, el siguiente paso es Cloudflare Turnstile: se agrega en el formulario y se verifica en la misma función, sin cambiar nada más.
+1. **SQL Editor** → ejecutar en orden:
+   - `migrations/20261110120000_consent_version.sql`
+   - `migrations/20261110120100_event_id.sql`
+2. **Edge Functions → Secrets**: `MAILERLITE_API_KEY`, `MAILERLITE_GROUP_ID`, y opcional `MAILERLITE_STATUS`.
+3. **Desplegar** `registrar-descarga` con `index.ts`.
+4. Probar con un email propio.
 
 ---
 
 ## Consultas útiles
 
 ```sql
--- Todo
-select * from public.guide_downloads order by created_at desc;
-
--- Solo quienes aceptaron el newsletter
-select email, name, created_at
+-- Reparto por versión de consentimiento
+select consent_text_version, newsletter_consent, count(*)
 from public.guide_downloads
-where newsletter_consent
-order by created_at desc;
+group by 1,2 order by 3 desc;
 
--- Altas que fallaron: para reintentar a mano
-select email, name, newsletter_error
-from public.guide_downloads
-where newsletter_sync = 'error'
-order by created_at desc;
+-- Esto tiene que dar 0 siempre
+select count(*) from public.guide_downloads
+where newsletter_consent = false and consent_at is not null;
 
--- De qué campaña vino cada uno
-select coalesce(utm_source, '(sin utm)') as origen, count(*)
+-- Duplicados (no debería haber ninguno con event_id)
+select email, count(*) from public.guide_downloads
+group by 1 having count(*) > 1 order by 2 desc;
+
+-- Altas por origen
+select coalesce(utm_source,'(sin utm)') as origen, count(*)
 from public.guide_downloads
 group by 1 order by 2 desc;
 ```
-
-Exportar: **Table Editor → guide_downloads → Export → CSV**.

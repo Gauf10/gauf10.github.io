@@ -3,8 +3,8 @@
 
 project_id = "qjahvfyixsuljtxqipbs"
 
-[functions.guide-download]
+[functions.registrar-descarga]
 # Endpoint público por diseño: lo llama el formulario desde el navegador.
-# La protección está en la validación de la función y en el antispam,
-# no en un JWT (la anon key es pública igual).
+# La protección real está en la validación y el honeypot dentro de la
+# función, no en un JWT (la anon key es pública igual).
 verify_jwt = false
