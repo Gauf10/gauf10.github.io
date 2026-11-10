@@ -49,7 +49,12 @@ Transformación: en el proceso, la idea inicial cambia. También nuestra compren
 
 
 # s8
-[Reflexión post-ejercicio]
+(audiencia pasiva o formato técnico limitado): "Pensá en la última conversación donde alguien te trajo una idea que no esperabas. ¿Qué hiciste con esa idea? ¿La recibiste, la ignoraste, la transformaste?" Breve intercambio en chat o en voz alta con quien quiera responder. Puede ser por whatsapp, por mensaje directo, en un encuentro cara a cara, puede ser laboral, personal. Revisá como contestaste vos. No importan tanto que propuesta era, lo tomaste como regalo o lo negaste como primera reacción? 
+Ahí se da la oportunidad a estar disponibles, a recibir, y crear con el otro. Dar lugar, validar, tomarlo como obsequio. 
+Incluso más, si ustedes son quien lleva una propuesta y es negada, tomar eso como impulso, que me pasa con el rechazo? que me pasa con que mi idea no sea escuchada siquiera? Insisto? Intento convencer? me entristezco y le digo que siempre me rechazan todo? me vuelvo creativo y la traigo de nuevo desde otro enfoque más creativo? me voy a otro lado a proponer lo mismo? 
+A donde me impulsa la respuesta del otro? que me pasa a mi con eso?
+Les dejo un ejercicio para que hagan en casa con alguien que tengan cerca, más tarde.
+Uno dice una acción: ejemplo vamos al parque, el otro contesta sin pensar, si y llevamos un mantel a cuadros, vuelve el primero, si vamos al parque con un mantel a cuadros y montamos un elefante, lo que sea, no hace falta que sea realistas, se rien y todo, solo que no niegan nada. Sigan así hasta tener unas 20 propuestas. Incluso una práctica interesante es hacerlo subiendo y bajando el brazo, al mismo tiempo, cuando la mano está arriba dicen la frase, eso les da ritmo y sobre todo evita que sobre piensen. La primer idea es la que vale. No negar al otro es muy importante y también es muy importante no negarse a uno mismo, esa locura que te aparece, es recontra válida, decila, no te censures. [Reflexión post-ejercicio]
 Lo que aparece al ver las charlas que tenemos, cuando damos espacio, es algo que no estaba en ninguno de nosotros por separado.
 No era una suma de partes. Era algo nuevo.
 Estamos co-creando, construyendo con distintas opiniones, direcciones y propuestas. Es algo habitual en las tormentas de ideas creativas "brainstorming", puede ser habitual en todos tus encuentros de ahora en más.
