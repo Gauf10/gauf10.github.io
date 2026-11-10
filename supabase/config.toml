@@ -1,0 +1,10 @@
+# Configuración del proyecto Supabase de GAUF
+# Proyecto: qjahvfyixsuljtxqipbs
+
+project_id = "qjahvfyixsuljtxqipbs"
+
+[functions.guide-download]
+# Endpoint público por diseño: lo llama el formulario desde el navegador.
+# La protección está en la validación de la función y en el antispam,
+# no en un JWT (la anon key es pública igual).
+verify_jwt = false
