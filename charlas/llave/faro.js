@@ -14,7 +14,7 @@
 
   var API_BASE = 'https://faro-api.gauf10.workers.dev';
 var CHARLA_NAME = 'La llave de la co-creación';
-var TOTAL_SLIDES = 11;
+var TOTAL_SLIDES = 12;
 var CHARLA_FOLDER = (function() {
   var m = location.pathname.match(/charlas\/([^/]+)\//);
   return m ? m[1] : '';
