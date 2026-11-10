@@ -206,6 +206,24 @@
   .btn:disabled{opacity:.55;cursor:default}
   .btn:disabled:hover{background:var(--ink);color:var(--bg)}
 
+  .btn-outline{
+    background:transparent;
+    border:2px solid var(--ink);
+    color:var(--ink);
+  }
+  .btn-outline:hover{
+    background:var(--ink);
+    color:var(--bg);
+  }
+
+  .btn-group{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    width:100%;
+  }
+  .btn-group .btn{width:100%}
+
   .status{
     margin-top:1.1rem;
     font-size:14px;line-height:1.6;
@@ -354,8 +372,11 @@
 
       <div class="success" id="confirmacion" tabindex="-1" aria-live="polite">
         <h2>¡Gracias! Ya tenés tu guía.</h2>
-        <p>Podés descargarla desde acá y volver a ella cuando quieras.</p>
-        <a class="btn" id="btn-descargar" href="https://gaufgang.com/guia/gauf_guia_para_crear_posibilidades.pdf" target="_blank" rel="noopener">Descargar CREAR POSIBILIDADES</a>
+        <p>Podés descargarla o leerla online.</p>
+        <div class="btn-group">
+          <a class="btn" id="btn-descargar" href="https://gaufgang.com/guia/gauf_guia_para_crear_posibilidades.pdf" target="_blank" rel="noopener">Descargar PDF</a>
+          <a class="btn btn-outline" id="btn-acceder" href="https://gaufgang.com/guia/crear/" target="_blank" rel="noopener">Acceder a la guía</a>
+        </div>
       </div>
 
     </div>
