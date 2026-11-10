@@ -76,7 +76,7 @@ La co-creación es un momento del acá y ahora y también requiere confianza y a
 
 # s10
 Acá atención, como todo hay que dar lugar, hay que cuidar y hay que dejar crecer. La energía es finita. 
-Es complejo estar en modo expansivo a cada momento y a cada rato, sino que también se necesita tiempo.
+Es complejo estar en modo expansivo a cada momento y a cada rato, sino que también se necesita tiempo0.
 
 
 00:12:29
