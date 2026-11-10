@@ -56,7 +56,7 @@ Incluso más, si ustedes son quien lleva una propuesta y es negada, tomar eso co
 A donde me impulsa la respuesta del otro? que me pasa a mi con eso?
 
 Les dejo un ejercicio para que hagan en casa con alguien que tengan cerca, más tarde.
-Uno dice una acción: ejemplo vamos al parque, el otro contesta sin pensar, si
+Uno dice una acción: ejemplo vamos al parque, el otro contesta sin pensar, si y llevamos 
 
 # s8
 [Reflexión post-ejercicio]
