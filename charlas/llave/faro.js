@@ -342,7 +342,10 @@ var CHARLA_FOLDER = (function() {
   function exportNotes() {
     var ta = document.getElementById('notes-editor');
     if (!ta) return;
-    var content = ta.value;
+    /* sincroniza lo escrito en el slide actual antes de exportar */
+    if (cur >= 0) notesCache['s' + cur] = ta.value;
+    var content = buildNotesMD();
+    if (!content) { showToast('No hay notas para exportar.'); return; }
     var blob = new Blob([content], { type: 'text/markdown;charset=utf-8' });
     var url = URL.createObjectURL(blob);
     var a = document.createElement('a');
@@ -353,7 +356,11 @@ var CHARLA_FOLDER = (function() {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-    showToast('Notas exportadas.');
+    var n = 0;
+    for (var i = 0; i < TOTAL_SLIDES; i++) {
+      if (notesCache['s' + i] && notesCache['s' + i].trim()) n++;
+    }
+    showToast('Notas exportadas (' + n + ' slides).');
   }
 
   function importNotes() {
@@ -365,12 +372,20 @@ var CHARLA_FOLDER = (function() {
       if (!file) return;
       var reader = new FileReader();
       reader.onload = function() {
+        var raw = String(reader.result || '');
+        var parsed = parseNotes(raw);
+        var n = 0;
+        for (var k in parsed) {
+          if (Object.prototype.hasOwnProperty.call(parsed, k)) n++;
+        }
+        if (!n) { showToast('El archivo no tiene notas reconocibles.'); return; }
+        /* reemplaza el cache completo: el archivo es la fuente de verdad */
+        notesCache = parsed;
         var ta = document.getElementById('notes-editor');
-        ta.value = reader.result;
-        notesCache['s' + cur] = reader.result;
-        var md = buildNotesMD();
-        Api.saveNotes(md).catch(function() {});
-        showToast('Notas importadas.');
+        if (ta) ta.value = getNotesForSlide(cur);
+        /* guarda el archivo tal cual vino, para no perder títulos ni formato */
+        Api.saveNotes(raw).catch(function() {});
+        showToast('Notas importadas (' + n + ' slides).');
       };
       reader.readAsText(file);
       input.value = '';
