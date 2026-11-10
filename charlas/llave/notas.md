@@ -80,7 +80,8 @@ Es complejo estar en modo expansivo a cada momento y a cada rato, sino que tambi
 
 Las semillas tardan en germinar, Alguno tiene huerta?
 Igual lo saben,  los procesos no son instantáneo. 
-Entonces, ténganse paciencia, con pasitos chiquitos cada día y encontrar los lugares donde más fluya, donde va mejor. Eh, incluso los vínculos necesitan tiempo, los proyectos necesitan tiempo. Hay que reservar espacio para que crezca lo que vamos plantando juntos.
+Entonces, ténganse paciencia, con pasitos chiquitos cada día y encontrar los lugares donde más fluya, donde va mejor. 
+Los vínculos necesitan tiempo, los proyectos necesitan tiempo. Hay que reservar espacio para que crezca lo que vamos plantando juntos.
 
 
 # s11
