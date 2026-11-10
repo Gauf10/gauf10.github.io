@@ -85,3 +85,4 @@ Te invito a que en tu próxima conversación, tu próxima reunión, tu próximo 
 Así habilitas nuevas manera de lo que es posible.
 Gracias.
 En el QR acceden a una mini guía gratuita con mucho de lo que dije en esta charla, también tienen formas de contactame y agendar una charla conmigo sin compromiso para poder conectar.
+Muchas gracias M
