@@ -68,17 +68,6 @@ Algunas ideas necesitan tiempo. Algunos vínculos necesitan tiempo. Algunos proy
 Reservar espacio para que crezca lo que plantamos juntos.
 La co-creación es un momento del acá y ahora y también requiere confianza y aceptación total que se va ganando con el tiempo, con los encuentros, con mostrarse permeable cada vez más.
 
-# s10
-[Pausa larga antes de hablar]
-La llave no está en tener la mejor idea.
-Está en cómo construimos con los demás.
-Te invito a que en tu próxima conversación, tu próxima reunión, tu próximo proyecto, te des la oportunidad de elegir: construir, validar, y crear con otros.
-Así habilitas nuevas manera de lo que es posible.
-Gracias.
-En el QR acceden a una mini guía gratuita con mucho de lo que dije en esta charla, también tienen formas de contactame y agendar una charla conmigo sin compromiso para poder conectar.
-Muchas gracias Mich y todo el equipazo que hace posible estos eventos fabulosos y muy necesarios.
-Todos pueden sacar su voz y contar al mundo lo que tienen para decir, nuestro paso por este mundo es muy importante. Somos valiosos.
-
 # s11
 Validar una propuesta no significa estar de acuerdo ni prometer que la vas a tomar tal cual.
 Significa reconocer que existe. Darle espacio para desarrollarse.
