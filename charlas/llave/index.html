@@ -6,6 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
+<meta name="goTo-version" content="14">
 <title>La llave de la co-creación — Gabriel Aufgang</title>
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="shortcut icon" href="favicon.ico">
@@ -39,12 +40,12 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
 
 /* Hero / type */
 .hero{text-align:center;max-width:88vw}
-.hero-line{font-size:clamp(18px,3.2vw,44px);font-weight:300;line-height:1.5;letter-spacing:0.04em;color:var(--bone)}
+.hero-line{font-size:44px;font-weight:300;line-height:1.5;letter-spacing:0.04em;color:var(--bone)}
 .accent,.hero-line.accent{color:var(--accent)}
 .hero-break-lg{height:clamp(32px,6vh,96px)}
 
 /* Subtitle */
-.sub-text{font-size:clamp(13px,1.5vw,22px);font-weight:300;color:var(--dim);letter-spacing:0.04em;margin-top:clamp(12px,2vh,24px)}
+.sub-text{font-size:28px;font-weight:300;color:var(--dim);letter-spacing:0.04em;margin-top:clamp(12px,2vh,24px)}
 
 /* Section label */
 .sec-label{font-size:clamp(10px,.9vw,14px);color:var(--dim);letter-spacing:0.14em;text-transform:uppercase;font-weight:400;margin-bottom:clamp(20px,2.8vh,44px)}
@@ -56,11 +57,11 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
 
 /* Big idea slides */
 .idea-wrap{text-align:center;max-width:84vw}
-.idea-text{font-size:clamp(18px,3.2vw,44px);font-weight:300;line-height:1.5;letter-spacing:0.04em}
+.idea-text{font-size:44px;font-weight:300;line-height:1.5;letter-spacing:0.04em}
 
 /* Framework steps */
 .framework{text-align:center;display:flex;flex-direction:column;align-items:center;gap:clamp(10px,1.6vh,20px)}
-.fw-step{font-size:clamp(18px,3.2vw,44px);font-weight:300;letter-spacing:0.04em;color:var(--bone);line-height:1.3}
+.fw-step{font-size:44px;font-weight:300;letter-spacing:0.04em;color:var(--bone);line-height:1.3}
 .fw-step.accent{color:var(--accent)}
 .fw-sep{font-size:clamp(12px,1.2vw,18px);color:var(--dim2);line-height:1;opacity:0;transition:opacity .8s ease;transform:none}
 .fw-sep.revealed{opacity:1}
@@ -173,7 +174,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
           <img src="assets/impro.png" alt="Match de improvisación">
         </div>
         <div class="hero">
-          <div class="hero-line">Algo apareció en escena</div>
+          <div class="hero-line">Algo aparece al conectar</div>
           <div class="sub-text">Cuando confiás, aparecen cosas que no sabías que podían pasar</div>
         </div>
       </div>
@@ -218,8 +219,27 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
     </div>
   </div>
 
-  <!-- ═══ 6 — Cyan: La idea del otro es un regalo ═══ -->
-  <div class="slide slide-cyan" id="s5">
+  <!-- ═══ 5 — Si, dale. Animarse a proponer ═══ -->
+  <div class="slide" id="s5">
+    <div class="si">
+      <div class="si-content" style="flex-direction:column;justify-content:center;align-items:center;gap:clamp(16px,2.5vh,32px)">
+        <div class="img-wrap">
+          <img src="assets/i1_5seis.jpg" alt="5SEIS">
+        </div>
+        <div class="hero">
+          <div class="hero-line">Si, dale. Animarse a proponer</div>
+          <div class="sub-text">Después buscamos cómo hacerlo posible.</div>
+        </div>
+      </div>
+      <img src="assets/llave.png" alt="La Llave" class="corner-logo">
+      <div class="si-footer">
+        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 7 — Cyan: La idea del otro es un regalo ═══ -->
+  <div class="slide slide-cyan" id="s7">
     <div class="si">
       <div class="si-content">
         <div class="idea-wrap">
@@ -254,8 +274,8 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
     </div>
   </div>
 
-  <!-- ═══ 8 — Cyan: Vamos a probarlo ═══ -->
-  <div class="slide slide-cyan" id="s7">
+  <!-- ═══ 9 — Cyan: Vamos a probarlo ═══ -->
+  <div class="slide slide-cyan" id="s8">
     <div class="si">
       <div class="si-content">
         <div class="idea-wrap">
@@ -269,8 +289,8 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
     </div>
   </div>
 
-  <!-- ═══ 9 — Algo que no existía antes ═══ -->
-  <div class="slide" id="s8">
+  <!-- ═══ 10 — Algo que no existía antes ═══ -->
+  <div class="slide" id="s9">
     <div class="si">
       <div class="si-content">
         <div class="hero">
@@ -287,8 +307,8 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
     </div>
   </div>
 
-  <!-- ═══ 10 — Dar lugar, cuidar, dejar crecer ═══ -->
-  <div class="slide" id="s9">
+  <!-- ═══ 11 — Dar lugar, cuidar, dejar crecer ═══ -->
+  <div class="slide" id="s10">
     <div class="si">
       <div class="si-content">
         <div class="hero">
@@ -303,13 +323,13 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
     </div>
   </div>
 
-  <!-- ═══ 11 — Cierre + QR ═══ -->
-  <div class="slide slide-cyan" id="s10">
+  <!-- ═══ 12 — Cierre + QR ═══ -->
+  <div class="slide slide-cyan" id="s11">
     <div class="si">
       <div class="si-content" style="flex-direction:column;justify-content:center;align-items:center">
         <div class="idea-wrap">
           <div class="idea-text">La llave está en<br>cómo construimos</div>
-          <div style="font-size:clamp(11px,1.1vw,16px);font-weight:300;color:rgba(26,26,26,.5);letter-spacing:0.04em;margin-top:clamp(10px,1.5vh,20px);line-height:1.7">aprender de lo que aparece · abrazar lo inesperado · construir con otros</div>
+          <div style="font-size:28px;font-weight:300;color:rgba(26,26,26,.5);letter-spacing:0.04em;margin-top:clamp(10px,1.5vh,20px);line-height:1.7">aprender de lo que aparece · abrazar lo inesperado · construir con otros</div>
         </div>
         <img src="assets/qrcode_gaufgang_guia_llave.png?v=1" alt="QR — guía de La Llave" class="qr-img">
       </div>
@@ -325,7 +345,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Archivo',sans-seri
 <script src="broadcast.js"></script>
 <script>
 var cur = 0;
-var TOTAL = 11;
+var TOTAL = 12;
 var animating = false;
 var autoTimer = null;
 var slidesHTML = [];
@@ -336,6 +356,15 @@ function getSlide(i) { return document.querySelectorAll('.slide')[i]; }
 function goTo(n) {
   if (animating || n === cur || n < 0 || n >= TOTAL) return;
   animating = true;
+
+  if (autoTimer) { clearTimeout(autoTimer); autoTimer = null; }
+
+  // reset reveal steps del destino para que siempre reaparezcan por tiempo
+  var dest = getSlide(n);
+  var destSteps = dest.querySelectorAll('.reveal-step');
+  for (var k = 0; k < destSteps.length; k++) {
+    destSteps[k].classList.remove('revealed');
+  }
 
   for (var i = 0; i < TOTAL; i++) {
     var s = getSlide(i);
