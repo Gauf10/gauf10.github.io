@@ -10,7 +10,7 @@ revisar las repeticiones, sentí que dije muchas veces los mismos conceptos.
 Tener formato de 10 min y de 20 min.
 Tuve que correr por el atraso en arrancar.
 
-Tener
+Tener ejercicios por las dudas y también
 
 ## Preguntas que aparecieron
 
