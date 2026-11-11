@@ -1,6 +1,6 @@
 # s0
 Respirar. Mirar a la audiencia antes de hablar.
-Buenas como andan? que jornada espectacular. Ahora voy a contarles algo que me pasó en un escenario, como la confianza me llevó a lugares nuevos. 
+Buenas como andan? que jornada espectacular. no?Ahora voy a contarles algo que me pasó en un escenario, como la confianza me llevó a lugares nuevos. 
 Vamos directo a la historia.
 
 # s1
