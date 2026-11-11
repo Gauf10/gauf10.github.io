@@ -52,8 +52,6 @@ Validación: reconocer las propuestas de los demás y darles lugar.
 Construcción: hacer algo con lo que aparece. Escuchar, conectar, aportar, probar.
 Transformación: en el proceso, la idea inicial cambia. También nuestra comprensión del problema. El resultado puede ser algo que ninguno habría imaginado por separado.
 
-
-
 # s8
 (audiencia pasiva o formato técnico limitado): "Pensá en la última conversación donde alguien te trajo una idea que no esperabas. ¿Qué hiciste con esa idea? ¿La recibiste, la ignoraste, la transformaste?" Breve intercambio en chat o en voz alta con quien quiera responder. Puede ser por whatsapp, por mensaje directo, en un encuentro cara a cara, puede ser laboral, personal. Revisá como contestaste vos. No importan tanto que propuesta era, lo tomaste como regalo o lo negaste como primera reacción? 
 Ahí se da la oportunidad a estar disponibles, a recibir, y crear con el otro. Dar lugar, validar, tomarlo como obsequio. 
@@ -76,7 +74,6 @@ Las ideas cambian, incluso nuestros enfoques a los problemas van a cambiar; y po
 # s10
 Acá atención, como todo hay que dar lugar, hay que cuidar y hay que dejar crecer. La energía es finita. 
 Es complejo estar en modo expansivo a cada momento y a cada rato, sino que también se necesita tiempo. Introspección.
-
 Las semillas tardan en germinar, Alguno tiene huerta?
 Igual lo saben, los procesos no son instantáneo. 
 Entonces, ténganse paciencia, con pasitos chiquitos cada día y encontrar los lugares donde más fluya, donde va mejor. 
@@ -88,7 +85,6 @@ La llave no está en tener la mejor idea.
 Está en cómo construimos con los demás.
 Te invito a que en tu próxima conversación, tu próxima reunión, tu próximo proyecto, te des la oportunidad de elegir: construir, validar, y crear con otros.
 Así habilitas nuevas manera de lo que es posible.
-
 Todos pueden sacar su voz y contar al mundo lo que tienen para decir, nuestro paso por este mundo es muy importante. Somos valiosos.
 Gracias.
 En el QR acceden a una mini guía gratuita con mucho de lo que dije en esta charla, también tienen formas de contactame y agendar una charla conmigo sin compromiso para poder conectar.
