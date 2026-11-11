@@ -1,7 +1,7 @@
 # s0
 Respirar. Mirar a la audiencia antes de hablar.
 Buenas como andan? que jornada espectacular. no?
-Encantado de estar con usdetAhora voy a contarles algo que me pasó en un escenario, como la confianza me llevó a lugares nuevos. 
+Encantado de estar con ustedes hoy.Ahora voy a contarles algo que me pasó en un escenario, como la confianza me llevó a lugares nuevos. 
 Vamos directo a la historia.
 
 # s1
