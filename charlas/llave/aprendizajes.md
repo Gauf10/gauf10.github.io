@@ -6,7 +6,7 @@ las historias y hablar genuino
 
 ## Qué cambiaría
 
-revisar las repeticiones
+revisar las repeticiones, sentí que dije muchas veces los mismos conceptos.
 
 ## Preguntas que aparecieron
 
