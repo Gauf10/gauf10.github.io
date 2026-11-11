@@ -6,7 +6,7 @@ las historias y hablar genuino
 
 ## Qué cambiaría
 
-—
+revisar las repeticiones
 
 ## Preguntas que aparecieron
 
