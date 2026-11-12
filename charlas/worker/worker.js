@@ -59,20 +59,44 @@ function getAuth(request) {
   return h.slice(7);
 }
 
-function verifyToken(token) {
-  var entry = tokens.get(token);
-  if (!entry) return null;
-  if (Date.now() - entry.created > TOKEN_EXPIRY_MS) {
-    tokens.delete(token);
-    return null;
-  }
-  return entry;
+/* Tokens firmados (HMAC con FARO_PASSWORD): no dependen de la memoria del worker,
+   así no se pierden cuando Cloudflare reinicia o cambia de instancia. */
+function b64url(bytes) {
+  var bin = '';
+  for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+  return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+function fromB64url(s) {
+  s = s.replace(/-/g, '+').replace(/_/g, '/');
+  while (s.length % 4) s += '=';
+  var bin = atob(s), out = new Uint8Array(bin.length);
+  for (var i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+  return out;
+}
+async function hmac(data, env) {
+  var key = await crypto.subtle.importKey('raw', new TextEncoder().encode('faro:' + env.FARO_PASSWORD),
+    { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+  return b64url(new Uint8Array(await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(data))));
+}
+async function makeToken(entry, env) {
+  var payload = b64url(new TextEncoder().encode(JSON.stringify(entry)));
+  return payload + '.' + (await hmac(payload, env));
+}
+async function verifyToken(token, env) {
+  var parts = (token || '').split('.');
+  if (parts.length !== 2) return null;
+  if ((await hmac(parts[0], env)) !== parts[1]) return null;
+  try {
+    var entry = JSON.parse(new TextDecoder().decode(fromB64url(parts[0])));
+    if (Date.now() - entry.created > TOKEN_EXPIRY_MS) return null;
+    return entry;
+  } catch (e) { return null; }
 }
 
-function requireAuth(request) {
+async function requireAuth(request, env) {
   var token = getAuth(request);
   if (!token) return null;
-  return verifyToken(token);
+  return verifyToken(token, env);
 }
 
 async function ghGet(path, env, repo) {
@@ -144,17 +168,16 @@ export default {
       if (body.password !== env.FARO_PASSWORD) {
         return error('invalid credentials', 401, origin);
       }
-      var token = uuid();
-      tokens.set(token, {
+      var token = await makeToken({
         charla: body.charla,
         folder: body.folder || null,
         created: Date.now(),
-      });
+      }, env);
       return json({ token: token, expiresIn: TOKEN_EXPIRY_MS }, 200, origin);
     }
 
     /* ── require auth for all other endpoints ── */
-    var entry = requireAuth(request);
+    var entry = await requireAuth(request, env);
     if (!entry) return error('unauthorized', 401, origin);
     var charla = entry.charla;
     var charlaPath = entry.folder ? 'charlas/' + entry.folder : env.CHARLA_PATH;
