@@ -3,16 +3,12 @@
 //
 //  Las preguntas viven en preguntas.json (servidor). Cualquier
 //  visitante las lee con fetch(). El panel Admin permite
-//  editarlas y, al guardar, hace commit directo al repo vía
-//  GitHub Contents API — así el cambio queda para todos.
-//
-//  CONFIGURACIÓN — cambiar solo esto si hace falta
+//  editarlas: se entra con la contraseña de FARO y el guardado
+//  lo hace el worker faro-api (el token de GitHub vive en
+//  Cloudflare, nunca en este código ni en el navegador).
 // ============================================================
-const REPO_OWNER = 'gauf10';
-const REPO_NAME = 'gauf10.github.io';
-const FILE_PATH = 'preguntas/preguntas.json';
-const BRANCH = 'main';
-const ADMIN_PASSWORD = 'gaufgang2026'; // ← cambiar acá cuando quieras
+const API_BASE = 'https://faro-api.gauf10.workers.dev';
+let adminToken = null;
 
 let preguntas = [];
 let preguntaActualIndex = -1;
@@ -72,12 +68,22 @@ function toggleEscribir() {
 // ------------------------------------------------------------
 //  Admin — edición de preguntas vía GitHub Contents API
 // ------------------------------------------------------------
-function abrirAdmin() {
-  const pass = prompt('Contraseña de administrador:');
-  if (pass === null) return;
-  if (pass !== ADMIN_PASSWORD) {
-    alert('Contraseña incorrecta.');
-    return;
+async function abrirAdmin() {
+  if (!adminToken) {
+    const pass = prompt('Contraseña (la misma de FARO):');
+    if (pass === null) return;
+    try {
+      const res = await fetch(API_BASE + '/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ charla: 'preguntas', password: pass })
+      });
+      if (!res.ok) throw new Error('bad');
+      adminToken = (await res.json()).token;
+    } catch (e) {
+      alert('Contraseña incorrecta.');
+      return;
+    }
   }
   document.getElementById('admin-panel').style.display = 'flex';
   document.getElementById('admin-textarea').value = preguntas.join('\n');
@@ -100,38 +106,23 @@ async function guardarPreguntas() {
     return;
   }
 
-  const token = prompt('Pegá tu GitHub Personal Access Token (no se guarda, solo se usa para este commit):');
-  if (!token) return;
-
   const status = document.getElementById('admin-status');
   status.textContent = 'Guardando...';
 
   try {
-    const apiUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
-
-    const getRes = await fetch(apiUrl + '?ref=' + BRANCH, {
-      headers: { Authorization: 'token ' + token }
-    });
-    if (!getRes.ok) throw new Error('No se pudo leer el archivo actual (HTTP ' + getRes.status + ')');
-    const getData = await getRes.json();
-
-    const contenidoJSON = JSON.stringify(nuevas, null, 2);
-    const contenidoB64 = btoa(unescape(encodeURIComponent(contenidoJSON)));
-
-    const putRes = await fetch(apiUrl, {
+    const putRes = await fetch(API_BASE + '/api/preguntas', {
       method: 'PUT',
       headers: {
-        Authorization: 'token ' + token,
+        Authorization: 'Bearer ' + adminToken,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        message: 'Actualiza preguntas desde el panel admin',
-        content: contenidoB64,
-        sha: getData.sha,
-        branch: BRANCH
-      })
+      body: JSON.stringify({ preguntas: nuevas })
     });
 
+    if (putRes.status === 401) {
+      adminToken = null;
+      throw new Error('La sesión venció. Cerrá y volvé a entrar.');
+    }
     if (!putRes.ok) {
       const err = await putRes.json().catch(() => ({}));
       throw new Error(err.message || ('HTTP ' + putRes.status));
