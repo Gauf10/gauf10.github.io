@@ -15,6 +15,7 @@
   var API_BASE = 'https://faro-api.gauf10.workers.dev';
 var CHARLA_NAME = 'La llave de la co-creación';
 var TOTAL_SLIDES = 12;
+var VIDEO_BUTTON = false; /* true si index.html maneja 'playVideo' */
 var CHARLA_FOLDER = (function() {
   var m = location.pathname.match(/charlas\/([^/]+)\//);
   return m ? m[1] : '';
@@ -242,6 +243,23 @@ var CHARLA_FOLDER = (function() {
     }
     mountShadow(host, html, '');
     fitShadowHost(el);
+    /* si el slide tiene video, botón para reproducirlo en la presentación */
+    var ov = el.querySelector('#video-play');
+    var hasVideo = VIDEO_BUTTON && /<video/i.test(html);
+    if (hasVideo && !ov) {
+      ov = document.createElement('div');
+      ov.id = 'video-play';
+      ov.title = 'Reproducir video';
+      ov.innerHTML = '<button id="video-play-btn" aria-label="Reproducir video">'
+        + '<svg class="play-tri" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>'
+        + '<span>Reproducir video</span></button>';
+      ov.addEventListener('click', function() {
+        if (broadcast) broadcast.postMessage({ type: 'playVideo' });
+      });
+      el.appendChild(ov);
+    } else if (!hasVideo && ov) {
+      ov.remove();
+    }
   }
 
   function renderNext(index) {
