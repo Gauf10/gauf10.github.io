@@ -1,0 +1,231 @@
+[
+  {
+    "slug": "exp-humanas",
+    "title": "Diseñar desde la experiencia humana",
+    "observation": "Diseñamos para personas. Primero hay que entenderlas.",
+    "question": "¿Cómo tomamos mejores decisiones cuando diseñamos con y para otras personas?",
+    "idea": "Las mejores decisiones nacen cuando una idea se encuentra con la realidad de las personas.",
+    "summary": "Una exploración sobre cómo el diseño centrado en la experiencia humana transforma la manera en que creamos productos, servicios y conversaciones.",
+    "tags": [
+      "Experiencias",
+      "Liderazgo",
+      "Comunicación"
+    ],
+    "themes": [
+      "Experiencias",
+      "Liderazgo",
+      "Comunicación"
+    ],
+    "duration": "45",
+    "status": "activa",
+    "activeStatus": "activa",
+    "editorialStatus": "public",
+    "resources": [
+      {
+        "type": "Presentación",
+        "title": "Presentación interactiva",
+        "url": "exp-humanas/index.html",
+        "public": true
+      }
+    ],
+    "conversations": [
+      {
+        "event": "Sesión en vivo",
+        "organization": "Comunidad GAUF",
+        "location": "Buenos Aires, Argentina",
+        "date": "2024",
+        "format": "presencial",
+        "visible": true,
+        "resources": []
+      }
+    ]
+  },
+  {
+    "slug": "buen-rumbo",
+    "title": "¿Vamos bien?",
+    "observation": "Cambiar de rumbo no es fracaso. Insistir en una dirección equivocada sí puede serlo.",
+    "question": "¿Cómo saber si tu proyecto está avanzando en la dirección correcta?",
+    "idea": "No hay recetas. Solo algunas señales que, como una brújula, indican si vamos a buen rumbo y buen ritmo.",
+    "summary": "Una charla para equipos en etapa de desarrollo que necesitan herramientas simples para evaluar si sus decisiones apuntan en la dirección correcta.",
+    "tags": [
+      "Startups",
+      "Hackathons",
+      "Creatividad"
+    ],
+    "themes": [
+      "Startups",
+      "Hackathons",
+      "Creatividad"
+    ],
+    "duration": "25",
+    "status": "activa",
+    "activeStatus": "activa",
+    "editorialStatus": "public",
+    "resources": [
+      {
+        "type": "Presentación",
+        "title": "Presentación interactiva",
+        "url": "buen-rumbo/index.html",
+        "public": true
+      }
+    ],
+    "conversations": [
+      {
+        "event": "ETH Lima Hackathon 2026",
+        "organization": "ETH Lima",
+        "location": "Lima, Perú",
+        "date": "2026-08-06",
+        "format": "presencial",
+        "audience_desc": "Equipos de hackathon",
+        "visible": true,
+        "resources": []
+      }
+    ]
+  },
+  {
+    "slug": "impro-aplicada",
+    "title": "La improvisación como forma de relacionarnos",
+    "observation": "La improvisación no es una técnica teatral. Es una forma de relacionarnos con otras personas, construir confianza y crear mejores conversaciones.",
+    "question": "¿Qué cambia cuando dejamos de controlar cada respuesta y empezamos a construir con lo que aparece?",
+    "idea": "La improvisación no es caos. Es el arte de construir juntos, sin saber de antemano qué viene.",
+    "summary": "Esta conversación explora cómo los principios de la improvisación pueden ayudarnos a colaborar mejor, escuchar con mayor atención, aceptar la incertidumbre y generar confianza.",
+    "tags": [
+      "Improvisación",
+      "Comunicación",
+      "Liderazgo",
+      "Trabajo en equipo"
+    ],
+    "themes": [
+      "Improvisación",
+      "Comunicación",
+      "Liderazgo",
+      "Trabajo en equipo"
+    ],
+    "duration": "45",
+    "status": "activa",
+    "activeStatus": "activa",
+    "editorialStatus": "draft",
+    "audience": [
+      "startups",
+      "empresas",
+      "universidades",
+      "comunidades",
+      "educación",
+      "tecnología",
+      "rrhh"
+    ],
+    "resources": [],
+    "conversations": [
+      {
+        "event": "Actividad Impro",
+        "organization": "Fundación Cimientos",
+        "location": "Parque de Innovación, Buenos Aires",
+        "date": "2025-09-24",
+        "format": "presencial",
+        "audience_desc": "Estudiantes secundarios",
+        "visible": true,
+        "resources": []
+      },
+      {
+        "event": "Nerdearla 2025",
+        "organization": "Nerdearla",
+        "location": "Ciudad Cultural Konex",
+        "date": "2025-09-27",
+        "format": "presencial",
+        "audience_desc": "Desarrolladores",
+        "visible": true,
+        "resources": []
+      },
+      {
+        "event": "Conferencia Anual Reclutando Latinoamérica",
+        "organization": "Reclutando Latinoamérica",
+        "location": "Buenos Aires",
+        "date": "2025-11-13",
+        "format": "presencial",
+        "audience_desc": "Recruiters y RRHH",
+        "visible": true,
+        "resources": []
+      },
+      {
+        "event": "Startup World Cup Argentina 2026",
+        "organization": "Pegasus Tech Ventures",
+        "location": "Workplace by IRSA",
+        "date": "2026-08-07",
+        "format": "presencial",
+        "audience_desc": "Founders",
+        "visible": true,
+        "resources": []
+      }
+    ],
+    "cover": "covers/impro-aplicada-cover.png"
+  },
+  {
+    "slug": "llave",
+    "title": "La llave de la co-creación",
+    "observation": "",
+    "question": "",
+    "idea": "",
+    "summary": "",
+    "tags": [],
+    "themes": [],
+    "duration": "45",
+    "status": "activa",
+    "activeStatus": "activa",
+    "editorialStatus": "draft",
+    "resources": [
+      {
+        "type": "Presentación",
+        "title": "Presentación interactiva",
+        "url": "llave/index.html",
+        "public": true
+      }
+    ],
+    "conversations": []
+  },
+  {
+    "slug": "converge",
+    "title": "Tenés una idea. Ahora contala.",
+    "observation": "",
+    "question": "",
+    "idea": "",
+    "summary": "",
+    "tags": [],
+    "themes": [],
+    "duration": "45",
+    "status": "activa",
+    "activeStatus": "activa",
+    "editorialStatus": "draft",
+    "resources": [
+      {
+        "type": "Presentación",
+        "title": "Presentación interactiva",
+        "url": "converge/index.html",
+        "public": true
+      }
+    ],
+    "conversations": []
+  },
+  {
+    "slug": "glaux",
+    "title": "Todo conecta",
+    "observation": "",
+    "question": "",
+    "idea": "",
+    "summary": "",
+    "tags": [],
+    "themes": [],
+    "duration": "45",
+    "status": "activa",
+    "activeStatus": "activa",
+    "editorialStatus": "draft",
+    "resources": [
+      {
+        "type": "Presentación",
+        "title": "Presentación interactiva",
+        "url": "glaux/index.html",
+        "public": true
+      }
+    ],
+    "conversations": []
+  }
+]

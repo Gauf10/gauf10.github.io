@@ -230,8 +230,11 @@ select option{background:var(--bk)}
 
 /* ── RESOURCES ── */
 
-.resource-row{display:grid;grid-template-columns:140px 1fr 1fr 28px;gap:8px;align-items:start;margin-bottom:10px}
+.resource-row{display:grid;grid-template-columns:130px 1fr 1fr 92px 28px;gap:8px;align-items:start;margin-bottom:10px}
 @media(max-width:640px){.resource-row{grid-template-columns:1fr;gap:6px}}
+.pub-sw{display:flex;align-items:center;gap:6px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);cursor:pointer;padding-top:8px;user-select:none}
+.pub-sw .toggle-sw{flex:none}
+.pub-sw.on{color:var(--accent)}
 .resource-row select{padding:clamp(8px,1.1vh,11px) clamp(10px,1.3vw,14px)}
 .resource-remove{align-self:center;padding:0;width:28px;height:28px;display:flex;align-items:center;justify-content:center;color:var(--err);border:1px solid rgba(224,82,82,.25);background:transparent;cursor:pointer;transition:background .15s;flex-shrink:0}
 .resource-remove:hover{background:rgba(224,82,82,.08)}
@@ -373,11 +376,11 @@ select option{background:var(--bk)}
       <div style="font-size:clamp(10px,.78vw,12px);font-weight:300;color:var(--dim)" id="save-status"></div>
     </div>
     <div class="export-panel" id="export-panel">
-      <div class="export-label">JSON para pegar en index.html → DEFAULT_CHARLAS</div>
+      <div class="export-label">Respaldo: contenido de charlas/charlas.json</div>
       <textarea class="export-text" id="export-text" readonly></textarea>
       <div class="export-actions">
         <button class="btn primary" onclick="copyExport()">Copiar al portapapeles</button>
-        <span style="font-size:clamp(10px,.78vw,12px);font-weight:300;color:var(--dim);align-self:center">Reemplazá el array DEFAULT_CHARLAS en index.html y hacé git push.</span>
+        <span style="font-size:clamp(10px,.78vw,12px);font-weight:300;color:var(--dim);align-self:center">Ya no hace falta pegarlo: Guardar publica solo. Esto es una copia por las dudas.</span>
       </div>
     </div>
   </div>
@@ -567,56 +570,82 @@ function screen(id) {
    STORAGE
 ══════════════════════════════════════════════ */
 
-function loadData() {
-  try {
-    var raw = localStorage.getItem(LS_DATA);
-    if (raw) { var d = JSON.parse(raw); if (Array.isArray(d)) return d; }
-  } catch(e) {}
-  /* intentar cargar los defaults de index.html embebidos */
-  return [
-    {
-      slug:'exp-humanas',title:'Diseñar desde la experiencia humana',
-      observation:'Diseñamos para personas. Primero hay que entenderlas.',
-      question:'¿Cómo tomamos mejores decisiones cuando diseñamos con y para otras personas?',
-      idea:'Las mejores decisiones nacen cuando una idea se encuentra con la realidad de las personas.',
-      summary:'Una exploración sobre cómo el diseño centrado en la experiencia humana transforma la manera en que creamos productos, servicios y conversaciones.',
-      themes:['Experiencias','Liderazgo','Comunicación'],duration:45,status:'activa',
-      resources:{presentation:'exp-humanas/index.html',pdf:null,video:null},
-      conversations:[{event:'Sesión en vivo',organization:'Comunidad GAUF',location:'Buenos Aires, Argentina',date:'2024',description:null,video:null,testimonial:null}]
-    },
-    {
-      slug:'buen-rumbo',title:'¿Vamos bien?',
-      observation:'Cambiar de rumbo no es fracaso. Insistir en una dirección equivocada sí puede serlo.',
-      question:'¿Cómo saber si tu proyecto está avanzando en la dirección correcta?',
-      idea:'No hay recetas. Solo algunas señales que, como una brújula, indican si vamos a buen rumbo y buen ritmo.',
-      summary:'Una charla para equipos en etapa de desarrollo que necesitan herramientas simples para evaluar si sus decisiones apuntan en la dirección correcta.',
-      themes:['Startups','Hackathons','Creatividad'],duration:25,status:'activa',
-      resources:{presentation:'buen-rumbo/index.html',pdf:null,video:null},
-      conversations:[{event:'ETH Lima Hackathon 2026',organization:'ETH Lima',location:'Lima, Perú',date:'2026-08-06',description:'Sesión en vivo de 25 minutos.',video:null,testimonial:null}]
-    },
-    {
-      slug:'impro-aplicada',title:'La improvisación como forma de relacionarnos',
-      observation:'La improvisación no es una técnica teatral. Es una forma de relacionarnos con otras personas, construir confianza y crear mejores conversaciones.',
-      question:'¿Qué cambia cuando dejamos de controlar cada respuesta y empezamos a construir con lo que aparece?',
-      idea:'La improvisación no es caos. Es el arte de construir juntos, sin saber de antemano qué viene.',
-      summary:'Esta conversación explora cómo los principios de la improvisación pueden ayudarnos a colaborar mejor, escuchar con mayor atención, aceptar la incertidumbre y generar confianza.',
-      themes:['Improvisación','Comunicación','Liderazgo','Trabajo en equipo'],duration:45,status:'activa',editorialStatus:'draft',
-      audience:['startups','empresas','universidades','comunidades','educacion','tecnologia','rrhh'],
-      resources:[],
-      conversations:[
-        {event:'Actividad Impro',organization:'Fundación Cimientos',location:'Parque de Innovación, Buenos Aires',date:'2025-09-24',format:'presencial',audience_desc:'Estudiantes secundarios',description:null},
-        {event:'Nerdearla 2025',organization:'Nerdearla',location:'Ciudad Cultural Konex',date:'2025-09-27',format:'presencial',audience_desc:'Desarrolladores',description:null},
-        {event:'Conferencia Anual Reclutando Latinoamérica',organization:'Reclutando Latinoamérica',location:'Buenos Aires',date:'2025-11-13',format:'presencial',audience_desc:'Recruiters y RRHH',description:null},
-        {event:'Startup World Cup Argentina 2026',organization:'Pegasus Tech Ventures',location:'Workplace by IRSA',date:'2026-08-07',format:'presencial',audience_desc:'Founders',description:null}
-      ]
+/* Los datos viven en charlas/charlas.json (repo). El index público lee ese archivo.
+   localStorage queda solo como copia de respaldo por si falla la conexión. */
+function normalize(list) {
+  return (list || []).map(function(c) {
+    var r = c.resources;
+    if (r && !Array.isArray(r)) {               /* formato viejo {presentation,pdf,video} */
+      var arr = [];
+      if (r.presentation) arr.push({type:'Presentación', title:'Presentación interactiva', url:r.presentation});
+      if (r.pdf)   arr.push({type:'PDF',   title:'PDF',   url:r.pdf});
+      if (r.video) arr.push({type:'Video', title:'Video', url:r.video});
+      r = arr;
     }
-  ];
+    c.resources = (r || []).map(function(x){ x.public = x.public !== false; return x; });
+    c.tags = c.tags || c.themes || [];
+    c.themes = c.tags;
+    c.conversations = (c.conversations || []).map(function(v){
+      v.visible = v.visible !== false;
+      v.resources = (v.resources || []).map(function(x){ x.public = x.public !== false; return x; });
+      return v;
+    });
+    return c;
+  });
+}
+
+function loadLocal() {
+  try { var d = JSON.parse(localStorage.getItem(LS_DATA)); if (Array.isArray(d)) return d; } catch(e) {}
+  return null;
+}
+
+function loadData() {
+  if (!authToken) return Promise.resolve(normalize(loadLocal() || getDefaults()));
+  return fetch(API_BASE + '/api/charlas', { headers:{'Authorization':'Bearer '+authToken} })
+    .then(function(r){
+      if (r.status === 401) { logoutExpired(); throw new Error('401'); }
+      if (!r.ok) throw new Error('http');
+      return r.json();
+    })
+    .then(function(d){
+      var list = JSON.parse(d.content || '[]');
+      if (!Array.isArray(list) || !list.length) list = loadLocal() || getDefaults();
+      return normalize(list);
+    })
+    .catch(function(e){
+      if (e.message === '401') throw e;
+      showToast('No pude leer del repo. Uso la copia local.');
+      return normalize(loadLocal() || getDefaults());
+    });
 }
 
 function saveData() {
   try { localStorage.setItem(LS_DATA, JSON.stringify(CHARLAS)); } catch(e){}
   var el = document.getElementById('save-status');
-  if (el) el.textContent = 'Guardado ✓';
+  if (!authToken) { showToast('Sin sesión: guardado solo en este navegador.'); return Promise.resolve(false); }
+  if (el) el.textContent = 'Publicando…';
+  return fetch(API_BASE + '/api/charlas', {
+    method:'PUT',
+    headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},
+    body: JSON.stringify({ content: JSON.stringify(CHARLAS, null, 2) })
+  }).then(function(r){
+    if (r.status === 401) { logoutExpired(); return false; }
+    if (!r.ok) throw new Error('http');
+    if (el) el.textContent = 'Publicado ✓';
+    showToast('Publicado. El sitio se actualiza en ~1 minuto.', 3500);
+    return true;
+  }).catch(function(){
+    if (el) el.textContent = 'Error al publicar';
+    showToast('No se pudo publicar. Quedó guardado en este navegador; probá de nuevo.', 4000);
+    return false;
+  });
+}
+
+function logoutExpired() {
+  authToken = null;
+  sessionStorage.removeItem(LS_TOKEN);
+  showToast('La sesión venció. Volvé a entrar.');
+  screen('s-login');
 }
 
 /* ══════════════════════════════════════════════
@@ -655,19 +684,12 @@ function doLogin() {
 }
 
 function onLoggedIn() {
-  CHARLAS = loadData();
-  /* agregar defaults que no estén en localStorage */
-  var defaults = getDefaults();
-  var changed = false;
-  defaults.forEach(function(d) {
-    if (!CHARLAS.find(function(c){ return c.slug === d.slug; })) {
-      CHARLAS.push(d); changed = true;
-    }
-  });
-  if (changed) saveData();
-  renderList();
-  screen('s-list');
-  window.scrollTo(0, 0);
+  loadData().then(function(list){
+    CHARLAS = list;
+    renderList();
+    screen('s-list');
+    window.scrollTo(0, 0);
+  }).catch(function(){});
 }
 
 function getDefaults() {
@@ -733,8 +755,8 @@ function newCharla() {
 function editCharla(i) {
   editIdx = i;
   var c = JSON.parse(JSON.stringify(CHARLAS[i]));
-  editConvs     = c.conversations && c.conversations.length ? c.conversations : [blankConv()];
-  editResources = Array.isArray(c.resources) ? c.resources : [];
+  editConvs     = c.conversations && c.conversations.length ? JSON.parse(JSON.stringify(c.conversations)) : [blankConv()];
+  editResources = Array.isArray(c.resources) ? JSON.parse(JSON.stringify(c.resources)) : [];
   editTags      = Array.isArray(c.tags) ? c.tags : (Array.isArray(c.themes) ? c.themes : []);
   editAudience  = Array.isArray(c.audience) ? c.audience : [];
   pillState = {
@@ -911,7 +933,22 @@ function toggleAudience(btn, key) {
 
 /* ── RESOURCES ── */
 
-function blankResource() { return { type:'Presentación', title:'', url:'' }; }
+function blankResource() { return { type:'Presentación', title:'', url:'', public:true }; }
+
+/* switch Público / Oculto de un recurso. path = 'editResources[0]' o 'editConvs[1].resources[2]' */
+function pubSwitch(r, path) {
+  var on = r.public !== false;
+  return '<div class="pub-sw'+(on?' on':'')+'" title="Público: se ve en el index. Oculto: queda guardado pero no se muestra." '
+    +'onclick="togglePub(this,'+"'"+path+"'"+')"><div class="toggle-sw'+(on?' on':'')+'"></div><span>'+(on?'Público':'Oculto')+'</span></div>';
+}
+
+function togglePub(el, path) {
+  var r = eval(path);
+  r.public = r.public === false;
+  el.classList.toggle('on', r.public);
+  el.querySelector('.toggle-sw').classList.toggle('on', r.public);
+  el.querySelector('span').textContent = r.public ? 'Público' : 'Oculto';
+}
 
 function addResource() {
   editResources.push(blankResource());
@@ -931,6 +968,7 @@ function renderResources() {
       +'<select onchange="editResources['+i+'].type=this.value">'+opts+'</select>'
       +'<input type="text" value="'+esc(r.title||'')+'" placeholder="Título" oninput="editResources['+i+'].title=this.value">'
       +'<input type="url"  value="'+esc(r.url||'')+'"   placeholder="https://…" oninput="editResources['+i+'].url=this.value">'
+      +pubSwitch(r, 'editResources['+i+']')
       +'<button type="button" class="resource-remove" onclick="removeResource('+i+')">'
         +'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'
       +'</button>'
@@ -1015,7 +1053,7 @@ function renderConvs() {
         +'</div>'
         /* visible toggle */
         +'<div class="toggle-row" style="margin-top:clamp(12px,1.8vh,18px)">'
-          +'<span class="toggle-label">Visible públicamente</span>'
+          +'<span class="toggle-label">Mostrar esta conversación en el index</span>'
           +'<div class="toggle-sw'+(vis?' on':'')+'" id="vis-sw-'+i+'" onclick="toggleVis('+i+')"></div>'
         +'</div>'
       +'</div>'
@@ -1037,6 +1075,7 @@ function renderConvResources(i) {
       +'<select onchange="editConvs['+i+'].resources['+j+'].type=this.value">'+opts+'</select>'
       +'<input type="text" value="'+esc(r.title||'')+'" placeholder="Título" oninput="editConvs['+i+'].resources['+j+'].title=this.value">'
       +'<input type="url"  value="'+esc(r.url||'')+'"   placeholder="https://…" oninput="editConvs['+i+'].resources['+j+'].url=this.value">'
+      +pubSwitch(r, 'editConvs['+i+'].resources['+j+']')
       +'<button type="button" class="resource-remove" onclick="removeConvResource('+i+','+j+')">'
         +'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'
       +'</button>'
@@ -1046,7 +1085,7 @@ function renderConvResources(i) {
 
 function addConvResource(i) {
   if (!editConvs[i].resources) editConvs[i].resources = [];
-  editConvs[i].resources.push({ type:'Presentación', title:'', url:'' });
+  editConvs[i].resources.push({ type:'Presentación', title:'', url:'', public:true });
   renderConvResources(i);
 }
 
@@ -1105,11 +1144,14 @@ function saveCharla() {
       audience_count: v.audience_count ? parseInt(v.audience_count,10) : null,
       context:        v.context       ? v.context.trim() : null,
       visible:        v.visible !== false,
-      photos:         v.photos        || []
+      photos:         v.photos        || [],
+      resources:      (v.resources || []).filter(function(r){ return r.url && r.url.trim(); })
+                        .map(function(r){ return { type:r.type, title:r.title||'', url:r.url.trim(), public:r.public !== false }; })
     };
   });
 
-  var res = editResources.filter(function(r){ return r.url && r.url.trim(); });
+  var res = editResources.filter(function(r){ return r.url && r.url.trim(); })
+    .map(function(r){ return { type:r.type, title:r.title||'', url:r.url.trim(), public:r.public !== false }; });
 
   var cover = document.getElementById('f-cover').value;
 
@@ -1156,7 +1198,6 @@ function commitSave(charla) {
   if (editIdx >= 0) CHARLAS[editIdx] = charla;
   else CHARLAS.push(charla);
   saveData();
-  showToast(editIdx >= 0 ? 'Charla guardada.' : 'Charla creada.');
   goList();
 }
 
@@ -1164,12 +1205,10 @@ function deleteCharla() {
   if (!confirm('¿Eliminar esta charla? No se puede deshacer.')) return;
   CHARLAS.splice(editIdx, 1);
   saveData();
-  showToast('Charla eliminada.');
   goList();
 }
 
 function goList() {
-  CHARLAS = loadData();
   renderList();
   screen('s-list');
   window.scrollTo(0, 0);
@@ -1183,10 +1222,6 @@ if (authToken) { onLoggedIn(); }
 
 </script>
 
-<script type="application/json" id="defaults-json">[
-  {"slug":"exp-humanas","title":"Diseñar desde la experiencia humana","observation":"Diseñamos para personas. Primero hay que entenderlas.","question":"¿Cómo tomamos mejores decisiones cuando diseñamos con y para otras personas?","idea":"Las mejores decisiones nacen cuando una idea se encuentra con la realidad de las personas.","summary":"Una exploración sobre cómo el diseño centrado en la experiencia humana transforma la manera en que creamos productos, servicios y conversaciones.","tags":["Experiencias","Liderazgo","Comunicación"],"themes":["Experiencias","Liderazgo","Comunicación"],"duration":"45","status":"activa","activeStatus":"activa","editorialStatus":"public","resources":[],"conversations":[{"event":"Sesión en vivo","organization":"Comunidad GAUF","location":"Buenos Aires, Argentina","date":"2024","format":"presencial","visible":true}]},
-  {"slug":"buen-rumbo","title":"¿Vamos bien?","observation":"Cambiar de rumbo no es fracaso. Insistir en una dirección equivocada sí puede serlo.","question":"¿Cómo saber si tu proyecto está avanzando en la dirección correcta?","idea":"No hay recetas. Solo algunas señales que, como una brújula, indican si vamos a buen rumbo y buen ritmo.","summary":"Una charla para equipos en etapa de desarrollo que necesitan herramientas simples para evaluar si sus decisiones apuntan en la dirección correcta.","tags":["Startups","Hackathons","Creatividad"],"themes":["Startups","Hackathons","Creatividad"],"duration":"25","status":"activa","activeStatus":"activa","editorialStatus":"public","resources":[{"type":"Presentación","title":"Presentación interactiva","url":"buen-rumbo/index.html"}],"conversations":[{"event":"ETH Lima Hackathon 2026","organization":"ETH Lima","location":"Lima, Perú","date":"2026-08-06","format":"presencial","audience_desc":"Equipos de hackathon","visible":true}]},
-  {"slug":"impro-aplicada","title":"La improvisación como forma de relacionarnos","observation":"La improvisación no es una técnica teatral. Es una forma de relacionarnos con otras personas, construir confianza y crear mejores conversaciones.","question":"¿Qué cambia cuando dejamos de controlar cada respuesta y empezamos a construir con lo que aparece?","idea":"La improvisación no es caos. Es el arte de construir juntos, sin saber de antemano qué viene.","summary":"Esta conversación explora cómo los principios de la improvisación pueden ayudarnos a colaborar mejor, escuchar con mayor atención, aceptar la incertidumbre y generar confianza.","tags":["Improvisación","Comunicación","Liderazgo","Trabajo en equipo"],"themes":["Improvisación","Comunicación","Liderazgo","Trabajo en equipo"],"duration":"45","status":"activa","activeStatus":"activa","editorialStatus":"draft","audience":["startups","empresas","universidades","comunidades","educación","tecnología","rrhh"],"resources":[],"conversations":[{"event":"Actividad Impro","organization":"Fundación Cimientos","location":"Parque de Innovación, Buenos Aires","date":"2025-09-24","format":"presencial","audience_desc":"Estudiantes secundarios","visible":true},{"event":"Nerdearla 2025","organization":"Nerdearla","location":"Ciudad Cultural Konex","date":"2025-09-27","format":"presencial","audience_desc":"Desarrolladores","visible":true},{"event":"Conferencia Anual Reclutando Latinoamérica","organization":"Reclutando Latinoamérica","location":"Buenos Aires","date":"2025-11-13","format":"presencial","audience_desc":"Recruiters y RRHH","visible":true},{"event":"Startup World Cup Argentina 2026","organization":"Pegasus Tech Ventures","location":"Workplace by IRSA","date":"2026-08-07","format":"presencial","audience_desc":"Founders","visible":true}]}
-]</script>
+<script type="application/json" id="defaults-json">[{"slug": "exp-humanas", "title": "Diseñar desde la experiencia humana", "observation": "Diseñamos para personas. Primero hay que entenderlas.", "question": "¿Cómo tomamos mejores decisiones cuando diseñamos con y para otras personas?", "idea": "Las mejores decisiones nacen cuando una idea se encuentra con la realidad de las personas.", "summary": "Una exploración sobre cómo el diseño centrado en la experiencia humana transforma la manera en que creamos productos, servicios y conversaciones.", "tags": ["Experiencias", "Liderazgo", "Comunicación"], "themes": ["Experiencias", "Liderazgo", "Comunicación"], "duration": "45", "status": "activa", "activeStatus": "activa", "editorialStatus": "public", "resources": [{"type": "Presentación", "title": "Presentación interactiva", "url": "exp-humanas/index.html", "public": true}], "conversations": [{"event": "Sesión en vivo", "organization": "Comunidad GAUF", "location": "Buenos Aires, Argentina", "date": "2024", "format": "presencial", "visible": true, "resources": []}]}, {"slug": "buen-rumbo", "title": "¿Vamos bien?", "observation": "Cambiar de rumbo no es fracaso. Insistir en una dirección equivocada sí puede serlo.", "question": "¿Cómo saber si tu proyecto está avanzando en la dirección correcta?", "idea": "No hay recetas. Solo algunas señales que, como una brújula, indican si vamos a buen rumbo y buen ritmo.", "summary": "Una charla para equipos en etapa de desarrollo que necesitan herramientas simples para evaluar si sus decisiones apuntan en la dirección correcta.", "tags": ["Startups", "Hackathons", "Creatividad"], "themes": ["Startups", "Hackathons", "Creatividad"], "duration": "25", "status": "activa", "activeStatus": "activa", "editorialStatus": "public", "resources": [{"type": "Presentación", "title": "Presentación interactiva", "url": "buen-rumbo/index.html", "public": true}], "conversations": [{"event": "ETH Lima Hackathon 2026", "organization": "ETH Lima", "location": "Lima, Perú", "date": "2026-08-06", "format": "presencial", "audience_desc": "Equipos de hackathon", "visible": true, "resources": []}]}, {"slug": "impro-aplicada", "title": "La improvisación como forma de relacionarnos", "observation": "La improvisación no es una técnica teatral. Es una forma de relacionarnos con otras personas, construir confianza y crear mejores conversaciones.", "question": "¿Qué cambia cuando dejamos de controlar cada respuesta y empezamos a construir con lo que aparece?", "idea": "La improvisación no es caos. Es el arte de construir juntos, sin saber de antemano qué viene.", "summary": "Esta conversación explora cómo los principios de la improvisación pueden ayudarnos a colaborar mejor, escuchar con mayor atención, aceptar la incertidumbre y generar confianza.", "tags": ["Improvisación", "Comunicación", "Liderazgo", "Trabajo en equipo"], "themes": ["Improvisación", "Comunicación", "Liderazgo", "Trabajo en equipo"], "duration": "45", "status": "activa", "activeStatus": "activa", "editorialStatus": "draft", "audience": ["startups", "empresas", "universidades", "comunidades", "educación", "tecnología", "rrhh"], "resources": [], "conversations": [{"event": "Actividad Impro", "organization": "Fundación Cimientos", "location": "Parque de Innovación, Buenos Aires", "date": "2025-09-24", "format": "presencial", "audience_desc": "Estudiantes secundarios", "visible": true, "resources": []}, {"event": "Nerdearla 2025", "organization": "Nerdearla", "location": "Ciudad Cultural Konex", "date": "2025-09-27", "format": "presencial", "audience_desc": "Desarrolladores", "visible": true, "resources": []}, {"event": "Conferencia Anual Reclutando Latinoamérica", "organization": "Reclutando Latinoamérica", "location": "Buenos Aires", "date": "2025-11-13", "format": "presencial", "audience_desc": "Recruiters y RRHH", "visible": true, "resources": []}, {"event": "Startup World Cup Argentina 2026", "organization": "Pegasus Tech Ventures", "location": "Workplace by IRSA", "date": "2026-08-07", "format": "presencial", "audience_desc": "Founders", "visible": true, "resources": []}], "cover": "covers/impro-aplicada-cover.png"}, {"slug": "llave", "title": "La llave de la co-creación", "observation": "", "question": "", "idea": "", "summary": "", "tags": [], "themes": [], "duration": "45", "status": "activa", "activeStatus": "activa", "editorialStatus": "draft", "resources": [{"type": "Presentación", "title": "Presentación interactiva", "url": "llave/index.html", "public": true}], "conversations": []}, {"slug": "converge", "title": "Tenés una idea. Ahora contala.", "observation": "", "question": "", "idea": "", "summary": "", "tags": [], "themes": [], "duration": "45", "status": "activa", "activeStatus": "activa", "editorialStatus": "draft", "resources": [{"type": "Presentación", "title": "Presentación interactiva", "url": "converge/index.html", "public": true}], "conversations": []}, {"slug": "glaux", "title": "Todo conecta", "observation": "", "question": "", "idea": "", "summary": "", "tags": [], "themes": [], "duration": "45", "status": "activa", "activeStatus": "activa", "editorialStatus": "draft", "resources": [{"type": "Presentación", "title": "Presentación interactiva", "url": "glaux/index.html", "public": true}], "conversations": []}]</script>
 </body>
 </html>

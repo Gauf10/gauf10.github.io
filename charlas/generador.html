@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Generador de charlas — GAUF</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@300;400;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<style>
+:root{--bg:#1A1A1A;--fg:#F5F2EC;--acc:#27D3CC;--panel:#16282a;--box:#1b2f31;--line:rgba(39,211,204,.25);--dim:rgba(245,242,236,.55);--err:#ff7a6b;--warn:#f2c14e}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--fg);font:400 15px/1.5 Archivo,system-ui,sans-serif;min-height:100vh}
+button{font:inherit;cursor:pointer}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 16px 60px}
+h1{font:400 clamp(26px,4vw,38px)/1.1 'Archivo Black'}
+h1 span{color:var(--acc)}
+.lead{color:var(--dim);margin:8px 0 22px}
+.grid{display:grid;grid-template-columns:1.1fr 1fr;gap:18px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+.card h2{font-size:14px;font-weight:600;letter-spacing:.04em;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.card h2 .n{background:var(--acc);color:#1A1A1A;border-radius:50%;width:22px;height:22px;display:inline-grid;place-items:center;font-size:12px}
+textarea{width:100%;min-height:380px;background:var(--box);border:1px solid rgba(245,242,236,.12);border-radius:10px;color:var(--fg);font:13px/1.55 'Roboto Mono',monospace;padding:14px;resize:vertical;outline:none}
+textarea:focus{border-color:var(--acc)}
+.row{display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap}
+.sp{flex:1}
+.btn{border:1px solid rgba(245,242,236,.2);background:none;color:var(--dim);border-radius:6px;padding:8px 14px;font:500 12px 'Roboto Mono',monospace}
+.btn:hover{border-color:var(--acc);color:var(--acc)}
+.btn.main{border-color:var(--acc);color:var(--acc);background:rgba(39,211,204,.1);font-weight:600}
+.btn.main:hover{background:rgba(39,211,204,.2)}
+.btn:disabled{opacity:.35;cursor:default}
+.drop{border:1px dashed var(--line);border-radius:10px;padding:16px;text-align:center;color:var(--dim);font-size:13px;position:relative}
+.drop.on{border-color:var(--acc);color:var(--acc)}
+.drop input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.files{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{font:12px 'Roboto Mono',monospace;border:1px solid rgba(245,242,236,.15);border-radius:999px;padding:3px 10px}
+.chip.ok{border-color:var(--acc);color:var(--acc)}
+.chip.miss{border-color:var(--err);color:var(--err)}
+.fb{list-style:none;font-size:13.5px;max-height:330px;overflow:auto}
+.fb li{padding:7px 0;border-bottom:1px solid rgba(245,242,236,.06);display:flex;gap:10px}
+.fb .i{flex:none;width:18px;text-align:center}
+.fb .ok .i{color:var(--acc)} .fb .warn .i{color:var(--warn)} .fb .err .i{color:var(--err)}
+.fb .err{color:var(--err)}
+.fb small{color:var(--dim);display:block}
+.empty{color:var(--dim);font-size:13px}
+.summary{display:flex;gap:16px;margin-bottom:10px;font-size:13px;color:var(--dim)}
+.summary b{color:var(--fg);font-size:18px;display:block}
+.preview{margin-top:18px}
+.pv-frame{position:relative;aspect-ratio:16/9;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#000}
+.pv-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.pv-nav{display:flex;gap:8px;align-items:center;margin-top:10px;font:12px 'Roboto Mono',monospace;color:var(--dim)}
+.steps{margin-top:14px;font-size:13.5px;color:var(--dim)}
+.steps ol{padding-left:18px}
+.steps b{color:var(--fg)}
+.modal{display:none;position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.7);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:16px}
+.modal.on{display:flex}
+.mbox{background:var(--panel);border:1px solid var(--line);border-radius:14px;width:min(720px,100%);max-height:90vh;display:flex;flex-direction:column;padding:20px}
+.mhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;font-weight:600}
+.mhead button{background:none;border:0;color:var(--dim);font-size:20px}
+.mbox p{color:var(--dim);font-size:13px;margin-bottom:10px}
+.mbox pre{position:relative;flex:1;overflow:auto;background:var(--box);border:1px solid rgba(245,242,236,.12);border-radius:10px;padding:14px;font:12.5px/1.55 'Roboto Mono',monospace;white-space:pre-wrap}
+.copy{position:sticky;float:right;top:0}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--acc);color:#1A1A1A;padding:8px 16px;border-radius:8px;font-weight:600;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:60}
+.toast.on{opacity:1}
+input[type=password]{background:var(--box);border:1px solid rgba(245,242,236,.15);border-radius:6px;color:var(--fg);padding:8px 10px;font:13px 'Roboto Mono',monospace;width:180px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Generador de charlas<span>.</span></h1>
+  <p class="lead">Pegá el texto de la charla (escrito por vos o por una IA), sumá las fotos y videos, y descargá la carpeta lista para subir.</p>
+
+  <div class="grid">
+    <div class="card">
+      <h2><span class="n">1</span>Texto de la charla</h2>
+      <textarea id="src" spellcheck="false" placeholder="Pegá el texto en formato GAUF…
+
+titulo: ...
+slug: ...
+
+--- portada
+
+--- frase cyan
+texto: ..."></textarea>
+      <div class="row">
+        <button class="btn" onclick="openFormat()">Ver formato</button>
+        <button class="btn" onclick="loadExample()">Cargar ejemplo</button>
+        <span class="sp"></span>
+        <button class="btn main" onclick="check()">Revisar</button>
+      </div>
+
+      <h2 style="margin-top:22px"><span class="n">2</span>Fotos, videos y logos</h2>
+      <div class="drop" id="drop">
+        Arrastrá acá los archivos que nombra el texto (o tocá para elegir)
+        <input type="file" multiple id="fileIn" accept="image/*,video/*">
+      </div>
+      <div class="files" id="files"></div>
+    </div>
+
+    <div class="card">
+      <h2><span class="n">3</span>Revisión</h2>
+      <div id="summary"></div>
+      <ul class="fb" id="fb"><li class="empty">Pegá el texto y tocá <b>Revisar</b>.</li></ul>
+
+      <div class="preview" id="preview" style="display:none">
+        <div class="pv-frame"><iframe id="pv" title="Vista previa"></iframe></div>
+        <div class="pv-nav">
+          <button class="btn" onclick="pvGo(-1)">↑</button>
+          <button class="btn" onclick="pvGo(1)">↓</button>
+          <span id="pvn"></span>
+        </div>
+      </div>
+
+      <h2 style="margin-top:22px"><span class="n">4</span>Descargar y subir</h2>
+      <div class="row" style="margin-top:0">
+        <button class="btn main" id="dl" onclick="download()" disabled>Descargar carpeta (.zip)</button>
+      </div>
+      <div class="row">
+        <input type="password" id="pw" placeholder="Contraseña FARO">
+        <button class="btn" id="addIdx" onclick="addToIndex()" disabled>Agregar al index como borrador</button>
+      </div>
+      <div class="steps">
+        <ol>
+          <li>Descomprimí el .zip: queda una carpeta <b id="slugName">slug</b>.</li>
+          <li>En GitHub → <b>charlas/</b> → <b>Add file → Upload files</b> → arrastrá la carpeta entera → <b>Commit</b>.</li>
+          <li>Agregala al index con el botón de arriba (o desde el admin) y completá portada y textos ahí.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="fmt" onclick="if(event.target===this)closeFormat()">
+  <div class="mbox">
+    <div class="mhead">Formato y prompt para IA <button onclick="closeFormat()">×</button></div>
+    <p>Copiá este prompt y pegalo en Claude, ChatGPT u otra IA:</p>
+    <pre id="fmtText"><button class="btn main copy" onclick="copyFormat(event)">Copiar</button></pre>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   GENERADOR DE CHARLAS GAUF
+   Usa la charla "llave" como plantilla: estilos, navegación y FARO.
+   ═══════════════════════════════════════════════════════════ */
+var API_BASE = 'https://faro-api.gauf10.workers.dev';
+var BASE = 'llave/';
+var TIPOS = ['portada','frase','titulo','lista','imagen','video','cierre'];
+var FILES = {};      /* nombre → File */
+var RESULT = null;   /* { meta, slides, html, notas, assets } */
+
+var PROMPT = [
+'Armame una charla para [tema / evento / duración] con este formato exacto.',
+'Respondé solo con el texto, sin explicaciones.',
+'',
+'REGLAS',
+'· Arriba van los datos de la charla. Después, un bloque por slide.',
+'· Cada slide empieza con  --- tipo   (opcional: cyan)',
+'    tipos: portada · frase · titulo · lista · imagen · video · cierre',
+'    Por defecto el fondo es oscuro. "cyan" = fondo cyan (1 de cada 3 o 4 slides).',
+'· Campos:',
+'    texto:  frase principal, corta   ( | = salto de línea,  *palabra* = color acento )',
+'    sub:    texto chico debajo',
+'    + ...   frases que aparecen de a una',
+'    - ...   ítems de lista ( - *Ítem* = en color acento )',
+'    foto: / video: / qr:   nombre de archivo',
+'    nota:   ayuda-memoria para el orador (puede repetirse)',
+'· Entre 8 y 14 slides. Frases cortas, tono cercano.',
+'',
+'titulo: [título de la charla]',
+'slug: [nombre-corto-sin-espacios]',
+'evento: [nombre del evento]',
+'fecha: [AAAA-MM-DD]',
+'logo_evento: [logo.png, si hay]',
+'idea: [una frase que resuma la charla]',
+'pregunta: [la pregunta que guía la charla]',
+'resumen: [2 o 3 líneas]',
+'tags: [Tema1, Tema2]',
+'duracion: [minutos]',
+'',
+'--- portada',
+'nota: ...',
+'',
+'--- titulo',
+'texto: ...',
+'+ ...',
+'nota: ...',
+'',
+'--- frase cyan',
+'texto: ...',
+'',
+'--- imagen',
+'foto: foto.jpg',
+'texto: ...',
+'sub: ...',
+'',
+'--- lista',
+'- ...',
+'- *...*',
+'',
+'--- cierre cyan',
+'texto: ...',
+'sub: ...',
+'qr: qr.png',
+'gracias: Gracias'
+].join('\n');
+
+var EJEMPLO = [
+'titulo: La llave de la co-creación',
+'slug: llave-ejemplo',
+'evento: La Llave Cumbre 2026',
+'fecha: 2026-11-20',
+'idea: Lo que surgió no estaba en ninguno de nosotros por separado.',
+'pregunta: ¿Qué pasa cuando dejamos de controlar y empezamos a construir con otros?',
+'resumen: Una charla sobre improvisación, confianza y cómo nacen las ideas compartidas.',
+'tags: Co-creación, Improvisación',
+'duracion: 20',
+'',
+'--- portada',
+'nota: Respirar. Mirar a la audiencia antes de hablar.',
+'',
+'--- titulo',
+'texto: Una invitación que | no estaba buscando',
+'+ Mi profesor anunció un match de improvisación con público',
+'nota: Contar la anécdota.',
+'',
+'--- frase cyan',
+'texto: Cada conversación es una escena',
+'',
+'--- lista',
+'- Disponibilidad',
+'- *Validación*',
+'- Construcción',
+'- *Transformación*',
+'',
+'--- titulo',
+'texto: Dar lugar, cuidar, | *dejar crecer*',
+'sub: Algunas semillas necesitan tiempo para germinar',
+'',
+'--- cierre cyan',
+'texto: La llave está en construir con otros',
+'gracias: Gracias'
+].join('\n');
+
+/* ───────── utilidades ───────── */
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function t(s){ return esc(s).replace(/\*(.+?)\*/g,'<span class="accent">$1</span>').replace(/ ?\| ?/g,'<br>'); }
+function toast(m){ var e=$('toast'); e.textContent=m; e.classList.add('on'); setTimeout(function(){ e.classList.remove('on'); },2200); }
+function slugify(s){ return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,''); }
+
+/* ───────── modal formato ───────── */
+function openFormat(){ var p=$('fmtText'); p.lastChild && p.lastChild.nodeType===3 && p.removeChild(p.lastChild); p.appendChild(document.createTextNode(PROMPT)); $('fmt').classList.add('on'); }
+function closeFormat(){ $('fmt').classList.remove('on'); }
+function copyFormat(e){ e.stopPropagation(); navigator.clipboard.writeText(PROMPT).then(function(){ toast('Prompt copiado'); }); }
+function loadExample(){ $('src').value = EJEMPLO; check(); }
+
+/* ───────── archivos ───────── */
+function addFiles(list){
+  for (var i=0;i<list.length;i++) FILES[list[i].name] = list[i];
+  if (RESULT) check(); else renderFiles();
+}
+$('fileIn').addEventListener('change', function(){ addFiles(this.files); this.value=''; });
+var drop = $('drop');
+['dragenter','dragover'].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); drop.classList.add('on'); }); });
+['dragleave','drop'].forEach(function(ev){ drop.addEventListener(ev,function(){ drop.classList.remove('on'); }); });
+drop.addEventListener('drop', function(e){ e.preventDefault(); addFiles(e.dataTransfer.files); });
+
+function renderFiles(){
+  var need = RESULT ? RESULT.assets : [];
+  var names = Object.keys(FILES);
+  var html = need.map(function(n){
+    return '<span class="chip '+(FILES[n]?'ok':'miss')+'">'+(FILES[n]?'✓ ':'✗ ')+esc(n)+'</span>';
+  }).join('');
+  html += names.filter(function(n){ return need.indexOf(n)<0; }).map(function(n){
+    return '<span class="chip" title="No lo usa ningún slide">'+esc(n)+'</span>';
+  }).join('');
+  $('files').innerHTML = html;
+}
+
+/* ───────── lectura del formato ───────── */
+function parse(text){
+  var meta={}, slides=[], cur=null, msgs=[];
+  text.split(/\r?\n/).forEach(function(raw, idx){
+    var n=idx+1, line=raw.trim();
+    if (!line || line[0]==='#') return;
+    if (line.indexOf('---')===0){
+      var p=line.replace(/^-+/,'').trim().toLowerCase().split(/\s+/);
+      if (TIPOS.indexOf(p[0])<0){ msgs.push(['err','Línea '+n+': tipo de slide "'+(p[0]||'')+'" no existe','Usá: '+TIPOS.join(', ')]); cur=null; return; }
+      cur={tipo:p[0], cyan:p.indexOf('cyan')>0, pasos:[], items:[], nota:[], line:n};
+      slides.push(cur); return;
+    }
+    var m=line.match(/^([a-záéíóú_]+)\s*:\s*(.*)$/i);
+    if (!cur){
+      if (m) meta[m[1].toLowerCase()]=m[2].trim();
+      else msgs.push(['warn','Línea '+n+': no entiendo "'+line.slice(0,40)+'"','Arriba solo van campos tipo  titulo: …']);
+      return;
+    }
+    if (line[0]==='+') cur.pasos.push(line.slice(1).trim());
+    else if (line[0]==='-') cur.items.push(line.slice(1).trim());
+    else if (m){ var k=m[1].toLowerCase(); if (k==='nota') cur.nota.push(m[2].trim()); else cur[k]=m[2].trim(); }
+    else msgs.push(['warn','Línea '+n+': no entiendo "'+line.slice(0,40)+'"','Dentro de un slide: campo: valor, + revelado, - ítem']);
+  });
+  return {meta:meta, slides:slides, msgs:msgs};
+}
+
+/* ───────── slides → html (mismo marcado que llave) ───────── */
+function subYPasos(s){
+  var o='';
+  if (s.sub) o+='\n          <div class="sub-text">'+t(s.sub)+'</div>';
+  if (s.pasos.length) o+='\n          <div class="sub-text reveal-steps">'+s.pasos.map(function(p){ return '\n            <div class="reveal-step">'+t(p)+'</div>'; }).join('')+'\n          </div>';
+  return o;
+}
+function slideHTML(i, s, meta, assets){
+  var cls='slide'+(i===0?' is-active':'')+(s.cyan?' slide-cyan':''), st='', body='';
+  var col=' style="flex-direction:column;justify-content:center;align-items:center;gap:clamp(16px,2.5vh,32px)"';
+  if (s.tipo==='portada'){
+    body='\n        <div class="hero">\n          <div class="hero-line">'+t(s.texto||meta.titulo)+'</div>\n          <div class="sub-text">'+t(s.sub||('Gabriel Aufgang'+(meta.evento?' · '+meta.evento:'')))+'</div>\n        </div>';
+  } else if (s.tipo==='frase'){
+    body='\n        <div class="idea-wrap">\n          <div class="idea-text">'+t(s.texto)+'</div>'+subYPasos(s)+'\n        </div>';
+  } else if (s.tipo==='titulo'){
+    body='\n        <div class="hero">\n          <div class="hero-line">'+t(s.texto)+'</div>'+subYPasos(s)+'\n        </div>';
+  } else if (s.tipo==='lista'){
+    var rows=s.items.map(function(it,k){
+      var acc=/^\*.+\*$/.test(it), tx=acc?it.slice(1,-1):it;
+      return (k?'\n          <div class="fw-sep reveal-step">↓</div>':'')+'\n          <div class="fw-step'+(acc?' accent':'')+' reveal-step">'+t(tx)+'</div>';
+    }).join('');
+    if (s.texto){ body='\n        <div class="sec-label">'+t(s.texto)+'</div>'; st=' style="flex-direction:column"'; }
+    body+='\n        <div class="framework reveal-steps">'+rows+'\n        </div>';
+  } else if (s.tipo==='imagen' || s.tipo==='video'){
+    st=col;
+    var f=s.tipo==='imagen'?(s.foto||''):(s.video||''); if (f) assets.push(f);
+    body = s.tipo==='imagen'
+      ? '\n        <div class="img-wrap">\n          <img src="assets/'+esc(f)+'" alt="'+esc(s.texto||'')+'">\n        </div>'
+      : '\n        <div class="img-wrap">\n          <video src="assets/'+esc(f)+'" playsinline muted loop preload="auto"></video>\n        </div>';
+    if (s.texto||s.sub||s.pasos.length) body+='\n        <div class="hero">\n          <div class="hero-line">'+t(s.texto)+'</div>'+subYPasos(s)+'\n        </div>';
+  } else {
+    st=' style="flex-direction:column;justify-content:center;align-items:center;text-align:center"';
+    body='\n        <div class="idea-wrap">\n          <div class="hero-line">'+t(s.texto||'Gracias')+'</div>'+subYPasos(s)+'\n        </div>';
+    if (s.qr){ assets.push(s.qr); body+='\n        <img src="assets/'+esc(s.qr)+'" alt="QR" class="qr-img">'; }
+    var g = s.gracias==null ? 'Gracias' : s.gracias;
+    if (g) body+='\n        <div class="qr-caption">'+t(g)+'</div>';
+  }
+  var logo='';
+  if (meta.logo_evento){ assets.push(meta.logo_evento); logo='\n      <img src="assets/'+esc(meta.logo_evento)+'" alt="'+esc(meta.evento||'')+'" class="corner-logo">'; }
+  return '\n  <!-- ═══ '+(i+1)+' — '+s.tipo+(s.cyan?' cyan':'')+' ═══ -->\n  <div class="'+cls+'" id="s'+i+'">\n    <div class="si">\n      <div class="si-content"'+st+'>'+body+'\n      </div>'+logo
+    +'\n      <div class="si-footer">\n        <img src="assets/GAUF SVG Accent.svg" alt="GAUF" class="footer-logo">\n      </div>\n    </div>\n  </div>\n';
+}
+
+/* ───────── plantilla ───────── */
+var TPL = null;
+function loadTemplate(){
+  if (TPL) return Promise.resolve(TPL);
+  function get(f, bin){ return fetch(BASE+f+'?t='+Date.now()).then(function(r){ if(!r.ok) throw new Error(f); return bin?r.blob():r.text(); }); }
+  return Promise.all([get('index.html'),get('faro.html'),get('faro.js'),get('faro.css'),get('broadcast.js'),get('favicon.ico',1),get('assets/GAUF SVG Accent.svg',1)])
+    .then(function(a){ TPL={index:a[0],faroHtml:a[1],faroJs:a[2],faroCss:a[3],broadcast:a[4],favicon:a[5],logo:a[6]}; return TPL; });
+}
+
+function build(meta, slides, tpl){
+  var titulo=meta.titulo, n=slides.length, assets=[];
+  var head=tpl.index.slice(0, tpl.index.indexOf('<body>'));
+  var tail=tpl.index.slice(tpl.index.indexOf('<script src="broadcast.js">'));
+  head=head.replace(/<title>[\s\S]*?<\/title>/, '<title>'+esc(titulo)+' — Gabriel Aufgang</title>')
+           .replace('</style>','/* video */\n.img-wrap video{max-width:90%;max-height:100%;border-radius:clamp(8px,1.2vw,16px);box-shadow:0 4px 48px rgba(0,0,0,.7)}\n</style>');
+  tail=tail.replace(/var TOTAL = \d+;/, 'var TOTAL = '+n+';')
+           .replace(/document\.title = '.*? — print';/, 'document.title = '+JSON.stringify(titulo+' — print')+';')
+           .replace("    origGoTo(n);\n    if (window.PresenterBus)",
+             "    origGoTo(n);\n    document.querySelectorAll('.slide').forEach(function(s, i) {\n      s.querySelectorAll('video').forEach(function(v) { if (i === cur) { v.currentTime = 0; v.play().catch(function(){}); } else v.pause(); });\n    });\n    if (window.PresenterBus)");
+  var deck=slides.map(function(s,i){ return slideHTML(i,s,meta,assets); }).join('');
+  var dots=''; for (var i=0;i<n;i++) dots+='\n  <div class="dot'+(i?'':' on')+'" onclick="goTo('+i+')"></div>';
+  var html=head+'<body>\n\n<!-- Dots -->\n<div id="nd">'+dots+'\n</div>\n\n<!-- Arrows -->\n<button class="arr arr-up" onclick="prev()" aria-label="Anterior">↑</button>\n<button class="arr arr-down" onclick="next()" aria-label="Siguiente">↓</button>\n\n<!-- Deck -->\n<div id="deck">\n'+deck+'\n</div>\n\n'+tail;
+  var notas=slides.map(function(s,i){ return s.nota.length ? '# s'+i+'\n'+s.nota.join('\n')+'\n\n' : ''; }).join('');
+  var nameJs=titulo.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+  var faroJs=tpl.faroJs.replace(/var CHARLA_NAME = '.*?';/, function(){ return "var CHARLA_NAME = '"+nameJs+"';"; }).replace(/var TOTAL_SLIDES = \d+;/, 'var TOTAL_SLIDES = '+n+';');
+  var faroHtml=tpl.faroHtml.replace(/<title>[\s\S]*?<\/title>/, '<title>FARO — '+esc(titulo)+'</title>');
+  return {html:html, notas:notas, faroJs:faroJs, faroHtml:faroHtml, assets:assets.filter(function(a,i){ return assets.indexOf(a)===i; })};
+}
+
+/* ───────── revisar ───────── */
+function check(){
+  var text=$('src').value;
+  if (!text.trim()){ toast('Pegá el texto primero'); return; }
+  var p=parse(text), meta=p.meta, slides=p.slides, fb=[];
+  /* cabecera */
+  if (meta.titulo) fb.push(['ok','Título: '+meta.titulo]); else fb.push(['err','Falta  titulo:','Va arriba de todo, antes del primer ---']);
+  if (meta.slug){ var s2=slugify(meta.slug); meta.slug=s2; fb.push(['ok','Carpeta: charlas/'+s2+'/']); }
+  else if (meta.titulo){ meta.slug=slugify(meta.titulo); fb.push(['warn','Sin  slug:  → uso "'+meta.slug+'"']); }
+  else fb.push(['err','Falta  slug:']);
+  ['idea','pregunta','resumen'].forEach(function(k){ if(!meta[k]) fb.push(['warn','Sin  '+k+':','Se puede completar después en el admin']); });
+  fb = fb.concat(p.msgs);
+  /* slides */
+  if (!slides.length) fb.push(['err','No hay slides','Cada slide empieza con una línea  --- tipo']);
+  slides.forEach(function(s,i){
+    var name='Slide '+(i+1)+' · '+s.tipo+(s.cyan?' · cyan':''), probs=[];
+    var txt=(s.texto||'').replace(/\*/g,'').replace(/\|/g,' ');
+    if (['frase','titulo'].indexOf(s.tipo)>=0 && !s.texto) probs.push(['err','falta  texto:']);
+    if (s.tipo==='lista' && !s.items.length) probs.push(['err','la lista no tiene ítems ( - … )']);
+    if (s.tipo==='imagen' && !s.foto) probs.push(['err','falta  foto:']);
+    if (s.tipo==='video' && !s.video) probs.push(['err','falta  video:']);
+    if (txt.length>70) probs.push(['warn','texto largo ('+txt.length+' letras): mejor menos de 60']);
+    ['foto','video','qr'].forEach(function(k){ if (s[k] && !FILES[s[k]]) probs.push(['warn','falta el archivo '+s[k]]); });
+    var lvl=probs.some(function(x){return x[0]==='err';})?'err':probs.length?'warn':'ok';
+    var detail=probs.map(function(x){return x[1];}).join(' · ') || (txt ? '"'+txt.slice(0,60)+'"' : (s.tipo==='portada'?'"'+(meta.titulo||'')+'"':'')) ;
+    fb.push([lvl, name+(s.nota.length?'  ✎':''), detail]);
+  });
+  if (meta.logo_evento && !FILES[meta.logo_evento]) fb.push(['warn','Falta el logo del evento: '+meta.logo_evento]);
+  var cyan=slides.filter(function(s){return s.cyan;}).length;
+  if (slides.length && (slides.length<6 || slides.length>16)) fb.push(['warn',slides.length+' slides','Lo habitual: entre 8 y 14']);
+  var errs=fb.filter(function(x){return x[0]==='err';}).length, warns=fb.filter(function(x){return x[0]==='warn';}).length;
+
+  $('summary').innerHTML='<div class="summary"><div><b>'+slides.length+'</b>slides</div><div><b>'+cyan+'</b>cyan</div><div><b>'+slides.filter(function(s){return s.nota.length;}).length+'</b>con notas</div><div><b style="color:'+(errs?'var(--err)':'var(--acc)')+'">'+errs+'</b>errores</div><div><b style="color:'+(warns?'var(--warn)':'var(--acc)')+'">'+warns+'</b>avisos</div></div>';
+  var icon={ok:'✓',warn:'!',err:'✗'};
+  $('fb').innerHTML=fb.map(function(x){ return '<li class="'+x[0]+'"><span class="i">'+icon[x[0]]+'</span><span>'+esc(x[1])+(x[2]?'<small>'+esc(x[2])+'</small>':'')+'</span></li>'; }).join('');
+
+  RESULT=null; $('dl').disabled=true; $('addIdx').disabled=true;
+  if (errs){ renderFiles(); $('preview').style.display='none'; return; }
+  loadTemplate().then(function(tpl){
+    var b=build(meta, slides, tpl);
+    RESULT={meta:meta, slides:slides, html:b.html, notas:b.notas, faroJs:b.faroJs, faroHtml:b.faroHtml, assets:b.assets};
+    $('dl').disabled=false; $('addIdx').disabled=false; $('slugName').textContent=meta.slug;
+    renderFiles(); showPreview();
+  }).catch(function(){
+    $('fb').insertAdjacentHTML('afterbegin','<li class="err"><span class="i">✗</span><span>No pude leer la plantilla (charlas/llave/)<small>Abrí este generador desde gaufgang.com/charlas/generador.html</small></span></li>');
+  });
+}
+
+/* ───────── vista previa ───────── */
+var pvCur=0, pvUrls=[];
+function showPreview(){
+  pvUrls.forEach(URL.revokeObjectURL); pvUrls=[];
+  var html=RESULT.html;
+  RESULT.assets.forEach(function(a){
+    if (FILES[a]){ var u=URL.createObjectURL(FILES[a]); pvUrls.push(u); html=html.split('assets/'+esc(a)).join(u); }
+  });
+  var base=new URL(BASE, location.href).href;
+  html=html.replace('<head>','<head><base href="'+base+'">').replace('<script src="broadcast.js"><'+'/script>','');
+  pvCur=0;
+  $('pv').srcdoc=html;
+  $('preview').style.display='block';
+  $('pvn').textContent='1 / '+RESULT.slides.length;
+}
+function pvGo(d){
+  if (!RESULT) return;
+  var w=$('pv').contentWindow; if (!w || !w.goTo) return;
+  var n=Math.max(0,Math.min(RESULT.slides.length-1,w.cur+d));
+  w.goTo(n); pvCur=w.cur; $('pvn').textContent=(w.cur+1)+' / '+RESULT.slides.length;
+}
+
+/* ───────── descargar ───────── */
+function download(){
+  if (!RESULT) return;
+  if (typeof JSZip==='undefined'){ toast('No cargó la librería ZIP. Revisá la conexión.'); return; }
+  var slug=RESULT.meta.slug, z=new JSZip(), f=z.folder(slug);
+  f.file('index.html', RESULT.html);
+  f.file('faro.html', RESULT.faroHtml);
+  f.file('faro.js', RESULT.faroJs);
+  f.file('faro.css', TPL.faroCss);
+  f.file('broadcast.js', TPL.broadcast);
+  f.file('favicon.ico', TPL.favicon);
+  f.file('notas.md', RESULT.notas);
+  f.file('charla.txt', $('src').value);
+  f.file('assets/GAUF SVG Accent.svg', TPL.logo);
+  RESULT.assets.forEach(function(a){ if (FILES[a]) f.file('assets/'+a, FILES[a]); });
+  z.generateAsync({type:'blob'}).then(function(b){
+    var a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=slug+'.zip'; a.click();
+    var miss=RESULT.assets.filter(function(x){return !FILES[x];});
+    toast(miss.length ? 'Descargado. Faltan '+miss.length+' archivos en assets/' : 'Descargado ✓');
+  });
+}
+
+/* ───────── agregar a charlas.json (borrador) ───────── */
+function addToIndex(){
+  if (!RESULT) return;
+  var pw=$('pw').value.trim(); if (!pw){ toast('Poné la contraseña de FARO'); return; }
+  var m=RESULT.meta, token;
+  fetch(API_BASE+'/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({charla:'generador',password:pw})})
+  .then(function(r){ if(!r.ok) throw new Error('Contraseña incorrecta'); return r.json(); })
+  .then(function(d){ token=d.token; return fetch(API_BASE+'/api/charlas',{headers:{Authorization:'Bearer '+token}}); })
+  .then(function(r){ if(!r.ok) throw new Error('No pude leer charlas.json'); return r.json(); })
+  .then(function(d){
+    var list=JSON.parse(d.content||'[]');
+    if (list.some(function(c){ return c.slug===m.slug; })) throw new Error('Ya está en el index: editala desde el admin');
+    var tags=(m.tags||'').split(',').map(function(s){return s.trim();}).filter(Boolean);
+    list.push({slug:m.slug,title:m.titulo,cover:null,observation:'',question:m.pregunta||'',idea:m.idea||'',summary:m.resumen||'',
+      tags:tags,themes:tags,duration:m.duracion||'30',status:'activa',activeStatus:'activa',editorialStatus:'draft',
+      resources:[{type:'Presentación',title:'Presentación interactiva',url:m.slug+'/index.html',public:true}],
+      conversations:m.evento?[{event:m.evento,organization:'',location:'',date:m.fecha||'',format:'presencial',visible:true,resources:[]}]:[]});
+    return fetch(API_BASE+'/api/charlas',{method:'PUT',headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},body:JSON.stringify({content:JSON.stringify(list,null,2)})});
+  })
+  .then(function(r){ if(!r.ok) throw new Error('No se pudo guardar'); toast('Agregada como borrador ✓'); $('addIdx').disabled=true; })
+  .catch(function(e){ toast(e.message||'Error de conexión'); });
+}
+
+document.addEventListener('keydown', function(e){ if (e.key==='Escape') closeFormat(); });
+</script>
+</body>
+</html>
