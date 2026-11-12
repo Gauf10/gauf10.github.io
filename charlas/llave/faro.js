@@ -246,14 +246,8 @@ var CHARLA_FOLDER = (function() {
 
   function renderNext(index) {
     var el = document.getElementById('next-preview');
-    // Keep label
-    var label = el.querySelector('#next-label');
-    if (!label) {
-      label = document.createElement('div');
-      label.id = 'next-label';
-      el.insertBefore(label, el.firstChild);
-    }
-    label.textContent = 'SIGUIENTE';
+    var label = document.getElementById('next-label');
+    if (label) label.textContent = (index < 0 || index >= TOTAL_SLIDES) ? 'SIGUIENTE · fin' : 'SIGUIENTE';
     if (index < 0 || index >= TOTAL_SLIDES) {
       var host = el.querySelector('.shadow-host');
       if (host) host.remove();
@@ -383,6 +377,7 @@ var CHARLA_FOLDER = (function() {
         notesCache = parsed;
         var ta = document.getElementById('notes-editor');
         if (ta) ta.value = getNotesForSlide(cur);
+        syncNotesWindow();
         /* guarda el archivo tal cual vino, para no perder títulos ni formato */
         Api.saveNotes(raw).catch(function() {});
         showToast('Notas importadas (' + n + ' slides).');
@@ -545,6 +540,7 @@ var CHARLA_FOLDER = (function() {
     renderCurrent(cur);
     renderNext(cur + 1 < TOTAL_SLIDES ? cur + 1 : -1);
     document.getElementById('notes-editor').value = getNotesForSlide(cur);
+    syncNotesWindow();
     document.getElementById('st-slide').innerHTML =
       '<span>' + String(cur + 1).padStart(2,'0') + '</span> / ' + String(TOTAL_SLIDES).padStart(2,'0');
 
@@ -570,49 +566,184 @@ var CHARLA_FOLDER = (function() {
    *  LAYOUT
    * ────────────────────────────────────────────── */
 
+  /* layoutRatio = parte del alto disponible para los slides (actual + siguiente) */
   function loadRatio() {
-    var r = parseFloat(localStorage.getItem('faro-notes-ratio'));
-    if (r > 0.05 && r < 0.7) layoutRatio = r;
-    else layoutRatio = 0.22;
+    var r = parseFloat(localStorage.getItem('faro-stage-ratio'));
+    layoutRatio = (r > 0.1 && r < 0.9) ? r : 0.55;
   }
 
   function saveRatio(r) {
-    layoutRatio = Math.max(.08, Math.min(.65, r));
-    localStorage.setItem('faro-notes-ratio', layoutRatio);
+    layoutRatio = Math.max(.15, Math.min(.85, r));
+    localStorage.setItem('faro-stage-ratio', layoutRatio);
     applyRatio();
   }
 
-  function applySlideSize() {
-    var stage = document.getElementById('slide-stage');
-    var box = document.getElementById('slide-current');
-    if (!stage || !box) return;
-    var w = stage.clientWidth;
-    var h = stage.clientHeight;
+  /* encaja una caja de slide, con la proporción de la pantalla, dentro de su contenedor */
+  function fitBox(box) {
+    if (!box || !box.parentElement) return;
+    var p = box.parentElement;
+    var w = p.clientWidth, h = p.clientHeight;
     if (!w || !h) return;
     var ar = window.innerWidth / window.innerHeight;
-    var sw = w;
-    var sh = w / ar;
+    var sw = w, sh = w / ar;
     if (sh > h) { sh = h; sw = h * ar; }
     box.style.width = Math.floor(sw) + 'px';
     box.style.height = Math.floor(sh) + 'px';
     fitShadowHost(box);
-    var next = document.getElementById('next-preview');
-    if (next) fitShadowHost(next);
+  }
+
+  function applySlideSize() {
+    fitBox(document.getElementById('slide-current'));
+    fitBox(document.getElementById('next-preview'));
+  }
+
+  function availHeight() {
+    var app = document.getElementById('app');
+    var topBar = document.getElementById('top-bar');
+    var bottom = document.getElementById('bottom-section');
+    return app.clientHeight - topBar.offsetHeight - bottom.offsetHeight - 60;
   }
 
   function applyRatio() {
-    var notes = document.getElementById('notes-section');
-    var bottom = document.getElementById('bottom-section');
-    var stage = document.getElementById('slide-stage');
-    var topBar = document.getElementById('top-bar');
     var app = document.getElementById('app');
-    if (!notes || !bottom || !stage || !topBar || !app) return;
-    var avail = app.clientHeight - topBar.offsetHeight - bottom.offsetHeight - 28;
-    if (avail < 140) return;
-    var h = Math.max(48, Math.round(avail * layoutRatio));
-    notes.style.height = h + 'px';
+    var stage = document.getElementById('slide-stage');
+    if (!app || !stage) return;
+    if (app.classList.contains('notes-away') || (app.classList.contains('no-current') && app.classList.contains('no-next'))) {
+      stage.style.height = '';
+    } else {
+      var avail = availHeight();
+      if (avail < 140) return;
+      stage.style.height = Math.max(80, Math.round(avail * layoutRatio)) + 'px';
+    }
     applySlideSize();
   }
+
+  /* ──────────────────────────────────────────────
+   *  VISTAS — on/off de actual y siguiente
+   * ────────────────────────────────────────────── */
+
+  var views = { current: true, next: true };
+
+  function loadViews() {
+    try {
+      var v = JSON.parse(localStorage.getItem('faro-views'));
+      if (v) { views.current = v.current !== false; views.next = v.next !== false; }
+    } catch (e) {}
+    applyViews();
+  }
+
+  function applyViews() {
+    var app = document.getElementById('app');
+    app.classList.toggle('no-current', !views.current);
+    app.classList.toggle('no-next', !views.next);
+    document.getElementById('tgl-current').classList.toggle('on', views.current);
+    document.getElementById('tgl-next').classList.toggle('on', views.next);
+    setTimeout(applyRatio, 30);
+  }
+
+  function toggleView(which) {
+    views[which] = !views[which];
+    try { localStorage.setItem('faro-views', JSON.stringify(views)); } catch (e) {}
+    applyViews();
+  }
+
+  /* ──────────────────────────────────────────────
+   *  NOTAS EN VENTANA APARTE
+   * ────────────────────────────────────────────── */
+
+  var notesWin = null;
+  var notesWinWatch = null;
+  var notesWinSlide = null;
+
+  function notesWinOpen() { return !!(notesWin && !notesWin.closed); }
+
+  function syncNotesWindow() {
+    if (!notesWinOpen()) return;
+    try {
+      var d = notesWin.document;
+      var ta = d.getElementById('nw-editor');
+      /* no pisar lo que se está escribiendo, salvo que haya cambiado el slide */
+      if (ta && (d.activeElement !== ta || notesWinSlide !== cur)) ta.value = getNotesForSlide(cur);
+      notesWinSlide = cur;
+      var n = d.getElementById('nw-slide');
+      if (n) n.textContent = String(cur + 1).padStart(2, '0') + ' / ' + String(TOTAL_SLIDES).padStart(2, '0');
+      d.title = 'Notas ' + (cur + 1) + ' — ' + CHARLA_NAME;
+    } catch (e) {}
+  }
+
+  function setNotesAway(on) {
+    document.getElementById('app').classList.toggle('notes-away', on);
+    document.getElementById('tgl-notes-win').classList.toggle('on', on);
+    setTimeout(applyRatio, 30);
+  }
+
+  function closeNotesWindow() {
+    if (notesWinOpen()) notesWin.close();
+    notesWin = null;
+    if (notesWinWatch) { clearInterval(notesWinWatch); notesWinWatch = null; }
+    setNotesAway(false);
+    var ed = document.getElementById('notes-editor');
+    if (ed && cur >= 0) ed.value = getNotesForSlide(cur);
+  }
+
+  function openNotesWindow() {
+    var fs = parseFloat(getComputedStyle(document.getElementById('notes-editor')).fontSize) || 16;
+    notesWin = window.open('', 'faro-notas', 'width=560,height=720,menubar=no,toolbar=no,location=no');
+    if (!notesWin) { showToast('El navegador bloqueó la ventana. Permití pop-ups.'); return; }
+    var d = notesWin.document;
+    d.open();
+    d.write('<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Notas — FARO</title>' +
+      '<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400&display=swap" rel="stylesheet">' +
+      '<style>*{box-sizing:border-box;margin:0}html,body{height:100%;background:#111;color:#F5F2EC;font-family:Archivo,sans-serif}' +
+      'body{display:flex;flex-direction:column;padding:20px 24px;gap:10px}' +
+      'header{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:.12em;color:rgba(245,242,236,.4)}' +
+      '#nw-slide{color:#27D3CC;font-size:13px}' +
+      'nav button{background:none;border:1px solid rgba(245,242,236,.15);color:rgba(245,242,236,.6);border-radius:999px;padding:3px 10px;cursor:pointer;font:inherit;margin-left:4px}' +
+      'nav button:hover{border-color:#27D3CC;color:#27D3CC}' +
+      'textarea{flex:1;width:100%;background:transparent;border:none;outline:none;resize:none;color:#F5F2EC;font:300 ' + fs + 'px/1.6 Archivo,sans-serif;letter-spacing:.02em}' +
+      'textarea::placeholder{color:rgba(245,242,236,.25)}</style></head><body>' +
+      '<header><span>NOTAS · <span id="nw-slide"></span></span><nav>' +
+      '<button id="nw-prev" title="Anterior">↑</button><button id="nw-next" title="Siguiente">↓</button>' +
+      '<button id="nw-minus" title="Achicar texto">A−</button><button id="nw-plus" title="Agrandar texto">A+</button></nav></header>' +
+      '<textarea id="nw-editor" placeholder="Escribí disparadores para este slide…" spellcheck="true"></textarea>' +
+      '</body></html>');
+    d.close();
+
+    var ta = d.getElementById('nw-editor');
+    ta.addEventListener('input', function() {
+      document.getElementById('notes-editor').value = ta.value;
+      onNotesInput();
+    });
+    function size(delta) {
+      var px = parseFloat(notesWin.getComputedStyle(ta).fontSize) || 16;
+      ta.style.fontSize = Math.max(10, px + delta) + 'px';
+    }
+    d.getElementById('nw-prev').onclick = prevSlide;
+    d.getElementById('nw-next').onclick = nextSlide;
+    d.getElementById('nw-minus').onclick = function() { size(-2); };
+    d.getElementById('nw-plus').onclick = function() { size(2); };
+    d.addEventListener('keydown', function(e) {
+      /* PageUp / PageDown (clickers) siempre navegan; flechas solo fuera del texto */
+      if (e.key === 'PageUp') { e.preventDefault(); prevSlide(); return; }
+      if (e.key === 'PageDown') { e.preventDefault(); nextSlide(); return; }
+      if (e.target === ta) return;
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); prevSlide(); }
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); nextSlide(); }
+    });
+
+    notesWinSlide = null;
+    setNotesAway(true);
+    syncNotesWindow();
+    if (notesWinWatch) clearInterval(notesWinWatch);
+    notesWinWatch = setInterval(function() { if (!notesWinOpen()) closeNotesWindow(); }, 800);
+  }
+
+  function toggleNotesWindow() {
+    if (notesWinOpen()) closeNotesWindow();
+    else openNotesWindow();
+  }
+
+  window.addEventListener('beforeunload', function() { if (notesWinOpen()) notesWin.close(); });
 
   function initDrag() {
     var handle = document.getElementById('drag-handle');
@@ -621,10 +752,7 @@ var CHARLA_FOLDER = (function() {
 
     function onMove(e) {
       if (!dragging) return;
-      var bottom = document.getElementById('bottom-section');
-      var topBar = document.getElementById('top-bar');
-      var app = document.getElementById('app');
-      var avail = app.clientHeight - topBar.offsetHeight - bottom.offsetHeight - 28;
+      var avail = availHeight();
       var dy = (e.touches ? e.touches[0].clientY : e.clientY) - startY;
       saveRatio(startRatio + (dy / avail));
     }
@@ -706,6 +834,9 @@ var CHARLA_FOLDER = (function() {
       case 's': case 'S': setTotalMinutes(); break;
       case 'p': case 'P': setSlideTarget(); break;
       case 'a': case 'A': toggleAprendizajes(); break;
+      case '1': toggleView('current'); break;
+      case '2': toggleView('next'); break;
+      case 'w': case 'W': toggleNotesWindow(); break;
       case 'b': case 'B':
         blackoutActive = !blackoutActive;
         if (broadcast) broadcast.postMessage({ type: 'blackout', active: blackoutActive });
@@ -810,6 +941,7 @@ var CHARLA_FOLDER = (function() {
               }
             }
             if (cur >= 0) document.getElementById('notes-editor').value = getNotesForSlide(cur);
+            syncNotesWindow();
           }
         }
       } catch(err) {}
@@ -832,6 +964,7 @@ var CHARLA_FOLDER = (function() {
 
   function initApp() {
     loadRatio();
+    loadViews();
     totalMinutes = parseFloat(localStorage.getItem('faro-total-minutes')) || 0;
     slideTargetSeconds = parseInt(localStorage.getItem('faro-slide-target-seconds'), 10) || 0;
 
@@ -849,6 +982,7 @@ var CHARLA_FOLDER = (function() {
     Api.getNotes().then(function(data) {
       notesCache = parseNotes(data.content || '');
       if (cur >= 0) document.getElementById('notes-editor').value = getNotesForSlide(cur);
+      syncNotesWindow();
     }).catch(function() {});
 
     window.addEventListener('resize', applyRatio);
@@ -1013,6 +1147,8 @@ var CHARLA_FOLDER = (function() {
     next: nextSlide,
     toggleHelp: toggleHelp,
     toggleAprendizajes: toggleAprendizajes,
+    toggleView: toggleView,
+    toggleNotesWindow: toggleNotesWindow,
     setSlideTarget: setSlideTarget,
     exportNotes: exportNotes,
     importNotes: importNotes,

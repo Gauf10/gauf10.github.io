@@ -13,11 +13,11 @@ Tuve que correr por el atraso en arrancar.
 Tener ejercicios por las dudas y también darme permiso a no exponer alguna parte de lo que había pensado.
 
 ## Preguntas que aparecieron
-
+¿cómo grabé contenido andando en bicicleta?
 —
 
 ## Ideas nuevas
-
+hablar del ego, ir de costado, las dos oradoras anteriores trajeron levemente el tema y yo lo hago en la guía.
 —
 
 ## Testimonios
