@@ -619,17 +619,33 @@ function loadData() {
     });
 }
 
-function saveData() {
+/* si la sesión venció: pide la contraseña acá mismo y reintenta, sin perder lo editado */
+function reauth() {
+  var pw = prompt('La sesión venció. Contraseña para publicar (lo editado no se pierde):');
+  if (!pw) return Promise.resolve(false);
+  return fetch(API_BASE + '/api/login', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ charla: LOGIN_CHARLA, password: pw })
+  }).then(function(r){
+    if (!r.ok) { showToast('Contraseña incorrecta.'); return false; }
+    return r.json().then(function(d){ authToken = d.token; sessionStorage.setItem(LS_TOKEN, d.token); return true; });
+  }).catch(function(){ return false; });
+}
+
+function saveData(retried) {
   try { localStorage.setItem(LS_DATA, JSON.stringify(CHARLAS)); } catch(e){}
   var el = document.getElementById('save-status');
-  if (!authToken) { showToast('Sin sesión: guardado solo en este navegador.'); return Promise.resolve(false); }
+  if (!authToken && !retried) return reauth().then(function(ok){ return ok ? saveData(true) : (showToast('Quedó guardado en este navegador. Tocá Guardar de nuevo para publicar.', 4000), false); });
   if (el) el.textContent = 'Publicando…';
   return fetch(API_BASE + '/api/charlas', {
     method:'PUT',
     headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},
     body: JSON.stringify({ content: JSON.stringify(CHARLAS, null, 2) })
   }).then(function(r){
-    if (r.status === 401) { logoutExpired(); return false; }
+    if (r.status === 401) {
+      if (retried) { showToast('No se pudo publicar. Quedó guardado en este navegador.', 4000); return false; }
+      return reauth().then(function(ok){ return ok ? saveData(true) : (showToast('Quedó guardado en este navegador. Tocá Guardar de nuevo para publicar.', 4000), false); });
+    }
     if (!r.ok) throw new Error('http');
     if (el) el.textContent = 'Publicado ✓';
     showToast('Publicado. El sitio se actualiza en ~1 minuto.', 3500);
