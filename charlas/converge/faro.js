@@ -15,6 +15,7 @@
   var API_BASE = 'https://faro-api.gauf10.workers.dev';
 var CHARLA_NAME = 'Tenés una idea. Ahora contala.';
 var TOTAL_SLIDES = 19;
+var VIDEO_BUTTON = false; /* true si index.html maneja 'playVideo' */
 var CHARLA_FOLDER = (function() {
   var m = location.pathname.match(/charlas\/([^/]+)\//);
   return m ? m[1] : '';
@@ -39,6 +40,53 @@ var CHARLA_FOLDER = (function() {
   var broadcast = null;
 
   var slideCSS =
+    '*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}' +
+    ':host{display:block;width:100%;height:100%;overflow:hidden;font-family:\'Archivo\',sans-serif;background:#1a1a1a;color:#f5f2ec;-webkit-font-smoothing:antialiased;--bk:#1a1a1a;--accent:#27d3cc;--bone:#f5f2ec;--dim:rgba(245,242,236,.4);--dim2:rgba(245,242,236,.12);--pad:clamp(40px,7vw,100px)}' +
+    '.slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1;background:var(--bk);color:var(--bone)}' +
+    '.si{position:relative;z-index:2;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;padding:var(--pad)}' +
+    '.si-content{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative}' +
+    '.si-footer{position:absolute;bottom:clamp(16px,3vh,40px);left:0;right:0;display:flex;justify-content:center;align-items:center;padding:0 var(--pad);pointer-events:none}' +
+    '.footer-logo{height:clamp(13px,1.76vw,26px);width:auto;opacity:1}' +
+    '.footer-logo-circle{position:absolute;top:clamp(16px,3vh,40px);right:var(--pad);height:clamp(39px,4.8vw,68px);width:auto;max-width:clamp(100px,12vw,180px);object-fit:contain;opacity:1;z-index:3}' +
+    '.corner-logo{position:absolute;top:clamp(16px,3vh,40px);right:var(--pad);height:clamp(39px,4.8vw,68px);width:auto;max-width:clamp(100px,12vw,180px);object-fit:contain;opacity:1;z-index:3}' +
+    '.hero{text-align:center;max-width:88vw}' +
+    '.hero-line{font-size:clamp(18px,3.2vw,44px);font-weight:300;line-height:1.5;letter-spacing:0.04em;color:var(--bone)}' +
+    '.accent,.hero-line.accent{color:var(--accent)}' +
+    '.hero-break-lg{height:clamp(32px,6vh,96px)}' +
+    '.sub-text{font-size:clamp(13px,1.5vw,22px);font-weight:300;color:var(--dim);letter-spacing:0.04em;margin-top:clamp(12px,2vh,24px)}' +
+    '.idea-wrap{text-align:center;max-width:84vw}' +
+    '.idea-text{font-size:clamp(18px,3.2vw,44px);font-weight:300;line-height:1.5;letter-spacing:0.04em;color:var(--bone)}' +
+    '.framework{text-align:center;display:flex;flex-direction:column;align-items:center;gap:clamp(10px,1.6vh,20px)}' +
+    '.fw-step{font-size:clamp(18px,3.2vw,44px);font-weight:300;letter-spacing:0.04em;color:var(--bone);line-height:1.3}' +
+    '.fw-step.accent{color:var(--accent)}' +
+    '.fw-sep{font-size:clamp(12px,1.2vw,18px);color:var(--dim2);line-height:1;opacity:1!important;transition:none!important;transform:none!important}' +
+    '.fw-sep.revealed{opacity:1}' +
+    '.img-wrap{display:flex;justify-content:center;align-items:center;width:100%;height:50vh}' +
+    '.img-wrap img{max-width:90%;max-height:100%;object-fit:contain;border-radius:clamp(8px,1.2vw,16px);box-shadow:0 4px 48px rgba(0,0,0,.7)}' +
+    '.qr-placeholder{width:clamp(100px,14vw,160px);height:clamp(100px,14vw,160px);border:2px dashed rgba(26,26,26,.35);border-radius:8px;display:flex;align-items:center;justify-content:center;margin:clamp(16px,2.5vh,32px) auto 0;font-size:clamp(9px,.8vw,12px);letter-spacing:.14em;text-transform:uppercase;color:rgba(26,26,26,.35)}' +
+    '.qr-img{display:block;width:clamp(132px,18vw,216px);height:auto;margin:clamp(16px,2.5vh,32px) auto 0;border-radius:6px;background:#fff;padding:clamp(4px,.5vw,8px);box-shadow:0 4px 24px rgba(0,0,0,.18)}' +
+    '.qr-caption{font-size:28px;font-weight:700;color:rgba(26,26,26,.6);letter-spacing:0.04em;text-align:center;margin-top:clamp(12px,2vh,24px);line-height:1.4}' +
+    '.slide-cyan{--bk:#27d3cc;background:#27d3cc;color:#1a1a1a}' +
+    '.slide-cyan .hero-line{color:#1a1a1a;font-weight:300}' +
+    '.slide-cyan .accent,.slide-cyan .hero-line.accent{color:#1a1a1a;opacity:.6}' +
+    '.slide-cyan .idea-text{color:#1a1a1a}' +
+    '.slide-cyan .sub-text{color:rgba(26,26,26,.5)}' +
+    '.slide-cyan .reveal-step{color:#1a1a1a}' +
+    '.slide-cyan .footer-logo{filter:brightness(0);opacity:1}' +
+    '.slide-cyan .footer-logo-circle{filter:brightness(0);opacity:.7}' +
+    '.slide-cyan .corner-logo{filter:brightness(0);opacity:.7}' +
+    '.slide-cyan .slide-num{color:rgba(26,26,26,.25)}' +
+    '.s-close-quote{max-width:80vw;text-align:center}' +
+    '.s-close-quote div{font-size:clamp(22px,3.8vw,56px);font-weight:300;line-height:1.4;letter-spacing:0.03em;color:var(--bone)}' +
+    '.s-author{font-size:clamp(11px,1vw,15px);color:var(--dim);font-weight:400;letter-spacing:.15em;text-transform:uppercase}' +
+    '.sec-label{font-size:clamp(10px,.9vw,14px);color:var(--dim);letter-spacing:0.12em;text-transform:uppercase;font-weight:400;margin-bottom:clamp(24px,3vh,52px)}' +
+    '.reveal-steps{text-align:center}' +
+    '.reveal-step{font-size:clamp(18px,3.2vw,44px);font-weight:300;line-height:1.5;letter-spacing:0.04em;color:var(--bone);opacity:1!important;transition:none!important;transform:none!important}' +
+    '.reveal-step.revealed{opacity:1;transform:translateY(0)}' +
+    '.fw-arr{color:var(--dim);font-size:clamp(12px,1.2vw,20px);margin:clamp(4px,.6vh,12px) 0;font-weight:300}' +
+    '.slide{-webkit-user-select:text;user-select:text}' +
+    '.slide-num{position:absolute;bottom:clamp(16px,3vh,40px);left:var(--pad);font-size:clamp(8px,.7vw,11px);color:rgba(245,242,236,.25);font-weight:300;letter-spacing:.04em;pointer-events:none;z-index:3}' +
+    /* propios de converge */
     '*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}' +
     ':host{display:block;width:100%;height:100%;overflow:hidden;font-family:\'Archivo\',sans-serif;background:#1a1a1a;color:#f5f2ec;-webkit-font-smoothing:antialiased;--bk:#1a1a1a;--accent:#27d3cc;--bone:#f5f2ec;--dim:rgba(245,242,236,.4);--dim2:rgba(245,242,236,.12);--pad:clamp(40px,7vw,100px)}' +
     '.slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1;background:var(--bk);color:var(--bone)}' +
@@ -189,7 +237,8 @@ var CHARLA_FOLDER = (function() {
   function slideInnerHTML(index) {
     var s = slides[index];
     if (!s) return '';
-    s = s.replace(/class="reveal-step"/g, 'class="reveal-step revealed"');
+    /* En FARO todos los pasos se ven de inmediato: agrega 'revealed' a cualquier reveal-step */
+    s = s.replace(/class="([^"]*\breveal-step\b[^"]*)"/g, 'class="$1 revealed"');
     return s;
   }
 
@@ -215,22 +264,34 @@ var CHARLA_FOLDER = (function() {
       el.innerHTML = '';
       host = document.createElement('div');
       host.className = 'shadow-host';
-      host.style.cssText = 'width:100%;height:100%;display:block;';
+      host.style.cssText = 'position:absolute;top:0;left:0;display:block;transform-origin:top left;';
       el.appendChild(host);
     }
     mountShadow(host, html, '');
+    fitShadowHost(el);
+    /* si el slide tiene video, botón para reproducirlo en la presentación */
+    var ov = el.querySelector('#video-play');
+    var hasVideo = VIDEO_BUTTON && /<video/i.test(html);
+    if (hasVideo && !ov) {
+      ov = document.createElement('div');
+      ov.id = 'video-play';
+      ov.title = 'Reproducir video';
+      ov.innerHTML = '<button id="video-play-btn" aria-label="Reproducir video">'
+        + '<svg class="play-tri" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>'
+        + '<span>Reproducir video</span></button>';
+      ov.addEventListener('click', function() {
+        if (broadcast) broadcast.postMessage({ type: 'playVideo' });
+      });
+      el.appendChild(ov);
+    } else if (!hasVideo && ov) {
+      ov.remove();
+    }
   }
 
   function renderNext(index) {
     var el = document.getElementById('next-preview');
-    // Keep label
-    var label = el.querySelector('#next-label');
-    if (!label) {
-      label = document.createElement('div');
-      label.id = 'next-label';
-      el.insertBefore(label, el.firstChild);
-    }
-    label.textContent = 'SIGUIENTE';
+    var label = document.getElementById('next-label');
+    if (label) label.textContent = (index < 0 || index >= TOTAL_SLIDES) ? 'SIGUIENTE · fin' : 'SIGUIENTE';
     if (index < 0 || index >= TOTAL_SLIDES) {
       var host = el.querySelector('.shadow-host');
       if (host) host.remove();
@@ -241,10 +302,29 @@ var CHARLA_FOLDER = (function() {
     if (!host) {
       host = document.createElement('div');
       host.className = 'shadow-host';
-      host.style.cssText = 'position:absolute;inset:0;pointer-events:none;';
+      host.style.cssText = 'position:absolute;top:0;left:0;pointer-events:none;transform-origin:top left;';
       el.appendChild(host);
     }
     mountShadow(host, html, '');
+    fitShadowHost(el);
+  }
+
+  /* Renderiza el slide a tamaño viewport real y lo escala para que entre
+     completo y proporcional dentro de la caja indicada. */
+  function fitShadowHost(box) {
+    var host = box.querySelector('.shadow-host');
+    if (!host) return;
+    var bw = box.clientWidth;
+    var bh = box.clientHeight;
+    var vw = window.innerWidth;
+    var vh = window.innerHeight;
+    if (!bw || !bh || !vw || !vh) return;
+    var k = Math.min(bw / vw, bh / vh);
+    host.style.width = vw + 'px';
+    host.style.height = vh + 'px';
+    host.style.transform = 'scale(' + k + ')';
+    host.style.left = Math.round((bw - vw * k) / 2) + 'px';
+    host.style.top = Math.round((bh - vh * k) / 2) + 'px';
   }
 
   /* ──────────────────────────────────────────────
@@ -294,6 +374,64 @@ var CHARLA_FOLDER = (function() {
   }
 
   /* ──────────────────────────────────────────────
+   *  NOTAS — EXPORT / IMPORT
+   * ────────────────────────────────────────────── */
+
+  function exportNotes() {
+    var ta = document.getElementById('notes-editor');
+    if (!ta) return;
+    /* sincroniza lo escrito en el slide actual antes de exportar */
+    if (cur >= 0) notesCache['s' + cur] = ta.value;
+    var content = buildNotesMD();
+    if (!content) { showToast('No hay notas para exportar.'); return; }
+    var blob = new Blob([content], { type: 'text/markdown;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    var safeName = CHARLA_NAME.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+    a.download = safeName + '-notas.md';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    var n = 0;
+    for (var i = 0; i < TOTAL_SLIDES; i++) {
+      if (notesCache['s' + i] && notesCache['s' + i].trim()) n++;
+    }
+    showToast('Notas exportadas (' + n + ' slides).');
+  }
+
+  function importNotes() {
+    var input = document.getElementById('import-notes-input');
+    if (!input) return;
+    input.click();
+    input.addEventListener('change', function(e) {
+      var file = e.target.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function() {
+        var raw = String(reader.result || '');
+        var parsed = parseNotes(raw);
+        var n = 0;
+        for (var k in parsed) {
+          if (Object.prototype.hasOwnProperty.call(parsed, k)) n++;
+        }
+        if (!n) { showToast('El archivo no tiene notas reconocibles.'); return; }
+        /* reemplaza el cache completo: el archivo es la fuente de verdad */
+        notesCache = parsed;
+        var ta = document.getElementById('notes-editor');
+        if (ta) ta.value = getNotesForSlide(cur);
+        syncNotesWindow();
+        /* guarda el archivo tal cual vino, para no perder títulos ni formato */
+        Api.saveNotes(raw).catch(function() {});
+        showToast('Notas importadas (' + n + ' slides).');
+      };
+      reader.readAsText(file);
+      input.value = '';
+    }, { once: true });
+  }
+
+  /* ──────────────────────────────────────────────
    *  APRENDIZAJES
    * ────────────────────────────────────────────── */
 
@@ -317,8 +455,8 @@ var CHARLA_FOLDER = (function() {
     Api.getAprendizajes().then(function(data) {
       if (!data || !data.content) return;
       /* el API devuelve markdown; parsearlo a campos */
-      var fields = ['funciono', 'cambiaria', 'preguntas', 'ideas'];
-      var labels = ['Qué funcionó', 'Qué cambiaría', 'Preguntas que aparecieron', 'Ideas nuevas'];
+      var fields = ['funciono', 'cambiaria', 'preguntas', 'ideas', 'testimonios'];
+      var labels = ['Qué funcionó', 'Qué cambiaría', 'Preguntas que aparecieron', 'Ideas nuevas', 'Testimonios'];
       fields.forEach(function(key, i) {
         var re = new RegExp('##\\s*' + labels[i].replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*\\n([\\s\\S]*?)(?=##|$)', 'i');
         var m = data.content.match(re);
@@ -338,10 +476,11 @@ var CHARLA_FOLDER = (function() {
     if (_aprendizajesDebounce) clearTimeout(_aprendizajesDebounce);
     _aprendizajesDebounce = setTimeout(function() {
       var fields = [
-        { key: 'funciono',  label: 'Qué funcionó' },
-        { key: 'cambiaria', label: 'Qué cambiaría' },
-        { key: 'preguntas', label: 'Preguntas que aparecieron' },
-        { key: 'ideas',     label: 'Ideas nuevas' },
+        { key: 'funciono',     label: 'Qué funcionó' },
+        { key: 'cambiaria',    label: 'Qué cambiaría' },
+        { key: 'preguntas',    label: 'Preguntas que aparecieron' },
+        { key: 'ideas',        label: 'Ideas nuevas' },
+        { key: 'testimonios',  label: 'Testimonios' },
       ];
       var md = '# Aprendizajes — ' + CHARLA_NAME + '\n\n';
       fields.forEach(function(f) {
@@ -445,6 +584,7 @@ var CHARLA_FOLDER = (function() {
     renderCurrent(cur);
     renderNext(cur + 1 < TOTAL_SLIDES ? cur + 1 : -1);
     document.getElementById('notes-editor').value = getNotesForSlide(cur);
+    syncNotesWindow();
     document.getElementById('st-slide').innerHTML =
       '<span>' + String(cur + 1).padStart(2,'0') + '</span> / ' + String(TOTAL_SLIDES).padStart(2,'0');
 
@@ -470,28 +610,184 @@ var CHARLA_FOLDER = (function() {
    *  LAYOUT
    * ────────────────────────────────────────────── */
 
+  /* layoutRatio = parte del alto disponible para los slides (actual + siguiente) */
   function loadRatio() {
-    var r = parseFloat(localStorage.getItem('faro-layout-ratio'));
-    if (r > 0 && r < 1) layoutRatio = r;
+    var r = parseFloat(localStorage.getItem('faro-stage-ratio'));
+    layoutRatio = (r > 0.1 && r < 0.9) ? r : 0.55;
   }
 
   function saveRatio(r) {
-    layoutRatio = Math.max(.2, Math.min(.9, r));
-    localStorage.setItem('faro-layout-ratio', layoutRatio);
+    layoutRatio = Math.max(.15, Math.min(.85, r));
+    localStorage.setItem('faro-stage-ratio', layoutRatio);
     applyRatio();
   }
 
-  function applyRatio() {
-    var top = document.getElementById('slide-current');
-    var notes = document.getElementById('notes-section');
-    var bottom = document.getElementById('bottom-section');
-    if (!top || !notes || !bottom) return;
-    var avail = document.getElementById('app').clientHeight
-      - document.getElementById('top-bar').offsetHeight
-      - bottom.offsetHeight
-      - 16;
-    top.style.height = Math.round(avail * layoutRatio) + 'px';
+  /* encaja una caja de slide, con la proporción de la pantalla, dentro de su contenedor */
+  function fitBox(box) {
+    if (!box || !box.parentElement) return;
+    var p = box.parentElement;
+    var w = p.clientWidth, h = p.clientHeight;
+    if (!w || !h) return;
+    var ar = window.innerWidth / window.innerHeight;
+    var sw = w, sh = w / ar;
+    if (sh > h) { sh = h; sw = h * ar; }
+    box.style.width = Math.floor(sw) + 'px';
+    box.style.height = Math.floor(sh) + 'px';
+    fitShadowHost(box);
   }
+
+  function applySlideSize() {
+    fitBox(document.getElementById('slide-current'));
+    fitBox(document.getElementById('next-preview'));
+  }
+
+  function availHeight() {
+    var app = document.getElementById('app');
+    var topBar = document.getElementById('top-bar');
+    var bottom = document.getElementById('bottom-section');
+    return app.clientHeight - topBar.offsetHeight - bottom.offsetHeight - 60;
+  }
+
+  function applyRatio() {
+    var app = document.getElementById('app');
+    var stage = document.getElementById('slide-stage');
+    if (!app || !stage) return;
+    if (app.classList.contains('notes-away') || (app.classList.contains('no-current') && app.classList.contains('no-next'))) {
+      stage.style.height = '';
+    } else {
+      var avail = availHeight();
+      if (avail < 140) return;
+      stage.style.height = Math.max(80, Math.round(avail * layoutRatio)) + 'px';
+    }
+    applySlideSize();
+  }
+
+  /* ──────────────────────────────────────────────
+   *  VISTAS — on/off de actual y siguiente
+   * ────────────────────────────────────────────── */
+
+  var views = { current: true, next: true };
+
+  function loadViews() {
+    try {
+      var v = JSON.parse(localStorage.getItem('faro-views'));
+      if (v) { views.current = v.current !== false; views.next = v.next !== false; }
+    } catch (e) {}
+    applyViews();
+  }
+
+  function applyViews() {
+    var app = document.getElementById('app');
+    app.classList.toggle('no-current', !views.current);
+    app.classList.toggle('no-next', !views.next);
+    document.getElementById('tgl-current').classList.toggle('on', views.current);
+    document.getElementById('tgl-next').classList.toggle('on', views.next);
+    setTimeout(applyRatio, 30);
+  }
+
+  function toggleView(which) {
+    views[which] = !views[which];
+    try { localStorage.setItem('faro-views', JSON.stringify(views)); } catch (e) {}
+    applyViews();
+  }
+
+  /* ──────────────────────────────────────────────
+   *  NOTAS EN VENTANA APARTE
+   * ────────────────────────────────────────────── */
+
+  var notesWin = null;
+  var notesWinWatch = null;
+  var notesWinSlide = null;
+
+  function notesWinOpen() { return !!(notesWin && !notesWin.closed); }
+
+  function syncNotesWindow() {
+    if (!notesWinOpen()) return;
+    try {
+      var d = notesWin.document;
+      var ta = d.getElementById('nw-editor');
+      /* no pisar lo que se está escribiendo, salvo que haya cambiado el slide */
+      if (ta && (d.activeElement !== ta || notesWinSlide !== cur)) ta.value = getNotesForSlide(cur);
+      notesWinSlide = cur;
+      var n = d.getElementById('nw-slide');
+      if (n) n.textContent = String(cur + 1).padStart(2, '0') + ' / ' + String(TOTAL_SLIDES).padStart(2, '0');
+      d.title = 'Notas ' + (cur + 1) + ' — ' + CHARLA_NAME;
+    } catch (e) {}
+  }
+
+  function setNotesAway(on) {
+    document.getElementById('app').classList.toggle('notes-away', on);
+    document.getElementById('tgl-notes-win').classList.toggle('on', on);
+    setTimeout(applyRatio, 30);
+  }
+
+  function closeNotesWindow() {
+    if (notesWinOpen()) notesWin.close();
+    notesWin = null;
+    if (notesWinWatch) { clearInterval(notesWinWatch); notesWinWatch = null; }
+    setNotesAway(false);
+    var ed = document.getElementById('notes-editor');
+    if (ed && cur >= 0) ed.value = getNotesForSlide(cur);
+  }
+
+  function openNotesWindow() {
+    var fs = parseFloat(getComputedStyle(document.getElementById('notes-editor')).fontSize) || 16;
+    notesWin = window.open('', 'faro-notas', 'width=560,height=720,menubar=no,toolbar=no,location=no');
+    if (!notesWin) { showToast('El navegador bloqueó la ventana. Permití pop-ups.'); return; }
+    var d = notesWin.document;
+    d.open();
+    d.write('<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Notas — FARO</title>' +
+      '<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400&display=swap" rel="stylesheet">' +
+      '<style>*{box-sizing:border-box;margin:0}html,body{height:100%;background:#111;color:#F5F2EC;font-family:Archivo,sans-serif}' +
+      'body{display:flex;flex-direction:column;padding:20px 24px;gap:10px}' +
+      'header{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:.12em;color:rgba(245,242,236,.4)}' +
+      '#nw-slide{color:#27D3CC;font-size:13px}' +
+      'nav button{background:none;border:1px solid rgba(245,242,236,.15);color:rgba(245,242,236,.6);border-radius:999px;padding:3px 10px;cursor:pointer;font:inherit;margin-left:4px}' +
+      'nav button:hover{border-color:#27D3CC;color:#27D3CC}' +
+      'textarea{flex:1;width:100%;background:transparent;border:none;outline:none;resize:none;color:#F5F2EC;font:300 ' + fs + 'px/1.6 Archivo,sans-serif;letter-spacing:.02em}' +
+      'textarea::placeholder{color:rgba(245,242,236,.25)}</style></head><body>' +
+      '<header><span>NOTAS · <span id="nw-slide"></span></span><nav>' +
+      '<button id="nw-prev" title="Anterior">↑</button><button id="nw-next" title="Siguiente">↓</button>' +
+      '<button id="nw-minus" title="Achicar texto">A−</button><button id="nw-plus" title="Agrandar texto">A+</button></nav></header>' +
+      '<textarea id="nw-editor" placeholder="Escribí disparadores para este slide…" spellcheck="true"></textarea>' +
+      '</body></html>');
+    d.close();
+
+    var ta = d.getElementById('nw-editor');
+    ta.addEventListener('input', function() {
+      document.getElementById('notes-editor').value = ta.value;
+      onNotesInput();
+    });
+    function size(delta) {
+      var px = parseFloat(notesWin.getComputedStyle(ta).fontSize) || 16;
+      ta.style.fontSize = Math.max(10, px + delta) + 'px';
+    }
+    d.getElementById('nw-prev').onclick = prevSlide;
+    d.getElementById('nw-next').onclick = nextSlide;
+    d.getElementById('nw-minus').onclick = function() { size(-2); };
+    d.getElementById('nw-plus').onclick = function() { size(2); };
+    d.addEventListener('keydown', function(e) {
+      /* PageUp / PageDown (clickers) siempre navegan; flechas solo fuera del texto */
+      if (e.key === 'PageUp') { e.preventDefault(); prevSlide(); return; }
+      if (e.key === 'PageDown') { e.preventDefault(); nextSlide(); return; }
+      if (e.target === ta) return;
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); prevSlide(); }
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); nextSlide(); }
+    });
+
+    notesWinSlide = null;
+    setNotesAway(true);
+    syncNotesWindow();
+    if (notesWinWatch) clearInterval(notesWinWatch);
+    notesWinWatch = setInterval(function() { if (!notesWinOpen()) closeNotesWindow(); }, 800);
+  }
+
+  function toggleNotesWindow() {
+    if (notesWinOpen()) closeNotesWindow();
+    else openNotesWindow();
+  }
+
+  window.addEventListener('beforeunload', function() { if (notesWinOpen()) notesWin.close(); });
 
   function initDrag() {
     var handle = document.getElementById('drag-handle');
@@ -500,10 +796,7 @@ var CHARLA_FOLDER = (function() {
 
     function onMove(e) {
       if (!dragging) return;
-      var bottom = document.getElementById('bottom-section');
-      var topBar = document.getElementById('top-bar');
-      var app = document.getElementById('app');
-      var avail = app.clientHeight - topBar.offsetHeight - bottom.offsetHeight - 16;
+      var avail = availHeight();
       var dy = (e.touches ? e.touches[0].clientY : e.clientY) - startY;
       saveRatio(startRatio + (dy / avail));
     }
@@ -585,6 +878,9 @@ var CHARLA_FOLDER = (function() {
       case 's': case 'S': setTotalMinutes(); break;
       case 'p': case 'P': setSlideTarget(); break;
       case 'a': case 'A': toggleAprendizajes(); break;
+      case '1': toggleView('current'); break;
+      case '2': toggleView('next'); break;
+      case 'w': case 'W': toggleNotesWindow(); break;
       case 'b': case 'B':
         blackoutActive = !blackoutActive;
         if (broadcast) broadcast.postMessage({ type: 'blackout', active: blackoutActive });
@@ -689,6 +985,7 @@ var CHARLA_FOLDER = (function() {
               }
             }
             if (cur >= 0) document.getElementById('notes-editor').value = getNotesForSlide(cur);
+            syncNotesWindow();
           }
         }
       } catch(err) {}
@@ -711,6 +1008,7 @@ var CHARLA_FOLDER = (function() {
 
   function initApp() {
     loadRatio();
+    loadViews();
     totalMinutes = parseFloat(localStorage.getItem('faro-total-minutes')) || 0;
     slideTargetSeconds = parseInt(localStorage.getItem('faro-slide-target-seconds'), 10) || 0;
 
@@ -728,10 +1026,10 @@ var CHARLA_FOLDER = (function() {
     Api.getNotes().then(function(data) {
       notesCache = parseNotes(data.content || '');
       if (cur >= 0) document.getElementById('notes-editor').value = getNotesForSlide(cur);
+      syncNotesWindow();
     }).catch(function() {});
 
     window.addEventListener('resize', applyRatio);
-
     setInterval(function() {
       fetch(API_BASE + '/api/notes', {
         headers: { 'Authorization': 'Bearer ' + Auth.getToken() },
@@ -766,6 +1064,18 @@ var CHARLA_FOLDER = (function() {
       label: 'Abrir presentación pública',
       icon: '<path d="M13 5h6v6"/><path d="M19 5l-8 8"/><path d="M10 5H7a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-3"/>',
       run: openPresentation
+    },
+    {
+      id: 'export',
+      label: 'Exportar notas (.md)',
+      icon: '<path d="M8 7H3a2 2 0 00-2 2v12a2 2 0 002 2h7v-8.586L13.172 12l2 2z"/><path d="M12 7V2L19 7l-7 7z"/>',
+      run: exportNotes
+    },
+    {
+      id: 'import',
+      label: 'Importar notas (.md)',
+      icon: '<path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>',
+      run: importNotes
     }
   ];
 
@@ -799,7 +1109,7 @@ var CHARLA_FOLDER = (function() {
   function copyLink() {
     var url = location.origin + location.pathname.replace(/[^/]*$/, '') + 'index.html';
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(url).then(showToast).catch(function() { fallbackCopy(url); });
+      navigator.clipboard.writeText(url).then(function(){ showToast('Enlace copiado.'); }).catch(function() { fallbackCopy(url); });
     } else {
       fallbackCopy(url);
     }
@@ -812,7 +1122,7 @@ var CHARLA_FOLDER = (function() {
     ta.style.opacity = '0';
     document.body.appendChild(ta);
     ta.select();
-    try { document.execCommand('copy'); showToast(); } catch (err) {}
+    try { document.execCommand('copy'); showToast('Enlace copiado.'); } catch (err) {}
     document.body.removeChild(ta);
   }
 
@@ -820,9 +1130,9 @@ var CHARLA_FOLDER = (function() {
     window.open('index.html', '_blank');
   }
 
-  function showToast() {
+  function showToast(msg) {
     var el = document.getElementById('toast');
-    el.textContent = 'Enlace copiado.';
+    el.textContent = msg || 'Enlace copiado.';
     el.classList.add('show');
     clearTimeout(toastTimer);
     toastTimer = setTimeout(function() { el.classList.remove('show'); }, 1600);
@@ -881,6 +1191,10 @@ var CHARLA_FOLDER = (function() {
     next: nextSlide,
     toggleHelp: toggleHelp,
     toggleAprendizajes: toggleAprendizajes,
+    toggleView: toggleView,
+    toggleNotesWindow: toggleNotesWindow,
     setSlideTarget: setSlideTarget,
+    exportNotes: exportNotes,
+    importNotes: importNotes,
   };
 })();
