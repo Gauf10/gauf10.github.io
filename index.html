@@ -19,6 +19,7 @@
       send_page_view: true   // registra la visita al cargar la página
     });
   </script>
+<script src="/theme.js"></script>
 <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 <link rel="shortcut icon" href="images/favicon.ico">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@300;400;500&display=swap" rel="stylesheet">
@@ -419,6 +420,44 @@
   .cursor.dark.link-hover {
     background: var(--accent);
   }
+
+  /* ═══ MODO OSCURO (theme.js) ═══ */
+  :root[data-theme="dark"] {
+    --bg: #1a1a1a; --ink: #f5f2ec; --muted: #a8a49c;
+    --border: rgba(245,242,236,0.12); --card-bg: #222;
+  }
+  /* la barra sigue cyan: texto oscuro */
+  [data-theme="dark"] nav, [data-theme="dark"] .nav-mobile { --ink: #1a1a1a; }
+  [data-theme="dark"] .nav-cta { color: #f5f2ec !important; }
+  [data-theme="dark"] .lang-sep { color: rgba(26,26,26,0.3); }
+  /* secciones que eran negras: un tono más profundo */
+  [data-theme="dark"] #quien, [data-theme="dark"] #valores, [data-theme="dark"] footer,
+  [data-theme="dark"] .marquee-wrap:not(.light) { background: #0f0f0f; color: #f5f2ec; }
+  [data-theme="dark"] .quien-title { color: #f5f2ec; }
+  [data-theme="dark"] #quien, [data-theme="dark"] #valores { border-top: 1px solid rgba(245,242,236,0.06); }
+  [data-theme="dark"] .marquee-wrap:not(.light) * { color: #f5f2ec; }
+  /* botones claros sobre fondo oscuro */
+  [data-theme="dark"] .btn-primary, [data-theme="dark"] .btn-dark { color: #1a1a1a; }
+  [data-theme="dark"] .btn-primary:hover, [data-theme="dark"] .btn-dark:hover { color: #fff !important; }
+  /* bloques cyan: texto oscuro */
+  [data-theme="dark"] #proyectos, [data-theme="dark"] .hero-accent-pill { --ink: #1a1a1a; --bg: #f5f2ec; }
+  /* textos que estaban en negro translúcido */
+  [data-theme="dark"] .hero-sub-bar p { color: rgba(245,242,236,0.65); }
+  [data-theme="dark"] .hero-btn-note { color: rgba(245,242,236,0.45); }
+  [data-theme="dark"] .contacto-sub, [data-theme="dark"] .contacto-fallback { color: rgba(245,242,236,0.6); }
+  [data-theme="dark"] .servicio-num { color: rgba(245,242,236,0.08); }
+  [data-theme="dark"] .proceso-item:hover { background: rgba(245,242,236,0.04); }
+  /* tarjetas de testimonios: mantienen su color, texto oscuro */
+  [data-theme="dark"] .t-card { --ink: #1a1a1a; --muted: #555; border-color: transparent; }
+  [data-theme="dark"] .t-quote { color: #333; }
+  [data-theme="dark"] .t-card .t-tag { border-color: rgba(26,26,26,0.15); }
+  [data-theme="dark"] .t-card .t-name { border-top-color: rgba(26,26,26,0.1); }
+  [data-theme="dark"] .cursor.dark.hover { background: #1a1a1a; }
+  [data-theme="dark"] #contacto { --ink: #1a1a1a; --bg: #f5f2ec; color: #1a1a1a; }
+  [data-theme="dark"] #contacto .contacto-sub, [data-theme="dark"] #contacto .contacto-fallback { color: rgba(26,26,26,0.6); }
+  [data-theme="dark"] #contacto .btn-dark { color: #f5f2ec; }
+  [data-theme="dark"] #contacto .contacto-title { color: #1a1a1a; }
+  .gauf-theme-btn { cursor: none; }
 </style>
 </head>
 <body>
@@ -445,6 +484,7 @@
       <span class="lang-sep">/</span>
       <button class="lang-btn" data-lang="en" onclick="setLang('en')">ENG</button>
     </div>
+    <span data-theme-slot style="display:inline-flex"></span>
     <a href="#contacto" class="nav-cta" data-i18n="nav.cta">Hablemos</a>
   </div>
   <button class="nav-burger" id="burger" aria-label="Menú">
@@ -466,6 +506,7 @@
     <button class="lang-btn active" data-lang="es" onclick="setLang('es')">ESP</button>
     <span class="lang-sep">/</span>
     <button class="lang-btn" data-lang="en" onclick="setLang('en')">ENG</button>
+    <span data-theme-slot style="display:inline-flex;margin-left:12px"></span>
   </div>
 </div>
 
