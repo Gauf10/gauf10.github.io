@@ -43,10 +43,15 @@
   {
     "slug": "buen-rumbo",
     "title": "¿Vamos bien?",
+    "cover": "https://gaufgang.com/charlas/covers/buen-rumbo-cover.png",
+    "why": null,
     "observation": "Cambiar de rumbo no es fracaso. Insistir en una dirección equivocada sí puede serlo.",
     "question": "¿Cómo saber si tu proyecto está avanzando en la dirección correcta?",
     "idea": "No hay recetas. Solo algunas señales que, como una brújula, indican si vamos a buen rumbo y buen ritmo.",
     "summary": "Una charla para equipos en etapa de desarrollo que necesitan herramientas simples para evaluar si sus decisiones apuntan en la dirección correcta.",
+    "editorialStatus": "public",
+    "activeStatus": "activa",
+    "status": "activa",
     "tags": [
       "Startups",
       "Hackathons",
@@ -57,10 +62,8 @@
       "Hackathons",
       "Creatividad"
     ],
+    "audience": [],
     "duration": "25",
-    "status": "activa",
-    "activeStatus": "activa",
-    "editorialStatus": "public",
     "resources": [
       {
         "type": "Presentación",
@@ -75,9 +78,12 @@
         "organization": "ETH Lima",
         "location": "Lima, Perú",
         "date": "2026-08-06",
-        "format": "presencial",
+        "format": "virtual",
         "audience_desc": "Equipos de hackathon",
+        "audience_count": null,
+        "context": null,
         "visible": true,
+        "photos": [],
         "resources": []
       }
     ]
