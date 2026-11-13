@@ -27,7 +27,7 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --bg: #f5f2ec; --ink: #1a1a1a; --muted: #6b6b6b;
-    --accent: #27D3CC; --accent2: #7b61ff;
+    --accent: #27D3CC; --accent2: #27D3CC; --accent-ink: #14a29c;
     --border: rgba(26,26,26,0.12); --card-bg: #f5f2ec;
     --serif: 'Archivo Black', sans-serif; --body: 'Archivo', sans-serif;
     --nav-h: 54px;
@@ -94,6 +94,7 @@
   }
 
   .hero-content {
+    flex: 1;
     display: grid;
     grid-template-columns: 1fr 36%;
     gap: 0;
@@ -102,7 +103,7 @@
     z-index: 1;
     padding: 0 3rem;
   }
-  .hero-left { order: 1; padding-bottom: 3rem; padding-right: 2rem; }
+  .hero-left { order: 1; padding-bottom: 3rem; padding-right: 2rem; align-self: center; padding-top: clamp(2rem, 7vh, 5rem); }
   .hero-photo {
     order: 2;
     display: flex;
@@ -121,11 +122,11 @@
   }
   .hero-accent-pill { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: var(--ink); font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 16px; border-radius: 100px; margin-bottom: 1.5rem; width: fit-content; }
   .hero-accent-pill::before { content: ''; width: 6px; height: 6px; background: var(--ink); border-radius: 50%; display: inline-block; }
-  .hero-title { font-family: var(--serif); font-size: clamp(34px, 5vw, 60px); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 2rem; }
+  .hero-title { font-family: var(--serif); font-size: clamp(34px, min(4.4vw, 7.4vh), 68px); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 2rem; max-width: 15ch; text-wrap: balance; }
   .hero-title em { font-style: normal; color: var(--accent); -webkit-text-stroke: 0; }
   .hero-sub { font-size: 18px; line-height: 1.6; color: var(--muted); max-width: 380px; margin-bottom: 1.5rem; }
   .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: #f5f2ec; font-family: var(--body); font-size: 14px; font-weight: 500; letter-spacing: 0.04em; padding: 14px 28px; border-radius: 100px; text-decoration: none; transition: background 0.2s, transform 0.2s; }
-  .btn-primary:hover { background: var(--accent2); color: #fff !important; transform: none; box-shadow: none; }
+  .btn-primary:hover { background: var(--accent2); color: #1a1a1a !important; transform: none; box-shadow: none; }
 
   /* MARQUEE */
   .marquee-wrap { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 0.9rem 0; background: var(--ink); }
@@ -247,7 +248,7 @@
   .proceso-item { padding: 2rem; border-right: 1px solid var(--border); transition: background 0.2s; }
   .proceso-item:last-child { border-right: none; }
   .proceso-item:hover { background: rgba(26,26,26,0.03); }
-  .proceso-num { font-family: var(--serif); font-size: 13px; color: var(--accent2); margin-bottom: 0.5rem; letter-spacing: 0.04em; }
+  .proceso-num { font-family: var(--serif); font-size: 13px; color: var(--accent-ink); margin-bottom: 0.5rem; letter-spacing: 0.04em; }
   .proceso-title { font-family: var(--serif); font-size: 17px; margin-bottom: 0.5rem; line-height: 1.2; }
   .proceso-body { font-size: 14px; line-height: 1.6; color: var(--muted); }
   @media (max-width: 600px) {
@@ -272,7 +273,8 @@
   .contacto-title { font-family: var(--serif); font-size: clamp(36px, 6vw, 72px); line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 1.25rem; max-width: 700px; margin-left: auto; margin-right: auto; }
   .contacto-sub { font-size: 16px; color: rgba(26,26,26,0.6); margin-bottom: 3rem; }
   .btn-dark { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: #f5f2ec; font-family: var(--body); font-size: 15px; font-weight: 500; padding: 16px 36px; border-radius: 100px; text-decoration: none; transition: transform 0.2s; }
-  .btn-dark:hover { background: var(--accent2); color: #fff !important; transform: none; box-shadow: none; }
+  .btn-dark:hover { background: var(--accent2); color: #1a1a1a !important; transform: none; box-shadow: none; }
+  #contacto .btn-dark:hover { background: #f5f2ec; }
   .contacto-fallback { font-size: 13px; color: rgba(26,26,26,0.6); margin-top: 1.5rem; }
   .contacto-fallback a { color: var(--ink); text-decoration: underline; }
 
@@ -382,6 +384,18 @@
     .btn-dark { font-size: 14px; padding: 14px 30px; }
   }
 
+
+  /* RECURSOS: guía + Trama invisible */
+  #recursos { background: var(--bg); border-top: 1px solid var(--border); }
+  .recursos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .recurso { display: flex; flex-direction: column; gap: 0.9rem; padding: 2.25rem; border: 1px solid var(--border); border-radius: 16px; text-decoration: none; color: var(--ink); transition: border-color 0.2s, transform 0.2s; }
+  .recurso:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .recurso-tag { align-self: flex-start; font-size: 11px; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; background: var(--accent); color: #1a1a1a; padding: 5px 13px; border-radius: 100px; }
+  .recurso-title { font-family: var(--serif); font-size: clamp(26px, 2.6vw, 36px); line-height: 1.05; letter-spacing: -0.01em; }
+  .recurso-body { font-size: 16px; line-height: 1.6; color: var(--muted); max-width: 42ch; }
+  .recurso-cta { margin-top: auto; padding-top: 0.5rem; font-size: 13px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent-ink); }
+  @media (max-width: 768px) { .recursos-grid { grid-template-columns: 1fr; } .recurso { padding: 1.75rem; } }
+
   /* HERO CIRCLE */
   .hero-circle {
     position: absolute;
@@ -424,7 +438,7 @@
   /* ═══ MODO OSCURO (theme.js) ═══ */
   :root[data-theme="dark"] {
     --bg: #1a1a1a; --ink: #f5f2ec; --muted: #a8a49c;
-    --border: rgba(245,242,236,0.12); --card-bg: #222;
+    --border: rgba(245,242,236,0.12); --card-bg: #222; --accent-ink: #27D3CC;
   }
   /* la barra sigue cyan: texto oscuro */
   [data-theme="dark"] nav, [data-theme="dark"] .nav-mobile { --ink: #1a1a1a; }
@@ -438,7 +452,7 @@
   [data-theme="dark"] .marquee-wrap:not(.light) * { color: #f5f2ec; }
   /* botones claros sobre fondo oscuro */
   [data-theme="dark"] .btn-primary, [data-theme="dark"] .btn-dark { color: #1a1a1a; }
-  [data-theme="dark"] .btn-primary:hover, [data-theme="dark"] .btn-dark:hover { color: #fff !important; }
+  [data-theme="dark"] .btn-primary:hover, [data-theme="dark"] .btn-dark:hover { color: #1a1a1a !important; }
   /* bloques cyan: texto oscuro */
   [data-theme="dark"] #proyectos, [data-theme="dark"] .hero-accent-pill { --ink: #1a1a1a; --bg: #f5f2ec; }
   /* textos que estaban en negro translúcido */
@@ -473,7 +487,7 @@
   </a>
   <div class="nav-links">
     <a href="#dolores" data-i18n="nav.dolores">¿Te suena?</a>
-    <a href="#quien" data-i18n="nav.quien">Sobre mí</a>
+    <a href="/about/" data-i18n="nav.quien">Sobre mí</a>
     <a href="#servicios" data-i18n="nav.servicios">Servicios</a>
     <a href="#proyectos" data-i18n="nav.proyectos">Proyectos</a>
     <a href="#testimonios" data-i18n="nav.testimonios">Opiniones</a>
@@ -495,7 +509,7 @@
 <!-- Menú mobile -->
 <div class="nav-mobile" id="nav-mobile">
   <a href="#dolores" data-i18n="nav.dolores" onclick="closeMobile()">¿Te suena?</a>
-  <a href="#quien" data-i18n="nav.quien" onclick="closeMobile()">Sobre mí</a>
+  <a href="/about/" data-i18n="nav.quien" onclick="closeMobile()">Sobre mí</a>
   <a href="#servicios" data-i18n="nav.servicios" onclick="closeMobile()">Servicios</a>
   <a href="#proyectos" data-i18n="nav.proyectos" onclick="closeMobile()">Proyectos</a>
   <a href="#testimonios" data-i18n="nav.testimonios" onclick="closeMobile()">Opiniones</a>
@@ -790,6 +804,25 @@
       <summary data-i18n="faq.q4">¿Qué pasa si no es lo que esperaba?</summary>
       <p data-i18n="faq.a4">Hablamos abiertamente y ajustamos el enfoque. La primera charla evita sorpresas.</p>
     </details>
+  </div>
+</section>
+
+<!-- RECURSOS: guía + newsletter -->
+<section id="recursos">
+  <div class="section-label reveal" data-i18n="recursos.label">Para llevarte</div>
+  <div class="recursos-grid">
+    <a class="recurso reveal" href="guia/">
+      <span class="recurso-tag" data-i18n="recursos.guia.tag">Guía gratuita</span>
+      <span class="recurso-title" data-i18n="recursos.guia.title">Crear posibilidades</span>
+      <span class="recurso-body" data-i18n="recursos.guia.body">Ideas y ejercicios para conectar con otros y abrir nuevos caminos.</span>
+      <span class="recurso-cta" data-i18n="recursos.guia.cta">Descargar la guía →</span>
+    </a>
+    <a class="recurso reveal" href="trama/">
+      <span class="recurso-tag" data-i18n="recursos.trama.tag">Newsletter</span>
+      <span class="recurso-title">Trama invisible</span>
+      <span class="recurso-body" data-i18n="recursos.trama.body">Ideas y experiencias que conectan mundos y abren posibilidades. Cada dos semanas.</span>
+      <span class="recurso-cta" data-i18n="recursos.trama.cta">Suscribirme →</span>
+    </a>
   </div>
 </section>
 

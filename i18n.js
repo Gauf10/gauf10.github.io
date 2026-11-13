@@ -150,6 +150,16 @@ const TRANSLATIONS = {
     'faq.q4': '¿Qué pasa si siento que no es lo que esperaba?',
     'faq.a4': 'Lo conversamos con total honestidad. Si creo que otro enfoque o profesional puede ayudarte más, también te lo voy a decir.',
 
+    // ✏️ RECURSOS (guía + newsletter)
+    'recursos.label':      'Para llevarte',
+    'recursos.guia.tag':   'Guía gratuita',
+    'recursos.guia.title': 'Crear posibilidades',
+    'recursos.guia.body':  'Ideas y ejercicios para conectar con otros y abrir nuevos caminos.',
+    'recursos.guia.cta':   'Descargar la guía →',
+    'recursos.trama.tag':  'Newsletter',
+    'recursos.trama.body': 'Ideas y experiencias que conectan mundos y abren posibilidades. Cada dos semanas.',
+    'recursos.trama.cta':  'Suscribirme →',
+
     // ✏️ SECCIÓN CONTACTO / CONTACT SECTION
     'contacto.title':    '¿Te acompaño?',
     'contacto.sub':      'Charlemos unos minutos sin compromiso.',
@@ -310,6 +320,16 @@ const TRANSLATIONS = {
     'faq.a3': 'There is no fixed duration. Each process is designed around the goals, context and pace of the people involved.',
     'faq.q4': "What if it's not what I expected?",
     'faq.a4': "We'll talk about it openly. If I believe another approach or professional would be a better fit, I'll tell you honestly.",
+
+    // ✏️ RESOURCES (guide + newsletter)
+    'recursos.label':      'Take with you',
+    'recursos.guia.tag':   'Free guide (Spanish)',
+    'recursos.guia.title': 'Creating possibilities',
+    'recursos.guia.body':  'Ideas and exercises to connect with others and open new paths.',
+    'recursos.guia.cta':   'Get the guide →',
+    'recursos.trama.tag':  'Newsletter (Spanish)',
+    'recursos.trama.body': 'Ideas and experiences that connect worlds and open possibilities. Every two weeks.',
+    'recursos.trama.cta':  'Subscribe →',
 
     // ✏️ SECCIÓN CONTACTO / CONTACT SECTION
     'contacto.title': 'Shall we talk?',

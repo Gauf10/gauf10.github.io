@@ -208,6 +208,9 @@
     return 'es';
   }
 
+  /* disponibles para otras páginas (ej. /about) */
+  window.GAUF_TESTIMONIOS = { es: TESTIMONIOS_ES, en: TESTIMONIOS_EN };
+
   var positions = [
     { left: 76, top: 10, rotate: 8  },
     { left: 1,  top: 8,  rotate: -6 },
