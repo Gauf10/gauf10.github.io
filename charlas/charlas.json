@@ -91,10 +91,15 @@
   {
     "slug": "impro-aplicada",
     "title": "La improvisación como forma de relacionarnos",
+    "cover": "https://gaufgang.com/charlas/covers/impro-aplicada-cover.jpg",
+    "why": null,
     "observation": "La improvisación no es una técnica teatral. Es una forma de relacionarnos con otras personas, construir confianza y crear mejores conversaciones.",
     "question": "¿Qué cambia cuando dejamos de controlar cada respuesta y empezamos a construir con lo que aparece?",
     "idea": "La improvisación no es caos. Es el arte de construir juntos, sin saber de antemano qué viene.",
     "summary": "Esta conversación explora cómo los principios de la improvisación pueden ayudarnos a colaborar mejor, escuchar con mayor atención, aceptar la incertidumbre y generar confianza.",
+    "editorialStatus": "public",
+    "activeStatus": "activa",
+    "status": "activa",
     "tags": [
       "Improvisación",
       "Comunicación",
@@ -107,10 +112,6 @@
       "Liderazgo",
       "Trabajo en equipo"
     ],
-    "duration": "45",
-    "status": "activa",
-    "activeStatus": "activa",
-    "editorialStatus": "draft",
     "audience": [
       "startups",
       "empresas",
@@ -120,6 +121,7 @@
       "tecnología",
       "rrhh"
     ],
+    "duration": "45",
     "resources": [],
     "conversations": [
       {
@@ -129,7 +131,10 @@
         "date": "2025-09-24",
         "format": "presencial",
         "audience_desc": "Estudiantes secundarios",
+        "audience_count": null,
+        "context": null,
         "visible": true,
+        "photos": [],
         "resources": []
       },
       {
@@ -139,7 +144,10 @@
         "date": "2025-09-27",
         "format": "presencial",
         "audience_desc": "Desarrolladores",
+        "audience_count": null,
+        "context": null,
         "visible": true,
+        "photos": [],
         "resources": []
       },
       {
@@ -149,7 +157,10 @@
         "date": "2025-11-13",
         "format": "presencial",
         "audience_desc": "Recruiters y RRHH",
+        "audience_count": null,
+        "context": null,
         "visible": true,
+        "photos": [],
         "resources": []
       },
       {
@@ -159,11 +170,13 @@
         "date": "2026-08-07",
         "format": "presencial",
         "audience_desc": "Founders",
+        "audience_count": null,
+        "context": null,
         "visible": true,
+        "photos": [],
         "resources": []
       }
-    ],
-    "cover": "covers/impro-aplicada-cover.png"
+    ]
   },
   {
     "slug": "llave",
