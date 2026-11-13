@@ -32,6 +32,7 @@
   gtag('config', 'G-NF0X4QWTN6', { send_page_view: true });
 </script>
 
+<script src="/theme.js"></script>
 <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 <link rel="shortcut icon" href="../images/favicon.ico">
 <link rel="apple-touch-icon" href="../images/favicon.ico">
@@ -308,6 +309,21 @@
   @media (prefers-reduced-motion:reduce){
     *{transition:none!important}
   }
+
+  /* ═══ MODO OSCURO (theme.js) ═══ */
+  :root[data-theme="dark"]{
+    --bg:#1a1a1a; --ink:#f5f2ec; --muted:#a8a49c;
+    --border:rgba(245,242,236,.14); --error:#ff7a6b;
+  }
+  [data-theme="dark"] .nav{border-bottom-color:rgba(245,242,236,.1)}
+  [data-theme="dark"] .field input::placeholder{color:rgba(245,242,236,.38)}
+  [data-theme="dark"] .field input:hover{border-bottom-color:rgba(245,242,236,.3)}
+  [data-theme="dark"] .about-body p{color:rgba(245,242,236,.78)}
+  [data-theme="dark"] footer,[data-theme="dark"] .footer{background:#0f0f0f}
+  [data-theme="dark"] .nav,[data-theme="dark"] .pill{--ink:#1a1a1a}
+  [data-theme="dark"] .bajada{color:rgba(245,242,236,.7)}
+  [data-theme="dark"] .btn:hover{color:#1a1a1a}
+  [data-theme="dark"] .skip{color:#1a1a1a}
 </style>
 </head>
 <body>
@@ -318,7 +334,7 @@
   <a class="brand" href="https://gaufgang.com/" aria-label="Gauf — inicio">
     <img src="../images/logo_negro.svg" alt="Gauf" width="1202" height="404">
   </a>
-  <a class="nav-back" href="https://gaufgang.com/">Volver al sitio</a>
+  <span style="display:flex;align-items:center;gap:16px"><span data-theme-slot style="display:inline-flex"></span><a class="nav-back" href="https://gaufgang.com/">Volver al sitio</a></span>
 </header>
 
 <main>

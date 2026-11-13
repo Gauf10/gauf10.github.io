@@ -281,3 +281,16 @@ footer {
 
 .admin-status { font-size: 13px; color: var(--muted); min-height: 1.2em; margin: 0.75rem 0; }
 .admin-botones { display: flex; gap: 1rem; align-items: center; }
+
+/* ═══ MODO OSCURO (theme.js) ═══ */
+:root[data-theme="dark"] {
+  --bg: #1a1a1a; --ink: #f5f2ec; --muted: #a8a49c;
+  --border: rgba(245,242,236,0.12);
+}
+[data-theme="dark"] nav, [data-theme="dark"] .nav-mobile, [data-theme="dark"] #gracias { --ink: #1a1a1a; }
+[data-theme="dark"] .nav-cta { color: #f5f2ec !important; }
+[data-theme="dark"] .btn-primary, [data-theme="dark"] .btn-dark { color: #1a1a1a; }
+[data-theme="dark"] #gracias .btn-dark { color: #f5f2ec; }
+[data-theme="dark"] .pregunta-col, [data-theme="dark"] .textarea-diario, [data-theme="dark"] .admin-textarea { background: #222; }
+[data-theme="dark"] footer { background: #0f0f0f; }
+.gauf-theme-btn { cursor: none; }
