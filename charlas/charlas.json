@@ -162,16 +162,23 @@
   {
     "slug": "llave",
     "title": "La llave de la co-creación",
-    "observation": "",
+    "cover": null,
+    "why": null,
+    "observation": "La llave está en construimos con los demás.",
     "question": "",
     "idea": "",
-    "summary": "",
+    "summary": "Una invitación a recuperar el juego como herramienta para crear juntos, incluso cuando no sabemos exactamente adónde vamos.\n\nNos encontramos el 11/11.",
+    "editorialStatus": "public",
+    "activeStatus": "activa",
+    "status": "activa",
     "tags": [],
     "themes": [],
-    "duration": "45",
-    "status": "activa",
-    "activeStatus": "activa",
-    "editorialStatus": "draft",
+    "audience": [
+      "comunidades",
+      "founders",
+      "startups"
+    ],
+    "duration": "20",
     "resources": [
       {
         "type": "Presentación",
@@ -180,7 +187,21 @@
         "public": true
       }
     ],
-    "conversations": []
+    "conversations": [
+      {
+        "event": "La Llave",
+        "organization": "Speakers on Fire",
+        "location": "",
+        "date": "2026-11-11",
+        "format": "virtual",
+        "audience_desc": "Emprendedoras",
+        "audience_count": 50,
+        "context": null,
+        "visible": true,
+        "photos": [],
+        "resources": []
+      }
+    ]
   },
   {
     "slug": "converge",
