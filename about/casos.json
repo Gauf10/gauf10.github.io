@@ -1,0 +1,19 @@
+[
+  {
+    "cliente": "Warner Bros.",
+    "proyecto": "Mortal Kombat II · Torneo",
+    "imagen": "img/mortal-kombat.jpg",
+    "video": "https://www.youtube.com/watch?v=mJh676z0pOM",
+    "desafio": "",
+    "solucion": "",
+    "rol": "Director creativo",
+    "fijo": true
+  },
+  { "cliente": "TikTok", "proyecto": "Agency Heroes · Plataforma", "imagen": "https://5seis.com/img/tiktok-0.jpg", "video": "", "desafio": "", "solucion": "", "rol": "" },
+  { "cliente": "Disney+", "proyecto": "Daredevil Born Again · VR", "imagen": "https://5seis.com/img/daredevil-0.jpg", "video": "", "desafio": "", "solucion": "", "rol": "" },
+  { "cliente": "Toyota", "proyecto": "Posventa Chile · Ruta a Le Mans", "imagen": "https://5seis.com/img/toyota-0.jpg", "video": "", "desafio": "", "solucion": "", "rol": "" },
+  { "cliente": "Vulcanita", "proyecto": "Fugglers · FOOH", "imagen": "https://5seis.com/img/fugglers-0.jpg", "video": "", "desafio": "", "solucion": "", "rol": "" },
+  { "cliente": "Universal Pictures", "proyecto": "Black Phone 2 · Cabina", "imagen": "https://5seis.com/img/blackphone-0.jpg", "video": "", "desafio": "", "solucion": "", "rol": "" },
+  { "cliente": "Disney", "proyecto": "Lilo & Stitch · Retail", "imagen": "https://5seis.com/img/lilo-0.jpg", "video": "", "desafio": "", "solucion": "", "rol": "" },
+  { "cliente": "Warner Bros.", "proyecto": "Minecraft Movie · IMAX", "imagen": "https://5seis.com/img/minecraft-0.jpg", "video": "", "desafio": "", "solucion": "", "rol": "" }
+]

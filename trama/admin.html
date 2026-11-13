@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Admin · Trama invisible</title>
+<link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@300;400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1A1A1A;--fg:#F5F2EC;--acc:#27D3CC;--panel:#202020;--box:#262626;--line:rgba(245,242,236,.1);--dim:rgba(245,242,236,.55);--err:#ff7a6b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--fg);font:400 15px/1.5 Archivo,system-ui,sans-serif;min-height:100vh}
+button{font:inherit;cursor:pointer;color:inherit;background:none;border:0}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 16px 80px}
+header{display:flex;align-items:center;gap:12px;margin-bottom:26px}
+header h1{font:400 22px 'Archivo Black'}
+header h1 span{color:var(--acc)}
+header .sp{flex:1}
+header a{color:var(--dim);font-size:13px;text-decoration:none}
+header a:hover{color:var(--acc)}
+.screen{display:none}.screen.on{display:block}
+.login{max-width:340px;margin:12vh auto;text-align:center}
+.login h2{font:400 26px 'Archivo Black';margin-bottom:18px}
+input,textarea{width:100%;background:var(--box);border:1px solid var(--line);border-radius:8px;color:var(--fg);font:15px Archivo;padding:11px 13px;outline:none}
+input:focus,textarea:focus{border-color:var(--acc)}
+textarea{font:14px/1.6 'Roboto Mono',monospace;resize:vertical}
+.btn{border:1px solid rgba(245,242,236,.2);color:var(--dim);border-radius:7px;padding:9px 16px;font:500 12px 'Roboto Mono',monospace}
+.btn:hover{border-color:var(--acc);color:var(--acc)}
+.btn.main{border-color:var(--acc);color:#1A1A1A;background:var(--acc);font-weight:600}
+.btn.main:hover{filter:brightness(1.08);color:#1A1A1A}
+.btn.danger{border-color:rgba(255,122,107,.4);color:var(--err)}
+.msg{font-size:13px;margin-top:10px;min-height:1.3em;color:var(--dim)}
+.msg.err{color:var(--err)}
+.list-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.row{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;background:var(--panel);cursor:pointer}
+.row:hover{border-color:var(--acc)}
+.row .t{flex:1;font-weight:600}
+.row .m{font-size:12px;color:var(--dim);font-family:'Roboto Mono',monospace}
+.tag{font:500 10px 'Roboto Mono',monospace;letter-spacing:.08em;text-transform:uppercase;border-radius:99px;padding:3px 9px;border:1px solid var(--line);color:var(--dim)}
+.tag.pub{border-color:var(--acc);color:var(--acc)}
+.empty{color:var(--dim);padding:30px 0}
+.edit{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media(max-width:900px){.edit{grid-template-columns:1fr}}
+.f{margin-bottom:14px}
+.f label{display:block;font:500 10px 'Roboto Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:6px}
+.f .note{font-size:11.5px;color:var(--dim);margin-top:5px}
+.two{display:grid;grid-template-columns:110px 1fr;gap:12px}
+.sw-row{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border:1px solid var(--line);border-radius:8px;margin-bottom:14px}
+.sw{width:38px;height:22px;border-radius:99px;background:rgba(245,242,236,.15);position:relative;cursor:pointer;transition:background .2s}
+.sw::after{content:'';position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:var(--fg);transition:left .2s}
+.sw.on{background:rgba(39,211,204,.4)}.sw.on::after{left:19px;background:var(--acc)}
+.cover-drop{border:1px dashed var(--line);border-radius:8px;padding:14px;text-align:center;color:var(--dim);font-size:13px;position:relative}
+.cover-drop input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.cover-drop img{max-height:120px;margin:0 auto 8px;border-radius:6px;display:block}
+.help{font:12px/1.7 'Roboto Mono',monospace;color:var(--dim);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin-top:8px}
+.help b{color:var(--fg);font-weight:500}
+.preview{background:#F5F2EC;color:#1A1A1A;border-radius:12px;padding:28px;max-height:78vh;overflow:auto;position:sticky;top:16px}
+.preview .num{font:600 11px Archivo;letter-spacing:.14em;text-transform:uppercase;color:#14a29c}
+.preview h1{font:400 32px/1.08 'Archivo Black';margin:.5rem 0 .8rem}
+.preview .lead{font-size:18px;color:#6b6b6b;margin-bottom:1.3rem;line-height:1.5}
+.preview .cuerpo{font-size:16px;line-height:1.7}
+.preview .cuerpo p{margin-bottom:1em}
+.preview .cuerpo h2{font:400 22px 'Archivo Black';margin:1.6rem 0 .7rem}
+.preview .cuerpo h3{font-size:17px;font-weight:600;margin:1.3rem 0 .5rem}
+.preview .cuerpo a{color:#14a29c}
+.preview .cuerpo blockquote{border-left:3px solid #27D3CC;padding-left:1rem;margin:1.2rem 0;font-size:18px}
+.preview .cuerpo ul,.preview .cuerpo ol{padding-left:1.3rem;margin-bottom:1em}
+.preview .cuerpo img{max-width:100%;border-radius:8px;margin:1.2rem 0}
+.preview .cuerpo hr{border:0;border-top:1px solid rgba(26,26,26,.15);margin:1.6rem 0}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.actions .sp{flex:1}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--acc);color:#1A1A1A;padding:9px 16px;border-radius:8px;font-weight:600;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:60}
+.toast.on{opacity:1}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><h1>Trama invisible<span>.</span> admin</h1><span class="sp"></span><a href="./" target="_blank">Ver la página ↗</a></header>
+
+  <!-- LOGIN -->
+  <div class="screen on" id="s-login">
+    <div class="login">
+      <h2>Entrar</h2>
+      <input type="password" id="pw" placeholder="Contraseña de FARO" onkeydown="if(event.key==='Enter')login()">
+      <div style="margin-top:12px"><button class="btn main" onclick="login()" style="width:100%">Entrar</button></div>
+      <p class="msg" id="login-msg"></p>
+    </div>
+  </div>
+
+  <!-- LISTA -->
+  <div class="screen" id="s-list">
+    <div class="list-head"><span class="m" style="color:var(--dim);font-size:13px" id="count"></span><button class="btn main" onclick="edit(-1)">+ Nueva edición</button></div>
+    <div id="list"></div>
+  </div>
+
+  <!-- EDITOR -->
+  <div class="screen" id="s-edit">
+    <div class="edit">
+      <div>
+        <div class="sw-row"><span>Publicada <span style="color:var(--dim);font-size:13px">· se ve en gaufgang.com/trama</span></span><div class="sw" id="f-pub" onclick="this.classList.toggle('on')"></div></div>
+        <div class="f"><label>Título</label><input id="f-titulo" oninput="autoSlug();preview()" placeholder="El título de la edición"></div>
+        <div class="two">
+          <div class="f"><label>N.º</label><input id="f-numero" oninput="preview()" placeholder="1"></div>
+          <div class="f"><label>Fecha</label><input type="date" id="f-fecha" oninput="preview()"></div>
+        </div>
+        <div class="f"><label>Bajada</label><input id="f-bajada" oninput="preview()" placeholder="Una línea que invite a leer (va en la tarjeta)"></div>
+        <div class="f"><label>Portada (opcional)</label>
+          <div class="cover-drop" id="cover-drop"><img id="cover-img" style="display:none"><span id="cover-txt">Arrastrá una imagen o tocá para elegir</span><input type="file" accept="image/*" onchange="coverFile(this.files[0])"></div>
+          <div class="note" id="cover-note"></div>
+        </div>
+        <div class="f"><label>Texto</label>
+          <textarea id="f-cuerpo" rows="18" oninput="preview()" placeholder="Escribí la edición acá…"></textarea>
+          <div class="help"><b>## Subtítulo</b> · <b>**negrita**</b> · <b>*itálica*</b> · <b>[texto](https://link)</b><br><b>&gt; cita</b> · <b>- lista</b> · <b>1. lista</b> · <b>---</b> separador · <b>![](https://imagen.jpg)</b><br>Línea en blanco = párrafo nuevo.</div>
+        </div>
+        <details class="f"><summary style="cursor:pointer;color:var(--dim);font-size:13px">Avanzado · dirección de la página</summary>
+          <div style="margin-top:10px"><input id="f-slug" oninput="this.dataset.manual=1" placeholder="se completa con el título"><div class="note">gaufgang.com/trama/#/<b id="slug-show"></b></div></div>
+        </details>
+        <div class="actions">
+          <button class="btn" onclick="back()">← Volver</button>
+          <button class="btn danger" id="del" onclick="del()">Eliminar</button>
+          <span class="sp"></span>
+          <button class="btn" onclick="copyEmail()" title="HTML para pegar en MailerLite">Copiar para MailerLite</button>
+          <button class="btn main" onclick="save()">Guardar</button>
+        </div>
+        <p class="msg" id="edit-msg"></p>
+      </div>
+      <div><div class="preview" id="preview"></div></div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+var API = 'https://faro-api.gauf10.workers.dev';
+var TOKEN = null, LIST = [], IDX = -1, COVER = null;
+try { TOKEN = sessionStorage.getItem('trama-token'); } catch (e) {}
+
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function toast(m, d){ var t = $('toast'); t.textContent = m; t.classList.add('on'); setTimeout(function(){ t.classList.remove('on'); }, d || 2200); }
+function screen(id){ ['s-login','s-list','s-edit'].forEach(function(s){ $(s).classList.toggle('on', s === id); }); window.scrollTo(0,0); }
+function slugify(s){ return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,70); }
+function fecha(d){ var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(d||''); return m ? (+m[3])+' de '+['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'][+m[2]-1]+' de '+m[1] : esc(d||''); }
+function hoy(){ var d = new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+
+/* mismo markdown simple que trama/index.html */
+function md(src){
+  function inl(t){
+    return esc(t).replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g,'<img src="$2" alt="$1">').replace(/\[([^\]]+)\]\(([^)\s]+)\)/g,'<a href="$2">$1</a>')
+      .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>');
+  }
+  var out=[], list=null, para=[];
+  function fp(){ if(para.length){ out.push('<p>'+inl(para.join(' '))+'</p>'); para=[]; } }
+  function fl(){ if(list){ out.push('<'+list.t+'>'+list.items.map(function(i){ return '<li>'+inl(i)+'</li>'; }).join('')+'</'+list.t+'>'); list=null; } }
+  (src||'').split(/\r?\n/).forEach(function(raw){
+    var l=raw.trim(), m;
+    if(!l){ fp(); fl(); return; }
+    if(/^---+$/.test(l)){ fp(); fl(); out.push('<hr>'); return; }
+    if((m=/^(#{2,3})\s+(.*)$/.exec(l))){ fp(); fl(); out.push('<h'+m[1].length+'>'+inl(m[2])+'</h'+m[1].length+'>'); return; }
+    if((m=/^>\s?(.*)$/.exec(l))){ fp(); fl(); out.push('<blockquote>'+inl(m[1])+'</blockquote>'); return; }
+    if((m=/^[-*]\s+(.*)$/.exec(l))){ fp(); if(!list||list.t!=='ul'){ fl(); list={t:'ul',items:[]}; } list.items.push(m[1]); return; }
+    if((m=/^\d+[.)]\s+(.*)$/.exec(l))){ fp(); if(!list||list.t!=='ol'){ fl(); list={t:'ol',items:[]}; } list.items.push(m[1]); return; }
+    if(/^!\[/.test(l)){ fp(); fl(); out.push(inl(l)); return; }
+    fl(); para.push(l);
+  });
+  fp(); fl();
+  return out.join('\n');
+}
+
+/* ───────── sesión ───────── */
+function login(){
+  var pw = $('pw').value.trim(); if (!pw) return;
+  $('login-msg').textContent = 'Verificando…'; $('login-msg').className = 'msg';
+  fetch(API + '/api/login', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ charla:'trama', password: pw }) })
+    .then(function(r){ if (!r.ok) throw new Error('pw'); return r.json(); })
+    .then(function(d){ TOKEN = d.token; try { sessionStorage.setItem('trama-token', TOKEN); } catch (e) {} load(); })
+    .catch(function(e){ $('login-msg').textContent = e.message === 'pw' ? 'Contraseña incorrecta.' : 'Sin conexión.'; $('login-msg').className = 'msg err'; });
+}
+function reauth(){
+  var pw = prompt('La sesión venció. Contraseña (lo editado no se pierde):');
+  if (!pw) return Promise.resolve(false);
+  return fetch(API + '/api/login', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ charla:'trama', password: pw }) })
+    .then(function(r){ if (!r.ok) { toast('Contraseña incorrecta'); return false; } return r.json().then(function(d){ TOKEN = d.token; try { sessionStorage.setItem('trama-token', TOKEN); } catch (e) {} return true; }); })
+    .catch(function(){ return false; });
+}
+function api(method, path, body, retried){
+  return fetch(API + path, { method: method, headers: { 'Content-Type':'application/json', 'Authorization':'Bearer ' + TOKEN }, body: body ? JSON.stringify(body) : undefined })
+    .then(function(r){
+      if (r.status === 401 && !retried) return reauth().then(function(ok){ if (!ok) throw new Error('auth'); return api(method, path, body, true); });
+      if (!r.ok) throw new Error('http');
+      return r.json();
+    });
+}
+
+/* ───────── lista ───────── */
+function load(){
+  api('GET', '/api/trama').then(function(d){
+    LIST = JSON.parse(d.content || '[]'); if (!Array.isArray(LIST)) LIST = [];
+    renderList(); screen('s-list');
+  }).catch(function(e){ if (e.message === 'auth') { screen('s-login'); return; } toast('No pude leer las ediciones'); screen('s-login'); });
+}
+function renderList(){
+  var order = LIST.map(function(e, i){ return i; }).sort(function(a, b){ return (LIST[b].fecha||'').localeCompare(LIST[a].fecha||''); });
+  $('count').textContent = LIST.length + (LIST.length === 1 ? ' edición' : ' ediciones') + ' · ' + LIST.filter(function(e){ return e.publicada; }).length + ' publicadas';
+  $('list').innerHTML = LIST.length ? order.map(function(i){
+    var e = LIST[i];
+    return '<div class="row" onclick="edit(' + i + ')"><span class="m">' + (e.numero ? '#' + esc(e.numero) : '—') + '</span><span class="t">' + esc(e.titulo || 'Sin título') + '</span>'
+      + '<span class="m">' + esc(e.fecha || '') + '</span><span class="tag' + (e.publicada ? ' pub' : '') + '">' + (e.publicada ? 'Publicada' : 'Borrador') + '</span></div>';
+  }).join('') : '<p class="empty">Todavía no hay ediciones. Creá la primera.</p>';
+}
+
+/* ───────── editor ───────── */
+function edit(i){
+  IDX = i;
+  var e = i >= 0 ? LIST[i] : { titulo:'', numero: String(LIST.reduce(function(m, x){ return Math.max(m, +x.numero || 0); }, 0) + 1), fecha: hoy(), bajada:'', cuerpo:'', cover:null, publicada:false, slug:'' };
+  $('f-titulo').value = e.titulo || ''; $('f-numero').value = e.numero || ''; $('f-fecha').value = e.fecha || '';
+  $('f-bajada').value = e.bajada || ''; $('f-cuerpo').value = e.cuerpo || '';
+  $('f-slug').value = e.slug || ''; if (e.slug) $('f-slug').dataset.manual = 1; else delete $('f-slug').dataset.manual;
+  $('f-pub').classList.toggle('on', !!e.publicada);
+  COVER = e.cover || null; showCover();
+  $('del').style.display = i >= 0 ? '' : 'none';
+  $('edit-msg').textContent = '';
+  preview(); screen('s-edit');
+}
+function autoSlug(){ if (!$('f-slug').dataset.manual) $('f-slug').value = slugify($('f-titulo').value); }
+function showCover(){
+  var img = $('cover-img');
+  if (COVER) { img.src = COVER; img.style.display = 'block'; $('cover-txt').textContent = 'Tocá para cambiarla'; }
+  else { img.style.display = 'none'; $('cover-txt').textContent = 'Arrastrá una imagen o tocá para elegir'; }
+  $('cover-note').innerHTML = COVER ? '<a href="#" onclick="COVER=null;showCover();preview();return false" style="color:var(--err)">Quitar portada</a>' : '';
+}
+function coverFile(f){
+  if (!f) return;
+  var r = new FileReader();
+  r.onload = function(ev){ COVER = ev.target.result; showCover(); preview(); };
+  r.readAsDataURL(f);
+}
+function current(){
+  return {
+    slug: $('f-slug').value.trim() || slugify($('f-titulo').value),
+    titulo: $('f-titulo').value.trim(), numero: $('f-numero').value.trim(), fecha: $('f-fecha').value,
+    bajada: $('f-bajada').value.trim(), cuerpo: $('f-cuerpo').value, cover: COVER,
+    publicada: $('f-pub').classList.contains('on')
+  };
+}
+function preview(){
+  var e = current();
+  var sl = $('slug-show'); if (sl) sl.textContent = e.slug;
+  $('preview').innerHTML = '<div class="num">' + (e.numero ? 'Edición ' + esc(e.numero) + ' · ' : '') + fecha(e.fecha) + '</div>'
+    + '<h1>' + esc(e.titulo || 'Título') + '</h1>' + (e.bajada ? '<p class="lead">' + esc(e.bajada) + '</p>' : '')
+    + (e.cover ? '<img src="' + esc(e.cover) + '" style="width:100%;border-radius:10px;margin-bottom:1.3rem">' : '')
+    + '<div class="cuerpo">' + (md(e.cuerpo) || '<p style="color:#999">El texto aparece acá mientras escribís.</p>') + '</div>';
+}
+
+function uploadCover(e){
+  if (!e.cover || e.cover.indexOf('data:') !== 0) return Promise.resolve(e);
+  var mime = e.cover.split(';')[0].split(':')[1], ext = mime === 'image/png' ? '.png' : '.jpg';
+  return api('POST', '/api/upload', { filename: e.slug + '-' + Date.now() + ext, data: e.cover.split(',')[1], mime: mime, folder: 'trama' })
+    .then(function(d){ e.cover = d.url; COVER = d.url; return e; });
+}
+function save(){
+  var e = current(), msg = $('edit-msg');
+  if (!e.titulo) { msg.textContent = 'Falta el título.'; msg.className = 'msg err'; return; }
+  if (!e.slug) { msg.textContent = 'Falta la dirección (slug).'; msg.className = 'msg err'; return; }
+  if (LIST.some(function(x, i){ return i !== IDX && x.slug === e.slug; })) { msg.textContent = 'Ya hay otra edición con esa dirección. Cambiá el título o el slug.'; msg.className = 'msg err'; return; }
+  msg.textContent = 'Guardando…'; msg.className = 'msg';
+  uploadCover(e).then(function(e){
+    var next = LIST.slice();
+    if (IDX >= 0) next[IDX] = e; else next.push(e);
+    return api('PUT', '/api/trama', { content: JSON.stringify(next, null, 2) }).then(function(){
+      LIST = next; if (IDX < 0) IDX = LIST.length - 1;
+      $('del').style.display = '';
+      msg.textContent = e.publicada ? 'Publicada ✓ — el sitio se actualiza en ~1 minuto.' : 'Guardada como borrador ✓';
+      toast('Guardado ✓');
+    });
+  }).catch(function(){ msg.textContent = 'No se pudo guardar. Lo escrito sigue acá: probá de nuevo.'; msg.className = 'msg err'; });
+}
+function del(){
+  if (IDX < 0 || !confirm('¿Eliminar esta edición? No se puede deshacer.')) return;
+  var next = LIST.slice(); next.splice(IDX, 1);
+  api('PUT', '/api/trama', { content: JSON.stringify(next, null, 2) }).then(function(){ LIST = next; renderList(); screen('s-list'); toast('Eliminada'); })
+    .catch(function(){ toast('No se pudo eliminar'); });
+}
+function back(){ renderList(); screen('s-list'); }
+
+/* HTML con estilos en línea, para pegar en un bloque HTML de MailerLite */
+function copyEmail(){
+  var e = current(), url = 'https://gaufgang.com/trama/#/' + e.slug;
+  var body = md(e.cuerpo)
+    .replace(/<p>/g, '<p style="margin:0 0 16px;font-size:17px;line-height:1.65;color:#1A1A1A">')
+    .replace(/<h2>/g, '<h2 style="margin:28px 0 12px;font-family:Arial Black,Arial,sans-serif;font-size:22px;line-height:1.2;color:#1A1A1A">')
+    .replace(/<h3>/g, '<h3 style="margin:22px 0 8px;font-size:18px;color:#1A1A1A">')
+    .replace(/<a /g, '<a style="color:#14a29c" ')
+    .replace(/<blockquote>/g, '<blockquote style="margin:20px 0;padding-left:14px;border-left:3px solid #27D3CC;font-size:19px;line-height:1.5;color:#1A1A1A">')
+    .replace(/<ul>/g, '<ul style="margin:0 0 16px;padding-left:22px;font-size:17px;line-height:1.65">')
+    .replace(/<ol>/g, '<ol style="margin:0 0 16px;padding-left:22px;font-size:17px;line-height:1.65">')
+    .replace(/<img /g, '<img style="max-width:100%;border-radius:8px;margin:16px 0" ')
+    .replace(/<hr>/g, '<hr style="border:0;border-top:1px solid #ddd;margin:28px 0">');
+  var html = '<div style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:0 auto;color:#1A1A1A">'
+    + '<p style="margin:0 0 6px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#14a29c">Trama invisible' + (e.numero ? ' · N.º ' + esc(e.numero) : '') + '</p>'
+    + '<h1 style="margin:0 0 12px;font-family:Arial Black,Arial,sans-serif;font-size:30px;line-height:1.1">' + esc(e.titulo) + '</h1>'
+    + (e.bajada ? '<p style="margin:0 0 22px;font-size:18px;line-height:1.5;color:#6b6b6b">' + esc(e.bajada) + '</p>' : '')
+    + (e.cover && e.cover.indexOf('http') === 0 ? '<img src="' + esc(e.cover) + '" style="width:100%;border-radius:10px;margin:0 0 22px">' : '')
+    + body
+    + '<p style="margin:28px 0 0;font-size:14px;color:#6b6b6b"><a href="' + url + '" style="color:#14a29c">Leer en la web</a> · Gabriel Aufgang</p></div>';
+  navigator.clipboard.writeText(html).then(function(){ toast('HTML copiado. En MailerLite: bloque "Custom HTML" → pegar.', 3500); });
+}
+
+if (TOKEN) load();
+</script>
+</body>
+</html>
