@@ -2,10 +2,15 @@
   {
     "slug": "exp-humanas",
     "title": "Diseñar desde la experiencia humana",
+    "cover": "https://gaufgang.com/charlas/covers/exp-humanas-cover.jpg",
+    "why": null,
     "observation": "Diseñamos para personas. Primero hay que entenderlas.",
     "question": "¿Cómo tomamos mejores decisiones cuando diseñamos con y para otras personas?",
     "idea": "Las mejores decisiones nacen cuando una idea se encuentra con la realidad de las personas.",
     "summary": "Una exploración sobre cómo el diseño centrado en la experiencia humana transforma la manera en que creamos productos, servicios y conversaciones.",
+    "editorialStatus": "public",
+    "activeStatus": "activa",
+    "status": "activa",
     "tags": [
       "Experiencias",
       "Liderazgo",
@@ -16,10 +21,8 @@
       "Liderazgo",
       "Comunicación"
     ],
+    "audience": [],
     "duration": "45",
-    "status": "activa",
-    "activeStatus": "activa",
-    "editorialStatus": "public",
     "resources": [
       {
         "type": "Presentación",
@@ -30,12 +33,16 @@
     ],
     "conversations": [
       {
-        "event": "Sesión en vivo",
-        "organization": "Comunidad GAUF",
+        "event": "Tribu Talk",
+        "organization": "Tribu",
         "location": "Buenos Aires, Argentina",
-        "date": "2024",
-        "format": "presencial",
+        "date": "2026-08-05",
+        "format": "virtual",
+        "audience_desc": "",
+        "audience_count": 25,
+        "context": null,
         "visible": true,
+        "photos": [],
         "resources": []
       }
     ]
