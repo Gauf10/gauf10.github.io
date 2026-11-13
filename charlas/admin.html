@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Biblioteca — Charlas GAUF</title>
-<link rel="icon" type="image/x-icon" href="exp-humanas/favicon.ico">
-<link rel="shortcut icon" href="exp-humanas/favicon.ico">
+<link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+<link rel="shortcut icon" href="../images/favicon.ico">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 
@@ -223,6 +223,9 @@ select option{background:var(--bk)}
 
 /* ── PRIVATE FIELD ── */
 
+.adv summary{cursor:pointer;list-style:none}
+.adv summary::before{content:'▸ ';color:var(--accent)}
+.adv[open] summary::before{content:'▾ '}
 .private-field .field-label{color:rgba(245,242,236,.2)}
 .private-field textarea,.private-field input{border-color:rgba(245,242,236,.04);color:rgba(245,242,236,.4)}
 .private-field textarea:focus,.private-field input:focus{border-color:rgba(245,242,236,.15);color:var(--bone)}
@@ -413,47 +416,22 @@ select option{background:var(--bk)}
         <input type="hidden" id="f-cover">
       </div>
 
-      <!-- IDENTIDAD -->
+      <!-- CHARLA -->
       <div class="form-section">
-        <div class="section-label">Identidad</div>
+        <div class="section-label">Charla</div>
         <div class="field"><div class="field-label">Título</div><input type="text" id="f-title" placeholder="Nombre de la charla"></div>
-        <div class="field"><div class="field-label">Slug (carpeta)</div><input type="text" id="f-slug" placeholder="mi-charla"><div class="field-note">Solo letras, números y guiones. Coincide con la carpeta en el repo.</div></div>
-        <div class="field private-field">
-          <div class="field-label">¿Por qué existe esta charla? <span class="private-badge">privado</span></div>
-          <textarea id="f-why" rows="2" placeholder="Para uso interno. Nunca visible públicamente."></textarea>
-        </div>
-      </div>
-
-      <!-- ESTADO -->
-      <div class="form-section">
-        <div class="section-label">Estado</div>
-        <div class="field-label" style="margin-bottom:10px">Editorial</div>
-        <div class="pill-group" id="pg-editorial">
-          <button type="button" class="pill" data-val="draft" onclick="setPill('editorial','draft')">Borrador</button>
-          <button type="button" class="pill" data-val="public" onclick="setPill('editorial','public')">Público</button>
-          <button type="button" class="pill" data-val="private" onclick="setPill('editorial','private')">Privado</button>
-        </div>
-        <div class="field-label" style="margin-bottom:10px">Actividad</div>
-        <div class="pill-group" id="pg-active">
-          <button type="button" class="pill" data-val="development" onclick="setPill('active','development')">En desarrollo</button>
-          <button type="button" class="pill" data-val="activa" onclick="setPill('active','activa')">Activa</button>
-          <button type="button" class="pill" data-val="pausada" onclick="setPill('active','pausada')">Pausada</button>
+        <div class="toggle-row" style="border-bottom:0">
+          <span class="toggle-label">Publicada <span class="field-note" style="display:inline">· se ve en el index</span></span>
+          <div class="toggle-sw" id="pub-main" onclick="togglePublished()"></div>
         </div>
       </div>
 
       <!-- CONTENIDO -->
       <div class="form-section">
         <div class="section-label">Contenido</div>
-        <div class="field"><div class="field-label">Observación</div><input type="text" id="f-obs" placeholder="Una frase corta que resume la charla."></div>
-        <div class="field"><div class="field-label">Pregunta rectora</div><input type="text" id="f-question" placeholder="¿La pregunta que guía la conversación?"></div>
-        <div class="field"><div class="field-label">Idea fuerza</div><textarea id="f-idea" rows="2" placeholder="La tesis central, en una o dos líneas."></textarea></div>
-        <div class="field"><div class="field-label">Resumen</div><textarea id="f-summary" rows="4" placeholder="Descripción más extensa para la página de detalle."></textarea></div>
-      </div>
-
-      <!-- CLASIFICACIÓN -->
-      <div class="form-section">
-        <div class="section-label">Clasificación</div>
-
+        <div class="field"><div class="field-label">Idea</div><textarea id="f-idea" rows="2" placeholder="La frase que resume la charla (va en la tarjeta)."></textarea></div>
+        <div class="field"><div class="field-label">Pregunta</div><input type="text" id="f-question" placeholder="¿La pregunta que guía la conversación?"></div>
+        <div class="field"><div class="field-label">Resumen</div><textarea id="f-summary" rows="4" placeholder="De qué se trata, para la página de detalle."></textarea></div>
         <div class="field">
           <div class="field-label">Etiquetas</div>
           <div class="tag-chips" id="tag-chips"></div>
@@ -462,22 +440,20 @@ select option{background:var(--bk)}
             <div class="tag-suggestions" id="tag-suggestions"></div>
           </div>
         </div>
+      </div>
 
-        <div class="field">
-          <div class="field-label">Audiencia</div>
-          <div class="audience-grid" id="audience-grid"></div>
+      <!-- campos que ya no se usan: ocultos, conservan lo cargado -->
+      <div hidden>
+        <input type="text" id="f-obs">
+        <div class="pill-group" id="pg-editorial">
+          <button type="button" class="pill" data-val="draft"></button><button type="button" class="pill" data-val="public"></button><button type="button" class="pill" data-val="private"></button>
         </div>
-
-        <div class="field">
-          <div class="field-label">Duración</div>
-          <div class="pill-group" id="pg-duration">
-            <button type="button" class="pill" data-val="20" onclick="setPill('duration','20')">20 min</button>
-            <button type="button" class="pill" data-val="30" onclick="setPill('duration','30')">30 min</button>
-            <button type="button" class="pill" data-val="45" onclick="setPill('duration','45')">45 min</button>
-            <button type="button" class="pill" data-val="60" onclick="setPill('duration','60')">60 min</button>
-            <button type="button" class="pill" data-val="90" onclick="setPill('duration','90')">90 min</button>
-            <button type="button" class="pill" data-val="workshop" onclick="setPill('duration','workshop')">Workshop</button>
-          </div>
+        <div class="pill-group" id="pg-active">
+          <button type="button" class="pill" data-val="development"></button><button type="button" class="pill" data-val="activa"></button><button type="button" class="pill" data-val="pausada"></button>
+        </div>
+        <div class="audience-grid" id="audience-grid"></div>
+        <div class="pill-group" id="pg-duration">
+          <button type="button" class="pill" data-val="20"></button><button type="button" class="pill" data-val="30"></button><button type="button" class="pill" data-val="45"></button><button type="button" class="pill" data-val="60"></button><button type="button" class="pill" data-val="90"></button><button type="button" class="pill" data-val="workshop"></button>
         </div>
       </div>
 
@@ -494,6 +470,16 @@ select option{background:var(--bk)}
         <div id="convs-container"></div>
         <button type="button" class="add-conv" onclick="addConv()">+ Agregar conversación</button>
       </div>
+
+      <!-- AVANZADO -->
+      <details class="form-section adv">
+        <summary class="section-label">Avanzado · carpeta y notas privadas</summary>
+        <div class="field" style="margin-top:12px"><div class="field-label">Carpeta (slug)</div><input type="text" id="f-slug" placeholder="se completa con el título"><div class="field-note">Solo letras, números y guiones. Tiene que coincidir con la carpeta en el repo.</div></div>
+        <div class="field private-field">
+          <div class="field-label">Notas privadas <span class="private-badge">privado</span></div>
+          <textarea id="f-why" rows="3" placeholder="Para vos. No se muestra en el index."></textarea>
+        </div>
+      </details>
 
       <!-- ACCIONES -->
       <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;padding-top:clamp(16px,2.5vh,24px);border-top:1px solid var(--dim2)">
@@ -840,7 +826,13 @@ function setPill(group, val) {
   syncPills();
 }
 
+function togglePublished() {
+  setPill('editorial', pillState.editorial === 'public' ? 'draft' : 'public');
+}
+
 function syncPills() {
+  var pm = document.getElementById('pub-main');
+  if (pm) pm.classList.toggle('on', pillState.editorial === 'public');
   ['editorial','active','duration'].forEach(function(g) {
     var pgId = 'pg-' + (g==='active'?'active':g==='editorial'?'editorial':'duration');
     var pg = document.getElementById(pgId);
@@ -1035,31 +1027,14 @@ function renderConvs() {
             +'</div>'
           +'</div>'
         +'</div>'
-        /* lugar + formato */
+        /* lugar + público */
         +'<div class="two-col">'
           +'<div class="field"><div class="field-label">Lugar</div>'
             +'<input type="text" value="'+esc(v.location||'')+'" placeholder="Ciudad, País" oninput="editConvs['+i+'].location=this.value">'
           +'</div>'
-          +'<div class="field"><div class="field-label">Formato</div>'
-            +'<select onchange="editConvs['+i+'].format=this.value">'
-              +'<option value="presencial"'+(fmt==='presencial'?' selected':'')+'>Presencial</option>'
-              +'<option value="virtual"'+(fmt==='virtual'?' selected':'')+'>Virtual</option>'
-              +'<option value="hibrido"'+(fmt==='hibrido'?' selected':'')+'>Híbrido</option>'
-            +'</select>'
+          +'<div class="field"><div class="field-label">Público (opcional)</div>'
+            +'<input type="text" value="'+esc(v.audience_desc||'')+'" placeholder="Ej: 150 founders" oninput="editConvs['+i+'].audience_desc=this.value">'
           +'</div>'
-        +'</div>'
-        /* audiencia desc + count */
-        +'<div class="two-col">'
-          +'<div class="field"><div class="field-label">Audiencia</div>'
-            +'<input type="text" value="'+esc(v.audience_desc||'')+'" placeholder="Ej: Estudiantes, Founders…" oninput="editConvs['+i+'].audience_desc=this.value">'
-          +'</div>'
-          +'<div class="field"><div class="field-label">Aprox. personas</div>'
-            +'<input type="number" value="'+esc(String(v.audience_count||''))+'" placeholder="150" min="0" oninput="editConvs['+i+'].audience_count=this.value">'
-          +'</div>'
-        +'</div>'
-        /* contexto */
-        +'<div class="field"><div class="field-label">Contexto (opcional)</div>'
-          +'<textarea rows="2" placeholder="Descripción del contexto…" oninput="editConvs['+i+'].context=this.value">'+esc(v.context||v.description||'')+'</textarea>'
         +'</div>'
         /* recursos de la edición */
         +'<div style="margin-top:clamp(12px,1.8vh,18px)">'
