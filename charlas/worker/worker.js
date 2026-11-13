@@ -7,6 +7,7 @@
  *  GET  /api/charlas      → charlas.json content
  *  PUT  /api/charlas      → { content } (JSON string of charlas array)
  *  POST /api/upload       → { filename, data (base64), mime } → { url }
+ *  GET/PUT /api/trama     → { content } ediciones de Trama (trama/ediciones.json)
  *  PUT  /api/preguntas    → { preguntas: [..] } → guarda preguntas/preguntas.json
  *
  *  ENV vars:
@@ -237,6 +238,21 @@ export default {
       return json({ ok: true }, 200, origin);
     }
 
+    /* ── GET/PUT /api/trama ── (ediciones de Trama invisible, repo público) */
+    if (url.pathname === '/api/trama' && request.method === 'GET') {
+      var tf = await ghGet('trama/ediciones.json', env);
+      return json({ content: tf ? tf.content : '[]' }, 200, origin);
+    }
+    if (url.pathname === '/api/trama' && request.method === 'PUT') {
+      var tb = await request.json();
+      if (typeof tb.content !== 'string') return error('content required', 400, origin);
+      try { if (!Array.isArray(JSON.parse(tb.content))) throw 0; } catch (e) { return error('invalid json', 400, origin); }
+      var tex = await ghGet('trama/ediciones.json', env);
+      var tok = await ghPut('trama/ediciones.json', tb.content, tex ? tex.sha : null, env, 'trama');
+      if (!tok) return error('failed to save', 500, origin);
+      return json({ ok: true }, 200, origin);
+    }
+
     /* ── PUT /api/preguntas ── (panel admin de /preguntas, repo público) */
     if (url.pathname === '/api/preguntas' && request.method === 'PUT') {
       var body = await request.json();
@@ -258,7 +274,7 @@ export default {
       var body = await request.json();
       if (!body.filename || !body.data) return error('filename and data required', 400, origin);
       var safeName = body.filename.replace(/[^a-zA-Z0-9.\-_]/g, '-').toLowerCase();
-      var folder   = body.folder || 'covers';
+      var folder   = String(body.folder || 'covers').replace(/[^a-z0-9-]/gi, '') || 'covers';
       var path     = 'charlas/' + folder + '/' + safeName;
       var existing = await ghGet(path, env);
       var sha = existing ? existing.sha : null;
